@@ -1,0 +1,40 @@
+2025-05-16 16:03:07,336 - INFO - Script started.
+2025-05-16 16:03:07,336 - INFO - Sales file: your_sales_data.csv
+2025-05-16 16:03:07,336 - INFO - Output directory: ./fifo_test_outputs
+2025-05-16 16:03:07,336 - INFO - Log file: ./validation_log.txt
+2025-05-16 16:03:07,336 - INFO - Validate only: True
+2025-05-16 16:03:07,336 - INFO - Created output directory: ./fifo_test_outputs
+2025-05-16 16:03:07,436 - INFO - Supabase client initialized successfully.
+2025-05-16 16:03:07,436 - INFO - Loading purchases data from Supabase table: purchase_lots
+2025-05-16 16:03:07,908 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=lot_id%2Cpo_number%2Csku%2Creceived_date%2Coriginal_unit_qty%2Cunit_price%2Cfreight_cost_per_unit%2Cremaining_unit_qty&remaining_unit_qty=gt.0 "HTTP/2 200 OK"
+2025-05-16 16:03:07,915 - INFO - Successfully fetched 234 records from Supabase.
+2025-05-16 16:03:07,925 - INFO - Purchases data from Supabase loaded and validated successfully.
+2025-05-16 16:03:07,925 - INFO - Loading user sales data from: your_sales_data.csv
+2025-05-16 16:03:07,926 - INFO - Found columns in sales file: ['sales_data.csv']
+2025-05-16 16:03:07,927 - INFO - Normalized column mapping: {'sales_data.csv': 'sales_data.csv'}
+2025-05-16 16:03:07,927 - ERROR - Could not find a match for required column 'sku'
+2025-05-16 16:03:07,927 - ERROR - Could not find a match for required column 'units moved'
+2025-05-16 16:03:07,927 - ERROR - Could not find a match for required column 'Month'
+2025-05-16 16:03:07,927 - ERROR - Missing required columns in user sales data. Expected columns based on mapping: {'sku': 'SKU', 'units moved': 'Quantity_Sold', 'Month': 'Sale_Month_Str'}
+2025-05-16 16:03:07,927 - ERROR - Available columns in file: ['sales_data.csv']
+2025-05-16 16:03:07,927 - ERROR - Failed to load or validate sales data. Exiting.
+2025-05-16 16:05:38,851 - INFO - Script started.
+2025-05-16 16:05:38,852 - INFO - Sales file: sales_data.csv
+2025-05-16 16:05:38,852 - INFO - Output directory: ./fifo_test_outputs
+2025-05-16 16:05:38,852 - INFO - Log file: ./validation_log.txt
+2025-05-16 16:05:38,852 - INFO - Validate only: True
+2025-05-16 16:05:38,852 - INFO - Created output directory: ./fifo_test_outputs
+2025-05-16 16:05:38,920 - INFO - Supabase client initialized successfully.
+2025-05-16 16:05:38,920 - INFO - Loading purchases data from Supabase table: purchase_lots
+2025-05-16 16:05:39,325 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=lot_id%2Cpo_number%2Csku%2Creceived_date%2Coriginal_unit_qty%2Cunit_price%2Cfreight_cost_per_unit%2Cremaining_unit_qty&remaining_unit_qty=gt.0 "HTTP/2 200 OK"
+2025-05-16 16:05:39,331 - INFO - Successfully fetched 234 records from Supabase.
+2025-05-16 16:05:39,341 - INFO - Purchases data from Supabase loaded and validated successfully.
+2025-05-16 16:05:39,341 - INFO - Loading user sales data from: sales_data.csv
+2025-05-16 16:05:39,343 - INFO - Found columns in sales file: ['sales_data.csv']
+2025-05-16 16:05:39,343 - INFO - Normalized column mapping: {'sales_data.csv': 'sales_data.csv'}
+2025-05-16 16:05:39,343 - ERROR - Could not find a match for required column 'sku'
+2025-05-16 16:05:39,343 - ERROR - Could not find a match for required column 'units moved'
+2025-05-16 16:05:39,343 - ERROR - Could not find a match for required column 'Month'
+2025-05-16 16:05:39,343 - ERROR - Missing required columns in user sales data. Expected columns based on mapping: {'sku': 'SKU', 'units moved': 'Quantity_Sold', 'Month': 'Sale_Month_Str'}
+2025-05-16 16:05:39,343 - ERROR - Available columns in file: ['sales_data.csv']
+2025-05-16 16:05:39,344 - ERROR - Failed to load or validate sales data. Exiting.

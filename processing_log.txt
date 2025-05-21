@@ -1,0 +1,155 @@
+2025-05-16 16:11:10,364 - INFO - Script started.
+2025-05-16 16:11:10,364 - INFO - Sales file: sales_data.csv
+2025-05-16 16:11:10,364 - INFO - Output directory: ./fifo_test_outputs
+2025-05-16 16:11:10,364 - INFO - Log file: ./processing_log.txt
+2025-05-16 16:11:10,364 - INFO - Validate only: False
+2025-05-16 16:11:10,364 - INFO - Created output directory: ./fifo_test_outputs
+2025-05-16 16:11:10,434 - INFO - Supabase client initialized successfully.
+2025-05-16 16:11:10,434 - INFO - Loading purchases data from Supabase table: purchase_lots
+2025-05-16 16:11:10,803 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=lot_id%2Cpo_number%2Csku%2Creceived_date%2Coriginal_unit_qty%2Cunit_price%2Cfreight_cost_per_unit%2Cremaining_unit_qty&remaining_unit_qty=gt.0 "HTTP/2 200 OK"
+2025-05-16 16:11:10,813 - INFO - Successfully fetched 234 records from Supabase.
+2025-05-16 16:11:10,830 - INFO - Purchases data from Supabase loaded and validated successfully.
+2025-05-16 16:11:10,830 - INFO - Loading user sales data from: sales_data.csv
+2025-05-16 16:11:10,835 - INFO - Found columns in sales file: ['sku', 'units moved', 'Month', 'Unnamed: 3', 'Unnamed: 4']
+2025-05-16 16:11:10,835 - INFO - Normalized column mapping: {'sku': 'sku', 'unitsmoved': 'units moved', 'month': 'Month', 'unnamed:3': 'Unnamed: 3', 'unnamed:4': 'Unnamed: 4'}
+2025-05-16 16:11:10,835 - INFO - Using column mapping: {'sku': 'SKU', 'units moved': 'Quantity_Sold', 'Month': 'Sale_Month_Str'}
+2025-05-16 16:11:10,838 - WARNING - Sales quantity '#VALUE!' for SKU nan (Month: 4/30/25) was coerced to 0 due to non-numeric content.
+2025-05-16 16:11:10,838 - WARNING - Sales quantity '#VALUE!' for SKU nan (Month: 4/30/25) was coerced to 0 due to non-numeric content.
+2025-05-16 16:11:10,839 - WARNING - User sales data contains negative 'Quantity_Sold'. These will be ignored or handled by FIFO logic if zero.
+2025-05-16 16:11:10,843 - WARNING - All sales had zero or negative quantities after processing and summarization.
+2025-05-16 16:11:10,843 - INFO - Starting pre-processing validation of sales data against inventory...
+2025-05-16 16:11:10,843 - WARNING - Sales data is empty. No validation needed.
+2025-05-16 16:11:10,843 - WARNING - Sales data is empty. No FIFO processing to perform.
+2025-05-16 16:11:10,848 - INFO - Saved COGS attribution to: ./fifo_test_outputs/cogs_attribution_supabase.csv
+2025-05-16 16:11:10,848 - INFO - Saved COGS summary to: ./fifo_test_outputs/cogs_summary_supabase.csv
+2025-05-16 16:11:10,848 - INFO - Saved updated inventory snapshot to: ./fifo_test_outputs/updated_inventory_snapshot_supabase.csv
+2025-05-16 16:11:10,848 - INFO - Script completed successfully.
+2025-05-16 16:12:41,089 - INFO - Script started.
+2025-05-16 16:12:41,089 - INFO - Sales file: sales_data.csv
+2025-05-16 16:12:41,089 - INFO - Output directory: ./fifo_test_outputs
+2025-05-16 16:12:41,089 - INFO - Log file: ./processing_log.txt
+2025-05-16 16:12:41,089 - INFO - Validate only: False
+2025-05-16 16:12:41,089 - INFO - Created output directory: ./fifo_test_outputs
+2025-05-16 16:12:41,152 - INFO - Supabase client initialized successfully.
+2025-05-16 16:12:41,152 - INFO - Loading purchases data from Supabase table: purchase_lots
+2025-05-16 16:12:41,356 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=lot_id%2Cpo_number%2Csku%2Creceived_date%2Coriginal_unit_qty%2Cunit_price%2Cfreight_cost_per_unit%2Cremaining_unit_qty&remaining_unit_qty=gt.0 "HTTP/2 200 OK"
+2025-05-16 16:12:41,364 - INFO - Successfully fetched 234 records from Supabase.
+2025-05-16 16:12:41,377 - INFO - Purchases data from Supabase loaded and validated successfully.
+2025-05-16 16:12:41,377 - INFO - Loading user sales data from: sales_data.csv
+2025-05-16 16:12:41,379 - INFO - Found columns in sales file: ['sku', 'units moved', 'Month']
+2025-05-16 16:12:41,379 - INFO - Normalized column mapping: {'sku': 'sku', 'unitsmoved': 'units moved', 'month': 'Month'}
+2025-05-16 16:12:41,379 - INFO - Using column mapping: {'sku': 'SKU', 'units moved': 'Quantity_Sold', 'Month': 'Sale_Month_Str'}
+2025-05-16 16:12:41,382 - WARNING - Sales quantity '0.00' for SKU FBA17PNHJT79.missing1 (Month: 4/30/25) was coerced to 0 due to non-numeric content.
+2025-05-16 16:12:41,382 - WARNING - Sales quantity '0.00' for SKU RTPBMB7717 (Month: 4/30/25) was coerced to 0 due to non-numeric content.
+2025-05-16 16:12:41,382 - WARNING - Sales quantity '0.00' for SKU TCBP17BKGD (Month: 4/30/25) was coerced to 0 due to non-numeric content.
+2025-05-16 16:12:41,382 - WARNING - Sales quantity '#VALUE!' for SKU nan (Month: 4/30/25) was coerced to 0 due to non-numeric content.
+2025-05-16 16:12:41,382 - WARNING - Sales quantity '#VALUE!' for SKU nan (Month: 4/30/25) was coerced to 0 due to non-numeric content.
+2025-05-16 16:12:41,383 - WARNING - User sales data contains negative 'Quantity_Sold'. These will be ignored or handled by FIFO logic if zero.
+2025-05-16 16:12:41,386 - WARNING - All sales had zero or negative quantities after processing and summarization.
+2025-05-16 16:12:41,386 - INFO - Starting pre-processing validation of sales data against inventory...
+2025-05-16 16:12:41,386 - WARNING - Sales data is empty. No validation needed.
+2025-05-16 16:12:41,386 - WARNING - Sales data is empty. No FIFO processing to perform.
+2025-05-16 16:12:41,390 - INFO - Saved COGS attribution to: ./fifo_test_outputs/cogs_attribution_supabase.csv
+2025-05-16 16:12:41,390 - INFO - Saved COGS summary to: ./fifo_test_outputs/cogs_summary_supabase.csv
+2025-05-16 16:12:41,390 - INFO - Saved updated inventory snapshot to: ./fifo_test_outputs/updated_inventory_snapshot_supabase.csv
+2025-05-16 16:12:41,390 - INFO - Script completed successfully.
+2025-05-21 11:13:47,169 - INFO - Script started.
+2025-05-21 11:13:47,171 - INFO - Sales file: /path/to/sales_data.csv
+2025-05-21 11:13:47,171 - INFO - Output directory: ./fifo_test_outputs
+2025-05-21 11:13:47,171 - INFO - Log file: ./processing_log.txt
+2025-05-21 11:13:47,171 - INFO - Validate only: False
+2025-05-21 11:13:47,235 - INFO - Supabase client initialized successfully.
+2025-05-21 11:13:47,235 - INFO - Loading purchases data from Supabase table: purchase_lots
+2025-05-21 11:13:48,169 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=lot_id%2Cpo_number%2Csku%2Creceived_date%2Coriginal_unit_qty%2Cunit_price%2Cfreight_cost_per_unit%2Cremaining_unit_qty&remaining_unit_qty=gt.0 "HTTP/2 200 OK"
+2025-05-21 11:13:48,179 - INFO - Successfully fetched 234 records from Supabase.
+2025-05-21 11:13:48,190 - INFO - Purchases data from Supabase loaded and validated successfully.
+2025-05-21 11:13:48,190 - INFO - Loading user sales data from: /path/to/sales_data.csv
+2025-05-21 11:13:48,191 - ERROR - Sales file not found: /path/to/sales_data.csv
+2025-05-21 11:13:48,191 - ERROR - Failed to load or validate sales data. Exiting.
+2025-05-21 11:14:28,626 - INFO - Script started.
+2025-05-21 11:14:28,627 - INFO - Sales file: sales_data.csv
+2025-05-21 11:14:28,627 - INFO - Output directory: ./fifo_test_outputs
+2025-05-21 11:14:28,627 - INFO - Log file: ./processing_log.txt
+2025-05-21 11:14:28,627 - INFO - Validate only: False
+2025-05-21 11:14:28,731 - INFO - Supabase client initialized successfully.
+2025-05-21 11:14:28,731 - INFO - Loading purchases data from Supabase table: purchase_lots
+2025-05-21 11:14:29,060 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=lot_id%2Cpo_number%2Csku%2Creceived_date%2Coriginal_unit_qty%2Cunit_price%2Cfreight_cost_per_unit%2Cremaining_unit_qty&remaining_unit_qty=gt.0 "HTTP/2 200 OK"
+2025-05-21 11:14:29,069 - INFO - Successfully fetched 234 records from Supabase.
+2025-05-21 11:14:29,083 - INFO - Purchases data from Supabase loaded and validated successfully.
+2025-05-21 11:14:29,084 - INFO - Loading user sales data from: sales_data.csv
+2025-05-21 11:14:29,086 - INFO - Found columns in sales file: ['sku', 'units moved', 'Month']
+2025-05-21 11:14:29,086 - INFO - Normalized column mapping: {'sku': 'sku', 'unitsmoved': 'units moved', 'month': 'Month'}
+2025-05-21 11:14:29,086 - INFO - Found column 'sku' matching expected 'SKU'
+2025-05-21 11:14:29,086 - INFO - Found column 'units moved' matching expected 'Units Moved'
+2025-05-21 11:14:29,086 - INFO - Using column mapping: {'sku': 'SKU', 'units moved': 'Quantity_Sold', 'Month': 'Sale_Month_Str'}
+2025-05-21 11:14:29,089 - WARNING - Sales quantity '0.00' for SKU FBA17PNHJT79.missing1 (Month: 4/30/25) was coerced to 0 due to non-numeric content.
+2025-05-21 11:14:29,090 - WARNING - Sales quantity '0.00' for SKU RTPBMB7717 (Month: 4/30/25) was coerced to 0 due to non-numeric content.
+2025-05-21 11:14:29,090 - WARNING - Sales quantity '0.00' for SKU TCBP17BKGD (Month: 4/30/25) was coerced to 0 due to non-numeric content.
+2025-05-21 11:14:29,090 - WARNING - Sales quantity '#VALUE!' for SKU nan (Month: 4/30/25) was coerced to 0 due to non-numeric content.
+2025-05-21 11:14:29,090 - WARNING - Sales quantity '#VALUE!' for SKU nan (Month: 4/30/25) was coerced to 0 due to non-numeric content.
+2025-05-21 11:14:29,090 - WARNING - User sales data contains negative 'Quantity_Sold'. These will be ignored or handled by FIFO logic if zero.
+2025-05-21 11:14:29,094 - WARNING - All sales had zero or negative quantities after processing and summarization.
+2025-05-21 11:14:29,094 - INFO - Starting pre-processing validation of sales data against inventory...
+2025-05-21 11:14:29,095 - WARNING - Sales data is empty. No validation needed.
+2025-05-21 11:14:29,095 - WARNING - Sales data is empty. No FIFO processing to perform.
+2025-05-21 11:14:29,100 - INFO - Saved COGS attribution to: ./fifo_test_outputs/cogs_attribution_supabase.csv
+2025-05-21 11:14:29,100 - INFO - Saved COGS summary to: ./fifo_test_outputs/cogs_summary_supabase.csv
+2025-05-21 11:14:29,101 - INFO - Saved updated inventory snapshot to: ./fifo_test_outputs/updated_inventory_snapshot_supabase.csv
+2025-05-21 11:14:29,101 - INFO - Script completed successfully.
+2025-05-21 11:17:50,605 - INFO - Script started.
+2025-05-21 11:17:50,605 - INFO - Sales file: test_sales_data.csv
+2025-05-21 11:17:50,605 - INFO - Output directory: ./fifo_test_outputs
+2025-05-21 11:17:50,605 - INFO - Log file: ./processing_log.txt
+2025-05-21 11:17:50,605 - INFO - Validate only: False
+2025-05-21 11:17:50,676 - INFO - Supabase client initialized successfully.
+2025-05-21 11:17:50,676 - INFO - Loading purchases data from Supabase table: purchase_lots
+2025-05-21 11:17:50,982 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=lot_id%2Cpo_number%2Csku%2Creceived_date%2Coriginal_unit_qty%2Cunit_price%2Cfreight_cost_per_unit%2Cremaining_unit_qty&remaining_unit_qty=gt.0 "HTTP/2 200 OK"
+2025-05-21 11:17:50,991 - INFO - Successfully fetched 234 records from Supabase.
+2025-05-21 11:17:51,005 - INFO - Purchases data from Supabase loaded and validated successfully.
+2025-05-21 11:17:51,006 - INFO - Loading user sales data from: test_sales_data.csv
+2025-05-21 11:17:51,008 - INFO - Found columns in sales file: ['sku', 'units moved', 'Month']
+2025-05-21 11:17:51,008 - INFO - Normalized column mapping: {'sku': 'sku', 'unitsmoved': 'units moved', 'month': 'Month'}
+2025-05-21 11:17:51,008 - INFO - Found column 'sku' matching expected 'SKU'
+2025-05-21 11:17:51,008 - INFO - Found column 'units moved' matching expected 'Units Moved'
+2025-05-21 11:17:51,008 - INFO - Using column mapping: {'sku': 'SKU', 'units moved': 'Quantity_Sold', 'Month': 'Sale_Month_Str'}
+2025-05-21 11:17:51,015 - WARNING - All sales had zero or negative quantities after processing and summarization.
+2025-05-21 11:17:51,015 - INFO - Starting pre-processing validation of sales data against inventory...
+2025-05-21 11:17:51,015 - WARNING - Sales data is empty. No validation needed.
+2025-05-21 11:17:51,016 - WARNING - Sales data is empty. No FIFO processing to perform.
+2025-05-21 11:17:51,021 - INFO - Saved COGS attribution to: ./fifo_test_outputs/cogs_attribution_supabase.csv
+2025-05-21 11:17:51,021 - INFO - Saved COGS summary to: ./fifo_test_outputs/cogs_summary_supabase.csv
+2025-05-21 11:17:51,021 - INFO - Saved updated inventory snapshot to: ./fifo_test_outputs/updated_inventory_snapshot_supabase.csv
+2025-05-21 11:17:51,021 - INFO - Script completed successfully.
+2025-05-21 11:19:08,073 - INFO - Script started.
+2025-05-21 11:19:08,074 - INFO - Sales file: test_sales_data2.csv
+2025-05-21 11:19:08,074 - INFO - Output directory: ./fifo_test_outputs
+2025-05-21 11:19:08,074 - INFO - Log file: ./processing_log.txt
+2025-05-21 11:19:08,074 - INFO - Validate only: False
+2025-05-21 11:19:08,139 - INFO - Supabase client initialized successfully.
+2025-05-21 11:19:08,139 - INFO - Loading purchases data from Supabase table: purchase_lots
+2025-05-21 11:19:08,472 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=lot_id%2Cpo_number%2Csku%2Creceived_date%2Coriginal_unit_qty%2Cunit_price%2Cfreight_cost_per_unit%2Cremaining_unit_qty&remaining_unit_qty=gt.0 "HTTP/2 200 OK"
+2025-05-21 11:19:08,481 - INFO - Successfully fetched 234 records from Supabase.
+2025-05-21 11:19:08,496 - INFO - Purchases data from Supabase loaded and validated successfully.
+2025-05-21 11:19:08,496 - INFO - Loading user sales data from: test_sales_data2.csv
+2025-05-21 11:19:08,498 - INFO - Found columns in sales file: ['sku', 'units moved', 'Month']
+2025-05-21 11:19:08,498 - INFO - Normalized column mapping: {'sku': 'sku', 'unitsmoved': 'units moved', 'month': 'Month'}
+2025-05-21 11:19:08,498 - INFO - Found column 'sku' matching expected 'SKU'
+2025-05-21 11:19:08,498 - INFO - Found column 'units moved' matching expected 'Units Moved'
+2025-05-21 11:19:08,498 - INFO - Using column mapping: {'sku': 'SKU', 'units moved': 'Quantity_Sold', 'Month': 'Sale_Month_Str'}
+2025-05-21 11:19:08,505 - INFO - User sales data loaded, validated, and summarized successfully.
+2025-05-21 11:19:08,505 - INFO - Starting pre-processing validation of sales data against inventory...
+2025-05-21 11:19:08,512 - INFO - Validation passed! All sales can be fulfilled from inventory.
+2025-05-21 11:19:08,684 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.10 "HTTP/2 200 OK"
+2025-05-21 11:19:08,686 - INFO - Updated lot 10 in Supabase. New remaining quantity: 1413
+2025-05-21 11:19:08,761 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.9 "HTTP/2 200 OK"
+2025-05-21 11:19:08,763 - INFO - Updated lot 9 in Supabase. New remaining quantity: 978
+2025-05-21 11:19:08,864 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.42 "HTTP/2 200 OK"
+2025-05-21 11:19:08,867 - INFO - Updated lot 42 in Supabase. New remaining quantity: 1569
+2025-05-21 11:19:08,963 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.8 "HTTP/2 200 OK"
+2025-05-21 11:19:08,965 - INFO - Updated lot 8 in Supabase. New remaining quantity: 952
+2025-05-21 11:19:09,038 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.7 "HTTP/2 200 OK"
+2025-05-21 11:19:09,041 - INFO - Updated lot 7 in Supabase. New remaining quantity: 902
+2025-05-21 11:19:09,055 - INFO - Saved COGS attribution to: ./fifo_test_outputs/cogs_attribution_supabase.csv
+2025-05-21 11:19:09,055 - INFO - Saved COGS summary to: ./fifo_test_outputs/cogs_summary_supabase.csv
+2025-05-21 11:19:09,055 - INFO - Saved updated inventory snapshot to: ./fifo_test_outputs/updated_inventory_snapshot_supabase.csv
+2025-05-21 11:19:09,055 - INFO - Script completed successfully.

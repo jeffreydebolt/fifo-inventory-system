@@ -1,0 +1,429 @@
+﻿Client,Client ID,Client ID (legacy),Ledger Invoice #,Invoice #,Amount,Serv,Status,Payment Progress,Billed On,mont,Collect On,Attempted On,Est. Payout,Payout Id,Payment Method,Fee
+Storage Standard,cli_mnviboxjaaraaeqatmvq,6205329,,inv_nasyfzlt4r2aaaiaf6iq,"$1,500.00 ",CFO,Unscheduled,Not scheduled,5/15/25,0.00,,,,,,
+Best Self,cli_m2h6slwznwsaaiia5una,7465153,,inv_naqd2c7lecqqaaias2na,"$1,200.00 ",CFO,Paid,Paid out,5/11/25,5.00,5/11/25,,5/14/25,paydis_narj3xxfdcaaaaiau6xq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7577,$5.00 
+Reese Hopkins,cli_mzuz4ukoapoaavaawxqq,7391457,,inv_naoeqz5ita5qaaia6ooq,$500.00 ,Book,Paid,Paid out,5/8/25,5.00,5/8/25,,5/12/25,paydis_nap7n2eqizlaaaiadflq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9318,$18.30 
+Drake Mason,cli_ly44vjl7hgrqbqyaax4q,2991407,,inv_namtdaixvz5aamaanviq,"$1,200.00 ",Tax,Paid,Paid out,5/5/25,5.00,5/5/25,,5/7/25,paydis_namwj4ovh65qaaias2da,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2006,$43.50 
+TRMNL,cli_m6tic4ymle2qalaan5ea,8208080,,inv_namtcoyxvz5aamaanu5a,$600.00 ,Tax,Paid,Paid out,5/5/25,5.00,5/5/25,,5/8/25,paydis_nanljwcm5xkaaaia7pna,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9296,$5.00 
+Dirt Gloves LLC,cli_l5caxze73esqbrqanlvq,3592892,,inv_nams6gcpiigqavqaoqza,"$1,200.00 ",Tax,Paid,Paid out,5/5/25,5.00,5/5/25,,5/8/25,paydis_nanljwcm5xkaaaia7pna,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1180,$5.00 
+"Base Products, LLC",cli_lwx4slihwdyaabaijtra,544150,,inv_najq5kkkk7eaaaibv5iq,$481.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1006,$17.62 
+Nutic,cli_mzwi63w2bmzaaviaylxq,7403957,,inv_najq5kkkk7eaaaibv44a,$200.00 ,Book,Paid,Refunded,5/1/25,5.00,5/1/25,,5/6/25,,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1704,$7.50 
+Color + Light,cli_m4auiff4udlqawaa2ooa,7751241,,inv_najq5kkkk7eaaaibv42q,$765.00 ,CFO,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1009,$27.84 
+Heist Labs,cli_miazaldnrnnqbpiafyza,5366257,,inv_najq5klnt7raaaibpfra,$216.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3713,$2.46 
+Latched Mama,cli_lwx4wnyhwdyaabalt7za,772233,,inv_najq5klnt7raaaibpfoq,$669.00 ,Book,Unscheduled,Not scheduled,5/1/25,0.00,,,,,,
+Chubby Pet Products LLC,cli_lwx5qmahwdyaabbbo6ba,2251939,,inv_najq5klnt7raaaibpfnq,$429.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6272,$4.59 
+Earth and Moons,cli_m3eqn6shwgiqavqa7vtq,7575735,,inv_najq5kijw2uqaaibs5ia,$625.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6076,$22.80 
+Happy House Merchandise LLC,cli_mgupvqlcsovqbsiarlvq,5165169,,inv_najq5knmpkiqaaibncrq,$479.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 0288,$5.00 
+Nutra Naturals Corporation,cli_mdbbhilopbtqbpaafaka,4571476,,inv_najq5kifx6iqaaia57qa,$647.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9912,$5.00 
+Bog Street LLC,cli_mepepvrhkkaqbpyap3oq,4854241,,inv_najq5kifx6iqaaia57pa,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9290,$2.69 
+JL Ventures LLC,cli_lwx4y3qhwdyaabanv4dq,907252,,inv_najq5ki7tjkqaaibmodq,$179.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7540,$6.74 
+5th Element Gear,cli_mmlzfkquitxqbriau2jq,6022286,,inv_najq5knmpkiqaaibncpq,$648.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1005,$23.63 
+Young Nutraceuticals LLC,cli_lwx5qfahwdyaabbbiv2q,2239012,,inv_najq5ki7tjkqaaibmobq,$419.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9537,$4.49 
+Simple Song,cli_lwx5qaqhwdyaabbbfmvq,2232273,,inv_najq5knmpkiqaaibncoq,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8048,$8.90 
+Loma Investments Group,cli_moj26bj7ii4aahia4hia,6303397,,inv_najq5kifx6iqaaia57oa,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1531,$2.69 
+NatNutra LLC,cli_mbannhc5lbeqbpya7urq,4246759,,inv_najq5kltummaaaicb27q,$719.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7959,$5.00 
+Gustar Distribution,cli_mzwi5ptthbtaalqaw42q,7403956,,inv_najq5klnt7raaaibpfca,$400.00 ,Book,Failed,Collection failed,5/1/25,0.00,5/1/25,5/1/25,5/6/25,,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8524,
+Solaris - Nora,cli_m7z7a642i27aakyanewa,8370513,,inv_najq5kltummaaaicb26q,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1891,$6.28 
+Electric Bike Company,cli_nafkfxf2wqdqakaaf62a,8403674,,inv_najq5ki7tjkqaaibmn7q,$450.00 ,Book,Paid,Paid out,5/1/25,5.00,5/5/25,,5/8/25,paydis_nanljwcm5xkaaaia7pna,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9036,$4.80 
+Hemorrhoid.com,cli_m252s2rewn6aavqasf6a,7533249,,inv_najq5kckk7eaaaibv4jq,$400.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1003,$14.70 
+DIY Cartel,cli_lwx43rahwdyaabap7tma,1058292,,inv_najq5kcj2xfqaaiazysq,$359.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3629,$13.22 
+Fit NYC Holding Company,cli_mjg6frlhk67qbqqaq5lq,5531201,,inv_najq5kajw2uqaaibs46a,$215.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9550,$5.68 
+Fuskie Lane LLC,cli_mwk3wuz6wx2aauqar63q,7037780,,inv_najq5kcj2xfqaaiazynq,$300.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6937,$3.30 
+TRMNL,cli_m6tic4ymle2qalaan5ea,8208080,,inv_najq5kcj2xfqaaiazymq,$50.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9296,$0.80 
+"Pollywog - Charlotte - NoDa, LLC",cli_mpfoqgpvuvmaahiauheq,6388946,,inv_najq5kcj2xfqaaiazylq,$216.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5798,$2.46 
+"FIT-NYC-FiDi, LLC",cli_mjg6ddlhk67qbtia4aeq,5531196,,inv_najq5kafx6iqaaia563q,$431.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2811,$4.61 
+LL Medico,cli_m7e7m5usjwuaasaas64q,8290863,,inv_najq5ka7tjkqaaibmnwa,"$2,500.00 ",CFO,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7015,$62.80 
+"Donut & Lola, LLP",cli_mpdqn4ethyqqahiaqwia,6379282,,inv_najq5kckk7eaaaibv34q,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5264,$2.69 
+Fatima Beltran Management LLC DBA Modluxe,cli_mqsb2zsho54qaeqafs5q,6532798,,inv_najq5kafx6iqaaia56za,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7273,$2.69 
+Hearthfire Hygge,cli_m6dn2cyx6lfqawiai4fa,8131145,,inv_najq5kafx6iqaaia56xq,$150.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2874,$1.80 
+Bruce Michael & Co.,cli_l3p46vvb2mlqbrqa7hoq,3310211,,inv_najq5kdnt7raaaibpeqa,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6534,$2.69 
+KE Health LLC,cli_lywlmlylscyqbuyaftoa,2979581,,inv_najq5kdnt7raaaibpemq,$669.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1013,$24.38 
+Luke Yang,cli_m77fyhmmlqcaavqatzfq,8387161,,inv_najq5kckk7eaaaibv3za,$350.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9341,$9.05 
+Solaris - Bocca,cli_m7z67ewjdovaapaaul6q,8370509,,inv_najq5kdnt7raaaibpeka,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1918,$6.28 
+Spyguy,cli_mzrillfngv3qapaa3tva,7383761,,inv_najq5kdnt7raaaibpeja,"$1,000.00 ",CFO,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4369,$36.30 
+DLM Innovation,cli_mtsurb4tblkqalya3hga,6774245,,inv_najq5kdnt7raaaibpeia,$479.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1700,$5.00 
+Kitworks,cli_m6m352hdy5qaauia3miq,8177305,,inv_najq5kajw2uqaaibs4sa,$500.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1879,$18.30 
+"Base Products, LLC",cli_lwx4slihwdyaabaijtra,544150,,inv_najq5kckk7eaaaibv3vq,$719.00 ,CFO,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1006,$26.18 
+Crafty Contraptions LLC,cli_lwx5vxqhwdyaabbf4iba,2558196,,inv_najq5kajw2uqaaibs4ra,$479.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6070,$5.00 
+"Rivet Creative Group, LLC",cli_mtjjpkwx27xqaiabggta,6750511,,inv_najq5kajw2uqaaibs4qa,$239.00 ,Book,Unscheduled,Not scheduled,5/1/25,0.00,,,,,,
+"Okwuzano, LLC",cli_lwx5q5ihwdyaabbb5eqa,2282513,,inv_najq5kckk7eaaaibv3tq,$669.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2909,$5.00 
+Secure Ventures Inc,cli_mpobky6ocodaahiaw5fq,6420266,,inv_najq5kfmpkiqaaibnbva,$719.00 ,Book,Failed,Collection failed,5/1/25,0.00,5/5/25,5/7/25,5/8/25,paydis_nanljwcm5xkaaaia7pna,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 0629,$5.00 
+CL Ventures LLC,cli_mropszxtmkmqahyainwq,6585838,,inv_najq5ka7tjkqaaibmngq,$215.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3745,$8.04 
+Dynamic Enterprises,cli_lwx5jcahwdyaaba3kwjq,1829183,,inv_najq5kckk7eaaaibv3rq,$669.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6551,$5.00 
+"Honey Dew Gifts, LLC",cli_mrrx22ohvo6aafaadh7a,6590817,,inv_najq5ka7tjkqaaibmnfa,$719.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1235,$5.00 
+Lightstuff LLC,cli_mbf3eys5xfiabriamgba,4266192,,inv_najq5kfmpkiqaaibnbtq,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7007,
+LL Medico,cli_m7e7m5usjwuaasaas64q,8290863,,inv_najq5ka7tjkqaaibmnea,$350.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7015,$9.05 
+"Fit-NYC-Chelsea, LLC",cli_mjc4lflkpjzqbraagpeq,5518915,,inv_najq5kfmpkiqaaibnbqq,$431.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9687,$4.61 
+Pukitt Distributors LLC,cli_mac5hyynhheqbsyafzza,4070988,,inv_najq5kdtummaaaicb2ka,$289.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4494,$3.19 
+Hove Industries LLC,cli_lwx5gjyhwdyaabay72vq,1661296,,inv_najq5kafx6iqaaia56ka,$479.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2008,$17.54 
+SomniFix International LLC,cli_ly2iied2knpqbuya6jsa,2986319,,inv_najq5kdtummaaaicb2iq,$719.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1015,$26.18 
+DSquared International LLC,cli_lwx435ahwdyaabaqjmha,1078391,,inv_najq5kafx6iqaaia56iq,$719.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4656,$26.18 
+Peregrine Venture Fund LLC,cli_mimau3xag7rabvaaqqkq,5422128,,inv_najq5kdnt7raaaibpdxa,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5659,$2.69 
+Anfell Limited,cli_lwx5qdqhwdyaabbbhqmq,2236616,,inv_najq5kckk7eaaaibv3aq,$719.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5281,$26.18 
+Daniel Gerard Group LLC,cli_mjrpgso46xlqbwiakfqq,5566415,,inv_najq5kfmpkiqaaibna4a,$215.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4778,$5.68 
+Storage Standard,cli_mnviboxjaaraaeqatmvq,6205329,,inv_najq5kckk7eaaaibv26a,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9016,$2.69 
+Solaris - Holding,cli_m7z7bwpu3l4qavibcfzq,8370516,,inv_najq5kfmpkiqaaibna2q,$150.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1639,$4.05 
+Ellesmere Holdings LLC,cli_mhukg7bb3ndabtqatvqa,5311150,,inv_najq5kajw2uqaaibs4aa,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7124,$2.69 
+Brand Quality Merchandise,cli_lz2my2zsbc6abqiarr4a,3080348,,inv_najq5kfmpkiqaaibnaxq,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9849,$8.90 
+TwinStuff LLC,cli_mfgkcmfbnkzaboybahtq,4932469,,inv_najq5kajw2uqaaibs37a,$215.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9508,$5.68 
+Nutrali,cli_mz7lipdxh4aaalqas2xa,7436789,,inv_najq5ka7tjkqaaibmmra,$700.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1001,$25.50 
+Proglobe EC LLC,cli_lwx5vpqhwdyaabbfvzmq,2543641,,inv_najq5kafx6iqaaia554a,$669.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7604,$5.00 
+Sole Owner Paul Samuel,cli_lwx5hjqhwdyaabaz2ldq,1717697,,inv_najq5ka7tjkqaaibmmqa,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1969,$2.69 
+Pollywog LLC,cli_nadpomft4t5aakaaexgq,8396235,,inv_najq5ka7tjkqaaibmmpa,$150.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6009,$1.80 
+JPM Distributors,cli_mhvqihrg5auabrqawzjq,5315989,,inv_najq5kdtummaaaicbzuq,$719.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6970,$26.18 
+"Firebelly Ventures, LLP",cli_mo7rlhxs2ljaaeqarbaa,6364757,,inv_najq5kdtummaaaicbztq,$479.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1720,$5.00 
+KASM International LLC,cli_lwx46vyhwdyaabaswpaa,1237290,,inv_najq5kafx6iqaaia552q,$669.00 ,Book,Failed,Collection failed,5/1/25,0.00,5/1/25,5/1/25,5/6/25,,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5488,
+Kalcom,cli_m5ntj4c25awaasiapvbq,8037736,,inv_najq5kafx6iqaaia55nq,$500.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7756,$18.30 
+Strictly Stability LLC,cli_md7l37lxs6cabrqae4fq,4768242,,inv_najq5ka7tjkqaaibml4q,$239.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5936,$8.90 
+Rightcar Solutions LLC,cli_lwx5qkyhwdyaabbbnwia,2249390,,inv_najq5ka7tjkqaaibml3q,$479.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8897,$5.00 
+Nextmune Strawfield LLC,cli_l5y7vlvmmffabxqaq3ga,3682085,,inv_najq5kafx6iqaaia55mq,$719.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2828,$5.00 
+Improve Photography,cli_lwx5zzyhwdyaabbjhixq,2782993,,inv_najq5kdtummaaaicbzcq,$116.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1005,$4.48 
+COMPZ ACTIVEWEAR INC,cli_l5rm263mgkrqbxqa7j2q,3663844,,inv_najq5kajw2uqaaibs3sa,$719.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2000,$26.18 
+KD3 Marketing LLC,cli_l7nfafutaecabriapveq,3982559,,inv_najq5kdtummaaaicbzba,$240.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1049,$8.94 
+Beautiste Brands LLC,cli_lwx5vsqhwdyaabbfyjzq,2548851,,inv_najq5kajw2uqaaibs3ra,$439.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6481,$4.69 
+Double Scoop,cli_mmlwkvkn5gdqbtqbal2a,6022098,,inv_najq5kfmpkiqaaibnaia,$432.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1008,$15.85 
+Powr Labs LLC,cli_lze4yp3czalabpqamyza,3015685,,inv_najq5ka7tjkqaaibml2a,$359.00 ,Book,Paid,Paid out,5/1/25,5.00,5/1/25,,5/5/25,paydis_nall2bg4z5vqaaiaocpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8788,$13.22 
+LL Medico,cli_m7e7m5usjwuaasaas64q,8290863,,inv_naioiej2ymmqataaxikq,$600.00 ,tax,Paid,Paid out,4/29/25,4.00,4/29/25,,5/1/25,paydis_naixnnyjhbnqaaibnoca,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7015,$15.30 
+Revel Athletic / Sarah Dixon,cli_nafj5euem6aaanaas76q,8403660,,inv_nafmpinyr6maaaiaf33a,$600.00 ,Book,Paid,Paid out,4/24/25,4.00,4/24/25,,4/28/25,paydis_nagyftdtm55qaaiav6sa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8997,$21.90 
+Pollywog LLC,cli_nadpomft4t5aakaaexgq,8396235,,inv_naep4ve7kwlaaaiae24q,$150.00 ,Book,Paid,Paid out,4/23/25,4.00,4/23/25,,4/25/25,paydis_naey37jsy53qaaias6gq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6009,$1.80 
+Luke Yang,cli_m77fyhmmlqcaavqatzfq,8387161,,inv_m77ids5gdvxqaaidrbqa,$350.00 ,Book,Paid,Paid out,4/15/25,4.00,4/15/25,,4/17/25,paydis_m77qhvlqiyiaaaiatvdq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9341,$9.05 
+Best Self,cli_m2h6slwznwsaaiia5una,7465153,,inv_m74k72qabx6aaaiak6dq,"$1,200.00 ",CFO,Paid,Paid out,4/11/25,4.00,4/11/25,,4/15/25,paydis_m76f4v3j2avaaaiav5sq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7577,$5.00 
+Secure Ventures Inc,cli_mpobky6ocodaahiaw5fq,6420266,,inv_m74iocwdfjaaaaiazusa,$600.00 ,Book,Paid,Paid out,4/10/25,4.00,4/10/25,,4/15/25,paydis_m76f4v3j2avaaaiav5sq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3745,$21.90 
+Reese Hopkins,cli_mzuz4ukoapoaavaawxqq,7391457,,inv_m72lw2hltzdqaaibdlqq,$500.00 ,Book,Paid,Paid out,4/8/25,4.00,4/8/25,,4/10/25,paydis_m724sxh4rfaaaaibcchq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9318,$18.30 
+"Firebelly Ventures, LLP",cli_mo7rlhxs2ljaaeqarbaa,6364757,,inv_m7z7moi6a5eqaoaa7wpq,"$1,200.00 ",tax,Paid,Paid out,4/7/25,4.00,4/7/25,,4/9/25,paydis_m72hquudlgnaaaibayha,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1720,$5.00 
+"Donut & Lola, LLP",cli_mpdqn4ethyqqahiaqwia,6379282,,inv_m7z7lzkhffnaalaardpq,$600.00 ,Book,Paid,Paid out,4/7/25,4.00,4/7/25,,4/9/25,paydis_m72hquudlgnaaaibayha,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5264,$5.00 
+Reese Hopkins,cli_mzuz4ukoapoaavaawxqq,7391457,,inv_m7ylfxizrjvaaaidtuma,$225.00 ,Book,Paid,Paid out,4/4/25,4.00,4/4/25,,4/9/25,paydis_m72hquudlgnaaaibayha,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9318,$8.40 
+Anthony Coons - Business Tax,cli_m6fozc5ywsiqapqa24uq,8141246,,inv_m7wv2bg6ih6qamaa6zra,$600.00 ,Book,Paid,Paid out,4/2/25,4.00,4/2/25,,4/4/25,paydis_m7w6cdyt7fjqaaiap3dq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1010,$21.90 
+LL Medico,cli_m7e7m5usjwuaasaas64q,8290863,,inv_m7vydhxtperqaaicobxa,"$2,500.00 ",CFO,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7015,$62.80 
+Loma Investments Group,cli_moj26bj7ii4aahia4hia,6303397,,inv_m7vydhvtk43aaaibv6fa,$239.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1531,$2.69 
+Happy House Merchandise LLC,cli_mgupvqlcsovqbsiarlvq,5165169,,inv_m7vydhxtperqaaicobma,$479.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 0288,$5.00 
+Earth and Moons,cli_m3eqn6shwgiqavqa7vtq,7575735,,inv_m7vydhs4uqiqaaibkida,$625.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6076,$22.80 
+Uber Signal,cli_m4nioyu6r6sqajaappfa,7817669,,inv_m7vydhxwn4jqaaibrb7q,$600.00 ,Book,Paid,Refunded,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1103,$21.90 
+JL Ventures LLC,cli_lwx4y3qhwdyaabanv4dq,907252,,inv_m7vydhuhryxqaaib73qa,$179.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7540,$6.74 
+Young Nutraceuticals LLC,cli_lwx5qfahwdyaabbbiv2q,2239012,,inv_m7vydhs4uqiqaaibkh7q,$419.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9537,$4.49 
+Bog Street LLC,cli_mepepvrhkkaqbpyap3oq,4854241,,inv_m7vydhxwn4jqaaibrb6q,$239.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9290,$2.69 
+Nutra Naturals Corporation,cli_mdbbhilopbtqbpaafaka,4571476,,inv_m7vydhuhryxqaaib73pa,$647.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9912,$5.00 
+Fuskie Lane LLC,cli_mwk3wuz6wx2aauqar63q,7037780,,inv_m7vydhvtk43aaaibv5bq,$300.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6937,$3.30 
+DIY Cartel,cli_lwx43rahwdyaabap7tma,1058292,,inv_m7vydhxtperqaaicoasq,$359.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3629,$13.22 
+Latched Mama,cli_lwx4wnyhwdyaabalt7za,772233,,inv_m7vydhvtk43aaaibv47a,$669.00 ,Book,Paid,Paid out,4/1/25,4.00,4/4/25,,4/8/25,paydis_m7zsie6amh3qaaiayxga,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9466,
+Fatima Beltran Management LLC DBA Modluxe,cli_mqsb2zsho54qaeqafs5q,6532798,,inv_m7vydhvtk43aaaibv45q,$239.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7273,$2.69 
+Hearthfire Hygge,cli_m6dn2cyx6lfqawiai4fa,8131145,,inv_m7vydhvtk43aaaibv44q,$150.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2874,$1.80 
+Gustar Distribution,cli_mzwi5ptthbtaalqaw42q,7403956,,inv_m7vydhvtk43aaaibv42q,$400.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8524,$14.70 
+Hemorrhoid.com,cli_m252s2rewn6aavqasf6a,7533249,,inv_m7vydhvtk43aaaibv4zq,$400.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1003,$14.70 
+JoySpring Holdings,cli_lwx5k7ihwdyaaba45keq,1934387,,inv_m7vydhxtperqaaicoaga,$669.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1007,$24.38 
+CL Ventures LLC,cli_mropszxtmkmqahyainwq,6585838,,inv_m7vydhxtperqaaicoaeq,$215.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3745,$8.04 
+Secure Ventures Inc,cli_mpobky6ocodaahiaw5fq,6420266,,inv_m7vydhxtperqaaicoadq,$719.00 ,Book,Paid,Paid out,4/1/25,4.00,4/2/25,,4/7/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3745,$5.00 
+Simple Song,cli_lwx5qaqhwdyaabbbfmvq,2232273,,inv_m7vydhsn4l5aaaibxuea,$239.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8048,$8.90 
+5th Element Gear,cli_mmlzfkquitxqbriau2jq,6022286,,inv_m7vydhsn4l5aaaibxuda,$648.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1005,$23.63 
+NatNutra LLC,cli_mbannhc5lbeqbpya7urq,4246759,,inv_m7vydhsn4l5aaaibxuca,$719.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7959,$5.00 
+"Honey Dew Gifts, LLC",cli_mrrx22ohvo6aafaadh7a,6590817,,inv_m7vydhxtperqaaicn77q,$719.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1235,$5.00 
+Nutic,cli_mzwi63w2bmzaaviaylxq,7403957,,inv_m7vydhuzbojaaaibwzkq,$200.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1704,$7.50 
+Chubby Pet Products LLC,cli_lwx5qmahwdyaabbbo6ba,2251939,,inv_m7vydhuzbojaaaibwzjq,$429.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6272,$4.59 
+Hove Industries LLC,cli_lwx5gjyhwdyaabay72vq,1661296,,inv_m7vydhvtk43aaaibv4qa,$479.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2008,$17.54 
+Fit NYC Holding Company,cli_mjg6frlhk67qbqqaq5lq,5531201,,inv_m7vydhuhryxqaaib724a,$215.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9550,$5.68 
+TRMNL,cli_m6tic4ymle2qalaan5ea,8208080,,inv_m7vydhuzbojaaaibwziq,$50.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9296,$0.80 
+Color + Light,cli_m4auiff4udlqawaa2ooa,7751241,,inv_m7vydhwbeh3qaaibgrua,$765.00 ,CFO,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1009,$27.84 
+Joey Koester,cli_m4ziseo4ulzaaiya56qa,7886749,,inv_m7vydhuhryxqaaib723a,$450.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2948,$16.50 
+Heist Labs,cli_miazaldnrnnqbpiafyza,5366257,,inv_m7vydhxwn4jqaaibrbqa,$216.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3713,$2.46 
+Lightstuff LLC,cli_mbf3eys5xfiabriamgba,4266192,,inv_m7vydhvtk43aaaibv4oa,$239.00 ,Book,Paid,Paid out,4/1/25,4.00,4/2/25,,4/4/25,paydis_m7w6cdyt7fjqaaiap3dq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7007,$2.69 
+"FIT-NYC-FiDi, LLC",cli_mjg6ddlhk67qbtia4aeq,5531196,,inv_m7vydhuhryxqaaib722a,$431.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2811,$4.61 
+DSquared International LLC,cli_lwx435ahwdyaabaqjmha,1078391,,inv_m7vydhxtperqaaicn72a,$719.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4656,$26.18 
+Crafty Contraptions LLC,cli_lwx5vxqhwdyaabbf4iba,2558196,,inv_m7vydhxtperqaaicn7za,$479.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6070,$5.00 
+LL Medico,cli_m7e7m5usjwuaasaas64q,8290863,,inv_m7vydhxtperqaaicn7ya,$350.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7015,$9.05 
+"Pollywog - Charlotte - NoDa, LLC",cli_mpfoqgpvuvmaahiauheq,6388946,,inv_m7vydhwbeh3qaaibgrsq,$216.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5798,$2.46 
+Kitworks,cli_m6m352hdy5qaauia3miq,8177305,,inv_m7vydhxtperqaaicn7xa,$500.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1879,$18.30 
+"Rivet Creative Group, LLC",cli_mtjjpkwx27xqaiabggta,6750511,,inv_m7vydhxtperqaaicn7uq,$239.00 ,Book,Unscheduled,Not scheduled,4/1/25,0.00,,,,,,
+"Base Products, LLC",cli_lwx4slihwdyaabaijtra,544150,,inv_m7vydhxwn4jqaaibrbha,$481.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1006,$17.62 
+Dynamic Enterprises,cli_lwx5jcahwdyaaba3kwjq,1829183,,inv_m7vydhvtk43aaaibv4ba,$669.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6551,$5.00 
+Pukitt Distributors LLC,cli_mac5hyynhheqbsyafzza,4070988,,inv_m7vydhwbeh3qaaibgrga,$289.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4494,$3.19 
+"Fit-NYC-Chelsea, LLC",cli_mjc4lflkpjzqbraagpeq,5518915,,inv_m7vydhsn4l5aaaibxtpa,$431.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9687,$4.61 
+Integrity Resources Inc,cli_lwx5c4ahwdyaabawhrcq,1475415,,inv_m7vydhkn4l5aaaibxtoa,$480.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1324,$17.58 
+Calamodin Group,cli_mz2jl6ec3m5aasaa7eqa,7416642,,inv_m7vydhntk43aaaibv4aa,$150.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 0170,$5.70 
+SomniFix International LLC,cli_ly2iied2knpqbuya6jsa,2986319,,inv_m7vydhmzbojaaaibwy2q,$719.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1015,$26.18 
+"Donut & Lola, LLP",cli_mpdqn4ethyqqahiaqwia,6379282,,inv_m7vydhkn4l5aaaibxtna,$239.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5264,$2.69 
+KE Health LLC,cli_lywlmlylscyqbuyaftoa,2979581,,inv_m7vydhobeh3qaaibgreq,$669.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1013,$24.38 
+"Base Products, LLC",cli_lwx4slihwdyaabaijtra,544150,,inv_m7vydhpwn4jqaaibrayq,$719.00 ,CFO,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1006,$26.18 
+"Okwuzano, LLC",cli_lwx5q5ihwdyaabbb5eqa,2282513,,inv_m7vydhpwn4jqaaibraxq,$669.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2909,$5.00 
+Bruce Michael & Co.,cli_l3p46vvb2mlqbrqa7hoq,3310211,,inv_m7vydhmhryxqaaib72fa,$239.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6534,$2.69 
+Spyguy,cli_mzrillfngv3qapaa3tva,7383761,,inv_m7vydhmhryxqaaib72ea,"$1,000.00 ",CFO,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4369,$36.30 
+DLM Innovation,cli_mtsurb4tblkqalya3hga,6774245,,inv_m7vydhmhryxqaaib72da,$479.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1700,$5.00 
+Sole Owner Paul Samuel,cli_lwx5hjqhwdyaabaz2ldq,1717697,,inv_m7vydhlo466qaaibhcpq,$239.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1969,$2.69 
+Anfell Limited,cli_lwx5qdqhwdyaabbbhqmq,2236616,,inv_m7vydhn2azkaaaia7cja,$719.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5281,$26.18 
+Brand Quality Merchandise,cli_lz2my2zsbc6abqiarr4a,3080348,,inv_m7vydhkn4l5aaaibxs2a,$479.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9849,$17.54 
+Daniel Gerard Group LLC,cli_mjrpgso46xlqbwiakfqq,5566415,,inv_m7vydhmzbojaaaibwyia,$215.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4778,$5.68 
+Peregrine Venture Fund LLC,cli_mimau3xag7rabvaaqqkq,5422128,,inv_m7vydhkn4l5aaaibxsza,$239.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5659,$2.69 
+"Firebelly Ventures, LLP",cli_mo7rlhxs2ljaaeqarbaa,6364757,,inv_m7vydhkn4l5aaaibxsya,$479.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1720,$5.00 
+TwinStuff LLC,cli_mfgkcmfbnkzaboybahtq,4932469,,inv_m7vydhmzbojaaaibwyfq,$215.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9508,$5.68 
+JPM Distributors,cli_mhvqihrg5auabrqawzjq,5315989,,inv_m7vydhmzbojaaaibwyea,$719.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6970,$26.18 
+Proglobe EC LLC,cli_lwx5vpqhwdyaabbfvzmq,2543641,,inv_m7vydhmhryxqaaib7zqa,$669.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7604,$5.00 
+Ellesmere Holdings LLC,cli_mhukg7bb3ndabtqatvqa,5311150,,inv_m7vydhpwn4jqaaibrafa,$239.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7124,$2.69 
+KASM International LLC,cli_lwx46vyhwdyaabaswpaa,1237290,,inv_m7vydhmhryxqaaib7zoq,$669.00 ,Book,Failed,Collection failed,4/1/25,0.00,4/8/25,4/8/25,4/11/25,,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5488,
+Nutrali,cli_mz7lipdxh4aaalqas2xa,7436789,,inv_m7vydhpwn4jqaaibradq,$700.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1001,$25.50 
+Kalcom,cli_m5ntj4c25awaasiapvbq,8037736,,inv_m7vydhmhryxqaaib7znq,$500.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7756,$18.30 
+COMPZ ACTIVEWEAR INC,cli_l5rm263mgkrqbxqa7j2q,3663844,,inv_m7vydhptperqaaicn56q,$719.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2000,$26.18 
+Rightcar Solutions LLC,cli_lwx5qkyhwdyaabbbnwia,2249390,,inv_m7vydhntk43aaaibv2wq,$479.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8897,$5.00 
+KD3 Marketing LLC,cli_l7nfafutaecabriapveq,3982559,,inv_m7vydhptperqaaicn55a,$240.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1049,$8.94 
+Double Scoop,cli_mmlwkvkn5gdqbtqbal2a,6022098,,inv_m7vydhptperqaaicn54a,$432.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1008,$15.85 
+Improve Photography,cli_lwx5zzyhwdyaabbjhixq,2782993,,inv_m7vydhntk43aaaibv2uq,$116.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1005,$4.48 
+Storage Standard,cli_mnviboxjaaraaeqatmvq,6205329,,inv_m7vydhntk43aaaibv2tq,$239.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9016,$2.69 
+Nextmune Strawfield LLC,cli_l5y7vlvmmffabxqaq3ga,3682085,,inv_m7vydhptperqaaicn5wq,$719.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2828,$5.00 
+Beautiste Brands LLC,cli_lwx5vsqhwdyaabbfyjzq,2548851,,inv_m7vydhkn4l5aaaibxsjq,$439.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6481,$4.69 
+Powr Labs LLC,cli_lze4yp3czalabpqamyza,3015685,,inv_m7vydhkn4l5aaaibxsiq,$359.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8788,$13.22 
+Strictly Stability LLC,cli_md7l37lxs6cabrqae4fq,4768242,,inv_m7vydhmhryxqaaib7zbq,$239.00 ,Book,Paid,Paid out,4/1/25,4.00,4/1/25,,4/3/25,paydis_m7wi6dgr2i5qaaia6xgq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5936,$8.90 
+Dirt Gloves LLC,cli_l5caxze73esqbrqanlvq,3592892,,inv_m7ltddac45raaaid6upa,"$1,200.00 ",Tax,Paid,Paid out,3/16/25,3.00,3/16/25,,3/19/25,paydis_m7mmqt2tc6yaaaiaslaa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1180,$5.00 
+Best Self,cli_m2h6slwznwsaaiia5una,7465153,,inv_m7h5gfi25jnqaaiamr4q,"$1,200.00 ",CFO,Paid,Paid out,3/11/25,3.00,3/11/25,,3/13/25,paydis_m7iodc5cn3wqaaiazv6q,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7577,$5.00 
+LL Medico,cli_m7e7m5usjwuaasaas64q,8290863,,inv_m7fyzpoilfgaaaic37ja,$600.00 ,Tax,Paid,Paid out,3/7/25,3.00,4/29/25,,5/1/25,paydis_naixnnyjhbnqaaibnoca,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7015,
+LL Medico,cli_m7e7m5usjwuaasaas64q,8290863,,inv_m7fyzljhnmyaaaidyzka,"$2,500.00 ",CFO,Failed,Collection failed,3/7/25,0.00,3/7/25,3/7/25,3/13/25,,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7015,
+LL Medico,cli_m7e7m5usjwuaasaas64q,8290863,,inv_m7fyzdbhnmyaaaidyxdq,$350.00 ,Book,Paid,Paid out,3/7/25,3.00,3/7/25,,3/12/25,paydis_m7hy3rhqjmdaaaianobq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7015,$9.05 
+Sarah Barton,cli_m7bei2xukobqakya2uza,8271668,,inv_m7erzzw5s7jqaaiarypa,$600.00 ,Tax,Paid,Paid out,3/5/25,3.00,3/5/25,,3/10/25,paydis_m7goxqi7e3mqaaicmhma,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1517,$21.90 
+Nutic,cli_mzwi63w2bmzaaviaylxq,7403957,,inv_m7dey4qyvo2qaaiavfla,$50.00 ,Book,Paid,Paid out,3/3/25,3.00,3/3/25,,3/6/25,paydis_m7d2mliff62qaaiaylpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1704,$2.10 
+Gustar Distribution,cli_mzwi5ptthbtaalqaw42q,7403956,,inv_m7deygyyvo2qaaiavehq,$50.00 ,Book,Paid,Paid out,3/3/25,3.00,3/3/25,,3/6/25,paydis_m7d2mliff62qaaiaylpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8524,$2.10 
+Happy House Merchandise LLC,cli_mgupvqlcsovqbsiarlvq,5165169,,inv_m7blba5giesqaaijgl2a,$479.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 0288,$5.00 
+Loma Investments Group,cli_moj26bj7ii4aahia4hia,6303397,,inv_m7blba2b6z6qaaiiuqla,$239.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1531,$2.69 
+Simple Song,cli_lwx5qaqhwdyaabbbfmvq,2232273,,inv_m7blbasb6z6qaaiiuqhq,$239.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8048,$8.90 
+NatNutra LLC,cli_mbannhc5lbeqbpya7urq,4246759,,inv_m7blbavgiesqaaijglra,$719.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7959,$5.00 
+5th Element Gear,cli_mmlzfkquitxqbriau2jq,6022286,,inv_m7blbasb6z6qaaiiuqga,$648.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1005,$23.63 
+Nutra Naturals Corporation,cli_mdbbhilopbtqbpaafaka,4571476,,inv_m7blbas5r6zaaaigtb5q,$647.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9912,$5.00 
+Integral Electrics LLC,cli_mrsl6au6fbdqahyaycha,6592463,,inv_m7blbasb6z6qaaiiuqea,$215.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8348,$2.45 
+Heist Labs,cli_miazaldnrnnqbpiafyza,5366257,,inv_m7blbavgiesqaaijglnq,$216.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3713,$2.46 
+Nutic,cli_mzwi63w2bmzaaviaylxq,7403957,,inv_m7blbasb6z6qaaiiuqda,$200.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1704,$7.50 
+Color + Light,cli_m4auiff4udlqawaa2ooa,7751241,,inv_m7blbavgiesqaaijglla,$765.00 ,CFO,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1009,$27.84 
+Chubby Pet Products LLC,cli_lwx5qmahwdyaabbbo6ba,2251939,,inv_m7blbavgiesqaaijglka,$429.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6272,$4.59 
+Earth and Moons,cli_m3eqn6shwgiqavqa7vtq,7575735,,inv_m7blbaw7pckqaaijbtka,$625.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6076,$22.80 
+Young Nutraceuticals LLC,cli_lwx5qfahwdyaabbbiv2q,2239012,,inv_m7blbaw7pckqaaijbtja,$419.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9537,$4.49 
+Bog Street LLC,cli_mepepvrhkkaqbpyap3oq,4854241,,inv_m7blbaw7pckqaaijbthq,$239.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9290,$2.69 
+Uber Signal,cli_m4nioyu6r6sqajaappfa,7817669,,inv_m7blbatzgabqaaihnbyq,$600.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1103,$21.90 
+JL Ventures LLC,cli_lwx4y3qhwdyaabanv4dq,907252,,inv_m7blbatzgabqaaihnbxq,$179.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7540,$6.74 
+"FIT-NYC-FiDi, LLC",cli_mjg6ddlhk67qbtia4aeq,5531196,,inv_m7blbavgiesqaaijglfq,$431.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2811,$4.61 
+SB4U (new owner),cli_mm2ldhotv4pabqia76wq,6088437,,inv_m7blbavgiesqaaijglea,$719.00 ,Book,Paid,Refunded,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1007,$26.18 
+"Honey Dew Gifts, LLC",cli_mrrx22ohvo6aafaadh7a,6590817,,inv_m7blbavgiesqaaijgk5q,$719.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1235,$5.00 
+Lightstuff LLC,cli_mbf3eys5xfiabriamgba,4266192,,inv_m7blbasb6z6qaaiiuppq,$239.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3173,$2.69 
+Hove Industries LLC,cli_lwx5gjyhwdyaabay72vq,1661296,,inv_m7blbasb6z6qaaiiupoq,$479.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2008,$17.54 
+TRMNL,cli_m6tic4ymle2qalaan5ea,8208080,,inv_m7blbatyrwjaaaig5p7a,$50.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9296,$0.80 
+"Base Products, LLC",cli_lwx4slihwdyaabaijtra,544150,,inv_m7blbas5r6zaaaigtbsq,$481.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1006,$17.62 
+The Mandeville Shop,cli_lwx5gxihwdyaabazkxwa,1684940,,inv_m7blbatyrwjaaaig5p4a,$383.20 ,Book,Unscheduled,Not scheduled,3/1/25,0.00,,,,,,
+"Pollywog - Charlotte - NoDa, LLC",cli_mpfoqgpvuvmaahiauheq,6388946,,inv_m7blbassd5jaaaijyfta,$216.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5798,$2.46 
+Fit NYC Holding Company,cli_mjg6frlhk67qbqqaq5lq,5531201,,inv_m7blbar2ablqaaiirhla,$215.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9550,$5.68 
+Joey Koester,cli_m4ziseo4ulzaaiya56qa,7886749,,inv_m7blbassd5jaaaijyfsa,$450.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2948,$16.50 
+Fuskie Lane LLC,cli_mwk3wuz6wx2aauqar63q,7037780,,inv_m7blbaw7pckqaaijbsra,$300.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6937,$3.30 
+DIY Cartel,cli_lwx43rahwdyaabap7tma,1058292,,inv_m7blbassd5jaaaijyfqq,$359.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3629,$13.22 
+Latched Mama,cli_lwx4wnyhwdyaabalt7za,772233,,inv_m7blbaw7pckqaaijbsqa,$669.00 ,Book,Paid,Paid out,3/1/25,3.00,3/3/25,,3/6/25,paydis_m7d2mliff62qaaiaylpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9466,
+Fatima Beltran Management LLC DBA Modluxe,cli_mqsb2zsho54qaeqafs5q,6532798,,inv_m7blbaw7pckqaaijbspa,$239.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7273,$2.69 
+Nutrali,cli_mz7lipdxh4aaalqas2xa,7436789,,inv_m7blbavgiesqaaijgkoa,$700.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1001,$25.50 
+Proglobe EC LLC,cli_lwx5vpqhwdyaabbfvzmq,2543641,,inv_m7blbasb6z6qaaiiupaa,$669.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7604,$5.00 
+Hearthfire Hygge,cli_m6dn2cyx6lfqawiai4fa,8131145,,inv_m7blbatzgabqaaihnbfa,$150.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2874,$1.80 
+Gustar Distribution,cli_mzwi5ptthbtaalqaw42q,7403956,,inv_m7blbatzgabqaaihnbea,$400.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8524,$14.70 
+JoySpring Holdings,cli_lwx5k7ihwdyaaba45keq,1934387,,inv_m7blbaw7pckqaaijbshq,$669.00 ,Book,Paid,Paid out,3/1/25,3.00,3/3/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1007,
+Secure Ventures Inc,cli_mpobky6ocodaahiaw5fq,6420266,,inv_m7blbassd5jaaaijyfiq,$719.00 ,Book,Paid,Paid out,3/1/25,3.00,4/2/25,,4/4/25,paydis_m7dfodlwoxiaaaicd4mq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7302,
+CL Ventures LLC,cli_mropszxtmkmqahyainwq,6585838,,inv_m7blbatyrwjaaaig5pta,$215.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3745,$8.04 
+Hemorrhoid.com,cli_m252s2rewn6aavqasf6a,7533249,,inv_m7blbatzgabqaaihnbcq,$400.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1003,$14.70 
+JPM Distributors,cli_mhvqihrg5auabrqawzjq,5315989,,inv_m7blbavgiesqaaijgkja,$719.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6970,$26.18 
+Crafty Contraptions LLC,cli_lwx5vxqhwdyaabbf4iba,2558196,,inv_m7blbas5r6zaaaigta4q,$479.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6070,$5.00 
+KASM International LLC,cli_lwx46vyhwdyaabaswpaa,1237290,,inv_m7blbasb6z6qaaiiuoya,$669.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5488,$24.38 
+DSquared International LLC,cli_lwx435ahwdyaabaqjmha,1078391,,inv_m7blbas5r6zaaaigta2q,$719.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4656,$26.18 
+Kitworks,cli_m6m352hdy5qaauia3miq,8177305,,inv_m7blbatyrwjaaaig5poa,$500.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1879,$18.30 
+"Base Products, LLC",cli_lwx4slihwdyaabaijtra,544150,,inv_m7blbas5r6zaaaigtaya,$719.00 ,cfo,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1006,$26.18 
+Bruce Michael & Co.,cli_l3p46vvb2mlqbrqa7hoq,3310211,,inv_m7blbas5r6zaaaigtawq,$239.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6534,$2.69 
+Dynamic Enterprises,cli_lwx5jcahwdyaaba3kwjq,1829183,,inv_m7blbar2ablqaaiirg3a,$669.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6551,$5.00 
+KE Health LLC,cli_lywlmlylscyqbuyaftoa,2979581,,inv_m7blbar2ablqaaiirg2a,$669.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1013,$24.38 
+Integrity Resources Inc,cli_lwx5c4ahwdyaabawhrcq,1475415,,inv_m7blbar2ablqaaiirgza,$480.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1324,$17.58 
+SomniFix International LLC,cli_ly2iied2knpqbuya6jsa,2986319,,inv_m7blbassd5jaaaijyewq,$719.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1015,$26.18 
+TwinStuff LLC,cli_mfgkcmfbnkzaboybahtq,4932469,,inv_m7blbassd5jaaaijyevq,$215.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9508,$5.68 
+Spyguy,cli_mzrillfngv3qapaa3tva,7383761,,inv_m7blbaw7pckqaaijbrwa,"$1,000.00 ",CFO,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4369,$36.30 
+"Fit-NYC-Chelsea, LLC",cli_mjc4lflkpjzqbraagpeq,5518915,,inv_m7blbassd5jaaaijyeuq,$431.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9687,$4.61 
+Brand Quality Merchandise,cli_lz2my2zsbc6abqiarr4a,3080348,,inv_m7blbasb6z6qaaiiuomq,$479.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9849,$17.54 
+Pukitt Distributors LLC,cli_mac5hyynhheqbsyafzza,4070988,,inv_m7blbatyrwjaaaig5pda,$289.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4494,$3.19 
+"Rivet Creative Group, LLC",cli_mtjjpkwx27xqaiabggta,6750511,,inv_m7blbassd5jaaaijyetq,$239.00 ,Book,Unscheduled,Not scheduled,3/1/25,0.00,,,,,,
+DLM Innovation,cli_mtsurb4tblkqalya3hga,6774245,,inv_m7blbaw7pckqaaijbrva,$479.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1700,$5.00 
+Calamodin Group,cli_mz2jl6ec3m5aasaa7eqa,7416642,,inv_m7blbaw7pckqaaijbrua,$150.00 ,Book,Failed,Collection failed,3/1/25,0.00,3/1/25,3/1/25,3/6/25,,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 0170,
+"Donut & Lola, LLP",cli_mpdqn4ethyqqahiaqwia,6379282,,inv_m7blbatzgabqaaihnapq,$239.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5264,$2.69 
+"Okwuzano, LLC",cli_lwx5q5ihwdyaabbb5eqa,2282513,,inv_m7blbatzgabqaaihnaoq,$669.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2909,$5.00 
+Daniel Gerard Group LLC,cli_mjrpgso46xlqbwiakfqq,5566415,,inv_m7blbatyrwjaaaig5pba,$215.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6246,$2.45 
+Ellesmere Holdings LLC,cli_mhukg7bb3ndabtqatvqa,5311150,,inv_m7blbatzgabqaaihnanq,$239.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7124,$2.69 
+Kalcom,cli_m5ntj4c25awaasiapvbq,8037736,,inv_m7blbasb6z6qaaiiuoiq,$500.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7756,$18.30 
+COMPZ ACTIVEWEAR INC,cli_l5rm263mgkrqbxqa7j2q,3663844,,inv_m7blbasb6z6qaaiiuogq,$719.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2000,$26.18 
+Beautiste Brands LLC,cli_lwx5vsqhwdyaabbfyjzq,2548851,,inv_m7blbasb6z6qaaiiuofq,$439.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6481,$4.69 
+Storage Standard,cli_mnviboxjaaraaeqatmvq,6205329,,inv_m7blbasb6z6qaaiiuoeq,$239.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9016,$2.69 
+"Firebelly Ventures, LLP",cli_mo7rlhxs2ljaaeqarbaa,6364757,,inv_m7blbas5r6zaaaigtada,$479.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1720,$5.00 
+Sole Owner Paul Samuel,cli_lwx5hjqhwdyaabaz2ldq,1717697,,inv_m7blbas5r6zaaaigtaba,$239.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1969,$2.69 
+Peregrine Venture Fund LLC,cli_mimau3xag7rabvaaqqkq,5422128,,inv_m7blbassd5jaaaijyeha,$239.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5659,$2.69 
+Powr Labs LLC,cli_lze4yp3czalabpqamyza,3015685,,inv_m7blbar2ablqaaiirgpa,$359.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8788,$13.22 
+Anfell Limited,cli_lwx5qdqhwdyaabbbhqmq,2236616,,inv_m7blbaw7pckqaaijbrca,$719.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5281,$26.18 
+Strictly Stability LLC,cli_md7l37lxs6cabrqae4fq,4768242,,inv_m7blbatzgabqaaihm73a,$239.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5936,$8.90 
+KD3 Marketing LLC,cli_l7nfafutaecabriapveq,3982559,,inv_m7blbassd5jaaaijyebq,$240.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1049,$8.94 
+Nextmune Strawfield LLC,cli_l5y7vlvmmffabxqaq3ga,3682085,,inv_m7blbatzgabqaaihm7zq,$719.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2828,$5.00 
+Improve Photography,cli_lwx5zzyhwdyaabbjhixq,2782993,,inv_m7blbatzgabqaaihm7yq,$116.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1005,$4.48 
+Rightcar Solutions LLC,cli_lwx5qkyhwdyaabbbnwia,2249390,,inv_m7blbaw7pckqaaijbq7q,$479.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8897,$5.00 
+Double Scoop,cli_mmlwkvkn5gdqbtqbal2a,6022098,,inv_m7blbaw7pckqaaijbq6q,$432.00 ,Book,Paid,Paid out,3/1/25,3.00,3/1/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1008,$15.85 
+Kovi Fabrics,cli_m57qxb6j75kqasya3dqq,8117486,,inv_m66ur7oarzraaaiaj55q,$750.00 ,Book,Paid,Paid out,2/24/25,2.00,2/24/25,,2/27/25,paydis_m67gs3w7iqnaaaia3shq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2001,$27.30 
+JL Ventures LLC,cli_lwx4y3qhwdyaabanv4dq,907252,,inv_m64oizoael2aaaib5kka,"$1,200.00 ",Tax,Paid,Paid out,2/21/25,2.00,2/21/25,,2/25/25,paydis_m654jszj2waaaaiapxba,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7540,$43.50 
+Secure Ventures Inc,cli_mpobky6ocodaahiaw5fq,6420266,,inv_m64mbsabor2aaaibicga,"$1,000.00 ",Tax,Paid,Paid out,2/21/25,2.00,2/21/25,,2/25/25,paydis_m654jszj2waaaaiapxba,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7302,
+TRMNL,cli_m6tic4ymle2qalaan5ea,8208080,,inv_m6347sr7whiaaaibe4wq,"$1,200.00 ",Tax,Paid,Paid out,2/20/25,2.00,2/20/25,,2/25/25,paydis_m654jszj2waaaaiapxba,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9296,$5.00 
+TRMNL,cli_m6tic4ymle2qalaan5ea,8208080,,inv_m6347gz7whiaaaibey5q,$50.00 ,Book,Paid,Paid out,2/20/25,2.00,2/20/25,,2/25/25,paydis_m654jszj2waaaaiapxba,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9296,$0.80 
+Uber Signal,cli_m4nioyu6r6sqajaappfa,7817669,,inv_m6z3qkuld5hqanyajqja,$875.00 ,Book,Paid,Paid out,2/17/25,2.00,2/17/25,,2/20/25,paydis_m62tevx4dd2aaaicbzaa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1103,$31.80 
+Best Self,cli_m2h6slwznwsaaiia5una,7465153,,inv_m6vplppplyiqaaiadt7a,"$1,200.00 ",Tax,Paid,Paid out,2/11/25,2.00,2/11/25,,2/13/25,paydis_m6v7gkn44x3qaaiaufeq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7577,$5.00 
+Musselwhite Enterprises,cli_lwx5qiihwdyaabbblrna,2244876,,inv_m6vneljl6jnqasqaxkha,$900.00 ,Book,Paid,Paid out,2/10/25,2.00,2/10/25,,2/13/25,paydis_m6v7gkn44x3qaaiaufeq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6540,$5.00 
+TRMNL,cli_m6tic4ymle2qalaan5ea,8208080,,inv_m6veli7nctuqaaicsy6q,"$6,600.00 ",CFO,Paid,Paid out,2/10/25,2.00,2/10/25,,2/14/25,paydis_m6wuqzgnet3qaaia3l7a,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9296,$15.80 
+Haley Fritz,cli_m6srilrouq5qauiapiwa,8202368,,inv_m6sso2zs22cqaaiatqwq,$300.00 ,Book,Paid,Paid out,2/6/25,2.00,2/6/25,,2/10/25,paydis_m6uacmbsb4daaaibwzkq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 0500,$11.10 
+Loma Investments Group,cli_moj26bj7ii4aahia4hia,6303397,,inv_m6o4m7jspgdaaaiegova,$239.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1531,$2.69 
+Integral Electrics LLC,cli_mrsl6au6fbdqahyaycha,6592463,,inv_m6o4m7jspgdaaaiegoua,$215.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8348,$2.45 
+Young Nutraceuticals LLC,cli_lwx5qfahwdyaabbbiv2q,2239012,,inv_m6o4m7kyuaiaaaieegea,$419.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9537,$4.49 
+5th Element Gear,cli_mmlzfkquitxqbriau2jq,6022286,,inv_m6o4m7kyuaiaaaieegca,$648.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1005,$23.63 
+NatNutra LLC,cli_mbannhc5lbeqbpya7urq,4246759,,inv_m6o4m7kyuaiaaaieegaq,$719.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7959,$5.00 
+SB4U (new owner),cli_mm2ldhotv4pabqia76wq,6088437,,inv_m6o4m7jspgdaaaiegopq,$719.00 ,Book,Paid,Refunded,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1007,$26.18 
+Nutic,cli_mzwi63w2bmzaaviaylxq,7403957,,inv_m6o4m7kyuaiaaaieef6a,$200.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1704,$7.50 
+Color + Light,cli_m4auiff4udlqawaa2ooa,7751241,,inv_m6o4m7jspgdaaaiegonq,$765.00 ,CFO,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1009,$27.84 
+The Mandeville Shop,cli_lwx5gxihwdyaabazkxwa,1684940,,inv_m6o4m7jspgdaaaiegodq,$383.20 ,Book,Unscheduled,Not scheduled,2/1/25,0.00,,,,,,
+Earth and Moons,cli_m3eqn6shwgiqavqa7vtq,7575735,,inv_m6o4m7nmawxqaaifo7sq,$625.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6076,$22.80 
+Uber Signal,cli_m4nioyu6r6sqajaappfa,7817669,,inv_m6o4m7lini5qaaidle7q,$600.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1103,$21.90 
+Nutra Naturals Corporation,cli_mdbbhilopbtqbpaafaka,4571476,,inv_m6o4m7jm5cxaaaid3szq,$647.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9912,$5.00 
+Happy House Merchandise LLC,cli_mgupvqlcsovqbsiarlvq,5165169,,inv_m6o4m7lini5qaaidle5a,$479.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 0288,$5.00 
+Bog Street LLC,cli_mepepvrhkkaqbpyap3oq,4854241,,inv_m6o4m7nmawxqaaifo7qa,$239.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9290,$2.69 
+Simple Song,cli_lwx5qaqhwdyaabbbfmvq,2232273,,inv_m6o4m7nmawxqaaifo7pa,$239.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8048,$8.90 
+"FIT-NYC-FiDi, LLC",cli_mjg6ddlhk67qbtia4aeq,5531196,,inv_m6o4m7jm5cxaaaid3sxa,$431.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2811,$4.61 
+Fit NYC Holding Company,cli_mjg6frlhk67qbqqaq5lq,5531201,,inv_m6o4m7mhxvaaaaifybxq,$215.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9550,$5.68 
+Heist Labs,cli_miazaldnrnnqbpiafyza,5366257,,inv_m6o4m7jm5cxaaaid3svq,$216.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3713,$2.46 
+JL Ventures LLC,cli_lwx4y3qhwdyaabanv4dq,907252,,inv_m6o4m7lwccqaaaid5g6a,$179.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7540,$6.74 
+"Pollywog - Charlotte - NoDa, LLC",cli_mpfoqgpvuvmaahiauheq,6388946,,inv_m6o4m7mhxvaaaaifybua,$216.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5798,$2.46 
+Fuskie Lane LLC,cli_mwk3wuz6wx2aauqar63q,7037780,,inv_m6o4m7lini5qaaidlexq,$300.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6937,$3.30 
+Joey Koester,cli_m4ziseo4ulzaaiya56qa,7886749,,inv_m6o4m7mhxvaaaaifybsa,$450.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2948,$16.50 
+Chubby Pet Products LLC,cli_lwx5qmahwdyaabbbo6ba,2251939,,inv_m6o4m7pyzw6qaaiebgja,$429.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6272,$4.59 
+DIY Cartel,cli_lwx43rahwdyaabap7tma,1058292,,inv_m6o4m7mhxvaaaaifybqq,$359.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3629,$13.22 
+Fatima Beltran Management LLC DBA Modluxe,cli_mqsb2zsho54qaeqafs5q,6532798,,inv_m6o4m7pyzw6qaaiebghq,$239.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7273,$2.69 
+Kitworks,cli_m6m352hdy5qaauia3miq,8177305,,inv_m6o4m7jspgdaaaiegnzq,$500.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1879,$18.30 
+Latched Mama,cli_lwx4wnyhwdyaabalt7za,772233,,inv_m6o4m7pyzw6qaaiebgfq,$669.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9466,
+DSquared International LLC,cli_lwx435ahwdyaabaqjmha,1078391,,inv_m6o4m7jspgdaaaiegnya,$719.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4656,$26.18 
+Hemorrhoid.com,cli_m252s2rewn6aavqasf6a,7533249,,inv_m6o4m7jm5cxaaaid3sla,$400.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1003,$14.70 
+Hearthfire Hygge,cli_m6dn2cyx6lfqawiai4fa,8131145,,inv_m6o4m7lwccqaaaid5gmq,$150.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2874,$1.80 
+Gustar Distribution,cli_mzwi5ptthbtaalqaw42q,7403956,,inv_m6o4m7lwccqaaaid5gkq,$400.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8524,$14.70 
+Nutrali,cli_mz7lipdxh4aaalqas2xa,7436789,,inv_m6o4m7nmawxqaaifo63a,$700.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1001,$25.50 
+JoySpring Holdings,cli_lwx5k7ihwdyaaba45keq,1934387,,inv_m6o4m7lwccqaaaid5gja,$669.00 ,Book,Paid,Paid out,2/1/25,2.00,3/3/25,,3/5/25,paydis_m7dfodlwoxiaaaicd4mq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1007,
+Sole Owner Paul Samuel,cli_lwx5hjqhwdyaabaz2ldq,1717697,,inv_m6o4m7nmawxqaaifo6zq,$239.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1969,$2.69 
+"Firebelly Ventures, LLP",cli_mo7rlhxs2ljaaeqarbaa,6364757,,inv_m6o4m7nmawxqaaifo6yq,$479.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1720,$5.00 
+CL Ventures LLC,cli_mropszxtmkmqahyainwq,6585838,,inv_m6o4m7lini5qaaidlefq,$215.00 ,Book,Paid,Paid out,2/1/25,2.00,2/5/25,,2/7/25,paydis_m6sawxl27asqaaias3kq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3745,
+"Honey Dew Gifts, LLC",cli_mrrx22ohvo6aafaadh7a,6590817,,inv_m6o4m7lini5qaaidleeq,$719.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1235,$5.00 
+Drake Mason,cli_ly44vjl7hgrqbqyaax4q,2991407,,inv_m6o4m7jm5cxaaaid3r7a,$239.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8577,$2.69 
+Secure Ventures Inc,cli_mpobky6ocodaahiaw5fq,6420266,,inv_m6o4m7jm5cxaaaid3r3q,$719.00 ,Book,Paid,Paid out,2/1/25,2.00,2/4/25,,2/7/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3745,
+Daniel Gerard Group LLC,cli_mjrpgso46xlqbwiakfqq,5566415,,inv_m6o4m7kyuaiaaaieee3q,$215.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6246,$2.45 
+Lightstuff LLC,cli_mbf3eys5xfiabriamgba,4266192,,inv_m6o4m7lini5qaaidleca,$239.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3173,$2.69 
+Pukitt Distributors LLC,cli_mac5hyynhheqbsyafzza,4070988,,inv_m6o4m7mhxvaaaaifyaza,$289.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4494,$3.19 
+Elite Rest LLC,cli_mfjwllwmjrbqbpaardwa,4963578,,inv_m6o4m7mhxvaaaaifyaya,$215.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 0377,$5.68 
+Hove Industries LLC,cli_lwx5gjyhwdyaabay72vq,1661296,,inv_m6o4m7jm5cxaaaid3rya,$479.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2008,$17.54 
+Crafty Contraptions LLC,cli_lwx5vxqhwdyaabbf4iba,2558196,,inv_m6o4m7mhxvaaaaifyawq,$479.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6070,$5.00 
+"Rivet Creative Group, LLC",cli_mtjjpkwx27xqaiabggta,6750511,,inv_m6o4m7jm5cxaaaid3rwq,$239.00 ,Book,Unscheduled,Not scheduled,2/1/25,0.00,,,,,,
+SomniFix International LLC,cli_ly2iied2knpqbuya6jsa,2986319,,inv_m6o4m7mhxvaaaaifyavq,$719.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1015,$26.18 
+"Fit-NYC-Chelsea, LLC",cli_mjc4lflkpjzqbraagpeq,5518915,,inv_m6o4m7dini5qaaidld4a,$431.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9687,$4.61 
+Integrity Resources Inc,cli_lwx5c4ahwdyaabawhrcq,1475415,,inv_m6o4m7dwccqaaaid5fxq,$480.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1324,$17.58 
+"Base Products, LLC",cli_lwx4slihwdyaabaijtra,544150,,inv_m6o4m7dwccqaaaid5fvq,$481.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1006,$17.62 
+"Donut & Lola, LLP",cli_mpdqn4ethyqqahiaqwia,6379282,,inv_m6o4m7dwccqaaaid5fua,$239.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5264,$2.69 
+Nextmune Strawfield LLC,cli_l5y7vlvmmffabxqaq3ga,3682085,,inv_m6o4m7cyuaiaaaieeesa,$719.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2828,$5.00 
+Improve Photography,cli_lwx5zzyhwdyaabbjhixq,2782993,,inv_m6o4m7bspgdaaaiegmvq,$116.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1005,$4.48 
+COMPZ ACTIVEWEAR INC,cli_l5rm263mgkrqbxqa7j2q,3663844,,inv_m6o4m7cyuaiaaaieeeoa,$719.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2000,$26.18 
+Rightcar Solutions LLC,cli_lwx5qkyhwdyaabbbnwia,2249390,,inv_m6o4m7bspgdaaaiegmqq,$479.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8897,$5.00 
+Beautiste Brands LLC,cli_lwx5vsqhwdyaabbfyjzq,2548851,,inv_m6o4m7cyuaiaaaieeeiq,$439.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6481,$4.69 
+Powr Labs LLC,cli_lze4yp3czalabpqamyza,3015685,,inv_m6o4m7bspgdaaaiegmna,$359.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8788,$13.22 
+Bruce Michael & Co.,cli_l3p46vvb2mlqbrqa7hoq,3310211,,inv_m6o4m7bm5cxaaaid3rcq,$239.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6534,$2.69 
+KE Health LLC,cli_lywlmlylscyqbuyaftoa,2979581,,inv_m6o4m7dini5qaaidldjq,$669.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1013,$24.38 
+Spyguy,cli_mzrillfngv3qapaa3tva,7383761,,inv_m6o4m7dini5qaaidldiq,"$1,000.00 ",CFO,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4369,$36.30 
+Double Scoop,cli_mmlwkvkn5gdqbtqbal2a,6022098,,inv_m6o4m7bspgdaaaiegmgq,$432.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1008,$15.85 
+Calamodin Group,cli_mz2jl6ec3m5aasaa7eqa,7416642,,inv_m6o4m7bm5cxaaaid3rba,$150.00 ,Book,Failed,Collection failed,2/1/25,0.00,2/1/25,2/1/25,2/6/25,,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 0170,
+"Base Products, LLC",cli_lwx4slihwdyaabaijtra,544150,,inv_m6o4m7dwccqaaaid5fdq,$719.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1006,$26.18 
+DLM Innovation,cli_mtsurb4tblkqalya3hga,6774245,,inv_m6o4m7dini5qaaidldga,$479.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1700,$5.00 
+Dynamic Enterprises,cli_lwx5jcahwdyaaba3kwjq,1829183,,inv_m6o4m7dwccqaaaid5fbq,$669.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6551,$5.00 
+Ellesmere Holdings LLC,cli_mhukg7bb3ndabtqatvqa,5311150,,inv_m6o4m7ehxvaaaaifx74a,$239.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7124,$2.69 
+KD3 Marketing LLC,cli_l7nfafutaecabriapveq,3982559,,inv_m6o4m7cyuaiaaaieeeaa,$240.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1049,$8.94 
+TwinStuff LLC,cli_mfgkcmfbnkzaboybahtq,4932469,,inv_m6o4m7ehxvaaaaifx72q,$215.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9508,$5.68 
+KASM International LLC,cli_lwx46vyhwdyaabaswpaa,1237290,,inv_m6o4m7bm5cxaaaid3q5a,$669.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5488,$24.38 
+"Okwuzano, LLC",cli_lwx5q5ihwdyaabbb5eqa,2282513,,inv_m6o4m7hyzw6qaaiebfxa,$669.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2909,$5.00 
+Storage Standard,cli_mnviboxjaaraaeqatmvq,6205329,,inv_m6o4m7cyuaiaaaieed6a,$239.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9016,$2.69 
+Brand Quality Merchandise,cli_lz2my2zsbc6abqiarr4a,3080348,,inv_m6o4m7ehxvaaaaifx7zq,$479.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9849,$17.54 
+JPM Distributors,cli_mhvqihrg5auabrqawzjq,5315989,,inv_m6o4m7ehxvaaaaifx7yq,$719.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6970,$26.18 
+Proglobe EC LLC,cli_lwx5vpqhwdyaabbfvzmq,2543641,,inv_m6o4m7dwccqaaaid5e5q,$669.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7604,$5.00 
+Peregrine Venture Fund LLC,cli_mimau3xag7rabvaaqqkq,5422128,,inv_m6o4m7bm5cxaaaid3q2q,$239.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5659,$2.69 
+Kalcom,cli_m5ntj4c25awaasiapvbq,8037736,,inv_m6o4m7dini5qaaidldaa,$500.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7756,$18.30 
+Anfell Limited,cli_lwx5qdqhwdyaabbbhqmq,2236616,,inv_m6o4m7hyzw6qaaiebfra,$719.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5281,$26.18 
+Strictly Stability LLC,cli_md7l37lxs6cabrqae4fq,4768242,,inv_m6o4m7hyzw6qaaiebfqa,$239.00 ,Book,Paid,Paid out,2/1/25,2.00,2/1/25,,2/5/25,paydis_m6qwv7himcaaaaiaxrqq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5936,$8.90 
+Kalcom,cli_m5ntj4c25awaasiapvbq,8037736,,inv_m6i3ge2uxdnqaaibdvnq,"$1,700.00 ",Book,Paid,Paid out,1/22/25,1.00,1/22/25,,1/27/25,paydis_m6kyxvglvkyqaaibhnva,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7756,$61.50 
+Anthony Coons - Business Tax,cli_m6fozc5ywsiqapqa24uq,8141246,,inv_m6hrzgoblskqaaiavbvq,$600.00 ,Book,Paid,Paid out,1/20/25,1.00,1/20/25,,1/23/25,paydis_m6ienc542z5aaaibb7eq,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1010,$21.90 
+Musselwhite Enterprises,cli_lwx5qiihwdyaabbblrna,2244876,,inv_m6hhlb673pxaaaibeuoa,$900.00 ,Book,Paid,Paid out,1/20/25,1.00,1/20/25,,1/23/25,paydis_m6ienc542z5aaaibb7eq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6540,$5.00 
+Hearthfire Hygge,cli_m6dn2cyx6lfqawiai4fa,8131145,,inv_m6d6ibwhseyqabydcf3q,$150.00 ,Book,Paid,Paid out,1/15/25,1.00,1/15/25,,1/17/25,paydis_m6efvgxwlhmqaaia3kuq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2874,$1.80 
+Best Self,cli_m2h6slwznwsaaiia5una,7465153,,inv_m6bboagb2q3aabyb5vaq,"$1,200.00 ",CFO,Paid,Paid out,1/11/25,1.00,1/11/25,,1/15/25,paydis_m6c3q5fey3gaabyawzcq,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7577,$5.00 
+Bog Street LLC,cli_mepepvrhkkaqbpyap3oq,4854241,,inv_m52otwn77j5aaca6v5yq,$239.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9290,$2.69 
+Loma Investments Group,cli_moj26bj7ii4aahia4hia,6303397,,inv_m52otwn77j5aaca6v5sa,$239.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1531,$2.69 
+Happy House Merchandise LLC,cli_mgupvqlcsovqbsiarlvq,5165169,,inv_m52otwn77j5aaca6v5lq,$479.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 0288,$5.00 
+Earth and Moons,cli_m3eqn6shwgiqavqa7vtq,7575735,,inv_m52otwp7hv7aabyi7qcq,$625.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6076,$22.80 
+American Homestead,cli_lwx5zzyhwdyaabbjhdta,2782642,,inv_m52otwp7hv7aabyi7qbq,$719.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4420,$5.00 
+JL Ventures LLC,cli_lwx4y3qhwdyaabanv4dq,907252,,inv_m52otwigfgcaabylu45q,$179.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7540,$6.74 
+Uber Signal,cli_m4nioyu6r6sqajaappfa,7817669,,inv_m52otwigfgcaabylu44q,$600.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1103,$21.90 
+Young Nutraceuticals LLC,cli_lwx5qfahwdyaabbbiv2q,2239012,,inv_m52otwiwysxqabywr6za,$419.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9537,$4.49 
+"FIT-NYC-FiDi, LLC",cli_mjg6ddlhk67qbtia4aeq,5531196,,inv_m52otwn77j5aaca6v5fq,$431.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2811,$4.61 
+Nutra Naturals Corporation,cli_mdbbhilopbtqbpaafaka,4571476,,inv_m52otwiwysxqabywr6ya,$647.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9912,$5.00 
+Hemorrhoid.com,cli_m252s2rewn6aavqasf6a,7533249,,inv_m52otwlrjctaabynqr4q,$400.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1003,$14.70 
+JoySpring Holdings,cli_lwx5k7ihwdyaaba45keq,1934387,,inv_m52otwlrjctaabynqr2a,$669.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1007,
+CL Ventures LLC,cli_mropszxtmkmqahyainwq,6585838,,inv_m52otwn77j5aaca6v43q,$215.00 ,Book,Paid,Paid out,1/1/25,1.00,2/5/25,,2/7/25,paydis_m6sawxl27asqaaias3kq,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3745,
+Simple Song,cli_lwx5qaqhwdyaabbbfmvq,2232273,,inv_m52otwp7hv7aabyi7pua,$239.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8048,$8.90 
+Color + Light,cli_m4auiff4udlqawaa2ooa,7751241,,inv_m52otwp7hv7aabyi7pta,$765.00 ,CFO,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1009,$27.84 
+5th Element Gear,cli_mmlzfkquitxqbriau2jq,6022286,,inv_m52otwiguztqabynte5q,$648.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1005,$23.63 
+Integral Electrics LLC,cli_mrsl6au6fbdqahyaycha,6592463,,inv_m52otwj36y3aabyobqzq,$215.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8348,$2.45 
+NatNutra LLC,cli_mbannhc5lbeqbpya7urq,4246759,,inv_m52otwiguztqabynte4a,$719.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7959,$5.00 
+Fit NYC Holding Company,cli_mjg6frlhk67qbqqaq5lq,5531201,,inv_m52otwiguztqabynte3a,$215.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9550,$5.68 
+Drake Mason,cli_ly44vjl7hgrqbqyaax4q,2991407,,inv_m52otwlrjctaabynqrha,$239.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8577,$2.69 
+"Pollywog - Charlotte - NoDa, LLC",cli_mpfoqgpvuvmaahiauheq,6388946,,inv_m52otwaguztqabynte2a,$216.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5798,$2.46 
+Heist Labs,cli_miazaldnrnnqbpiafyza,5366257,,inv_m52otwfgi6aqabzbca5a,$216.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3713,$2.46 
+DIY Cartel,cli_lwx43rahwdyaabap7tma,1058292,,inv_m52otwfgi6aqabzbca4a,$359.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3629,$13.22 
+Secure Ventures Inc,cli_mpobky6ocodaahiaw5fq,6420266,,inv_m52otwdrjctaabynqrea,$719.00 ,Book,Paid,Paid out,1/1/25,1.00,3/3/25,,3/6/25,paydis_m7d2mliff62qaaiaylpa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3745,
+Gustar Distribution,cli_mzwi5ptthbtaalqaw42q,7403956,,inv_m52otwb36y3aabyobqwa,$400.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8524,$14.70 
+Nutic,cli_mzwi63w2bmzaaviaylxq,7403957,,inv_m52otwfgi6aqabzbca2q,$200.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1704,$7.50 
+SomniFix International LLC,cli_ly2iied2knpqbuya6jsa,2986319,,inv_m52otwf77j5aaca6v4qq,$719.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1015,$26.18 
+Latched Mama,cli_lwx4wnyhwdyaabalt7za,772233,,inv_m52otwb36y3aabyobquq,$669.00 ,Book,Paid,Paid out,1/1/25,1.00,3/3/25,,3/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9466,
+RV Dev LLC,cli_mnkv5mymgn6aaeqbevoq,6146694,,inv_m52otwb36y3aabyobqtq,$216.00 ,Book,Paid,Paid out,1/1/25,1.00,3/3/25,,3/6/25,paydis_m7d2mliff62qaaiaylpa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6226,
+Chubby Pet Products LLC,cli_lwx5qmahwdyaabbbo6ba,2251939,,inv_m52otwagfgcaabylu4la,$429.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6272,$4.59 
+SB4U (new owner),cli_mm2ldhotv4pabqia76wq,6088437,,inv_m52otwagfgcaabylu4jq,$719.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1007,$26.18 
+Fatima Beltran Management LLC DBA Modluxe,cli_mqsb2zsho54qaeqafs5q,6532798,,inv_m52otwawysxqabywr6ka,$239.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7273,$2.69 
+Fuskie Lane LLC,cli_mwk3wuz6wx2aauqar63q,7037780,,inv_m52otwagfgcaabylu4iq,$300.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6937,$3.30 
+Joey Koester,cli_m4ziseo4ulzaaiya56qa,7886749,,inv_m52otwawysxqabywr6ja,$450.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2948,$16.50 
+The Mandeville Shop,cli_lwx5gxihwdyaabazkxwa,1684940,,inv_m52otwawysxqabywr6ia,$383.20 ,Book,Unscheduled,Not scheduled,1/1/25,0.00,,,,,,
+Lightstuff LLC,cli_mbf3eys5xfiabriamgba,4266192,,inv_m52otwdrjctaabynqq5a,$239.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3173,$2.69 
+"Honey Dew Gifts, LLC",cli_mrrx22ohvo6aafaadh7a,6590817,,inv_m52otwdrjctaabynqq3a,$719.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1235,$5.00 
+KASM International LLC,cli_lwx46vyhwdyaabaswpaa,1237290,,inv_m52otwf77j5aaca6v4jq,$669.00 ,Book,Paid,Paid out,1/1/25,1.00,1/17/25,,1/22/25,paydis_m6hpkhodkk2qaaiayewa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5488,
+Hove Industries LLC,cli_lwx5gjyhwdyaabay72vq,1661296,,inv_m52otwdrjctaabynqqyq,$479.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2008,$17.54 
+Elite Rest LLC,cli_mfjwllwmjrbqbpaardwa,4963578,,inv_m52otwdrjctaabynqqxa,$215.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 0377,$5.68 
+Red Valley LLC,cli_mnkv7jjryjvaahibemgq,6146696,,inv_m52otwdrjctaabynqqvq,$216.00 ,Book,Paid,Refunded,1/1/25,1.00,1/1/25,,1/7/25,,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1006,$8.08 
+KE Health LLC,cli_lywlmlylscyqbuyaftoa,2979581,,inv_m52otwf77j5aaca6v4gq,$669.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1013,$24.38 
+Top Form Design LLC,cli_mlcoy7sr4e3abqyak65q,5822085,,inv_m52otwdrjctaabynqqsq,$719.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5015,$5.00 
+"Base Products, LLC",cli_lwx4slihwdyaabaijtra,544150,,inv_m52otwagfgcaabylu36q,$481.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1006,$17.62 
+JPM Distributors,cli_mhvqihrg5auabrqawzjq,5315989,,inv_m52otwf77j5aaca6v34q,$719.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6970,$26.18 
+Crafty Contraptions LLC,cli_lwx5vxqhwdyaabbf4iba,2558196,,inv_m52otwfgi6aqabzbcaca,$479.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6070,$5.00 
+SPE CO I,cli_lwx5zsqhwdyaabbjbc5a,2770104,,inv_m52otwh7hv7aabyi7o5a,$299.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 3000,$11.06 
+"Rivet Creative Group, LLC",cli_mtjjpkwx27xqaiabggta,6750511,,inv_m52otwfgi6aqabzbcaaa,$719.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6327,$5.00 
+"Fit-NYC-Chelsea, LLC",cli_mjc4lflkpjzqbraagpeq,5518915,,inv_m52otwb36y3aabyobp4a,$431.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9687,$4.61 
+Pukitt Distributors LLC,cli_mac5hyynhheqbsyafzza,4070988,,inv_m52otwaguztqabyntega,$289.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4494,$3.19 
+Spyguy,cli_mzrillfngv3qapaa3tva,7383761,,inv_m52otwh7hv7aabyi7o4a,"$1,000.00 ",CFO,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4369,$36.30 
+Integrity Resources Inc,cli_lwx5c4ahwdyaabawhrcq,1475415,,inv_m52otwh7hv7aabyi7o3a,$480.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1324,$17.58 
+DSquared International LLC,cli_lwx435ahwdyaabaqjmha,1078391,,inv_m52otwaguztqabyntefa,$719.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 4656,$26.18 
+Bruce Michael & Co.,cli_l3p46vvb2mlqbrqa7hoq,3310211,,inv_m52otwb36y3aabyobp2q,$239.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6534,$2.69 
+"Donut & Lola, LLP",cli_mpdqn4ethyqqahiaqwia,6379282,,inv_m52otwb36y3aabyobpzq,$239.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5264,$2.69 
+Daniel Gerard Group LLC,cli_mjrpgso46xlqbwiakfqq,5566415,,inv_m52otwfgi6aqabzbb75q,$215.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6246,$2.45 
+Proglobe EC LLC,cli_lwx5vpqhwdyaabbfvzmq,2543641,,inv_m52otwh7hv7aabyi7ozq,$669.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7604,$5.00 
+TwinStuff LLC,cli_mfgkcmfbnkzaboybahtq,4932469,,inv_m52otwaguztqabyntedq,$215.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9508,$5.68 
+Dynamic Enterprises,cli_lwx5jcahwdyaaba3kwjq,1829183,,inv_m52otwb36y3aabyobpya,$669.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6551,$5.00 
+Brand Quality Merchandise,cli_lz2my2zsbc6abqiarr4a,3080348,,inv_m52otwf77j5aaca6v3sq,$479.00 ,Book,Paid,Paid out,1/1/25,1.00,1/24/25,,1/28/25,paydis_m6lnzoolvkyqaaicjaka,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9849,
+"Base Products, LLC",cli_lwx4slihwdyaabaijtra,544150,,inv_m52otwagfgcaabylu3oq,$719.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1006,$26.18 
+"Okwuzano, LLC",cli_lwx5q5ihwdyaabbb5eqa,2282513,,inv_m52otwawysxqabywr5vq,$669.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2909,$5.00 
+Calamodin Group,cli_mz2jl6ec3m5aasaa7eqa,7416642,,inv_m52otwagfgcaabylu3nq,$150.00 ,Book,Failed,Collection failed,1/1/25,0.00,1/1/25,1/1/25,1/7/25,,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 0170,
+DLM Innovation,cli_mtsurb4tblkqalya3hga,6774245,,inv_m52otwagfgcaabylu3mq,$479.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1700,$5.00 
+Ellesmere Holdings LLC,cli_mhukg7bb3ndabtqatvqa,5311150,,inv_m52otwawysxqabywr5ua,$239.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 7124,$2.69 
+Nutrali,cli_mz7lipdxh4aaalqas2xa,7436789,,inv_m52otwawysxqabywr5ta,$700.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1001,$25.50 
+Powr Labs LLC,cli_lze4yp3czalabpqamyza,3015685,,inv_m52otv577j5aaca6v3ja,$359.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8788,$13.22 
+Sole Owner Paul Samuel,cli_lwx5hjqhwdyaabaz2ldq,1717697,,inv_m52otv3rjctaabynqpoq,$239.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1969,$2.69 
+"Firebelly Ventures, LLP",cli_mo7rlhxs2ljaaeqarbaa,6364757,,inv_m52otv3rjctaabynqpnq,$479.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1720,$5.00 
+Storage Standard,cli_mnviboxjaaraaeqatmvq,6205329,,inv_m52otv3rjctaabynqpaq,$239.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 9016,$2.69 
+Anfell Limited,cli_lwx5qdqhwdyaabbbhqmq,2236616,,inv_m52otv5gi6aqabzbb7ia,$719.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5281,$26.18 
+KD3 Marketing LLC,cli_l7nfafutaecabriapveq,3982559,,inv_m52otv77hv7aabyi7oea,$240.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,MASTERCARD ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1049,$8.94 
+Nextmune Strawfield LLC,cli_l5y7vlvmmffabxqaq3ga,3682085,,inv_m52otvz36y3aabyobpea,$719.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2828,$5.00 
+Improve Photography,cli_lwx5zzyhwdyaabbjhixq,2782993,,inv_m52otv5gi6aqabzbb7ha,$116.00 ,Book,Paid,Paid out,1/1/25,1.00,1/27/25,,1/29/25,paydis_m6mc2wzkav7aaaia2eba,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1005,
+Peregrine Venture Fund LLC,cli_mimau3xag7rabvaaqqkq,5422128,,inv_m52otvygfgcaabylu22q,$239.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5659,$2.69 
+Strictly Stability LLC,cli_md7l37lxs6cabrqae4fq,4768242,,inv_m52otvygfgcaabylu2yq,$239.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,VISA ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 5936,$8.90 
+COMPZ ACTIVEWEAR INC,cli_l5rm263mgkrqbxqa7j2q,3663844,,inv_m52otvygfgcaabylu2xq,$719.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,AMERICAN EXPRESS ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 2000,$26.18 
+Double Scoop,cli_mmlwkvkn5gdqbtqbal2a,6022098,,inv_m52otvyguztqabyntduq,$432.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,AMEX ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 1008,$15.85 
+Beautiste Brands LLC,cli_lwx5vsqhwdyaabbfyjzq,2548851,,inv_m52otvywysxqabywr5da,$439.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 6481,$4.69 
+Rightcar Solutions LLC,cli_lwx5qkyhwdyaabbbnwia,2249390,,inv_m52otvywysxqabywr5ca,$479.00 ,Book,Paid,Paid out,1/1/25,1.00,1/1/25,,1/6/25,paydis_m54553s76ppaabyfiyoa,BANK ACCOUNT ‚Ä¢‚Ä¢‚Ä¢‚Ä¢ 8897,$5.00 
