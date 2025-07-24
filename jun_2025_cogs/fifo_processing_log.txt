@@ -1,0 +1,218 @@
+2025-07-15 15:26:56,533 - INFO - Script started.
+2025-07-15 15:26:56,533 - INFO - Sales file: sales_2025_clean_june.csv
+2025-07-15 15:26:56,533 - INFO - Output directory: jun_2025_cogs
+2025-07-15 15:26:56,533 - INFO - Log file: jun_2025_cogs/fifo_processing_log.txt
+2025-07-15 15:26:56,533 - INFO - Validate only: False
+2025-07-15 15:26:56,605 - INFO - Supabase client initialized successfully.
+2025-07-15 15:26:56,605 - INFO - Loading purchases data from Supabase table: purchase_lots
+2025-07-15 15:26:57,000 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=lot_id%2Cpo_number%2Csku%2Creceived_date%2Coriginal_unit_qty%2Cunit_price%2Cfreight_cost_per_unit%2Cremaining_unit_qty&remaining_unit_qty=gt.0 "HTTP/2 200 OK"
+2025-07-15 15:26:57,007 - INFO - Successfully fetched 126 records from Supabase.
+2025-07-15 15:26:57,018 - INFO - Purchases data from Supabase loaded and validated successfully.
+2025-07-15 15:26:57,018 - INFO - Loading user sales data from: sales_2025_clean_june.csv
+2025-07-15 15:26:57,021 - INFO - Found columns in sales file: ['sku', 'units moved', 'Month', 'Unnamed: 3', 'Unnamed: 4']
+2025-07-15 15:26:57,021 - INFO - Normalized column mapping: {'sku': 'sku', 'unitsmoved': 'units moved', 'month': 'Month', 'unnamed:3': 'Unnamed: 3', 'unnamed:4': 'Unnamed: 4'}
+2025-07-15 15:26:57,021 - INFO - Found column 'sku' matching expected 'SKU'
+2025-07-15 15:26:57,021 - INFO - Found column 'units moved' matching expected 'Units Moved'
+2025-07-15 15:26:57,021 - INFO - Using column mapping: {'sku': 'SKU', 'units moved': 'Quantity_Sold', 'Month': 'Sale_Month_Str'}
+2025-07-15 15:26:57,030 - INFO - User sales data loaded, validated, and summarized successfully.
+2025-07-15 15:26:57,063 - WARNING - 
+============================================================
+2025-07-15 15:26:57,063 - WARNING - ⚠️  DATE VALIDATION WARNINGS:
+2025-07-15 15:26:57,063 - WARNING - ============================================================
+2025-07-15 15:26:57,063 - WARNING -   - SKU CP110342BK: Sale on 2025-06-01 for 34 units, but earliest inventory is from 2025-06-12 (11 days later)
+2025-07-15 15:26:57,063 - WARNING -   - SKU CP11034DDB: Sale on 2025-06-01 for 35 units, but earliest inventory is from 2025-06-12 (11 days later)
+2025-07-15 15:26:57,063 - WARNING -   - SKU PKSPRTBW46: Sale on 2025-06-01 for 80 units, but earliest inventory is from 2025-06-12 (11 days later)
+2025-07-15 15:26:57,063 - WARNING - ============================================================
+2025-07-15 15:26:57,063 - WARNING - Total: 3 warnings
+2025-07-15 15:26:57,064 - WARNING - Note: Calculations continued using available inventory.
+2025-07-15 15:26:57,064 - WARNING - ============================================================
+
+2025-07-15 15:26:57,064 - INFO - Date warnings saved to: jun_2025_cogs/date_validation_warnings.txt
+2025-07-15 15:26:57,065 - INFO - Starting pre-processing validation of sales data against inventory...
+2025-07-15 15:26:57,071 - WARNING - Validation failed with 1 errors:
+2025-07-15 15:26:57,072 - WARNING -   - SKUs not found in inventory: 0
+2025-07-15 15:26:57,072 - WARNING -   - Insufficient quantity errors: 1
+2025-07-15 15:26:57,072 - WARNING - Validation report saved to: jun_2025_cogs/validation_errors.csv
+2025-07-15 15:26:57,295 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.903 "HTTP/2 200 OK"
+2025-07-15 15:26:57,296 - INFO - Updated lot 903 in Supabase. New remaining quantity: 539
+2025-07-15 15:26:57,413 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.931 "HTTP/2 200 OK"
+2025-07-15 15:26:57,414 - INFO - Updated lot 931 in Supabase. New remaining quantity: 958
+2025-07-15 15:26:57,619 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.866 "HTTP/2 200 OK"
+2025-07-15 15:26:57,627 - INFO - Updated lot 866 in Supabase. New remaining quantity: 150
+2025-07-15 15:26:57,749 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.865 "HTTP/2 200 OK"
+2025-07-15 15:26:57,750 - INFO - Updated lot 865 in Supabase. New remaining quantity: 0
+2025-07-15 15:26:57,906 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.936 "HTTP/2 200 OK"
+2025-07-15 15:26:57,907 - INFO - Updated lot 936 in Supabase. New remaining quantity: 2337
+2025-07-15 15:26:58,098 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.928 "HTTP/2 200 OK"
+2025-07-15 15:26:58,100 - INFO - Updated lot 928 in Supabase. New remaining quantity: 375
+2025-07-15 15:26:58,214 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.872 "HTTP/2 200 OK"
+2025-07-15 15:26:58,214 - INFO - Updated lot 872 in Supabase. New remaining quantity: 1777
+2025-07-15 15:26:58,318 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.830 "HTTP/2 200 OK"
+2025-07-15 15:26:58,319 - INFO - Updated lot 830 in Supabase. New remaining quantity: 676
+2025-07-15 15:26:58,435 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.805 "HTTP/2 200 OK"
+2025-07-15 15:26:58,435 - INFO - Updated lot 805 in Supabase. New remaining quantity: 596
+2025-07-15 15:26:58,560 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.819 "HTTP/2 200 OK"
+2025-07-15 15:26:58,561 - INFO - Updated lot 819 in Supabase. New remaining quantity: 71
+2025-07-15 15:26:58,675 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.771 "HTTP/2 200 OK"
+2025-07-15 15:26:58,676 - INFO - Updated lot 771 in Supabase. New remaining quantity: 739
+2025-07-15 15:26:58,786 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.741 "HTTP/2 200 OK"
+2025-07-15 15:26:58,786 - INFO - Updated lot 741 in Supabase. New remaining quantity: 765
+2025-07-15 15:26:58,908 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.740 "HTTP/2 200 OK"
+2025-07-15 15:26:58,909 - INFO - Updated lot 740 in Supabase. New remaining quantity: 406
+2025-07-15 15:26:59,040 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.900 "HTTP/2 200 OK"
+2025-07-15 15:26:59,041 - INFO - Updated lot 900 in Supabase. New remaining quantity: 1234
+2025-07-15 15:26:59,150 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.853 "HTTP/2 200 OK"
+2025-07-15 15:26:59,151 - INFO - Updated lot 853 in Supabase. New remaining quantity: 184
+2025-07-15 15:26:59,261 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.844 "HTTP/2 200 OK"
+2025-07-15 15:26:59,264 - INFO - Updated lot 844 in Supabase. New remaining quantity: 515
+2025-07-15 15:26:59,374 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.843 "HTTP/2 200 OK"
+2025-07-15 15:26:59,375 - INFO - Updated lot 843 in Supabase. New remaining quantity: 672
+2025-07-15 15:26:59,482 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.837 "HTTP/2 200 OK"
+2025-07-15 15:26:59,482 - INFO - Updated lot 837 in Supabase. New remaining quantity: 273
+2025-07-15 15:26:59,635 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.726 "HTTP/2 200 OK"
+2025-07-15 15:26:59,636 - INFO - Updated lot 726 in Supabase. New remaining quantity: 721
+2025-07-15 15:26:59,763 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.851 "HTTP/2 200 OK"
+2025-07-15 15:26:59,764 - INFO - Updated lot 851 in Supabase. New remaining quantity: 1298
+2025-07-15 15:26:59,877 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.879 "HTTP/2 200 OK"
+2025-07-15 15:26:59,881 - INFO - Updated lot 879 in Supabase. New remaining quantity: 0
+2025-07-15 15:26:59,992 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.923 "HTTP/2 200 OK"
+2025-07-15 15:26:59,992 - INFO - Updated lot 923 in Supabase. New remaining quantity: 1058
+2025-07-15 15:27:00,100 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.849 "HTTP/2 200 OK"
+2025-07-15 15:27:00,101 - INFO - Updated lot 849 in Supabase. New remaining quantity: 1844
+2025-07-15 15:27:00,225 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.873 "HTTP/2 200 OK"
+2025-07-15 15:27:00,226 - INFO - Updated lot 873 in Supabase. New remaining quantity: 2298
+2025-07-15 15:27:00,346 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.883 "HTTP/2 200 OK"
+2025-07-15 15:27:00,346 - INFO - Updated lot 883 in Supabase. New remaining quantity: 992
+2025-07-15 15:27:00,457 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.881 "HTTP/2 200 OK"
+2025-07-15 15:27:00,457 - INFO - Updated lot 881 in Supabase. New remaining quantity: 277
+2025-07-15 15:27:00,575 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.778 "HTTP/2 200 OK"
+2025-07-15 15:27:00,582 - INFO - Updated lot 778 in Supabase. New remaining quantity: 2
+2025-07-15 15:27:00,691 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.875 "HTTP/2 200 OK"
+2025-07-15 15:27:00,691 - INFO - Updated lot 875 in Supabase. New remaining quantity: 25
+2025-07-15 15:27:00,808 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.760 "HTTP/2 200 OK"
+2025-07-15 15:27:00,808 - INFO - Updated lot 760 in Supabase. New remaining quantity: 58
+2025-07-15 15:27:00,940 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.836 "HTTP/2 200 OK"
+2025-07-15 15:27:00,942 - INFO - Updated lot 836 in Supabase. New remaining quantity: 0
+2025-07-15 15:27:01,046 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.891 "HTTP/2 200 OK"
+2025-07-15 15:27:01,047 - INFO - Updated lot 891 in Supabase. New remaining quantity: 4902
+2025-07-15 15:27:01,153 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.861 "HTTP/2 200 OK"
+2025-07-15 15:27:01,153 - INFO - Updated lot 861 in Supabase. New remaining quantity: 1124
+2025-07-15 15:27:01,272 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.870 "HTTP/2 200 OK"
+2025-07-15 15:27:01,272 - INFO - Updated lot 870 in Supabase. New remaining quantity: 853
+2025-07-15 15:27:01,394 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.871 "HTTP/2 200 OK"
+2025-07-15 15:27:01,394 - INFO - Updated lot 871 in Supabase. New remaining quantity: 0
+2025-07-15 15:27:01,524 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.897 "HTTP/2 200 OK"
+2025-07-15 15:27:01,526 - INFO - Updated lot 897 in Supabase. New remaining quantity: 3299
+2025-07-15 15:27:01,633 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.895 "HTTP/2 200 OK"
+2025-07-15 15:27:01,634 - INFO - Updated lot 895 in Supabase. New remaining quantity: 5649
+2025-07-15 15:27:01,747 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.912 "HTTP/2 200 OK"
+2025-07-15 15:27:01,747 - INFO - Updated lot 912 in Supabase. New remaining quantity: 994
+2025-07-15 15:27:01,850 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.884 "HTTP/2 200 OK"
+2025-07-15 15:27:01,851 - INFO - Updated lot 884 in Supabase. New remaining quantity: 0
+2025-07-15 15:27:01,851 - WARNING - Could not fully allocate quantity for SKU PPSB4P2212. Remaining: 284
+2025-07-15 15:27:01,968 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.963 "HTTP/2 200 OK"
+2025-07-15 15:27:01,968 - INFO - Updated lot 963 in Supabase. New remaining quantity: 496
+2025-07-15 15:27:02,075 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.929 "HTTP/2 200 OK"
+2025-07-15 15:27:02,076 - INFO - Updated lot 929 in Supabase. New remaining quantity: 951
+2025-07-15 15:27:02,186 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.848 "HTTP/2 200 OK"
+2025-07-15 15:27:02,188 - INFO - Updated lot 848 in Supabase. New remaining quantity: 1313
+2025-07-15 15:27:02,300 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.779 "HTTP/2 200 OK"
+2025-07-15 15:27:02,301 - INFO - Updated lot 779 in Supabase. New remaining quantity: 573
+2025-07-15 15:27:02,416 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.910 "HTTP/2 200 OK"
+2025-07-15 15:27:02,416 - INFO - Updated lot 910 in Supabase. New remaining quantity: 8
+2025-07-15 15:27:02,552 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.915 "HTTP/2 200 OK"
+2025-07-15 15:27:02,553 - INFO - Updated lot 915 in Supabase. New remaining quantity: 0
+2025-07-15 15:27:02,694 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.933 "HTTP/2 200 OK"
+2025-07-15 15:27:02,696 - INFO - Updated lot 933 in Supabase. New remaining quantity: 1039
+2025-07-15 15:27:02,808 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.925 "HTTP/2 200 OK"
+2025-07-15 15:27:02,809 - INFO - Updated lot 925 in Supabase. New remaining quantity: 0
+2025-07-15 15:27:02,911 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.967 "HTTP/2 200 OK"
+2025-07-15 15:27:02,913 - INFO - Updated lot 967 in Supabase. New remaining quantity: 212
+2025-07-15 15:27:03,025 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.889 "HTTP/2 200 OK"
+2025-07-15 15:27:03,025 - INFO - Updated lot 889 in Supabase. New remaining quantity: 219
+2025-07-15 15:27:03,150 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.914 "HTTP/2 200 OK"
+2025-07-15 15:27:03,151 - INFO - Updated lot 914 in Supabase. New remaining quantity: 816
+2025-07-15 15:27:03,269 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.924 "HTTP/2 200 OK"
+2025-07-15 15:27:03,269 - INFO - Updated lot 924 in Supabase. New remaining quantity: 0
+2025-07-15 15:27:03,382 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.966 "HTTP/2 200 OK"
+2025-07-15 15:27:03,384 - INFO - Updated lot 966 in Supabase. New remaining quantity: 2695
+2025-07-15 15:27:03,492 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.930 "HTTP/2 200 OK"
+2025-07-15 15:27:03,494 - INFO - Updated lot 930 in Supabase. New remaining quantity: 971
+2025-07-15 15:27:03,606 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.826 "HTTP/2 200 OK"
+2025-07-15 15:27:03,606 - INFO - Updated lot 826 in Supabase. New remaining quantity: 0
+2025-07-15 15:27:03,711 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.899 "HTTP/2 200 OK"
+2025-07-15 15:27:03,714 - INFO - Updated lot 899 in Supabase. New remaining quantity: 871
+2025-07-15 15:27:03,839 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.846 "HTTP/2 200 OK"
+2025-07-15 15:27:03,840 - INFO - Updated lot 846 in Supabase. New remaining quantity: 1412
+2025-07-15 15:27:03,954 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.860 "HTTP/2 200 OK"
+2025-07-15 15:27:03,955 - INFO - Updated lot 860 in Supabase. New remaining quantity: 0
+2025-07-15 15:27:04,060 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.919 "HTTP/2 200 OK"
+2025-07-15 15:27:04,061 - INFO - Updated lot 919 in Supabase. New remaining quantity: 1256
+2025-07-15 15:27:04,169 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.907 "HTTP/2 200 OK"
+2025-07-15 15:27:04,174 - INFO - Updated lot 907 in Supabase. New remaining quantity: 915
+2025-07-15 15:27:04,302 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.926 "HTTP/2 200 OK"
+2025-07-15 15:27:04,303 - INFO - Updated lot 926 in Supabase. New remaining quantity: 1528
+2025-07-15 15:27:04,414 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.927 "HTTP/2 200 OK"
+2025-07-15 15:27:04,416 - INFO - Updated lot 927 in Supabase. New remaining quantity: 1812
+2025-07-15 15:27:04,532 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.874 "HTTP/2 200 OK"
+2025-07-15 15:27:04,534 - INFO - Updated lot 874 in Supabase. New remaining quantity: 0
+2025-07-15 15:27:04,651 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.904 "HTTP/2 200 OK"
+2025-07-15 15:27:04,652 - INFO - Updated lot 904 in Supabase. New remaining quantity: 2839
+2025-07-15 15:27:04,773 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.939 "HTTP/2 200 OK"
+2025-07-15 15:27:04,774 - INFO - Updated lot 939 in Supabase. New remaining quantity: 1182
+2025-07-15 15:27:04,886 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.885 "HTTP/2 200 OK"
+2025-07-15 15:27:04,887 - INFO - Updated lot 885 in Supabase. New remaining quantity: 0
+2025-07-15 15:27:04,992 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.938 "HTTP/2 200 OK"
+2025-07-15 15:27:04,993 - INFO - Updated lot 938 in Supabase. New remaining quantity: 1160
+2025-07-15 15:27:05,127 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.828 "HTTP/2 200 OK"
+2025-07-15 15:27:05,128 - INFO - Updated lot 828 in Supabase. New remaining quantity: 216
+2025-07-15 15:27:05,238 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.780 "HTTP/2 200 OK"
+2025-07-15 15:27:05,238 - INFO - Updated lot 780 in Supabase. New remaining quantity: 0
+2025-07-15 15:27:05,357 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.911 "HTTP/2 200 OK"
+2025-07-15 15:27:05,358 - INFO - Updated lot 911 in Supabase. New remaining quantity: 1186
+2025-07-15 15:27:05,466 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.894 "HTTP/2 200 OK"
+2025-07-15 15:27:05,467 - INFO - Updated lot 894 in Supabase. New remaining quantity: 667
+2025-07-15 15:27:05,583 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.961 "HTTP/2 200 OK"
+2025-07-15 15:27:05,591 - INFO - Updated lot 961 in Supabase. New remaining quantity: 1406
+2025-07-15 15:27:05,697 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.768 "HTTP/2 200 OK"
+2025-07-15 15:27:05,697 - INFO - Updated lot 768 in Supabase. New remaining quantity: 37
+2025-07-15 15:27:05,810 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.845 "HTTP/2 200 OK"
+2025-07-15 15:27:05,812 - INFO - Updated lot 845 in Supabase. New remaining quantity: 222
+2025-07-15 15:27:05,929 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.855 "HTTP/2 200 OK"
+2025-07-15 15:27:05,931 - INFO - Updated lot 855 in Supabase. New remaining quantity: 241
+2025-07-15 15:27:06,039 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.854 "HTTP/2 200 OK"
+2025-07-15 15:27:06,040 - INFO - Updated lot 854 in Supabase. New remaining quantity: 844
+2025-07-15 15:27:06,144 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.839 "HTTP/2 200 OK"
+2025-07-15 15:27:06,146 - INFO - Updated lot 839 in Supabase. New remaining quantity: 194
+2025-07-15 15:27:06,253 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.840 "HTTP/2 200 OK"
+2025-07-15 15:27:06,253 - INFO - Updated lot 840 in Supabase. New remaining quantity: 111
+2025-07-15 15:27:06,357 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.922 "HTTP/2 200 OK"
+2025-07-15 15:27:06,358 - INFO - Updated lot 922 in Supabase. New remaining quantity: 443
+2025-07-15 15:27:06,475 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.842 "HTTP/2 200 OK"
+2025-07-15 15:27:06,476 - INFO - Updated lot 842 in Supabase. New remaining quantity: 151
+2025-07-15 15:27:06,590 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.916 "HTTP/2 200 OK"
+2025-07-15 15:27:06,591 - INFO - Updated lot 916 in Supabase. New remaining quantity: 0
+2025-07-15 15:27:06,718 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.934 "HTTP/2 200 OK"
+2025-07-15 15:27:06,719 - INFO - Updated lot 934 in Supabase. New remaining quantity: 2314
+2025-07-15 15:27:06,823 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.890 "HTTP/2 200 OK"
+2025-07-15 15:27:06,824 - INFO - Updated lot 890 in Supabase. New remaining quantity: 1485
+2025-07-15 15:27:06,944 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.917 "HTTP/2 200 OK"
+2025-07-15 15:27:06,945 - INFO - Updated lot 917 in Supabase. New remaining quantity: 74
+2025-07-15 15:27:07,056 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.918 "HTTP/2 200 OK"
+2025-07-15 15:27:07,057 - INFO - Updated lot 918 in Supabase. New remaining quantity: 345
+2025-07-15 15:27:07,172 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.792 "HTTP/2 200 OK"
+2025-07-15 15:27:07,173 - INFO - Updated lot 792 in Supabase. New remaining quantity: 806
+2025-07-15 15:27:07,278 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.794 "HTTP/2 200 OK"
+2025-07-15 15:27:07,280 - INFO - Updated lot 794 in Supabase. New remaining quantity: 2170
+2025-07-15 15:27:07,408 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.962 "HTTP/2 200 OK"
+2025-07-15 15:27:07,409 - INFO - Updated lot 962 in Supabase. New remaining quantity: 445
+2025-07-15 15:27:07,519 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.847 "HTTP/2 200 OK"
+2025-07-15 15:27:07,520 - INFO - Updated lot 847 in Supabase. New remaining quantity: 0
+2025-07-15 15:27:07,630 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.935 "HTTP/2 200 OK"
+2025-07-15 15:27:07,631 - INFO - Updated lot 935 in Supabase. New remaining quantity: 3287
+2025-07-15 15:27:07,744 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.880 "HTTP/2 200 OK"
+2025-07-15 15:27:07,747 - INFO - Updated lot 880 in Supabase. New remaining quantity: 1161
+2025-07-15 15:27:07,759 - INFO - Saved COGS attribution to: jun_2025_cogs/cogs_attribution_supabase.csv
+2025-07-15 15:27:07,759 - INFO - Saved COGS summary to: jun_2025_cogs/cogs_summary_supabase.csv
+2025-07-15 15:27:07,759 - INFO - Saved updated inventory snapshot to: jun_2025_cogs/updated_inventory_snapshot_supabase.csv
+2025-07-15 15:27:07,759 - INFO - Script completed successfully.

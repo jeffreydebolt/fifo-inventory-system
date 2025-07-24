@@ -1,0 +1,7 @@
+DATE VALIDATION WARNINGS
+============================================================
+Generated: 2025-06-25 07:45:58
+
+SKU 1WTCST1713: Sale on 2025-05-01 for 2 units, but earliest inventory is from 2025-05-26 (25 days later)
+
+Total warnings: 1

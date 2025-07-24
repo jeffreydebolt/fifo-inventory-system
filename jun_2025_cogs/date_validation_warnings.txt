@@ -1,0 +1,9 @@
+DATE VALIDATION WARNINGS
+============================================================
+Generated: 2025-07-15 15:26:57
+
+SKU CP110342BK: Sale on 2025-06-01 for 34 units, but earliest inventory is from 2025-06-12 (11 days later)
+SKU CP11034DDB: Sale on 2025-06-01 for 35 units, but earliest inventory is from 2025-06-12 (11 days later)
+SKU PKSPRTBW46: Sale on 2025-06-01 for 80 units, but earliest inventory is from 2025-06-12 (11 days later)
+
+Total warnings: 3
