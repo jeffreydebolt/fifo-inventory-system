@@ -123,8 +123,8 @@ class UploadedFile:
     file_size: int
     uploaded_at: datetime
     uploaded_by: Optional[str]
-    processed: bool = False
     run_id: Optional[str]  # Which run processed this file
+    processed: bool = False
 
 
 @dataclass
