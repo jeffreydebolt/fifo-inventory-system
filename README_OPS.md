@@ -32,9 +32,10 @@ echo "================================================"
 
 # 1. API Health
 echo "🔍 Checking API health..."
-API_STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://your-api-url.com/health)
+API_STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://your-api-url.com/healthz)
 if [ "$API_STATUS" = "200" ]; then
-    echo "✅ API is healthy"
+    API_RESPONSE=$(curl -s https://your-api-url.com/healthz)
+    echo "✅ API is healthy: $API_RESPONSE"
 else
     echo "❌ API is down (HTTP $API_STATUS)"
 fi
@@ -125,6 +126,46 @@ WHERE schemaname = 'public'
 ORDER BY pg_total_relation_size(schemaname||'.'||tablename) DESC;
 "
 ```
+
+## Monitoring & Health Checks
+
+### Health Check Endpoints
+
+**API Health Check**:
+```bash
+# Standard health check endpoint
+curl https://your-api-url.com/healthz
+
+# Response:
+{
+  "status": "ok",
+  "version": "1.0.0",
+  "commit": "abc123"
+}
+
+# Legacy health endpoint (backward compatibility)
+curl https://your-api-url.com/health
+```
+
+### Environment Variables
+
+**API (Render/Fly.io)**:
+- `SENTRY_DSN` - Sentry error tracking for API
+- `APP_VERSION` - Application version (injected by CI)
+- `GIT_COMMIT` - Git commit hash (injected by CI)
+- `ENVIRONMENT` - Environment name (production/staging)
+
+**Dashboard (Vercel)**:
+- `REACT_APP_SENTRY_DSN` - Sentry error tracking for dashboard
+- `REACT_APP_VERSION` - Dashboard version
+- `REACT_APP_API_BASE_URL` - API base URL
+- `REACT_APP_SUPABASE_URL` - Supabase URL
+- `REACT_APP_SUPABASE_ANON_KEY` - Supabase anon key
+
+**Setting Environment Variables**:
+- **Render**: Dashboard → Environment → Environment Variables
+- **Fly.io**: `fly secrets set KEY=value`
+- **Vercel**: Project Settings → Environment Variables
 
 ## Common Operations
 
@@ -351,6 +392,53 @@ python -m app.cli journal-entry RUN_123456 \
   --format iif \
   --output-file quickbooks_import.iif
 ```
+
+## Security Operations
+
+### Key Rotation (Supabase, API host, Vercel)
+
+1. **Generate new keys/secrets**:
+   - Supabase: Generate new service key in dashboard
+   - API: Generate new SENTRY_DSN if needed
+   - Dashboard: Keep existing keys unless compromised
+
+2. **Set in platforms**:
+   - **Supabase**: Update service key, note timestamp
+   - **API host (Render/Fly)**: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SENTRY_DSN`
+   - **Vercel (dashboard)**: `NEXT_PUBLIC_API_BASE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `REACT_APP_SENTRY_DSN`
+
+3. **Deploy API and dashboard**
+
+4. **Verify**: `curl https://your-api-url.com/healthz`
+
+5. **Test**: Run tiny calc via POST /runs, check Sentry receives test event
+
+6. **Revoke old keys** in respective platforms
+
+7. **Record rotation** in `docs/SECRETS_ROTATION.md`
+
+### Backup Restore (Supabase)
+
+1. **Identify latest good backup** (see `docs/BACKUP_RECOVERY.md`)
+
+2. **Restore to NEW DB instance** (never overwrite production)
+
+3. **Point API to restored DB**:
+   ```bash
+   # Temporary env var swap
+   export SUPABASE_URL=restored_db_url
+   # Run migrations
+   psql $SUPABASE_URL -f infra/migrations/*.sql
+   ```
+
+4. **Smoke test**:
+   - Check `/healthz`
+   - List runs: `GET /api/v1/runs`
+   - Test run + rollback
+
+5. **Switch traffic** to restored DB
+
+6. **Archive incident** below with date, cause, action taken
 
 ## Troubleshooting Guide
 

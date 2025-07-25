@@ -79,6 +79,16 @@ async def health_check():
     """Health check endpoint"""
     return {"status": "healthy", "service": "fifo-cogs-api"}
 
+# Healthz endpoint (standard k8s health check)
+@app.get("/healthz")
+async def healthz():
+    """Standard health check endpoint for monitoring/k8s"""
+    return {
+        "status": "ok",
+        "version": os.getenv("APP_VERSION", "1.0.0"),
+        "commit": os.getenv("GIT_COMMIT", "unknown")
+    }
+
 # Metrics endpoint
 @app.get("/metrics")
 async def metrics():
