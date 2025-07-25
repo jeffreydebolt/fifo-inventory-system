@@ -32,9 +32,10 @@ echo "================================================"
 
 # 1. API Health
 echo "🔍 Checking API health..."
-API_STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://your-api-url.com/health)
+API_STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://your-api-url.com/healthz)
 if [ "$API_STATUS" = "200" ]; then
-    echo "✅ API is healthy"
+    API_RESPONSE=$(curl -s https://your-api-url.com/healthz)
+    echo "✅ API is healthy: $API_RESPONSE"
 else
     echo "❌ API is down (HTTP $API_STATUS)"
 fi
@@ -125,6 +126,46 @@ WHERE schemaname = 'public'
 ORDER BY pg_total_relation_size(schemaname||'.'||tablename) DESC;
 "
 ```
+
+## Monitoring & Health Checks
+
+### Health Check Endpoints
+
+**API Health Check**:
+```bash
+# Standard health check endpoint
+curl https://your-api-url.com/healthz
+
+# Response:
+{
+  "status": "ok",
+  "version": "1.0.0",
+  "commit": "abc123"
+}
+
+# Legacy health endpoint (backward compatibility)
+curl https://your-api-url.com/health
+```
+
+### Environment Variables
+
+**API (Render/Fly.io)**:
+- `SENTRY_DSN` - Sentry error tracking for API
+- `APP_VERSION` - Application version (injected by CI)
+- `GIT_COMMIT` - Git commit hash (injected by CI)
+- `ENVIRONMENT` - Environment name (production/staging)
+
+**Dashboard (Vercel)**:
+- `REACT_APP_SENTRY_DSN` - Sentry error tracking for dashboard
+- `REACT_APP_VERSION` - Dashboard version
+- `REACT_APP_API_BASE_URL` - API base URL
+- `REACT_APP_SUPABASE_URL` - Supabase URL
+- `REACT_APP_SUPABASE_ANON_KEY` - Supabase anon key
+
+**Setting Environment Variables**:
+- **Render**: Dashboard → Environment → Environment Variables
+- **Fly.io**: `fly secrets set KEY=value`
+- **Vercel**: Project Settings → Environment Variables
 
 ## Common Operations
 
