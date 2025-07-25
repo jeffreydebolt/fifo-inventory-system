@@ -393,6 +393,53 @@ python -m app.cli journal-entry RUN_123456 \
   --output-file quickbooks_import.iif
 ```
 
+## Security Operations
+
+### Key Rotation (Supabase, API host, Vercel)
+
+1. **Generate new keys/secrets**:
+   - Supabase: Generate new service key in dashboard
+   - API: Generate new SENTRY_DSN if needed
+   - Dashboard: Keep existing keys unless compromised
+
+2. **Set in platforms**:
+   - **Supabase**: Update service key, note timestamp
+   - **API host (Render/Fly)**: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SENTRY_DSN`
+   - **Vercel (dashboard)**: `NEXT_PUBLIC_API_BASE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `REACT_APP_SENTRY_DSN`
+
+3. **Deploy API and dashboard**
+
+4. **Verify**: `curl https://your-api-url.com/healthz`
+
+5. **Test**: Run tiny calc via POST /runs, check Sentry receives test event
+
+6. **Revoke old keys** in respective platforms
+
+7. **Record rotation** in `docs/SECRETS_ROTATION.md`
+
+### Backup Restore (Supabase)
+
+1. **Identify latest good backup** (see `docs/BACKUP_RECOVERY.md`)
+
+2. **Restore to NEW DB instance** (never overwrite production)
+
+3. **Point API to restored DB**:
+   ```bash
+   # Temporary env var swap
+   export SUPABASE_URL=restored_db_url
+   # Run migrations
+   psql $SUPABASE_URL -f infra/migrations/*.sql
+   ```
+
+4. **Smoke test**:
+   - Check `/healthz`
+   - List runs: `GET /api/v1/runs`
+   - Test run + rollback
+
+5. **Switch traffic** to restored DB
+
+6. **Archive incident** below with date, cause, action taken
+
 ## Troubleshooting Guide
 
 ### Common Issues & Solutions
