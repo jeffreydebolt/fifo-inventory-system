@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AuthGuard from '../components/AuthGuard'
-import supabaseClient from '../lib/supabaseClient'
+import { supabase } from '../lib/supabaseClient'
 
 const Login: React.FC = () => {
   const navigate = useNavigate()
@@ -9,7 +9,7 @@ const Login: React.FC = () => {
   useEffect(() => {
     // Check if user is already logged in
     const checkUser = async () => {
-      const { data: { session } } = await supabaseClient.auth.getSession()
+      const { data: { session } } = await supabase.auth.getSession()
       if (session?.user) {
         navigate('/')
       }
@@ -18,7 +18,7 @@ const Login: React.FC = () => {
     checkUser()
 
     // Listen for auth changes
-    const { data: { subscription } } = supabaseClient.auth.onAuthStateChange(
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (session?.user) {
           navigate('/')
