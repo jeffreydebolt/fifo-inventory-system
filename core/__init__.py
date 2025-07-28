@@ -1,0 +1,1 @@
+# Core domain logic for FIFO COGS calculation
