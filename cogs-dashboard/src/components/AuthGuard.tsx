@@ -56,7 +56,6 @@ const AuthGuard: React.FC<AuthGuardProps> = ({ children }) => {
             supabaseClient={supabaseClient} 
             view="magic_link"
             appearance={{
-              theme: 'default',
               variables: {
                 default: {
                   colors: {
