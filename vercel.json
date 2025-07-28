@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd cogs-dashboard && npm run build",
+  "outputDirectory": "cogs-dashboard/build",
+  "installCommand": "cd cogs-dashboard && npm install --legacy-peer-deps"
+}
+EOF < /dev/null
