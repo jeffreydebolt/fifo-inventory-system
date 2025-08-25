@@ -1,0 +1,308 @@
+2025-08-14 17:21:33,110 - INFO - Restoring original July COGS consumption...
+2025-08-14 17:21:33,110 - INFO - This will add back the quantities consumed in the original July run.
+
+Proceed with restoring original consumption? (yes/no): 2025-08-14 17:21:33,183 - INFO - Supabase client initialized successfully.
+2025-08-14 17:21:33,192 - INFO - Loaded 91 total records
+2025-08-14 17:21:33,192 - INFO -   - 89 fulfilled records
+2025-08-14 17:21:33,192 - INFO -   - 1 unfulfilled records
+2025-08-14 17:21:33,194 - INFO - 
+Unfulfilled SKUs from original run:
+2025-08-14 17:21:33,194 - INFO -   - PETS500FGR: 4 units
+2025-08-14 17:21:33,194 - INFO - 
+Will restore consumption for 89 lots
+2025-08-14 17:21:33,194 - INFO - 
+Checking current inventory state...
+2025-08-14 17:21:33,474 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.726 "HTTP/2 200 OK"
+2025-08-14 17:21:33,552 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.726 "HTTP/2 200 OK"
+2025-08-14 17:21:33,553 - INFO - ✅ Lot 726: 721 → 795 (restored 74)
+2025-08-14 17:21:33,617 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.740 "HTTP/2 200 OK"
+2025-08-14 17:21:33,688 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.740 "HTTP/2 200 OK"
+2025-08-14 17:21:33,690 - INFO - ✅ Lot 740: 406 → 547 (restored 141)
+2025-08-14 17:21:33,781 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.741 "HTTP/2 200 OK"
+2025-08-14 17:21:33,859 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.741 "HTTP/2 200 OK"
+2025-08-14 17:21:33,860 - INFO - ✅ Lot 741: 765 → 810 (restored 45)
+2025-08-14 17:21:33,931 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.760 "HTTP/2 200 OK"
+2025-08-14 17:21:33,993 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.760 "HTTP/2 200 OK"
+2025-08-14 17:21:33,994 - INFO - ✅ Lot 760: 0 → 58 (restored 58)
+2025-08-14 17:21:34,062 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.768 "HTTP/2 200 OK"
+2025-08-14 17:21:34,152 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.768 "HTTP/2 200 OK"
+2025-08-14 17:21:34,153 - INFO - ✅ Lot 768: 37 → 62 (restored 25)
+2025-08-14 17:21:34,261 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.771 "HTTP/2 200 OK"
+2025-08-14 17:21:34,334 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.771 "HTTP/2 200 OK"
+2025-08-14 17:21:34,335 - INFO - ✅ Lot 771: 739 → 804 (restored 65)
+2025-08-14 17:21:34,406 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.779 "HTTP/2 200 OK"
+2025-08-14 17:21:34,469 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.779 "HTTP/2 200 OK"
+2025-08-14 17:21:34,470 - INFO - ✅ Lot 779: 573 → 737 (restored 164)
+2025-08-14 17:21:34,539 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.792 "HTTP/2 200 OK"
+2025-08-14 17:21:34,622 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.792 "HTTP/2 200 OK"
+2025-08-14 17:21:34,623 - INFO - ✅ Lot 792: 806 → 1048 (restored 242)
+2025-08-14 17:21:34,687 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.794 "HTTP/2 200 OK"
+2025-08-14 17:21:34,767 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.794 "HTTP/2 200 OK"
+2025-08-14 17:21:34,768 - INFO - ✅ Lot 794: 2170 → 2264 (restored 94)
+2025-08-14 17:21:34,847 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.805 "HTTP/2 200 OK"
+2025-08-14 17:21:34,944 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.805 "HTTP/2 200 OK"
+2025-08-14 17:21:34,945 - INFO - ✅ Lot 805: 596 → 695 (restored 99)
+2025-08-14 17:21:35,022 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.819 "HTTP/2 200 OK"
+2025-08-14 17:21:35,094 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.819 "HTTP/2 200 OK"
+2025-08-14 17:21:35,096 - INFO - ✅ Lot 819: 0 → 71 (restored 71)
+2025-08-14 17:21:35,164 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.828 "HTTP/2 200 OK"
+2025-08-14 17:21:35,248 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.828 "HTTP/2 200 OK"
+2025-08-14 17:21:35,250 - INFO - ✅ Lot 828: 216 → 418 (restored 202)
+2025-08-14 17:21:35,317 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.830 "HTTP/2 200 OK"
+2025-08-14 17:21:35,397 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.830 "HTTP/2 200 OK"
+2025-08-14 17:21:35,399 - INFO - ✅ Lot 830: 676 → 1131 (restored 455)
+2025-08-14 17:21:35,506 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.837 "HTTP/2 200 OK"
+2025-08-14 17:21:35,590 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.837 "HTTP/2 200 OK"
+2025-08-14 17:21:35,591 - INFO - ✅ Lot 837: 0 → 273 (restored 273)
+2025-08-14 17:21:35,712 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.839 "HTTP/2 200 OK"
+2025-08-14 17:21:35,789 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.839 "HTTP/2 200 OK"
+2025-08-14 17:21:35,789 - INFO - ✅ Lot 839: 194 → 219 (restored 25)
+2025-08-14 17:21:35,847 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.840 "HTTP/2 200 OK"
+2025-08-14 17:21:35,923 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.840 "HTTP/2 200 OK"
+2025-08-14 17:21:35,926 - INFO - ✅ Lot 840: 111 → 166 (restored 55)
+2025-08-14 17:21:35,982 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.842 "HTTP/2 200 OK"
+2025-08-14 17:21:36,143 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.842 "HTTP/2 200 OK"
+2025-08-14 17:21:36,143 - INFO - ✅ Lot 842: 151 → 181 (restored 30)
+2025-08-14 17:21:36,217 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.843 "HTTP/2 200 OK"
+2025-08-14 17:21:36,278 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.843 "HTTP/2 200 OK"
+2025-08-14 17:21:36,278 - INFO - ✅ Lot 843: 672 → 1051 (restored 379)
+2025-08-14 17:21:36,344 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.844 "HTTP/2 200 OK"
+2025-08-14 17:21:36,426 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.844 "HTTP/2 200 OK"
+2025-08-14 17:21:36,428 - INFO - ✅ Lot 844: 515 → 516 (restored 1)
+2025-08-14 17:21:36,514 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.845 "HTTP/2 200 OK"
+2025-08-14 17:21:36,602 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.845 "HTTP/2 200 OK"
+2025-08-14 17:21:36,603 - INFO - ✅ Lot 845: 222 → 357 (restored 135)
+2025-08-14 17:21:36,677 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.846 "HTTP/2 200 OK"
+2025-08-14 17:21:36,782 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.846 "HTTP/2 200 OK"
+2025-08-14 17:21:36,783 - INFO - ✅ Lot 846: 1412 → 1692 (restored 280)
+2025-08-14 17:21:36,881 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.848 "HTTP/2 200 OK"
+2025-08-14 17:21:36,977 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.848 "HTTP/2 200 OK"
+2025-08-14 17:21:36,979 - INFO - ✅ Lot 848: 1313 → 1486 (restored 173)
+2025-08-14 17:21:37,047 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.849 "HTTP/2 200 OK"
+2025-08-14 17:21:37,149 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.849 "HTTP/2 200 OK"
+2025-08-14 17:21:37,149 - INFO - ✅ Lot 849: 1844 → 1893 (restored 49)
+2025-08-14 17:21:37,226 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.851 "HTTP/2 200 OK"
+2025-08-14 17:21:37,348 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.851 "HTTP/2 200 OK"
+2025-08-14 17:21:37,352 - INFO - ✅ Lot 851: 1298 → 1444 (restored 146)
+2025-08-14 17:21:37,424 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.853 "HTTP/2 200 OK"
+2025-08-14 17:21:37,494 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.853 "HTTP/2 200 OK"
+2025-08-14 17:21:37,495 - INFO - ✅ Lot 853: 184 → 304 (restored 120)
+2025-08-14 17:21:37,559 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.854 "HTTP/2 200 OK"
+2025-08-14 17:21:37,630 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.854 "HTTP/2 200 OK"
+2025-08-14 17:21:37,631 - INFO - ✅ Lot 854: 844 → 1104 (restored 260)
+2025-08-14 17:21:37,706 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.855 "HTTP/2 200 OK"
+2025-08-14 17:21:37,773 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.855 "HTTP/2 200 OK"
+2025-08-14 17:21:37,775 - INFO - ✅ Lot 855: 235 → 476 (restored 241)
+2025-08-14 17:21:37,848 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.858 "HTTP/2 200 OK"
+2025-08-14 17:21:37,848 - WARNING - ⚠️  Lot 858: Would exceed original qty (1034 > 1008). Capping at original.
+2025-08-14 17:21:37,921 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.858 "HTTP/2 200 OK"
+2025-08-14 17:21:37,923 - INFO - ✅ Lot 858: 805 → 1008 (restored 229)
+2025-08-14 17:21:37,993 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.861 "HTTP/2 200 OK"
+2025-08-14 17:21:38,064 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.861 "HTTP/2 200 OK"
+2025-08-14 17:21:38,068 - INFO - ✅ Lot 861: 1124 → 1269 (restored 145)
+2025-08-14 17:21:38,133 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.862 "HTTP/2 200 OK"
+2025-08-14 17:21:38,134 - WARNING - ⚠️  Lot 862: Would exceed original qty (1571 > 1500). Capping at original.
+2025-08-14 17:21:38,196 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.862 "HTTP/2 200 OK"
+2025-08-14 17:21:38,196 - INFO - ✅ Lot 862: 1430 → 1500 (restored 141)
+2025-08-14 17:21:38,258 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.866 "HTTP/2 200 OK"
+2025-08-14 17:21:38,333 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.866 "HTTP/2 200 OK"
+2025-08-14 17:21:38,336 - INFO - ✅ Lot 866: 80 → 230 (restored 150)
+2025-08-14 17:21:38,406 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.870 "HTTP/2 200 OK"
+2025-08-14 17:21:38,477 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.870 "HTTP/2 200 OK"
+2025-08-14 17:21:38,478 - INFO - ✅ Lot 870: 853 → 1554 (restored 701)
+2025-08-14 17:21:38,549 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.872 "HTTP/2 200 OK"
+2025-08-14 17:21:38,624 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.872 "HTTP/2 200 OK"
+2025-08-14 17:21:38,632 - INFO - ✅ Lot 872: 1777 → 2317 (restored 540)
+2025-08-14 17:21:38,702 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.873 "HTTP/2 200 OK"
+2025-08-14 17:21:38,787 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.873 "HTTP/2 200 OK"
+2025-08-14 17:21:38,790 - INFO - ✅ Lot 873: 2298 → 2841 (restored 543)
+2025-08-14 17:21:38,861 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.875 "HTTP/2 200 OK"
+2025-08-14 17:21:38,931 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.875 "HTTP/2 200 OK"
+2025-08-14 17:21:38,932 - INFO - ✅ Lot 875: 0 → 25 (restored 25)
+2025-08-14 17:21:39,003 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.880 "HTTP/2 200 OK"
+2025-08-14 17:21:39,078 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.880 "HTTP/2 200 OK"
+2025-08-14 17:21:39,078 - INFO - ✅ Lot 880: 1161 → 1279 (restored 118)
+2025-08-14 17:21:39,165 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.881 "HTTP/2 200 OK"
+2025-08-14 17:21:39,242 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.881 "HTTP/2 200 OK"
+2025-08-14 17:21:39,242 - INFO - ✅ Lot 881: 244 → 521 (restored 277)
+2025-08-14 17:21:39,310 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.883 "HTTP/2 200 OK"
+2025-08-14 17:21:39,392 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.883 "HTTP/2 200 OK"
+2025-08-14 17:21:39,397 - INFO - ✅ Lot 883: 992 → 1326 (restored 334)
+2025-08-14 17:21:39,460 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.889 "HTTP/2 200 OK"
+2025-08-14 17:21:39,529 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.889 "HTTP/2 200 OK"
+2025-08-14 17:21:39,532 - INFO - ✅ Lot 889: 219 → 238 (restored 19)
+2025-08-14 17:21:39,610 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.890 "HTTP/2 200 OK"
+2025-08-14 17:21:39,678 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.890 "HTTP/2 200 OK"
+2025-08-14 17:21:39,680 - INFO - ✅ Lot 890: 1107 → 2592 (restored 1485)
+2025-08-14 17:21:39,748 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.891 "HTTP/2 200 OK"
+2025-08-14 17:21:39,812 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.891 "HTTP/2 200 OK"
+2025-08-14 17:21:39,812 - INFO - ✅ Lot 891: 4385 → 7200 (restored 2815)
+2025-08-14 17:21:39,881 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.892 "HTTP/2 200 OK"
+2025-08-14 17:21:39,882 - WARNING - ⚠️  Lot 892: Would exceed original qty (7473 > 7200). Capping at original.
+2025-08-14 17:21:39,951 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.892 "HTTP/2 200 OK"
+2025-08-14 17:21:39,952 - INFO - ✅ Lot 892: 6244 → 7200 (restored 1229)
+2025-08-14 17:21:40,034 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.894 "HTTP/2 200 OK"
+2025-08-14 17:21:40,095 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.894 "HTTP/2 200 OK"
+2025-08-14 17:21:40,098 - INFO - ✅ Lot 894: 667 → 769 (restored 102)
+2025-08-14 17:21:40,225 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.895 "HTTP/2 200 OK"
+2025-08-14 17:21:40,331 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.895 "HTTP/2 200 OK"
+2025-08-14 17:21:40,331 - INFO - ✅ Lot 895: 5649 → 6574 (restored 925)
+2025-08-14 17:21:40,402 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.897 "HTTP/2 200 OK"
+2025-08-14 17:21:40,473 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.897 "HTTP/2 200 OK"
+2025-08-14 17:21:40,477 - INFO - ✅ Lot 897: 2924 → 3840 (restored 916)
+2025-08-14 17:21:40,542 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.899 "HTTP/2 200 OK"
+2025-08-14 17:21:40,636 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.899 "HTTP/2 200 OK"
+2025-08-14 17:21:40,638 - INFO - ✅ Lot 899: 662 → 1060 (restored 398)
+2025-08-14 17:21:40,710 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.900 "HTTP/2 200 OK"
+2025-08-14 17:21:40,789 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.900 "HTTP/2 200 OK"
+2025-08-14 17:21:40,790 - INFO - ✅ Lot 900: 1234 → 1838 (restored 604)
+2025-08-14 17:21:40,846 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.901 "HTTP/2 200 OK"
+2025-08-14 17:21:40,848 - WARNING - ⚠️  Lot 901: Would exceed original qty (2470 > 2400). Capping at original.
+2025-08-14 17:21:40,912 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.901 "HTTP/2 200 OK"
+2025-08-14 17:21:40,913 - INFO - ✅ Lot 901: 2400 → 2400 (restored 70)
+2025-08-14 17:21:40,990 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.903 "HTTP/2 200 OK"
+2025-08-14 17:21:41,064 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.903 "HTTP/2 200 OK"
+2025-08-14 17:21:41,077 - INFO - ✅ Lot 903: 539 → 1032 (restored 493)
+2025-08-14 17:21:41,142 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.904 "HTTP/2 200 OK"
+2025-08-14 17:21:41,209 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.904 "HTTP/2 200 OK"
+2025-08-14 17:21:41,212 - INFO - ✅ Lot 904: 2839 → 3492 (restored 653)
+2025-08-14 17:21:41,281 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.905 "HTTP/2 200 OK"
+2025-08-14 17:21:41,282 - WARNING - ⚠️  Lot 905: Would exceed original qty (1858 > 1800). Capping at original.
+2025-08-14 17:21:41,342 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.905 "HTTP/2 200 OK"
+2025-08-14 17:21:41,345 - INFO - ✅ Lot 905: 1735 → 1800 (restored 123)
+2025-08-14 17:21:41,417 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.906 "HTTP/2 200 OK"
+2025-08-14 17:21:41,419 - WARNING - ⚠️  Lot 906: Would exceed original qty (2713 > 2688). Capping at original.
+2025-08-14 17:21:41,491 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.906 "HTTP/2 200 OK"
+2025-08-14 17:21:41,493 - INFO - ✅ Lot 906: 2040 → 2688 (restored 673)
+2025-08-14 17:21:41,561 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.907 "HTTP/2 200 OK"
+2025-08-14 17:21:41,627 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.907 "HTTP/2 200 OK"
+2025-08-14 17:21:41,628 - INFO - ✅ Lot 907: 708 → 1623 (restored 915)
+2025-08-14 17:21:41,691 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.910 "HTTP/2 200 OK"
+2025-08-14 17:21:41,768 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.910 "HTTP/2 200 OK"
+2025-08-14 17:21:41,768 - INFO - ✅ Lot 910: 0 → 8 (restored 8)
+2025-08-14 17:21:41,834 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.911 "HTTP/2 200 OK"
+2025-08-14 17:21:41,894 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.911 "HTTP/2 200 OK"
+2025-08-14 17:21:41,896 - INFO - ✅ Lot 911: 1170 → 1512 (restored 342)
+2025-08-14 17:21:41,992 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.912 "HTTP/2 200 OK"
+2025-08-14 17:21:42,054 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.912 "HTTP/2 200 OK"
+2025-08-14 17:21:42,057 - INFO - ✅ Lot 912: 994 → 1217 (restored 223)
+2025-08-14 17:21:42,132 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.914 "HTTP/2 200 OK"
+2025-08-14 17:21:42,207 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.914 "HTTP/2 200 OK"
+2025-08-14 17:21:42,207 - INFO - ✅ Lot 914: 685 → 1501 (restored 816)
+2025-08-14 17:21:42,278 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.917 "HTTP/2 200 OK"
+2025-08-14 17:21:42,394 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.917 "HTTP/2 200 OK"
+2025-08-14 17:21:42,394 - INFO - ✅ Lot 917: 0 → 74 (restored 74)
+2025-08-14 17:21:42,461 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.918 "HTTP/2 200 OK"
+2025-08-14 17:21:42,530 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.918 "HTTP/2 200 OK"
+2025-08-14 17:21:42,533 - INFO - ✅ Lot 918: 345 → 449 (restored 104)
+2025-08-14 17:21:42,612 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.919 "HTTP/2 200 OK"
+2025-08-14 17:21:42,689 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.919 "HTTP/2 200 OK"
+2025-08-14 17:21:42,690 - INFO - ✅ Lot 919: 1256 → 1322 (restored 66)
+2025-08-14 17:21:42,759 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.921 "HTTP/2 200 OK"
+2025-08-14 17:21:42,760 - WARNING - ⚠️  Lot 921: Would exceed original qty (4007 > 3800). Capping at original.
+2025-08-14 17:21:42,830 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.921 "HTTP/2 200 OK"
+2025-08-14 17:21:42,834 - INFO - ✅ Lot 921: 3800 → 3800 (restored 207)
+2025-08-14 17:21:42,902 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.922 "HTTP/2 200 OK"
+2025-08-14 17:21:42,984 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.922 "HTTP/2 200 OK"
+2025-08-14 17:21:42,986 - INFO - ✅ Lot 922: 443 → 677 (restored 234)
+2025-08-14 17:21:43,046 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.923 "HTTP/2 200 OK"
+2025-08-14 17:21:43,134 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.923 "HTTP/2 200 OK"
+2025-08-14 17:21:43,134 - INFO - ✅ Lot 923: 1058 → 1670 (restored 612)
+2025-08-14 17:21:43,203 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.926 "HTTP/2 200 OK"
+2025-08-14 17:21:43,289 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.926 "HTTP/2 200 OK"
+2025-08-14 17:21:43,291 - INFO - ✅ Lot 926: 1528 → 1964 (restored 436)
+2025-08-14 17:21:43,354 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.927 "HTTP/2 200 OK"
+2025-08-14 17:21:43,444 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.927 "HTTP/2 200 OK"
+2025-08-14 17:21:43,446 - INFO - ✅ Lot 927: 1737 → 2004 (restored 267)
+2025-08-14 17:21:43,512 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.928 "HTTP/2 200 OK"
+2025-08-14 17:21:43,592 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.928 "HTTP/2 200 OK"
+2025-08-14 17:21:43,594 - INFO - ✅ Lot 928: 212 → 510 (restored 298)
+2025-08-14 17:21:43,659 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.929 "HTTP/2 200 OK"
+2025-08-14 17:21:43,748 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.929 "HTTP/2 200 OK"
+2025-08-14 17:21:43,749 - INFO - ✅ Lot 929: 860 → 1005 (restored 145)
+2025-08-14 17:21:43,830 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.930 "HTTP/2 200 OK"
+2025-08-14 17:21:43,911 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.930 "HTTP/2 200 OK"
+2025-08-14 17:21:43,912 - INFO - ✅ Lot 930: 908 → 1005 (restored 97)
+2025-08-14 17:21:43,983 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.931 "HTTP/2 200 OK"
+2025-08-14 17:21:44,068 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.931 "HTTP/2 200 OK"
+2025-08-14 17:21:44,072 - INFO - ✅ Lot 931: 925 → 1005 (restored 80)
+2025-08-14 17:21:44,140 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.932 "HTTP/2 200 OK"
+2025-08-14 17:21:44,141 - WARNING - ⚠️  Lot 932: Would exceed original qty (4355 > 4224). Capping at original.
+2025-08-14 17:21:44,215 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.932 "HTTP/2 200 OK"
+2025-08-14 17:21:44,217 - INFO - ✅ Lot 932: 4224 → 4224 (restored 131)
+2025-08-14 17:21:44,286 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.933 "HTTP/2 200 OK"
+2025-08-14 17:21:44,360 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.933 "HTTP/2 200 OK"
+2025-08-14 17:21:44,362 - INFO - ✅ Lot 933: 849 → 1080 (restored 231)
+2025-08-14 17:21:44,425 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.934 "HTTP/2 200 OK"
+2025-08-14 17:21:44,496 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.934 "HTTP/2 200 OK"
+2025-08-14 17:21:44,496 - INFO - ✅ Lot 934: 1981 → 2376 (restored 395)
+2025-08-14 17:21:44,567 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.935 "HTTP/2 200 OK"
+2025-08-14 17:21:44,648 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.935 "HTTP/2 200 OK"
+2025-08-14 17:21:44,649 - INFO - ✅ Lot 935: 2728 → 3840 (restored 1112)
+2025-08-14 17:21:44,711 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.936 "HTTP/2 200 OK"
+2025-08-14 17:21:44,788 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.936 "HTTP/2 200 OK"
+2025-08-14 17:21:44,789 - INFO - ✅ Lot 936: 2121 → 2400 (restored 279)
+2025-08-14 17:21:44,852 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.937 "HTTP/2 200 OK"
+2025-08-14 17:21:44,854 - WARNING - ⚠️  Lot 937: Would exceed original qty (4503 > 4470). Capping at original.
+2025-08-14 17:21:44,927 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.937 "HTTP/2 200 OK"
+2025-08-14 17:21:44,928 - INFO - ✅ Lot 937: 4470 → 4470 (restored 33)
+2025-08-14 17:21:44,994 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.938 "HTTP/2 200 OK"
+2025-08-14 17:21:45,063 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.938 "HTTP/2 200 OK"
+2025-08-14 17:21:45,064 - INFO - ✅ Lot 938: 1160 → 1933 (restored 773)
+2025-08-14 17:21:45,141 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.939 "HTTP/2 200 OK"
+2025-08-14 17:21:45,212 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.939 "HTTP/2 200 OK"
+2025-08-14 17:21:45,213 - INFO - ✅ Lot 939: 1182 → 1387 (restored 205)
+2025-08-14 17:21:45,276 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.941 "HTTP/2 200 OK"
+2025-08-14 17:21:45,277 - WARNING - ⚠️  Lot 941: Would exceed original qty (2479 > 1728). Capping at original.
+2025-08-14 17:21:45,340 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.941 "HTTP/2 200 OK"
+2025-08-14 17:21:45,344 - INFO - ✅ Lot 941: 912 → 1728 (restored 1567)
+2025-08-14 17:21:45,418 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.942 "HTTP/2 200 OK"
+2025-08-14 17:21:45,419 - WARNING - ⚠️  Lot 942: Would exceed original qty (1734 > 1728). Capping at original.
+2025-08-14 17:21:45,487 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.942 "HTTP/2 200 OK"
+2025-08-14 17:21:45,488 - INFO - ✅ Lot 942: 1728 → 1728 (restored 6)
+2025-08-14 17:21:45,578 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.943 "HTTP/2 200 OK"
+2025-08-14 17:21:45,652 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.943 "HTTP/2 200 OK"
+2025-08-14 17:21:45,653 - INFO - ✅ Lot 943: 0 → 743 (restored 743)
+2025-08-14 17:21:45,733 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.961 "HTTP/2 200 OK"
+2025-08-14 17:21:45,801 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.961 "HTTP/2 200 OK"
+2025-08-14 17:21:45,802 - INFO - ✅ Lot 961: 1185 → 1440 (restored 255)
+2025-08-14 17:21:45,883 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.962 "HTTP/2 200 OK"
+2025-08-14 17:21:45,950 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.962 "HTTP/2 200 OK"
+2025-08-14 17:21:45,951 - INFO - ✅ Lot 962: 417 → 480 (restored 63)
+2025-08-14 17:21:46,021 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.965 "HTTP/2 200 OK"
+2025-08-14 17:21:46,023 - WARNING - ⚠️  Lot 965: Would exceed original qty (746 > 672). Capping at original.
+2025-08-14 17:21:46,103 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.965 "HTTP/2 200 OK"
+2025-08-14 17:21:46,105 - INFO - ✅ Lot 965: 657 → 672 (restored 89)
+2025-08-14 17:21:46,177 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.966 "HTTP/2 200 OK"
+2025-08-14 17:21:46,269 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.966 "HTTP/2 200 OK"
+2025-08-14 17:21:46,274 - INFO - ✅ Lot 966: 1094 → 2880 (restored 1786)
+2025-08-14 17:21:46,356 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.967 "HTTP/2 200 OK"
+2025-08-14 17:21:46,439 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.967 "HTTP/2 200 OK"
+2025-08-14 17:21:46,440 - INFO - ✅ Lot 967: 0 → 212 (restored 212)
+2025-08-14 17:21:46,509 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.971 "HTTP/2 200 OK"
+2025-08-14 17:21:46,573 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.971 "HTTP/2 200 OK"
+2025-08-14 17:21:46,574 - INFO - ✅ Lot 971: 2445 → 2520 (restored 75)
+2025-08-14 17:21:46,650 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.972 "HTTP/2 200 OK"
+2025-08-14 17:21:46,727 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.972 "HTTP/2 200 OK"
+2025-08-14 17:21:46,730 - INFO - ✅ Lot 972: 972 → 1024 (restored 52)
+2025-08-14 17:21:46,783 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.973 "HTTP/2 200 OK"
+2025-08-14 17:21:46,860 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.973 "HTTP/2 200 OK"
+2025-08-14 17:21:46,862 - INFO - ✅ Lot 973: 1367 → 1440 (restored 73)
+2025-08-14 17:21:46,933 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=remaining_unit_qty%2Coriginal_unit_qty&lot_id=eq.974 "HTTP/2 200 OK"
+2025-08-14 17:21:47,013 - INFO - HTTP Request: PATCH https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?lot_id=eq.974 "HTTP/2 200 OK"
+2025-08-14 17:21:47,014 - INFO - ✅ Lot 974: 1545 → 2808 (restored 1263)
+2025-08-14 17:21:47,015 - INFO - 
+============================================================
+2025-08-14 17:21:47,015 - INFO - RESTORATION COMPLETED
+2025-08-14 17:21:47,015 - INFO - ============================================================
+2025-08-14 17:21:47,015 - INFO - Successfully restored: 89 lots
+2025-08-14 17:21:47,016 - INFO - Errors: 0 lots
+2025-08-14 17:21:47,017 - INFO - Total quantity restored: 31,877 units
+2025-08-14 17:21:47,018 - INFO - 
+Note: The original run had 1 unfulfilled records.
+2025-08-14 17:21:47,018 - INFO - These should now be fulfillable with the newly added July lots.
+2025-08-14 17:21:47,018 - INFO - ============================================================
+2025-08-14 17:21:47,018 - INFO - 
+✅ Original July consumption restored successfully!
+2025-08-14 17:21:47,018 - INFO - The inventory should now be in the pre-July state.
+2025-08-14 17:21:47,018 - INFO - You can now run a fresh July COGS calculation.

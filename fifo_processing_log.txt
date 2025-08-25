@@ -1,0 +1,264 @@
+2025-08-14 17:23:44 - INFO - Script started.
+2025-08-14 17:23:44 - INFO - Sales file: july_sales_converted.csv
+2025-08-14 17:23:44 - INFO - Output directory: july_2025_final
+2025-08-14 17:23:44 - INFO - Log file: ./fifo_processing_log.txt
+2025-08-14 17:23:44 - INFO - Supabase client initialized successfully.
+2025-08-14 17:23:44 - INFO - Loading purchases data from Supabase table: purchase_lots
+2025-08-14 17:23:45 - INFO - HTTP Request: GET https://mdjukynmoingazraqyio.supabase.co/rest/v1/purchase_lots?select=lot_id%2Cpo_number%2Csku%2Creceived_date%2Coriginal_unit_qty%2Cunit_price%2Cfreight_cost_per_unit%2Cremaining_unit_qty&remaining_unit_qty=gt.0 "HTTP/2 200 OK"
+2025-08-14 17:23:45 - INFO - Successfully fetched 132 records from Supabase.
+2025-08-14 17:23:45 - INFO - Purchases data from Supabase loaded and validated successfully.
+2025-08-14 17:23:45 - INFO - Loading user sales data from: july_sales_converted.csv
+2025-08-14 17:23:45 - INFO - User sales data loaded, validated, and summarized successfully.
+2025-08-14 17:23:45 - INFO - Starting FIFO processing with Supabase integration...
+2025-08-14 17:23:45 - INFO - Processing sale: SKU 1GLBD10354, Qty 493, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_1GLBD10354
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 903, SKU 1GLBD10354, New Remaining_Unit_Qty: 539
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 903: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU 1TCST1713B, Qty 773, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_1TCST1713B
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 938, SKU 1TCST1713B, New Remaining_Unit_Qty: 1160
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 938: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU 1WTCST1713, Qty 205, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_1WTCST1713
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 939, SKU 1WTCST1713, New Remaining_Unit_Qty: 1182
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 939: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU 2GLBD10310, Qty 653, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_2GLBD10310
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 904, SKU 2GLBD10310, New Remaining_Unit_Qty: 2839
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 904: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU 2LSB151210, Qty 267, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_2LSB151210
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 927, SKU 2LSB151210, New Remaining_Unit_Qty: 1737
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 927: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU 34CSK11055, Qty 436, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_34CSK11055
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 926, SKU 34CSK11055, New Remaining_Unit_Qty: 1528
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 926: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU 3GLBD16104, Qty 1122, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_3GLBD16104
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 907, SKU 3GLBD16104, New Remaining_Unit_Qty: 501
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 907: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU 4PPB1261BH, Qty 66, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_4PPB1261BH
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 919, SKU 4PPB1261BH, New Remaining_Unit_Qty: 1256
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 919: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU 5GBLNR1925, Qty 280, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_5GBLNR1925
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 846, SKU 5GBLNR1925, New Remaining_Unit_Qty: 1412
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 846: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU BPNLNRPD70, Qty 398, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_BPNLNRPD70
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 899, SKU BPNLNRPD70, New Remaining_Unit_Qty: 662
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 899: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU BTSB8FT2PK, Qty 97, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_BTSB8FT2PK
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 930, SKU BTSB8FT2PK, New Remaining_Unit_Qty: 908
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 930: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CDPS110342, Qty 1786, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CDPS110342
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 966, SKU CDPS110342, New Remaining_Unit_Qty: 1094
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 966: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CDPS110462, Qty 947, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CDPS110462
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 914, SKU CDPS110462, New Remaining_Unit_Qty: 554
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 914: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CDPS50P385, Qty 19, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CDPS50P385
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 889, SKU CDPS50P385, New Remaining_Unit_Qty: 219
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 889: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CDPS510342, Qty 441, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CDPS510342
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 967, SKU CDPS510342, New Remaining_Unit_Qty: 0
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 967: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 986, SKU CDPS510342, New Remaining_Unit_Qty: 1266
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 986: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CDPS510462, Qty 231, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CDPS510462
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 933, SKU CDPS510462, New Remaining_Unit_Qty: 849
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 933: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CLCDBEIGE1, Qty 202, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CLCDBEIGE1
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 828, SKU CLCDBEIGE1, New Remaining_Unit_Qty: 216
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 828: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CLCDLEOPR1, Qty 102, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CLCDLEOPR1
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 894, SKU CLCDLEOPR1, New Remaining_Unit_Qty: 667
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 894: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CMSB66297T, Qty 1112, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CMSB66297T
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 935, SKU CMSB66297T, New Remaining_Unit_Qty: 2728
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 935: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CP110342BK, Qty 255, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CP110342BK
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 961, SKU CP110342BK, New Remaining_Unit_Qty: 1185
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 961: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CP11034DDB, Qty 63, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CP11034DDB
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 962, SKU CP11034DDB, New Remaining_Unit_Qty: 417
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 962: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CP110DMH34, Qty 94, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CP110DMH34
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 794, SKU CP110DMH34, New Remaining_Unit_Qty: 2170
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 794: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CP110TGR34, Qty 242, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CP110TGR34
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 792, SKU CP110TGR34, New Remaining_Unit_Qty: 806
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 792: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CP510DMH34, Qty 104, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CP510DMH34
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 918, SKU CP510DMH34, New Remaining_Unit_Qty: 345
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 918: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CP510TGR34, Qty 163, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CP510TGR34
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 917, SKU CP510TGR34, New Remaining_Unit_Qty: 0
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 917: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 965, SKU CP510TGR34, New Remaining_Unit_Qty: 583
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 965: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CRSB654243, Qty 1863, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CRSB654243
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 890, SKU CRSB654243, New Remaining_Unit_Qty: 729
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 890: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU CSK4611055, Qty 395, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_CSK4611055
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 934, SKU CSK4611055, New Remaining_Unit_Qty: 1981
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 934: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU DD22BKQGWH, Qty 30, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_DD22BKQGWH
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 842, SKU DD22BKQGWH, New Remaining_Unit_Qty: 151
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 842: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU DD22BKSTWH, Qty 234, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_DD22BKSTWH
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 922, SKU DD22BKSTWH, New Remaining_Unit_Qty: 443
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 922: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU DD22WHBEBK, Qty 55, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_DD22WHBEBK
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 840, SKU DD22WHBEBK, New Remaining_Unit_Qty: 111
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 840: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU DD22WHGMBL, Qty 25, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_DD22WHGMBL
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 839, SKU DD22WHGMBL, New Remaining_Unit_Qty: 194
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 839: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU DDCL16BGYR, Qty 260, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_DDCL16BGYR
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 854, SKU DDCL16BGYR, New Remaining_Unit_Qty: 844
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 854: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU DDCL16PSTL, Qty 247, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_DDCL16PSTL
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 855, SKU DDCL16PSTL, New Remaining_Unit_Qty: 229
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 855: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU DDCL20GRCS, Qty 135, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_DDCL20GRCS
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 845, SKU DDCL20GRCS, New Remaining_Unit_Qty: 222
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 845: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU DDCL20OWCM, Qty 25, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_DDCL20OWCM
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 768, SKU DDCL20OWCM, New Remaining_Unit_Qty: 37
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 768: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU DDCL22PXBK, Qty 2318, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_DDCL22PXBK
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 910, SKU DDCL22PXBK, New Remaining_Unit_Qty: 0
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 910: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 943, SKU DDCL22PXBK, New Remaining_Unit_Qty: 0
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 943: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 941, SKU DDCL22PXBK, New Remaining_Unit_Qty: 161
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 941: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU DDCL4P4LBK, Qty 342, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_DDCL4P4LBK
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 911, SKU DDCL4P4LBK, New Remaining_Unit_Qty: 1170
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 911: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU DDCL4PWH4L, Qty 164, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_DDCL4PWH4L
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 779, SKU DDCL4PWH4L, New Remaining_Unit_Qty: 573
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 779: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU DDCLBGYR4P, Qty 74, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_DDCLBGYR4P
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 726, SKU DDCLBGYR4P, New Remaining_Unit_Qty: 721
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 726: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU DDCLWH22PX, Qty 379, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_DDCLWH22PX
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 843, SKU DDCLWH22PX, New Remaining_Unit_Qty: 672
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 843: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU DPOT1512WT, Qty 1, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_DPOT1512WT
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 844, SKU DPOT1512WT, New Remaining_Unit_Qty: 515
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 844: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU ETKBK4P2ST, Qty 120, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_ETKBK4P2ST
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 853, SKU ETKBK4P2ST, New Remaining_Unit_Qty: 184
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 853: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU FBPT4YL24P, Qty 604, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_FBPT4YL24P
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 900, SKU FBPT4YL24P, New Remaining_Unit_Qty: 1234
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 900: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU FPBD1713BW, Qty 141, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_FPBD1713BW
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 740, SKU FPBD1713BW, New Remaining_Unit_Qty: 406
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 740: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU FPBDMB1713, Qty 45, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_FPBDMB1713
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 741, SKU FPBDMB1713, New Remaining_Unit_Qty: 765
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 741: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU FPBDMW1713, Qty 65, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_FPBDMW1713
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 771, SKU FPBDMW1713, New Remaining_Unit_Qty: 739
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 771: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU FPBMB1713P, Qty 212, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_FPBMB1713P
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 819, SKU FPBMB1713P, New Remaining_Unit_Qty: 0
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 819: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 862, SKU FPBMB1713P, New Remaining_Unit_Qty: 1359
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 862: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU FPBMW1713H, Qty 99, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_FPBMW1713H
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 805, SKU FPBMW1713H, New Remaining_Unit_Qty: 596
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 805: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU GTBC131449, Qty 455, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_GTBC131449
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 830, SKU GTBC131449, New Remaining_Unit_Qty: 676
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 830: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU KSB10008015, Qty 540, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_KSB10008015
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 872, SKU KSB10008015, New Remaining_Unit_Qty: 1777
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 872: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU LCSB843216, Qty 298, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_LCSB843216
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 928, SKU LCSB843216, New Remaining_Unit_Qty: 212
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 928: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU LPGB60PC40, Qty 279, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_LPGB60PC40
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 936, SKU LPGB60PC40, New Remaining_Unit_Qty: 2121
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 936: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU LPGB7260PC, Qty 220, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_LPGB7260PC
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 866, SKU LPGB7260PC, New Remaining_Unit_Qty: 10
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 866: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU LPTSB11174, Qty 80, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_LPTSB11174
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 931, SKU LPTSB11174, New Remaining_Unit_Qty: 925
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 931: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU LSSB686242, Qty 1502, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_LSSB686242
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 837, SKU LSSB686242, New Remaining_Unit_Qty: 0
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 837: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 892, SKU LSSB686242, New Remaining_Unit_Qty: 5971
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 892: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU LTBD10577A, Qty 146, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_LTBD10577A
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 851, SKU LTBD10577A, New Remaining_Unit_Qty: 1298
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 851: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU OT1GLB1053, Qty 73, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_OT1GLB1053
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 973, SKU OT1GLB1053, New Remaining_Unit_Qty: 1367
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 973: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU OT2GLB1010, Qty 52, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_OT2GLB1010
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 972, SKU OT2GLB1010, New Remaining_Unit_Qty: 972
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 972: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU OT3GLB1016, Qty 75, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_OT3GLB1016
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 971, SKU OT3GLB1016, New Remaining_Unit_Qty: 2445
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 971: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU PBSB582835, Qty 145, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_PBSB582835
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 929, SKU PBSB582835, New Remaining_Unit_Qty: 860
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 929: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU PETS1KGRWB, Qty 612, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_PETS1KGRWB
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 923, SKU PETS1KGRWB, New Remaining_Unit_Qty: 1058
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 923: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU PETS500FGR, Qty 4, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_PETS500FGR
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 984, SKU PETS500FGR, New Remaining_Unit_Qty: 991
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 984: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU PPSB4P2212, Qty 1263, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_PPSB4P2212
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 974, SKU PPSB4P2212, New Remaining_Unit_Qty: 1545
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 974: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU PPST1000BK, Qty 223, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_PPST1000BK
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 912, SKU PPST1000BK, New Remaining_Unit_Qty: 994
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 912: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU QSB1006415, Qty 925, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_QSB1006415
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 895, SKU QSB1006415, New Remaining_Unit_Qty: 5649
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 895: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU RSBL912130, Qty 916, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_RSBL912130
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 897, SKU RSBL912130, New Remaining_Unit_Qty: 2924
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 897: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU RSBS692092, Qty 701, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_RSBS692092
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 870, SKU RSBS692092, New Remaining_Unit_Qty: 853
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 870: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU RTPBMB177H, Qty 145, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_RTPBMB177H
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 861, SKU RTPBMB177H, New Remaining_Unit_Qty: 1124
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 861: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU SFSB966242, Qty 2815, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_SFSB966242
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 891, SKU SFSB966242, New Remaining_Unit_Qty: 4385
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 891: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU STBD10555A, Qty 181, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_STBD10555A
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 760, SKU STBD10555A, New Remaining_Unit_Qty: 0
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 760: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 905, SKU STBD10555A, New Remaining_Unit_Qty: 1677
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 905: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU TBDCL10105, Qty 698, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_TBDCL10105
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 875, SKU TBDCL10105, New Remaining_Unit_Qty: 0
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 875: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 906, SKU TBDCL10105, New Remaining_Unit_Qty: 2015
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 906: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU TCST17132B, Qty 310, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_TCST17132B
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 881, SKU TCST17132B, New Remaining_Unit_Qty: 211
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 881: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU TWBD1064BK, Qty 334, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_TWBD1064BK
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 883, SKU TWBD1064BK, New Remaining_Unit_Qty: 992
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 883: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU TWSB954215, Qty 543, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_TWSB954215
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 873, SKU TWSB954215, New Remaining_Unit_Qty: 2298
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 873: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU USBL1215ZL, Qty 49, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_USBL1215ZL
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 849, SKU USBL1215ZL, New Remaining_Unit_Qty: 1844
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 849: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU USBS7115ZL, Qty 173, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_USBS7115ZL
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 848, SKU USBS7115ZL, New Remaining_Unit_Qty: 1313
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 848: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - Processing sale: SKU WVST1000WH, Qty 118, Date 2025-07-31 00:00:00, SO_ID: MONTHLY_SUMMARY_20250731_WVST1000WH
+2025-08-14 17:23:45 - INFO - Updating Supabase: Lot_ID 880, SKU WVST1000WH, New Remaining_Unit_Qty: 1161
+2025-08-14 17:23:45 - ERROR - Exception during Supabase update for Lot_ID 880: Object of type int64 is not JSON serializable
+2025-08-14 17:23:45 - INFO - FIFO processing completed.
+2025-08-14 17:23:45 - INFO - COGS attribution data saved to: july_2025_final/cogs_attribution_supabase.csv
+2025-08-14 17:23:45 - INFO - COGS summary data saved to: july_2025_final/cogs_summary_supabase.csv
+2025-08-14 17:23:45 - INFO - Updated inventory snapshot saved to: july_2025_final/updated_inventory_snapshot_supabase.csv
+2025-08-14 17:23:45 - INFO - Script finished.
