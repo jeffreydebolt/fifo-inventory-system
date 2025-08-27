@@ -11,7 +11,7 @@ from sentry_sdk.integrations.fastapi import FastApiIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
 from prometheus_client import Counter, Histogram, generate_latest
 
-from api.routes.runs import router as runs_router
+from .routes.runs import router as runs_router
 
 # Initialize Sentry
 sentry_logging = LoggingIntegration(
@@ -75,7 +75,7 @@ app.add_middleware(
 app.include_router(runs_router, prefix="/api/v1")
 
 # Import and include files router
-from api.routes.files import router as files_router
+from .routes.files import router as files_router
 app.include_router(files_router, prefix="/api/v1")
 
 # Health check endpoint
