@@ -65,7 +65,7 @@ async def upload_lots_file(
         file_id = str(uuid.uuid4())
         
         # Import the uploaded_files dict from runs module
-        from routes.runs import uploaded_files
+        from api.routes.runs import uploaded_files
         uploaded_files[file_id] = df
         
         logger.info(f"Uploaded lots file for tenant {tenant_id}: {file.filename} ({len(df)} rows)")
@@ -124,7 +124,7 @@ async def upload_sales_file(
         file_id = str(uuid.uuid4())
         
         # Import the uploaded_files dict from runs module
-        from routes.runs import uploaded_files
+        from api.routes.runs import uploaded_files
         uploaded_files[file_id] = df
         
         logger.info(f"Uploaded sales file for tenant {tenant_id}: {file.filename} ({len(df)} rows)")
