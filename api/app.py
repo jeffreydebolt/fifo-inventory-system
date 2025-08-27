@@ -62,8 +62,9 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",  # React development server
-        "https://fifo-cogs-dashboard.netlify.app",  # Production frontend
-        "https://*.netlify.app"  # Any Netlify subdomain
+        "https://fifo-cogs-beta.netlify.app",  # Production frontend
+        "https://*.netlify.app",  # Any Netlify subdomain
+        "*"  # Allow all origins for now
     ],
     allow_credentials=True,
     allow_methods=["*"],

@@ -30,5 +30,5 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD python -c "import requests; requests.get('http://localhost:8000/health')" || exit 1
 
-# Run the application with proper module path
-CMD ["python", "-m", "api.app"]
+# Run the simplified application
+CMD ["python", "-m", "api.app_simple"]
