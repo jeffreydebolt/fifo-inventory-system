@@ -104,7 +104,8 @@ const UploadPage = () => {
       });
 
     } catch (err) {
-      setError(`Processing failed: ${err.message}`);
+      console.error('Upload error:', err);
+      setError(`Processing failed: ${err.message || err.toString()}`);
       setUploadProgress({ lots: null, sales: null });
     } finally {
       setProcessing(false);
