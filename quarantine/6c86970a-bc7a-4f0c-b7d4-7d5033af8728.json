@@ -1,0 +1,97 @@
+{
+  "batch_id": "6c86970a-bc7a-4f0c-b7d4-7d5033af8728",
+  "filename": "sales_data.csv",
+  "file_type": "sales_data",
+  "tenant_id": null,
+  "created_at": "2025-08-25T14:31:37.478184",
+  "total_records": 72,
+  "quarantined_count": 2,
+  "summary": {
+    "reason_breakdown": {
+      "unparseable_date": 2
+    },
+    "critical_issues": 6,
+    "warnings": 0,
+    "column_mapping": {
+      "sku": "sku",
+      "quantity": "units moved",
+      "date": "Month"
+    }
+  },
+  "records": [
+    {
+      "record_id": "89b3eb0d-f946-4920-8fc4-ebcb7659ca7f",
+      "original_row_index": 70,
+      "original_data": {
+        "sku": NaN,
+        "units moved": "#VALUE!",
+        "Month": NaN,
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "unparseable_date",
+      "status": "quarantined",
+      "issues": [
+        {
+          "severity": "critical",
+          "column": "sku",
+          "original_value": "nan",
+          "message": "SKU is empty or null"
+        },
+        {
+          "severity": "critical",
+          "column": "units moved",
+          "original_value": "#VALUE!",
+          "message": "Cannot parse quantity '#VALUE!' in column 'units moved'"
+        },
+        {
+          "severity": "critical",
+          "column": "Month",
+          "original_value": "nan",
+          "message": "Date is empty or null in column 'Month'"
+        }
+      ],
+      "quarantined_at": "2025-08-25T14:31:37.478154",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "5724b5ba-07d9-4025-8a77-9aa9dee46b26",
+      "original_row_index": 71,
+      "original_data": {
+        "sku": NaN,
+        "units moved": "#VALUE!",
+        "Month": NaN,
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "unparseable_date",
+      "status": "quarantined",
+      "issues": [
+        {
+          "severity": "critical",
+          "column": "sku",
+          "original_value": "nan",
+          "message": "SKU is empty or null"
+        },
+        {
+          "severity": "critical",
+          "column": "units moved",
+          "original_value": "#VALUE!",
+          "message": "Cannot parse quantity '#VALUE!' in column 'units moved'"
+        },
+        {
+          "severity": "critical",
+          "column": "Month",
+          "original_value": "nan",
+          "message": "Date is empty or null in column 'Month'"
+        }
+      ],
+      "quarantined_at": "2025-08-25T14:31:37.478182",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    }
+  ]
+}

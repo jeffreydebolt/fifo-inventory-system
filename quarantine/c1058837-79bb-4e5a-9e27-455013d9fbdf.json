@@ -1,0 +1,302 @@
+{
+  "batch_id": "c1058837-79bb-4e5a-9e27-455013d9fbdf",
+  "filename": "sales_data.csv",
+  "file_type": "sales_data",
+  "tenant_id": null,
+  "created_at": "2025-08-25T14:30:32.160593",
+  "total_records": 72,
+  "quarantined_count": 14,
+  "summary": {
+    "reason_breakdown": {
+      "manual_review_requested": 12,
+      "missing_required_field": 2
+    },
+    "critical_issues": 4,
+    "warnings": 0,
+    "column_mapping": {
+      "sku": "sku",
+      "quantity": "units moved",
+      "date": "month"
+    }
+  },
+  "records": [
+    {
+      "record_id": "1080be93-600c-496b-845d-ec6c6c4420a0",
+      "original_row_index": 0,
+      "original_data": {
+        "sku": "RTPBMB7717",
+        "units moved": "115",
+        "Month": "March 2024",
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.160319",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "7ebed1da-5147-48b1-9cab-7283b05ea603",
+      "original_row_index": 1,
+      "original_data": {
+        "sku": "DDCL4PWH4L",
+        "units moved": "467",
+        "Month": "March 2024",
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.160347",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "2fa4e2a9-5cc8-46ab-bd7d-b0b58a69ad89",
+      "original_row_index": 2,
+      "original_data": {
+        "sku": "DDCL16BGYR",
+        "units moved": "373",
+        "Month": "March 2024",
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.160371",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "f6c1fb05-d9bc-4a22-9788-6bbd7ad06ba3",
+      "original_row_index": 3,
+      "original_data": {
+        "sku": "FPBDMB1713",
+        "units moved": "277",
+        "Month": "March 2024",
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.160393",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "eec1192e-984d-4c94-b4c3-28b3e7c7b1c3",
+      "original_row_index": 4,
+      "original_data": {
+        "sku": "FPBD1713BW",
+        "units moved": "255",
+        "Month": "March 2024",
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.160414",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "8443a348-f920-496c-a2ba-6a5f0789f217",
+      "original_row_index": 5,
+      "original_data": {
+        "sku": "PETS1KGRWB",
+        "units moved": "204",
+        "Month": "March 2024",
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.160433",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "9404c78b-9b35-4472-9071-3fdb12685ead",
+      "original_row_index": 6,
+      "original_data": {
+        "sku": "CLCDBEIGE1",
+        "units moved": "317",
+        "Month": "March 2024",
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.160452",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "564ededa-ad9a-4c09-95e2-fc33c65b8e17",
+      "original_row_index": 7,
+      "original_data": {
+        "sku": "CDPS510342",
+        "units moved": "66",
+        "Month": "March 2024",
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.160471",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "ff0193a7-b2ea-4907-a915-1d6b50310b06",
+      "original_row_index": 8,
+      "original_data": {
+        "sku": "CDPS110342",
+        "units moved": "458",
+        "Month": "March 2024",
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.160490",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "7b57bf30-def4-4fec-bd43-d75638824467",
+      "original_row_index": 9,
+      "original_data": {
+        "sku": "FBPT4YL24P",
+        "units moved": "189",
+        "Month": "March 2024",
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.160509",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "e5f67d4d-0688-41e9-9883-49cd27c3582e",
+      "original_row_index": 10,
+      "original_data": {
+        "sku": "DDCLWH22PX",
+        "units moved": "983",
+        "Month": "March 2024",
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.160528",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "f01071dc-a877-45e1-881a-053e8768eb58",
+      "original_row_index": 11,
+      "original_data": {
+        "sku": "DEKCSBLK1",
+        "units moved": "89",
+        "Month": "March 2024",
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.160547",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "b942d609-9373-4779-909b-9ca319d913c0",
+      "original_row_index": 70,
+      "original_data": {
+        "sku": NaN,
+        "units moved": "#VALUE!",
+        "Month": NaN,
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "missing_required_field",
+      "status": "quarantined",
+      "issues": [
+        {
+          "severity": "critical",
+          "column": "sku",
+          "original_value": "nan",
+          "message": "SKU is empty or null"
+        },
+        {
+          "severity": "critical",
+          "column": "units moved",
+          "original_value": "#VALUE!",
+          "message": "Cannot parse quantity '#VALUE!' in column 'units moved'"
+        }
+      ],
+      "quarantined_at": "2025-08-25T14:30:32.160571",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "2043c5b6-33b4-4219-a36c-b48413ebb5bf",
+      "original_row_index": 71,
+      "original_data": {
+        "sku": NaN,
+        "units moved": "#VALUE!",
+        "Month": NaN,
+        "Unnamed: 3": NaN
+      },
+      "quarantine_reason": "missing_required_field",
+      "status": "quarantined",
+      "issues": [
+        {
+          "severity": "critical",
+          "column": "sku",
+          "original_value": "nan",
+          "message": "SKU is empty or null"
+        },
+        {
+          "severity": "critical",
+          "column": "units moved",
+          "original_value": "#VALUE!",
+          "message": "Cannot parse quantity '#VALUE!' in column 'units moved'"
+        }
+      ],
+      "quarantined_at": "2025-08-25T14:30:32.160591",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    }
+  ]
+}

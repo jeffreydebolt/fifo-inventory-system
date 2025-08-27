@@ -1,0 +1,66 @@
+{
+  "generated_at": "2025-08-25T15:16:35.548317",
+  "total_errors": 2,
+  "error_summary": {
+    "total_errors": 2,
+    "by_category": {
+      "missing_lots": 1,
+      "negative_inventory": 1
+    },
+    "by_severity": {
+      "high": 2
+    },
+    "affected_skus": 2,
+    "top_problem_skus": [
+      [
+        "MISSING001",
+        1
+      ],
+      [
+        "SHORTAGE001",
+        1
+      ]
+    ]
+  },
+  "errors": [
+    {
+      "error_id": "ERR_20250825_151635_0001",
+      "category": "missing_lots",
+      "severity": "high",
+      "sku": "MISSING001",
+      "message": "No purchase lots found for SKU MISSING001 (sales: 100 units on 2025-01-16 00:00:00)",
+      "suggested_fix": "Upload purchase lots for SKU MISSING001 | Check if MISSING001 is a valid/active SKU | Verify SKU spelling and format | Review sales data for potential SKU mapping errors",
+      "data_context": {
+        "sales_qty": 100,
+        "sale_date": "2025-01-16 00:00:00"
+      },
+      "timestamp": "2025-08-25T15:16:35.547791",
+      "processed": false,
+      "resolution": null
+    },
+    {
+      "error_id": "ERR_20250825_151635_0002",
+      "category": "negative_inventory",
+      "severity": "high",
+      "sku": "SHORTAGE001",
+      "message": "Insufficient inventory: need 1000, have 500 (short by 500)",
+      "suggested_fix": "Check if recent lots after 2025-01-10 00:00:00 are missing | Partial processing: 500 units available, 500 short | Verify sales data for SHORTAGE001 - check for duplicates or errors",
+      "data_context": {
+        "requested_qty": 1000,
+        "available_qty": 500,
+        "shortage": 500,
+        "lot_count": 1,
+        "lot_details": [
+          {
+            "lot_id": "LOT002",
+            "received_date": "2025-01-10 00:00:00",
+            "remaining": 500
+          }
+        ]
+      },
+      "timestamp": "2025-08-25T15:16:35.548181",
+      "processed": false,
+      "resolution": null
+    }
+  ]
+}

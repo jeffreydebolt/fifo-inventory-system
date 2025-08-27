@@ -1,43 +1,53 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ClientProvider, useClient } from './contexts/ClientContext';
+import LoginPage from './pages/LoginPage';
+import Dashboard from './pages/Dashboard';
+import UploadPage from './pages/UploadPage';
+import DownloadPage from './pages/DownloadPage';
+import LotHistoryPage from './pages/LotHistoryPage';
+import MonthlyCogsPage from './pages/MonthlyCogsPage';
+
+function AppContent() {
+  const { isAuthenticated, loading } = useClient();
+
+  if (loading) {
+    return (
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#f3f4f6'
+      }}>
+        <div>Loading...</div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <LoginPage />;
+  }
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/upload" element={<UploadPage />} />
+        <Route path="/download" element={<DownloadPage />} />
+        <Route path="/lot-history" element={<LotHistoryPage />} />
+        <Route path="/monthly-cogs" element={<MonthlyCogsPage />} />
+      </Routes>
+    </Router>
+  );
+}
 
 function App() {
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#f3f4f6',
-      fontFamily: 'Arial, sans-serif'
-    }}>
-      <div style={{
-        backgroundColor: 'white',
-        padding: '2rem',
-        borderRadius: '8px',
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-        textAlign: 'center'
-      }}>
-        <h1 style={{ color: '#1f2937', marginBottom: '1rem' }}>
-          FIFO Dashboard
-        </h1>
-        <p style={{ color: '#6b7280', marginBottom: '1.5rem' }}>
-          Your inventory system is loading...
-        </p>
-        <button 
-          style={{
-            backgroundColor: '#3b82f6',
-            color: 'white',
-            padding: '0.5rem 1rem',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer'
-          }}
-          onClick={() => alert('Dashboard works!')}
-        >
-          Test Button
-        </button>
-      </div>
-    </div>
+    <ClientProvider>
+      <AppContent />
+    </ClientProvider>
   );
 }
 

@@ -1,0 +1,75 @@
+{
+  "generated_at": "2025-08-25T15:13:20.305565",
+  "total_errors": 3,
+  "error_summary": {
+    "total_errors": 3,
+    "by_category": {
+      "data_conflict": 1,
+      "date_mismatch": 1,
+      "missing_lots": 1
+    },
+    "by_severity": {
+      "high": 2,
+      "medium": 1
+    },
+    "affected_skus": 3,
+    "top_problem_skus": [
+      [
+        "GHI999",
+        1
+      ],
+      [
+        "DEF456",
+        1
+      ],
+      [
+        "XYZ789",
+        1
+      ]
+    ]
+  },
+  "errors": [
+    {
+      "error_id": "ERR_20250825_151320_0001",
+      "category": "data_conflict",
+      "severity": "high",
+      "sku": "GHI999",
+      "message": "Lot LOT004 has negative remaining quantity: -10",
+      "suggested_fix": "Check lot data for errors or adjust quantities",
+      "data_context": {},
+      "timestamp": "2025-08-25T15:13:20.236090",
+      "processed": false,
+      "resolution": null
+    },
+    {
+      "error_id": "ERR_20250825_151320_0002",
+      "category": "date_mismatch",
+      "severity": "medium",
+      "sku": "DEF456",
+      "message": "Sale date 2025-01-16 00:00:00 before earliest lot date 2025-01-18 00:00:00",
+      "suggested_fix": "Verify sale date 2025-01-16 00:00:00 for SKU DEF456 | Check if older lots exist before 2025-01-18 00:00:00 | Sales date may be incorrect or lot data incomplete | Consider adjusting sale date or uploading missing historical lots",
+      "data_context": {
+        "sale_date": "2025-01-16 00:00:00",
+        "earliest_lot_date": "2025-01-18 00:00:00"
+      },
+      "timestamp": "2025-08-25T15:13:20.278114",
+      "processed": false,
+      "resolution": null
+    },
+    {
+      "error_id": "ERR_20250825_151320_0003",
+      "category": "missing_lots",
+      "severity": "high",
+      "sku": "XYZ789",
+      "message": "No purchase lots found for SKU XYZ789 (sales: 75 units on 2025-01-10 00:00:00)",
+      "suggested_fix": "Upload purchase lots for SKU XYZ789 | Check if XYZ789 is a valid/active SKU | Verify SKU spelling and format | Review sales data for potential SKU mapping errors",
+      "data_context": {
+        "sales_qty": 75,
+        "sale_date": "2025-01-10 00:00:00"
+      },
+      "timestamp": "2025-08-25T15:13:20.305205",
+      "processed": false,
+      "resolution": null
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "generated_at": "2025-08-25T15:16:35.524587",
+  "total_errors": 2,
+  "error_summary": {
+    "total_errors": 2,
+    "by_category": {
+      "negative_inventory": 1,
+      "missing_lots": 1
+    },
+    "by_severity": {
+      "high": 2
+    },
+    "affected_skus": 2,
+    "top_problem_skus": [
+      [
+        "TEST001",
+        1
+      ],
+      [
+        "TEST002",
+        1
+      ]
+    ]
+  },
+  "errors": [
+    {
+      "error_id": "ERR_20250825_151635_0001",
+      "category": "negative_inventory",
+      "severity": "high",
+      "sku": "TEST001",
+      "message": "Insufficient inventory: need 500, have 300 (short by 200)",
+      "suggested_fix": "Check if recent lots after 2025-01-01 are missing | Partial processing: 300 units available, 200 short | Verify sales data for TEST001 - check for duplicates or errors",
+      "data_context": {
+        "requested_qty": 500,
+        "available_qty": 300,
+        "shortage": 200,
+        "lot_count": 1,
+        "lot_details": [
+          {
+            "lot_id": "LOT001",
+            "received_date": "2025-01-01",
+            "remaining": 300
+          }
+        ]
+      },
+      "timestamp": "2025-08-25T15:16:35.524371",
+      "processed": false,
+      "resolution": null
+    },
+    {
+      "error_id": "ERR_20250825_151635_0002",
+      "category": "missing_lots",
+      "severity": "high",
+      "sku": "TEST002",
+      "message": "No purchase lots found for SKU TEST002 (sales: 100 units on 2025-01-15)",
+      "suggested_fix": "Upload purchase lots for SKU TEST002 | Check if TEST002 is a valid/active SKU | Verify SKU spelling and format | Review sales data for potential SKU mapping errors",
+      "data_context": {
+        "sales_qty": 100,
+        "sale_date": "2025-01-15"
+      },
+      "timestamp": "2025-08-25T15:16:35.524429",
+      "processed": false,
+      "resolution": null
+    }
+  ]
+}

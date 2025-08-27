@@ -1,0 +1,54 @@
+{
+  "status": "completed_successfully",
+  "processing_time_seconds": 0.001654,
+  "statistics": {
+    "total_skus": 1,
+    "processed_skus": 1,
+    "skipped_skus": 0,
+    "total_sales": 1,
+    "processed_sales": 1,
+    "total_errors": 0,
+    "start_time": "2025-08-25 15:16:35.550260",
+    "end_time": "2025-08-25 15:16:35.551914"
+  },
+  "success_rate": {
+    "skus": 100.0,
+    "sales": 100.0
+  },
+  "error_summary": {
+    "total_errors": 0
+  },
+  "can_continue_processing": true,
+  "processable_skus": [],
+  "actionable_steps": [
+    "\u2705 No critical issues found"
+  ],
+  "successful_results": [
+    {
+      "sku": "TEST001",
+      "attributions": [
+        {
+          "sale_date": "2025-01-15 00:00:00",
+          "sku": "TEST001",
+          "lot_id": "LOT001",
+          "allocated_qty": 100,
+          "unit_cost": 11.0,
+          "total_cost": 1100.0
+        }
+      ],
+      "total_cogs": 1100.0,
+      "total_quantity": 100,
+      "average_cost": 11.0
+    }
+  ],
+  "skipped_skus": [],
+  "output_files": {
+    "processing_log": "test_safety/processing.log",
+    "error_reports": {
+      "error_log": "test_safety/errors/error_log_20250825_151635.json",
+      "quarantine_report": "test_safety/errors/quarantine_20250825_151635.csv",
+      "summary": "\u2705 No errors encountered during processing"
+    },
+    "results_json": "test_safety/processing_results.json"
+  }
+}

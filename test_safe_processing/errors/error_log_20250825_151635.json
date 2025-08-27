@@ -1,0 +1,37 @@
+{
+  "generated_at": "2025-08-25T15:16:35.540501",
+  "total_errors": 1,
+  "error_summary": {
+    "total_errors": 1,
+    "by_category": {
+      "missing_lots": 1
+    },
+    "by_severity": {
+      "high": 1
+    },
+    "affected_skus": 1,
+    "top_problem_skus": [
+      [
+        "BAD001",
+        1
+      ]
+    ]
+  },
+  "errors": [
+    {
+      "error_id": "ERR_20250825_151635_0001",
+      "category": "missing_lots",
+      "severity": "high",
+      "sku": "BAD001",
+      "message": "No purchase lots found for SKU BAD001 (sales: 500 units on 2025-01-16 00:00:00)",
+      "suggested_fix": "Upload purchase lots for SKU BAD001 | Check if BAD001 is a valid/active SKU | Verify SKU spelling and format | Review sales data for potential SKU mapping errors",
+      "data_context": {
+        "sales_qty": 500,
+        "sale_date": "2025-01-16 00:00:00"
+      },
+      "timestamp": "2025-08-25T15:16:35.537584",
+      "processed": false,
+      "resolution": null
+    }
+  ]
+}

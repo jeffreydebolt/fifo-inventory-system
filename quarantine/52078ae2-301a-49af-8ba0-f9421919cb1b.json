@@ -1,0 +1,148 @@
+{
+  "batch_id": "52078ae2-301a-49af-8ba0-f9421919cb1b",
+  "filename": "messy_lots_data.csv",
+  "file_type": "unknown",
+  "tenant_id": null,
+  "created_at": "2025-08-25T14:31:37.461837",
+  "total_records": 19,
+  "quarantined_count": 4,
+  "summary": {
+    "reason_breakdown": {
+      "missing_required_field": 1,
+      "unparseable_date": 3
+    },
+    "critical_issues": 6,
+    "warnings": 1,
+    "column_mapping": {
+      "sku": "Product SKU",
+      "quantity": "Qty",
+      "date": "Received Date"
+    }
+  },
+  "records": [
+    {
+      "record_id": "8bb8322f-8b31-43cf-8ce0-a75e691dc6a5",
+      "original_row_index": 1,
+      "original_data": {
+        "PO Number": "LOT001",
+        "Product SKU": NaN,
+        "Received Date": "2024-07-15",
+        "Qty": 500.0,
+        "Unit Cost": "$3.25",
+        "Freight Cost": "0.75",
+        "Remaining": 500.0
+      },
+      "quarantine_reason": "missing_required_field",
+      "status": "quarantined",
+      "issues": [
+        {
+          "severity": "critical",
+          "column": "sku",
+          "original_value": "nan",
+          "message": "SKU is empty or null"
+        }
+      ],
+      "quarantined_at": "2025-08-25T14:31:37.461759",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "f9918640-8f85-42fd-a9b8-ddd473349918",
+      "original_row_index": 2,
+      "original_data": {
+        "PO Number": "LOT002",
+        "Product SKU": "DEF-456",
+        "Received Date": NaN,
+        "Qty": 250.0,
+        "Unit Cost": "4.00",
+        "Freight Cost": "0.50",
+        "Remaining": 250.0
+      },
+      "quarantine_reason": "unparseable_date",
+      "status": "quarantined",
+      "issues": [
+        {
+          "severity": "critical",
+          "column": "Received Date",
+          "original_value": "nan",
+          "message": "Date is empty or null in column 'Received Date'"
+        }
+      ],
+      "quarantined_at": "2025-08-25T14:31:37.461789",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "a8048646-49da-4f75-869d-e97844d1f52c",
+      "original_row_index": 9,
+      "original_data": {
+        "PO Number": "LOT009",
+        "Product SKU": "YZA-567",
+        "Received Date": "Bad Date",
+        "Qty": 75.0,
+        "Unit Cost": "4.25",
+        "Freight Cost": "0.85",
+        "Remaining": 75.0
+      },
+      "quarantine_reason": "unparseable_date",
+      "status": "quarantined",
+      "issues": [
+        {
+          "severity": "critical",
+          "column": "Received Date",
+          "original_value": "Bad Date",
+          "message": "Cannot parse date 'Bad Date' in column 'Received Date'"
+        }
+      ],
+      "quarantined_at": "2025-08-25T14:31:37.461813",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "7eaacef5-88a5-46a7-8dd5-43ac16d61d0e",
+      "original_row_index": 13,
+      "original_data": {
+        "PO Number": "LOT000",
+        "Product SKU": NaN,
+        "Received Date": NaN,
+        "Qty": NaN,
+        "Unit Cost": NaN,
+        "Freight Cost": NaN,
+        "Remaining": NaN
+      },
+      "quarantine_reason": "unparseable_date",
+      "status": "quarantined",
+      "issues": [
+        {
+          "severity": "critical",
+          "column": "sku",
+          "original_value": "nan",
+          "message": "SKU is empty or null"
+        },
+        {
+          "severity": "critical",
+          "column": "Qty",
+          "original_value": "nan",
+          "message": "Quantity is null in column 'Qty'"
+        },
+        {
+          "severity": "critical",
+          "column": "Received Date",
+          "original_value": "nan",
+          "message": "Date is empty or null in column 'Received Date'"
+        }
+      ],
+      "quarantined_at": "2025-08-25T14:31:37.461835",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    }
+  ]
+}

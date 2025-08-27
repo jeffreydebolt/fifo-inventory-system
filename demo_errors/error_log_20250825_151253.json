@@ -1,0 +1,114 @@
+{
+  "generated_at": "2025-08-25T15:12:53.997482",
+  "total_errors": 4,
+  "error_summary": {
+    "total_errors": 4,
+    "by_category": {
+      "negative_inventory": 1,
+      "missing_lots": 1,
+      "date_mismatch": 1,
+      "cost_anomaly": 1
+    },
+    "by_severity": {
+      "high": 2,
+      "medium": 1,
+      "low": 1
+    },
+    "affected_skus": 4,
+    "top_problem_skus": [
+      [
+        "ABC123",
+        1
+      ],
+      [
+        "XYZ789",
+        1
+      ],
+      [
+        "DEF456",
+        1
+      ],
+      [
+        "GHI789",
+        1
+      ]
+    ]
+  },
+  "errors": [
+    {
+      "error_id": "ERR_20250825_151253_0001",
+      "category": "negative_inventory",
+      "severity": "high",
+      "sku": "ABC123",
+      "message": "Insufficient inventory: need 1000, have 750 (short by 250)",
+      "suggested_fix": "Check if recent lots after 2025-01-15 are missing | Partial processing: 750 units available, 250 short | Verify sales data for ABC123 - check for duplicates or errors",
+      "data_context": {
+        "requested_qty": 1000,
+        "available_qty": 750,
+        "shortage": 250,
+        "lot_count": 2,
+        "lot_details": [
+          {
+            "lot_id": "LOT001",
+            "received_date": "2025-01-01",
+            "remaining": 500
+          },
+          {
+            "lot_id": "LOT002",
+            "received_date": "2025-01-15",
+            "remaining": 250
+          }
+        ]
+      },
+      "timestamp": "2025-08-25T15:12:53.997225",
+      "processed": false,
+      "resolution": null
+    },
+    {
+      "error_id": "ERR_20250825_151253_0002",
+      "category": "missing_lots",
+      "severity": "high",
+      "sku": "XYZ789",
+      "message": "No purchase lots found for SKU XYZ789 (sales: 500 units on 2025-01-20)",
+      "suggested_fix": "Upload purchase lots for SKU XYZ789 | Check if XYZ789 is a valid/active SKU | Verify SKU spelling and format | Review sales data for potential SKU mapping errors",
+      "data_context": {
+        "sales_qty": 500,
+        "sale_date": "2025-01-20"
+      },
+      "timestamp": "2025-08-25T15:12:53.997306",
+      "processed": false,
+      "resolution": null
+    },
+    {
+      "error_id": "ERR_20250825_151253_0003",
+      "category": "date_mismatch",
+      "severity": "medium",
+      "sku": "DEF456",
+      "message": "Sale date 2024-12-15 before earliest lot date 2025-01-01",
+      "suggested_fix": "Verify sale date 2024-12-15 for SKU DEF456 | Check if older lots exist before 2025-01-01 | Sales date may be incorrect or lot data incomplete | Consider adjusting sale date or uploading missing historical lots",
+      "data_context": {
+        "sale_date": "2024-12-15",
+        "earliest_lot_date": "2025-01-01"
+      },
+      "timestamp": "2025-08-25T15:12:53.997336",
+      "processed": false,
+      "resolution": null
+    },
+    {
+      "error_id": "ERR_20250825_151253_0004",
+      "category": "cost_anomaly",
+      "severity": "low",
+      "sku": "GHI789",
+      "message": "Cost anomaly: current $15.50 vs average $10.25 (+51.2%)",
+      "suggested_fix": "Verify cost data for SKU GHI789 - 51.2% increase | Check for data entry errors in unit price or freight cost | Confirm if cost change is legitimate (supplier change, etc.) | Review PO details for accuracy",
+      "data_context": {
+        "current_cost": 15.5,
+        "average_cost": 10.25,
+        "variance_percent": 51.2
+      },
+      "timestamp": "2025-08-25T15:12:53.997348",
+      "processed": false,
+      "resolution": null
+    }
+  ]
+}

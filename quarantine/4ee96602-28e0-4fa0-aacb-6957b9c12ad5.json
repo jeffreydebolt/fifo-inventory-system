@@ -1,0 +1,365 @@
+{
+  "batch_id": "4ee96602-28e0-4fa0-aacb-6957b9c12ad5",
+  "filename": "messy_sales_data.csv",
+  "file_type": "sales_data",
+  "tenant_id": null,
+  "created_at": "2025-08-25T14:30:32.139186",
+  "total_records": 19,
+  "quarantined_count": 19,
+  "summary": {
+    "reason_breakdown": {
+      "manual_review_requested": 19
+    },
+    "critical_issues": 0,
+    "warnings": 0,
+    "column_mapping": {
+      "sku": "sku",
+      "quantity": "units moved",
+      "date": "month"
+    }
+  },
+  "records": [
+    {
+      "record_id": "18d23df8-9a4b-4e05-9592-a7140898584b",
+      "original_row_index": 0,
+      "original_data": {
+        "SKU": "ABC-123",
+        "Units Moved": "100",
+        "Month": "July 2024",
+        "Extra Column": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.138809",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "b0767322-c38a-4532-b8c5-003bdfe9a80e",
+      "original_row_index": 1,
+      "original_data": {
+        "SKU": "DEF456",
+        "Units Moved": "200",
+        "Month": "Jul 2024",
+        "Extra Column": "some extra data"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.138844",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "d3e1ad47-ed9b-4097-b61f-ec33d39f58d3",
+      "original_row_index": 2,
+      "original_data": {
+        "SKU": "GHI-789",
+        "Units Moved": NaN,
+        "Month": "August 2024",
+        "Extra Column": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.138873",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "5dcf2089-c7ff-4c72-bdf0-2fcafcdcd1d6",
+      "original_row_index": 3,
+      "original_data": {
+        "SKU": "SKU: JKL-012",
+        "Units Moved": "50",
+        "Month": "8/15/24",
+        "Extra Column": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.138897",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "d538f609-6e9f-456f-b831-fe6bd9bdcc37",
+      "original_row_index": 4,
+      "original_data": {
+        "SKU": NaN,
+        "Units Moved": "75",
+        "Month": "September 2024",
+        "Extra Column": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.138919",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "d75285d7-5d9c-4796-9d65-00bbdcf8194a",
+      "original_row_index": 5,
+      "original_data": {
+        "SKU": "MNO-345",
+        "Units Moved": "$150",
+        "Month": "Sep-24",
+        "Extra Column": "wrong data type"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.138939",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "2f5a94e2-4e95-4cd9-8be3-0db7673c877f",
+      "original_row_index": 6,
+      "original_data": {
+        "SKU": "PQR678",
+        "Units Moved": "25.5",
+        "Month": "2024-09",
+        "Extra Column": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.138959",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "c42b813a-a8af-4482-ac11-3b70dd67980c",
+      "original_row_index": 7,
+      "original_data": {
+        "SKU": "STU-901",
+        "Units Moved": "0",
+        "Month": "October 2024",
+        "Extra Column": NaN
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.138979",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "d07918e4-053d-40f7-ac70-5e45f4a6feec",
+      "original_row_index": 8,
+      "original_data": {
+        "SKU": "VWX234",
+        "Units Moved": "-10",
+        "Month": "Oct 2024",
+        "Extra Column": "negative quantity"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.138999",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "1225f23e-a1cc-4122-8d2f-b42f1bf0d3a3",
+      "original_row_index": 9,
+      "original_data": {
+        "SKU": "YZ-567",
+        "Units Moved": "1000000",
+        "Month": "Nov 2024",
+        "Extra Column": "suspicious high"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.139018",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "0b93ac55-d198-4ec5-b693-807be150d78c",
+      "original_row_index": 10,
+      "original_data": {
+        "SKU": "ABC,DEF",
+        "Units Moved": "30",
+        "Month": "November 2024",
+        "Extra Column": "comma in sku"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.139037",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "f375103b-7323-435b-a57b-be4ebb7375da",
+      "original_row_index": 11,
+      "original_data": {
+        "SKU": "GHI 789",
+        "Units Moved": "40",
+        "Month": "Dec 2024",
+        "Extra Column": "space in sku"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.139056",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "13040821-2ea6-4094-97bc-da6a4fe8777a",
+      "original_row_index": 12,
+      "original_data": {
+        "SKU": NaN,
+        "Units Moved": NaN,
+        "Month": NaN,
+        "Extra Column": "empty row"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.139076",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "c8b87511-b061-47ed-9ab9-f8ca4b4dadcd",
+      "original_row_index": 13,
+      "original_data": {
+        "SKU": "JKL012",
+        "Units Moved": "50",
+        "Month": "2025-01",
+        "Extra Column": "future date"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.139094",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "ab678674-2130-483d-8a4b-e6e17747a908",
+      "original_row_index": 14,
+      "original_data": {
+        "SKU": "MNO345",
+        "Units Moved": "abc",
+        "Month": "January 2025",
+        "Extra Column": "text in quantity"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.139112",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "d03e7073-910d-4190-a6fd-427c009b965a",
+      "original_row_index": 15,
+      "original_data": {
+        "SKU": "PQR-678",
+        "Units Moved": "50",
+        "Month": "Invalid Date",
+        "Extra Column": "bad date"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.139130",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "c35a114f-c247-459f-859a-554718f22ceb",
+      "original_row_index": 16,
+      "original_data": {
+        "SKU": "STU901",
+        "Units Moved": "75",
+        "Month": "Dec, 2024",
+        "Extra Column": "quoted fields"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.139149",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "340f65d2-f71d-4b84-8017-814c1aaf19f3",
+      "original_row_index": 17,
+      "original_data": {
+        "SKU": "VWX-234",
+        "Units Moved": "100",
+        "Month": "12/2024",
+        "Extra Column": "different date format"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.139167",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "8f295420-ba35-4b69-8fdd-903b59880a73",
+      "original_row_index": 18,
+      "original_data": {
+        "SKU": "YZA-123",
+        "Units Moved": "200",
+        "Month": "2024/12/15",
+        "Extra Column": "another date format"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.139185",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    }
+  ]
+}

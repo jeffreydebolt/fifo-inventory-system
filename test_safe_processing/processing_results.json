@@ -1,0 +1,88 @@
+{
+  "status": "completed_with_errors",
+  "processing_time_seconds": 0.008745,
+  "statistics": {
+    "total_skus": 3,
+    "processed_skus": 2,
+    "skipped_skus": 1,
+    "total_sales": 3,
+    "processed_sales": 2,
+    "total_errors": 1,
+    "start_time": "2025-08-25 15:16:35.531646",
+    "end_time": "2025-08-25 15:16:35.540391"
+  },
+  "success_rate": {
+    "skus": 66.66666666666666,
+    "sales": 66.66666666666666
+  },
+  "error_summary": {
+    "total_errors": 1,
+    "by_category": {
+      "missing_lots": 1
+    },
+    "by_severity": {
+      "high": 1
+    },
+    "affected_skus": 1,
+    "top_problem_skus": [
+      [
+        "BAD001",
+        1
+      ]
+    ]
+  },
+  "can_continue_processing": true,
+  "processable_skus": [],
+  "actionable_steps": [
+    "\ud83d\udfe1 HIGH PRIORITY: Fix to process affected SKUs:",
+    "  \u2022 BAD001: Upload purchase lots for SKU BAD001 | Check if BAD001 is a valid/active SKU | Verify SKU spelling and format | Review sales data for potential SKU mapping errors",
+    "",
+    "\ud83d\udce6 Upload missing purchase lots for: BAD001"
+  ],
+  "successful_results": [
+    {
+      "sku": "GOOD001",
+      "attributions": [
+        {
+          "sale_date": "2025-01-15 00:00:00",
+          "sku": "GOOD001",
+          "lot_id": "LOT001",
+          "allocated_qty": 100,
+          "unit_cost": 11.0,
+          "total_cost": 1100.0
+        }
+      ],
+      "total_cogs": 1100.0,
+      "total_quantity": 100,
+      "average_cost": 11.0
+    },
+    {
+      "sku": "GOOD002",
+      "attributions": [
+        {
+          "sale_date": "2025-01-17 00:00:00",
+          "sku": "GOOD002",
+          "lot_id": "LOT002",
+          "allocated_qty": 50,
+          "unit_cost": 13.5,
+          "total_cost": 675.0
+        }
+      ],
+      "total_cogs": 675.0,
+      "total_quantity": 50,
+      "average_cost": 13.5
+    }
+  ],
+  "skipped_skus": [
+    "BAD001"
+  ],
+  "output_files": {
+    "processing_log": "test_safe_processing/processing.log",
+    "error_reports": {
+      "error_log": "test_safe_processing/errors/error_log_20250825_151635.json",
+      "quarantine_report": "test_safe_processing/errors/quarantine_20250825_151635.csv",
+      "summary": "\ud83d\udd0d FIFO PROCESSING ERROR SUMMARY\n==================================================\nTotal Errors: 1\nAffected SKUs: 1\n\nBy Severity:\n  \ud83d\udd34 Critical: 0\n  \ud83d\udfe1 High: 1\n  \ud83d\udfe0 Medium: 0\n  \u26aa Low: 0\n\nBy Category:\n  \u2022 Missing Lots: 1\n\nTop Problem SKUs:\n  \u2022 BAD001: 1 errors\n\n\ud83d\udeab Blocking Errors: 1 (prevent SKU processing)\n\u26a0\ufe0f  Non-blocking Errors: 0 (warnings only)\n\n\ud83d\udcc1 Detailed Reports:\n  \u2022 JSON Log: test_safe_processing/errors/error_log_20250825_151635.json\n  \u2022 CSV Report: test_safe_processing/errors/quarantine_20250825_151635.csv"
+    },
+    "results_json": "test_safe_processing/processing_results.json"
+  }
+}

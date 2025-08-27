@@ -1,0 +1,329 @@
+{
+  "batch_id": "a1f23a6d-761b-41f2-995b-f21876a57613",
+  "filename": "excel_export_issues.csv",
+  "file_type": "sales_data",
+  "tenant_id": null,
+  "created_at": "2025-08-25T14:30:32.148490",
+  "total_records": 17,
+  "quarantined_count": 17,
+  "summary": {
+    "reason_breakdown": {
+      "manual_review_requested": 17
+    },
+    "critical_issues": 0,
+    "warnings": 0,
+    "column_mapping": {
+      "sku": "sku",
+      "quantity": "quantity",
+      "date": "sales date"
+    }
+  },
+  "records": [
+    {
+      "record_id": "e4b09041-bcbf-4c8e-a077-e6594c0bbf7f",
+      "original_row_index": 0,
+      "original_data": {
+        "SKU": "=ABC123",
+        "Quantity": "100",
+        "Sales Date": "2024-07-01",
+        "Notes": "Excel formula"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148174",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "7d203fd7-74a1-44ca-961e-916cd43f3a34",
+      "original_row_index": 1,
+      "original_data": {
+        "SKU": "1.23E+10",
+        "Quantity": "50",
+        "Sales Date": "2024-07-02",
+        "Notes": "Scientific notation SKU"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148201",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "edb96ff9-110f-425e-a4f3-33873c924848",
+      "original_row_index": 2,
+      "original_data": {
+        "SKU": "ABC-456",
+        "Quantity": "1.23E+02",
+        "Sales Date": "2024-07-03",
+        "Notes": "Scientific notation quantity"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148223",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "cb5a3c1c-7f31-4d1e-945a-85df880e8e1d",
+      "original_row_index": 3,
+      "original_data": {
+        "SKU": "DEF-789",
+        "Quantity": "200",
+        "Sales Date": "43956",
+        "Notes": "Excel date serial"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148243",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "0b95b1a8-94b4-44c4-a442-8291f77f3260",
+      "original_row_index": 4,
+      "original_data": {
+        "SKU": "GHI-012",
+        "Quantity": "150",
+        "Sales Date": "2024-07-05",
+        "Notes": "Normal data"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148262",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "f29b98a0-198d-4143-b7a5-21e986154535",
+      "original_row_index": 5,
+      "original_data": {
+        "SKU": "TRUE",
+        "Quantity": "75",
+        "Sales Date": "2024-07-06",
+        "Notes": "Boolean as SKU"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148281",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "7d13a651-f4fe-443b-bcfe-a505b8a39a9a",
+      "original_row_index": 6,
+      "original_data": {
+        "SKU": "ABC-345",
+        "Quantity": "FALSE",
+        "Sales Date": "2024-07-07",
+        "Notes": "Boolean as quantity"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148300",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "7098f94e-903a-48da-ad11-4925bbe07515",
+      "original_row_index": 7,
+      "original_data": {
+        "SKU": "JKL-678",
+        "Quantity": "100",
+        "Sales Date": "TRUE",
+        "Notes": "Boolean as date"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148320",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "b179d1bb-4f47-489f-88d9-331db207a51b",
+      "original_row_index": 8,
+      "original_data": {
+        "SKU": "\"MNO-901\"",
+        "Quantity": "125",
+        "Sales Date": "2024-07-09",
+        "Notes": "Quoted with quotes inside"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148338",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "0cdd0944-b0d8-4f67-be42-6bf295237382",
+      "original_row_index": 9,
+      "original_data": {
+        "SKU": "PQR#STU",
+        "Quantity": "175",
+        "Sales Date": "2024-07-10",
+        "Notes": "Special characters"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148357",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "205c48cf-7783-47b7-8c8e-80b74df6de72",
+      "original_row_index": 10,
+      "original_data": {
+        "SKU": "VWX_YZA",
+        "Quantity": "225",
+        "Sales Date": "2024-07-11",
+        "Notes": "Underscore"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148375",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "680bfa86-6092-4a6e-a8d9-33165dc2d9ef",
+      "original_row_index": 11,
+      "original_data": {
+        "SKU": "123-ABC",
+        "Quantity": "300",
+        "Sales Date": "2024-07-12",
+        "Notes": "Starts with number"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148394",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "3880c908-c7c9-4a06-a3fa-ec9a76029bf1",
+      "original_row_index": 12,
+      "original_data": {
+        "SKU": "BCD,EFG",
+        "Quantity": "125",
+        "Sales Date": "2024-07-13",
+        "Notes": "Comma in field"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148413",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "5c826eeb-791f-4983-9731-5510c8f24449",
+      "original_row_index": 13,
+      "original_data": {
+        "SKU": "HIJ\\KLM",
+        "Quantity": "150",
+        "Sales Date": "2024-07-14",
+        "Notes": "Backslash"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148432",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "89e2ec49-d1be-4c14-8551-1d402f7e6b6c",
+      "original_row_index": 14,
+      "original_data": {
+        "SKU": "MNO'PQR",
+        "Quantity": "175",
+        "Sales Date": "2024-07-15",
+        "Notes": "Apostrophe"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148451",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "704020ad-d57f-4f3b-8cea-b939a9718e0f",
+      "original_row_index": 15,
+      "original_data": {
+        "SKU": "STU\tVWX",
+        "Quantity": "200",
+        "Sales Date": "2024-07-16",
+        "Notes": "Tab character"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148470",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "e3bda848-3c29-43d9-bf6d-3375fd742925",
+      "original_row_index": 16,
+      "original_data": {
+        "SKU": "YZA\\nBCD",
+        "Quantity": "250",
+        "Sales Date": "2024-07-17",
+        "Notes": "Newline character"
+      },
+      "quarantine_reason": "manual_review_requested",
+      "status": "quarantined",
+      "issues": [],
+      "quarantined_at": "2025-08-25T14:30:32.148488",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    }
+  ]
+}

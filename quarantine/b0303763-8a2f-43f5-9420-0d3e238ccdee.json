@@ -1,0 +1,162 @@
+{
+  "batch_id": "b0303763-8a2f-43f5-9420-0d3e238ccdee",
+  "filename": "messy_sales_data.csv",
+  "file_type": "sales_data",
+  "tenant_id": null,
+  "created_at": "2025-08-25T14:31:37.452211",
+  "total_records": 19,
+  "quarantined_count": 5,
+  "summary": {
+    "reason_breakdown": {
+      "missing_required_field": 2,
+      "unparseable_date": 2,
+      "critical_validation_error": 1
+    },
+    "critical_issues": 7,
+    "warnings": 1,
+    "column_mapping": {
+      "sku": "SKU",
+      "quantity": "Units Moved",
+      "date": "Month"
+    }
+  },
+  "records": [
+    {
+      "record_id": "80257049-03c2-4131-b4c2-995bd5e540cb",
+      "original_row_index": 2,
+      "original_data": {
+        "SKU": "GHI-789",
+        "Units Moved": NaN,
+        "Month": "August 2024",
+        "Extra Column": NaN
+      },
+      "quarantine_reason": "missing_required_field",
+      "status": "quarantined",
+      "issues": [
+        {
+          "severity": "critical",
+          "column": "Units Moved",
+          "original_value": "nan",
+          "message": "Quantity is null in column 'Units Moved'"
+        }
+      ],
+      "quarantined_at": "2025-08-25T14:31:37.452097",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "7c0ca2e5-f686-4c4c-9024-81a18038fa0b",
+      "original_row_index": 4,
+      "original_data": {
+        "SKU": NaN,
+        "Units Moved": "75",
+        "Month": "September 2024",
+        "Extra Column": NaN
+      },
+      "quarantine_reason": "missing_required_field",
+      "status": "quarantined",
+      "issues": [
+        {
+          "severity": "critical",
+          "column": "sku",
+          "original_value": "nan",
+          "message": "SKU is empty or null"
+        }
+      ],
+      "quarantined_at": "2025-08-25T14:31:37.452133",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "ffe62f23-8a66-41e5-accd-2ee522219c84",
+      "original_row_index": 12,
+      "original_data": {
+        "SKU": NaN,
+        "Units Moved": NaN,
+        "Month": NaN,
+        "Extra Column": "empty row"
+      },
+      "quarantine_reason": "unparseable_date",
+      "status": "quarantined",
+      "issues": [
+        {
+          "severity": "critical",
+          "column": "sku",
+          "original_value": "nan",
+          "message": "SKU is empty or null"
+        },
+        {
+          "severity": "critical",
+          "column": "Units Moved",
+          "original_value": "nan",
+          "message": "Quantity is null in column 'Units Moved'"
+        },
+        {
+          "severity": "critical",
+          "column": "Month",
+          "original_value": "nan",
+          "message": "Date is empty or null in column 'Month'"
+        }
+      ],
+      "quarantined_at": "2025-08-25T14:31:37.452162",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "b368e564-2486-4d9c-b0ae-d98be9ff750b",
+      "original_row_index": 14,
+      "original_data": {
+        "SKU": "MNO345",
+        "Units Moved": "abc",
+        "Month": "January 2025",
+        "Extra Column": "text in quantity"
+      },
+      "quarantine_reason": "critical_validation_error",
+      "status": "quarantined",
+      "issues": [
+        {
+          "severity": "critical",
+          "column": "Units Moved",
+          "original_value": "abc",
+          "message": "Cannot parse quantity 'abc' in column 'Units Moved'"
+        }
+      ],
+      "quarantined_at": "2025-08-25T14:31:37.452187",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    },
+    {
+      "record_id": "c014f0af-0486-4b51-aeac-2e9c4eb24fe0",
+      "original_row_index": 15,
+      "original_data": {
+        "SKU": "PQR-678",
+        "Units Moved": "50",
+        "Month": "Invalid Date",
+        "Extra Column": "bad date"
+      },
+      "quarantine_reason": "unparseable_date",
+      "status": "quarantined",
+      "issues": [
+        {
+          "severity": "critical",
+          "column": "Month",
+          "original_value": "Invalid Date",
+          "message": "Cannot parse date 'Invalid Date' in column 'Month'"
+        }
+      ],
+      "quarantined_at": "2025-08-25T14:31:37.452209",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "corrected_data": null,
+      "notes": ""
+    }
+  ]
+}
