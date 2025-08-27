@@ -61,8 +61,12 @@ async def upload_lots_file(
         if len(df) == 0:
             raise HTTPException(status_code=400, detail="CSV file is empty")
         
-        # Store file metadata (in real implementation, would save to database)
+        # Store file data in memory (in real implementation, would save to database)
         file_id = str(uuid.uuid4())
+        
+        # Import the uploaded_files dict from runs module
+        from routes.runs import uploaded_files
+        uploaded_files[file_id] = df
         
         logger.info(f"Uploaded lots file for tenant {tenant_id}: {file.filename} ({len(df)} rows)")
         
@@ -116,8 +120,12 @@ async def upload_sales_file(
         if len(df) == 0:
             raise HTTPException(status_code=400, detail="CSV file is empty")
         
-        # Store file metadata (in real implementation, would save to database)
+        # Store file data in memory (in real implementation, would save to database)
         file_id = str(uuid.uuid4())
+        
+        # Import the uploaded_files dict from runs module
+        from routes.runs import uploaded_files
+        uploaded_files[file_id] = df
         
         logger.info(f"Uploaded sales file for tenant {tenant_id}: {file.filename} ({len(df)} rows)")
         
