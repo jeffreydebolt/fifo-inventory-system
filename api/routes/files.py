@@ -84,7 +84,7 @@ async def upload_lots_file(
         raise
     except Exception as e:
         logger.error(f"Failed to upload lots file: {e}")
-        raise HTTPException(status_code=500, detail="Failed to process file")
+        raise HTTPException(status_code=500, detail=f"Failed to process file: {str(e)}")
 
 
 @router.post("/sales", status_code=201)
@@ -143,7 +143,7 @@ async def upload_sales_file(
         raise
     except Exception as e:
         logger.error(f"Failed to upload sales file: {e}")
-        raise HTTPException(status_code=500, detail="Failed to process file")
+        raise HTTPException(status_code=500, detail=f"Failed to process file: {str(e)}")
 
 
 @router.get("/templates/lots")
