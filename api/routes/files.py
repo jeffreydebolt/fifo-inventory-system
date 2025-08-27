@@ -9,26 +9,26 @@ from datetime import datetime
 import pandas as pd
 import io
 
-from api.models import RunResponse
-from services.journaled_calculator import JournaledCalculator
-from core.fifo_engine import FIFOEngine
+# Simplified imports to avoid dependency issues
+# from api.models import RunResponse
+# from services.journaled_calculator import JournaledCalculator
+# from core.fifo_engine import FIFOEngine
 
 router = APIRouter(prefix="/files", tags=["files"])
 logger = logging.getLogger(__name__)
 
 
-# Dependency injection
-def get_calculator() -> JournaledCalculator:
-    """Get journaled calculator instance"""
-    engine = FIFOEngine()
-    return JournaledCalculator(engine, db_adapter=None)
+# Simplified - no calculator dependency for now
+# def get_calculator() -> JournaledCalculator:
+#     """Get journaled calculator instance"""
+#     engine = FIFOEngine()
+#     return JournaledCalculator(engine, db_adapter=None)
 
 
 @router.post("/lots", status_code=201)
 async def upload_lots_file(
     tenant_id: str = Form(...),
-    file: UploadFile = File(...),
-    calculator: JournaledCalculator = Depends(get_calculator)
+    file: UploadFile = File(...)
 ):
     """
     Upload lots CSV file for a tenant.
@@ -86,8 +86,7 @@ async def upload_lots_file(
 @router.post("/sales", status_code=201)
 async def upload_sales_file(
     tenant_id: str = Form(...),
-    file: UploadFile = File(...),
-    calculator: JournaledCalculator = Depends(get_calculator)
+    file: UploadFile = File(...)
 ):
     """
     Upload sales CSV file for a tenant.
