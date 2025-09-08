@@ -12,6 +12,9 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+# Global file cache (temporary solution - use Redis/database in production)
+_global_file_cache = {}
+
 class SupabaseService:
     """Service for interacting with Supabase database"""
     
@@ -64,9 +67,8 @@ class SupabaseService:
     
     def _store_file_data(self, file_id: str, df: pd.DataFrame):
         """Temporarily store file data (would use proper file storage in production)"""
-        if not hasattr(self, '_file_cache'):
-            self._file_cache = {}
-        self._file_cache[file_id] = df
+        global _global_file_cache
+        _global_file_cache[file_id] = df
     
     def get_current_inventory(self, tenant_id: str) -> pd.DataFrame:
         """Get current inventory snapshot for tenant"""
@@ -114,11 +116,12 @@ class SupabaseService:
             current_inventory = self.get_current_inventory(tenant_id)
             
             # Get uploaded sales data
-            sales_df = getattr(self, '_file_cache', {}).get(sales_file_id, pd.DataFrame())
+            global _global_file_cache
+            sales_df = _global_file_cache.get(sales_file_id, pd.DataFrame())
             
             # Add new lots if provided
-            if lots_file_id and lots_file_id in getattr(self, '_file_cache', {}):
-                new_lots = getattr(self, '_file_cache', {}).get(lots_file_id, pd.DataFrame())
+            if lots_file_id and lots_file_id in _global_file_cache:
+                new_lots = _global_file_cache.get(lots_file_id, pd.DataFrame())
                 # Combine with existing inventory
                 if not current_inventory.empty and not new_lots.empty:
                     current_inventory = pd.concat([current_inventory, new_lots], ignore_index=True)
