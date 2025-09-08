@@ -118,10 +118,12 @@ class SupabaseService:
             # Get uploaded sales data
             global _global_file_cache
             sales_df = _global_file_cache.get(sales_file_id, pd.DataFrame())
+            logger.info(f"Retrieved sales data: {len(sales_df)} rows for file_id {sales_file_id}")
             
             # Add new lots if provided
             if lots_file_id and lots_file_id in _global_file_cache:
                 new_lots = _global_file_cache.get(lots_file_id, pd.DataFrame())
+                logger.info(f"Retrieved lots data: {len(new_lots)} rows for file_id {lots_file_id}")
                 # Combine with existing inventory
                 if not current_inventory.empty and not new_lots.empty:
                     current_inventory = pd.concat([current_inventory, new_lots], ignore_index=True)
@@ -129,6 +131,7 @@ class SupabaseService:
                     current_inventory = new_lots
             
             # Process FIFO calculation
+            logger.info(f"Starting FIFO calculation with {len(current_inventory)} inventory rows and {len(sales_df)} sales rows")
             result = self._calculate_fifo(tenant_id, run_id, current_inventory, sales_df)
             
             # Update run status
@@ -161,6 +164,19 @@ class SupabaseService:
     
     def _calculate_fifo(self, tenant_id: str, run_id: str, inventory_df: pd.DataFrame, sales_df: pd.DataFrame) -> Dict:
         """Calculate FIFO with proper inventory tracking"""
+        logger.info(f"_calculate_fifo called with inventory_df: {len(inventory_df)} rows, sales_df: {len(sales_df)} rows")
+        
+        if inventory_df.empty:
+            logger.info("Inventory DataFrame is empty")
+        else:
+            logger.info(f"Inventory SKUs: {inventory_df['sku'].tolist() if 'sku' in inventory_df.columns else 'No SKU column'}")
+            
+        if sales_df.empty:
+            logger.info("Sales DataFrame is empty") 
+        else:
+            logger.info(f"Sales columns: {sales_df.columns.tolist()}")
+            logger.info(f"Sales data: {sales_df.head()}")
+        
         if inventory_df.empty or sales_df.empty:
             return {
                 "success": True,
