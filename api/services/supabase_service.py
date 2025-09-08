@@ -40,7 +40,10 @@ class SupabaseService:
     def save_uploaded_file(self, tenant_id: str, filename: str, file_type: str, file_size: int, df: pd.DataFrame) -> str:
         """Save uploaded file metadata to database"""
         if not self.supabase:
-            return f"demo_file_{uuid.uuid4()}"
+            file_id = f"demo_file_{uuid.uuid4()}"
+            # Still store in global cache for demo mode
+            self._store_file_data(file_id, df)
+            return file_id
             
         try:
             file_id = str(uuid.uuid4())
@@ -111,6 +114,8 @@ class SupabaseService:
                     'status': 'running',
                     'started_at': datetime.now().isoformat()
                 }).execute()
+            else:
+                logger.info(f"Demo mode: Creating run {run_id} for tenant {tenant_id}")
             
             # Get current inventory from database
             current_inventory = self.get_current_inventory(tenant_id)
@@ -147,17 +152,18 @@ class SupabaseService:
             return result
             
         except Exception as e:
-            logger.error(f"FIFO processing failed: {e}")
+            logger.error(f"FIFO processing failed: {e}", exc_info=True)
+            error_msg = str(e) if str(e) else f"Unknown error: {type(e).__name__}"
             if self.supabase:
                 self.supabase.table('cogs_runs').update({
                     'status': 'failed',
                     'completed_at': datetime.now().isoformat(),
-                    'error_message': str(e)
+                    'error_message': error_msg
                 }).eq('run_id', run_id).execute()
             
             return {
                 "success": False,
-                "error": str(e),
+                "error": error_msg,
                 "total_sales_processed": 0,
                 "total_cogs_calculated": 0
             }
@@ -192,8 +198,8 @@ class SupabaseService:
         working_inventory = inventory_df.copy()
         working_inventory['total_cost_per_unit'] = working_inventory['unit_price'] + working_inventory['freight_cost_per_unit']
         
-        # Sort inventory by date (FIFO)
-        working_inventory['received_date'] = pd.to_datetime(working_inventory['received_date'])
+        # Sort inventory by date (FIFO) - handle multiple date formats
+        working_inventory['received_date'] = pd.to_datetime(working_inventory['received_date'], format='mixed')
         working_inventory = working_inventory.sort_values('received_date')
         
         # Process each sale
@@ -202,9 +208,14 @@ class SupabaseService:
             if not sku:
                 continue
                 
-            quantity_sold = int(sale_row.get('units moved', sale_row.get('Quantity_Sold', sale_row.get('quantity', 0))))
-            if quantity_sold <= 0:
-                continue
+            quantity_raw = sale_row.get('units moved', sale_row.get('Quantity_Sold', sale_row.get('quantity', 0)))
+            # Handle NaN values and convert to int
+            try:
+                quantity_sold = int(float(quantity_raw))
+                if quantity_sold <= 0:
+                    continue
+            except (ValueError, TypeError):
+                continue  # Skip invalid quantity values
             
             # Find available lots for this SKU
             available_lots = working_inventory[
