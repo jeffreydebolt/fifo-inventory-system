@@ -24,9 +24,13 @@ def process_fifo_calculation(lots_df: pd.DataFrame, sales_df: pd.DataFrame) -> D
         # Calculate basic FIFO for each SKU
         sku_costs = {}
         for _, lot_row in lots_df.iterrows():
-            sku = str(lot_row.get('sku', ''))
+            # Handle different column names and clean data
+            sku = str(lot_row.get('sku', lot_row.get('SKU', ''))).strip()
+            if not sku:  # Skip empty rows
+                continue
+                
             unit_cost = float(lot_row.get('unit_price', 0)) + float(lot_row.get('freight_cost_per_unit', 0))
-            quantity = int(lot_row.get('remaining_quantity', 0))
+            quantity = int(lot_row.get('remaining_quantity', lot_row.get('original_quantity', 0)))
             
             if sku not in sku_costs:
                 sku_costs[sku] = []
@@ -42,8 +46,12 @@ def process_fifo_calculation(lots_df: pd.DataFrame, sales_df: pd.DataFrame) -> D
         
         # Process sales
         for _, sale_row in sales_df.iterrows():
-            sku = str(sale_row.get('sku', ''))
-            quantity_sold = int(sale_row.get('units moved', sale_row.get('quantity', 0)))
+            # Handle different column names and clean data
+            sku = str(sale_row.get('sku', sale_row.get('SKU', ''))).strip()
+            if not sku:  # Skip empty rows
+                continue
+                
+            quantity_sold = int(sale_row.get('units moved', sale_row.get('Quantity_Sold', sale_row.get('quantity', 0))))
             
             if sku in sku_costs and quantity_sold > 0:
                 remaining_to_sell = quantity_sold
