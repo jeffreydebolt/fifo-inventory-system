@@ -49,7 +49,7 @@ async def create_run(
         from api.services.supabase_service import supabase_service
         result = supabase_service.process_fifo_with_database(tenant_id, lots_file_id, sales_file_id)
         
-        return {
+        response = {
             "run_id": result.get('run_id', f"run_{datetime.now().strftime('%Y%m%d_%H%M%S')}"),
             "tenant_id": tenant_id,
             "status": "completed" if result.get("success") else "failed",
@@ -60,6 +60,12 @@ async def create_run(
             "validation_errors_count": result.get("validation_errors", 0),
             "processed_skus": result.get("processed_skus", 0)
         }
+        
+        # Include error message if the run failed
+        if result.get("error"):
+            response["error"] = result.get("error")
+            
+        return response
         
     except Exception as e:
         logger.error(f"FIFO processing error: {str(e)}")
