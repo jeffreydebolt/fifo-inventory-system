@@ -3,6 +3,7 @@ Simple, production-ready FastAPI application for FIFO COGS system.
 """
 import os
 import logging
+from datetime import datetime
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -43,6 +44,49 @@ app.add_middleware(
 async def health_check():
     """Health check endpoint"""
     return {"status": "healthy", "service": "fifo-cogs-api"}
+
+# Diagnostic endpoint for debugging database connection
+@app.get("/debug/database")
+async def debug_database():
+    """Debug database connection status"""
+    import os
+    from api.services.supabase_service import supabase_service
+    
+    diagnostics = {
+        "timestamp": datetime.now().isoformat(),
+        "environment_variables": {
+            "SUPABASE_URL_exists": bool(os.getenv("SUPABASE_URL")),
+            "SUPABASE_URL_length": len(os.getenv("SUPABASE_URL", "")),
+            "SUPABASE_ANON_KEY_exists": bool(os.getenv("SUPABASE_ANON_KEY")),
+            "SUPABASE_ANON_KEY_length": len(os.getenv("SUPABASE_ANON_KEY", "")),
+        },
+        "supabase_client_status": supabase_service.supabase is not None,
+    }
+    
+    # Test database connection
+    if supabase_service.supabase:
+        try:
+            # Try a simple table read
+            result = supabase_service.supabase.table('uploaded_files').select("*").limit(1).execute()
+            diagnostics["database_test"] = {
+                "status": "success",
+                "rows_returned": len(result.data),
+                "error": None
+            }
+        except Exception as e:
+            diagnostics["database_test"] = {
+                "status": "failed",
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "error": None if not str(e) else str(e)
+            }
+    else:
+        diagnostics["database_test"] = {
+            "status": "no_client",
+            "error": "Supabase client not initialized"
+        }
+    
+    return diagnostics
 
 # Include routers - import here to avoid circular imports
 try:
