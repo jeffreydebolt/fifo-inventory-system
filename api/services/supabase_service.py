@@ -32,10 +32,20 @@ class SupabaseService:
             return
             
         try:
-            self.supabase = create_client(url, key)
+            # Create Supabase client with minimal parameters to avoid version issues
+            self.supabase = create_client(
+                supabase_url=url,
+                supabase_key=key
+            )
             logger.info("Supabase client initialized successfully")
         except Exception as e:
             logger.error(f"Failed to initialize Supabase client: {e}")
+            # Try alternative initialization method
+            try:
+                self.supabase = create_client(url, key)
+                logger.info("Supabase client initialized with fallback method")
+            except Exception as e2:
+                logger.error(f"Fallback initialization also failed: {e2}")
     
     def save_uploaded_file(self, tenant_id: str, filename: str, file_type: str, file_size: int, df: pd.DataFrame) -> str:
         """Save uploaded file metadata to database"""
