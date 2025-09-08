@@ -45,37 +45,12 @@ async def create_run(
         lots_file_id = data.get("lots_file_id")
         sales_file_id = data.get("sales_file_id")
         
-        # Get uploaded dataframes from file storage
-        from api.routes.files import upload_lots_file, upload_sales_file
-        lots_df = getattr(upload_lots_file, 'storage', {}).get(lots_file_id)
-        sales_df = getattr(upload_sales_file, 'storage', {}).get(sales_file_id)
-        
-        if lots_df is None or sales_df is None:
-            # For demo, create sample data
-            lots_df = pd.DataFrame({
-                'lot_id': ['LOT001', 'LOT002'],
-                'sku': ['SKU-A', 'SKU-A'],
-                'received_date': ['2024-01-01', '2024-01-15'],
-                'original_quantity': [100, 50],
-                'remaining_quantity': [100, 50],
-                'unit_price': [10.00, 12.00],
-                'freight_cost_per_unit': [1.00, 1.50]
-            })
-            
-            sales_df = pd.DataFrame({
-                'sku': ['SKU-A', 'SKU-A'],
-                'units moved': [30, 20],
-                'Month': ['2024-02-01', '2024-02-15']
-            })
-        
-        # Import and use real FIFO processor
-        from api.services.fifo_processor import process_fifo_calculation
-        result = process_fifo_calculation(lots_df, sales_df)
-        
-        run_id = f"run_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+        # Use database-driven FIFO processing
+        from api.services.supabase_service import supabase_service
+        result = supabase_service.process_fifo_with_database(tenant_id, lots_file_id, sales_file_id)
         
         return {
-            "run_id": run_id,
+            "run_id": result.get('run_id', f"run_{datetime.now().strftime('%Y%m%d_%H%M%S')}"),
             "tenant_id": tenant_id,
             "status": "completed" if result.get("success") else "failed",
             "started_at": datetime.now().isoformat(),

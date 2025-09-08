@@ -64,10 +64,15 @@ async def upload_lots_file(
         # Store file data in memory (in real implementation, would save to database)
         file_id = str(uuid.uuid4())
         
-        # Store in global dict to avoid import issues
-        if not hasattr(upload_lots_file, 'storage'):
-            upload_lots_file.storage = {}
-        upload_lots_file.storage[file_id] = df
+        # Store in database
+        from api.services.supabase_service import supabase_service
+        file_id = supabase_service.save_uploaded_file(
+            tenant_id=tenant_id,
+            filename=file.filename,
+            file_type="lots",
+            file_size=len(contents),
+            df=df
+        )
         
         logger.info(f"Uploaded lots file for tenant {tenant_id}: {file.filename} ({len(df)} rows)")
         
@@ -124,10 +129,15 @@ async def upload_sales_file(
         # Store file data in memory (in real implementation, would save to database)
         file_id = str(uuid.uuid4())
         
-        # Store in global dict to avoid import issues
-        if not hasattr(upload_sales_file, 'storage'):
-            upload_sales_file.storage = {}
-        upload_sales_file.storage[file_id] = df
+        # Store in database  
+        from api.services.supabase_service import supabase_service
+        file_id = supabase_service.save_uploaded_file(
+            tenant_id=tenant_id,
+            filename=file.filename,
+            file_type="sales",
+            file_size=len(contents),
+            df=df
+        )
         
         logger.info(f"Uploaded sales file for tenant {tenant_id}: {file.filename} ({len(df)} rows)")
         
