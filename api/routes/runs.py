@@ -45,9 +45,10 @@ async def create_run(
         lots_file_id = data.get("lots_file_id")
         sales_file_id = data.get("sales_file_id")
         
-        # Get uploaded dataframes
-        lots_df = uploaded_files.get(lots_file_id)
-        sales_df = uploaded_files.get(sales_file_id)
+        # Get uploaded dataframes from file storage
+        from api.routes.files import upload_lots_file, upload_sales_file
+        lots_df = getattr(upload_lots_file, 'storage', {}).get(lots_file_id)
+        sales_df = getattr(upload_sales_file, 'storage', {}).get(sales_file_id)
         
         if lots_df is None or sales_df is None:
             # For demo, create sample data

@@ -64,9 +64,10 @@ async def upload_lots_file(
         # Store file data in memory (in real implementation, would save to database)
         file_id = str(uuid.uuid4())
         
-        # Import the uploaded_files dict from runs module
-        from api.routes.runs import uploaded_files
-        uploaded_files[file_id] = df
+        # Store in global dict to avoid import issues
+        if not hasattr(upload_lots_file, 'storage'):
+            upload_lots_file.storage = {}
+        upload_lots_file.storage[file_id] = df
         
         logger.info(f"Uploaded lots file for tenant {tenant_id}: {file.filename} ({len(df)} rows)")
         
@@ -123,9 +124,10 @@ async def upload_sales_file(
         # Store file data in memory (in real implementation, would save to database)
         file_id = str(uuid.uuid4())
         
-        # Import the uploaded_files dict from runs module
-        from api.routes.runs import uploaded_files
-        uploaded_files[file_id] = df
+        # Store in global dict to avoid import issues
+        if not hasattr(upload_sales_file, 'storage'):
+            upload_sales_file.storage = {}
+        upload_sales_file.storage[file_id] = df
         
         logger.info(f"Uploaded sales file for tenant {tenant_id}: {file.filename} ({len(df)} rows)")
         
