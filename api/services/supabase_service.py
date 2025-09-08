@@ -45,6 +45,7 @@ class SupabaseService:
             file_id = f"demo_file_{uuid.uuid4()}"
             # Still store in global cache for demo mode
             self._store_file_data(file_id, df)
+            logger.warning(f"Using demo mode for file {filename}")
             return file_id
             
         try:
@@ -63,12 +64,15 @@ class SupabaseService:
             # Also store the dataframe data temporarily (in production would use file storage)
             self._store_file_data(file_id, df)
             
-            logger.info(f"Saved uploaded file {filename} for tenant {tenant_id}")
+            logger.info(f"✅ Saved uploaded file {filename} for tenant {tenant_id} to database")
             return file_id
             
         except Exception as e:
-            logger.error(f"Failed to save uploaded file: {e}")
-            return f"demo_file_{uuid.uuid4()}"
+            logger.error(f"❌ Database save failed, using demo mode for {filename}: {type(e).__name__}: {e}")
+            # Fallback to demo mode
+            file_id = f"demo_file_{uuid.uuid4()}"
+            self._store_file_data(file_id, df)
+            return file_id
     
     def _store_file_data(self, file_id: str, df: pd.DataFrame):
         """Temporarily store file data (would use proper file storage in production)"""
@@ -105,17 +109,22 @@ class SupabaseService:
     
     def process_fifo_with_database(self, tenant_id: str, lots_file_id: str, sales_file_id: str) -> Dict:
         """Process FIFO calculation using database inventory"""
+        run_id = str(uuid.uuid4())
+        
         try:
-            # Create new run record
-            run_id = str(uuid.uuid4())
-            
+            # Try to create run record in database
             if self.supabase:
-                self.supabase.table('cogs_runs').insert({
-                    'run_id': run_id,
-                    'tenant_id': tenant_id,
-                    'status': 'running',
-                    'started_at': datetime.now().isoformat()
-                }).execute()
+                try:
+                    self.supabase.table('cogs_runs').insert({
+                        'run_id': run_id,
+                        'tenant_id': tenant_id,
+                        'status': 'running',
+                        'started_at': datetime.now().isoformat()
+                    }).execute()
+                    logger.info(f"✅ Created run record {run_id} in database")
+                except Exception as db_error:
+                    logger.error(f"❌ Failed to create run record in database: {type(db_error).__name__}: {db_error}")
+                    logger.info(f"Continuing with demo mode for run {run_id}")
             else:
                 logger.info(f"Demo mode: Creating run {run_id} for tenant {tenant_id}")
             
@@ -141,33 +150,43 @@ class SupabaseService:
             logger.info(f"Starting FIFO calculation with {len(current_inventory)} inventory rows and {len(sales_df)} sales rows")
             result = self._calculate_fifo(tenant_id, run_id, current_inventory, sales_df)
             
-            # Update run status
+            # Try to update run status in database
             if self.supabase:
-                self.supabase.table('cogs_runs').update({
-                    'status': 'completed',
-                    'completed_at': datetime.now().isoformat(),
-                    'total_sales_processed': result.get('total_sales_processed', 0),
-                    'total_cogs_calculated': result.get('total_cogs_calculated', 0)
-                }).eq('run_id', run_id).execute()
+                try:
+                    self.supabase.table('cogs_runs').update({
+                        'status': 'completed',
+                        'completed_at': datetime.now().isoformat(),
+                        'total_sales_processed': result.get('total_sales_processed', 0),
+                        'total_cogs_calculated': result.get('total_cogs_calculated', 0)
+                    }).eq('run_id', run_id).execute()
+                    logger.info(f"✅ Updated run status to completed in database")
+                except Exception as db_error:
+                    logger.error(f"❌ Failed to update run status: {type(db_error).__name__}: {db_error}")
             
             result['run_id'] = run_id
             return result
             
         except Exception as e:
-            logger.error(f"FIFO processing failed: {e}", exc_info=True)
+            logger.error(f"❌ FIFO processing failed: {type(e).__name__}: {e}", exc_info=True)
             error_msg = str(e) if str(e) else f"Unknown error: {type(e).__name__}"
+            
+            # Try to update run status to failed
             if self.supabase:
-                self.supabase.table('cogs_runs').update({
-                    'status': 'failed',
-                    'completed_at': datetime.now().isoformat(),
-                    'error_message': error_msg
-                }).eq('run_id', run_id).execute()
+                try:
+                    self.supabase.table('cogs_runs').update({
+                        'status': 'failed',
+                        'completed_at': datetime.now().isoformat(),
+                        'error_message': error_msg
+                    }).eq('run_id', run_id).execute()
+                except Exception as db_error:
+                    logger.error(f"❌ Failed to update run status to failed: {db_error}")
             
             return {
                 "success": False,
                 "error": error_msg,
                 "total_sales_processed": 0,
-                "total_cogs_calculated": 0
+                "total_cogs_calculated": 0,
+                "run_id": run_id
             }
     
     def _calculate_fifo(self, tenant_id: str, run_id: str, inventory_df: pd.DataFrame, sales_df: pd.DataFrame) -> Dict:
@@ -283,7 +302,7 @@ class SupabaseService:
             }).execute()
             
         except Exception as e:
-            logger.error(f"Failed to save COGS attribution: {e}")
+            logger.error(f"❌ Failed to save COGS attribution: {type(e).__name__}: {e}")
     
     def _update_inventory_snapshot(self, tenant_id: str, run_id: str, inventory_df: pd.DataFrame):
         """Update inventory snapshot in database"""
@@ -310,7 +329,7 @@ class SupabaseService:
                 }).execute()
                 
         except Exception as e:
-            logger.error(f"Failed to update inventory snapshot: {e}")
+            logger.error(f"❌ Failed to update inventory snapshot: {type(e).__name__}: {e}")
 
 
 # Global instance
