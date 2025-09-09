@@ -58,8 +58,14 @@ async def create_run(
             "total_sales_processed": result.get("total_sales_processed", 0),
             "total_cogs_calculated": result.get("total_cogs_calculated", 0),
             "validation_errors_count": result.get("validation_errors", 0),
-            "processed_skus": result.get("processed_skus", 0)
+            "processed_skus": result.get("processed_skus", 0),
+            "unmatched_sales_count": result.get("unmatched_sales_count", 0)
         }
+        
+        # Include unmatched sales warning if any
+        if result.get("unmatched_sales_count", 0) > 0:
+            response["warning"] = f"{result['unmatched_sales_count']} sales had no matching inventory"
+            response["unmatched_sales"] = result.get("unmatched_sales", [])
         
         # Include error message if the run failed
         if result.get("error"):

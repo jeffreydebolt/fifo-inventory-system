@@ -227,6 +227,7 @@ class SupabaseService:
         
         total_cogs = 0
         processed_sales = 0
+        unmatched_sales = []  # Track sales with no matching inventory
         
         # Create working inventory copy
         working_inventory = inventory_df.copy()
@@ -258,6 +259,13 @@ class SupabaseService:
             ].copy()
             
             if available_lots.empty:
+                # Track unmatched sales
+                unmatched_sales.append({
+                    'sku': sku,
+                    'quantity': quantity_sold,
+                    'sale_date': sale_row.get('date', 'unknown')
+                })
+                logger.warning(f"⚠️ No inventory found for SKU: {sku}, quantity: {quantity_sold}")
                 continue
             
             remaining_to_sell = quantity_sold
@@ -289,11 +297,17 @@ class SupabaseService:
         if self.supabase:
             self._update_inventory_snapshot(tenant_id, run_id, working_inventory)
         
+        # Log warning if there were unmatched sales
+        if unmatched_sales:
+            logger.warning(f"⚠️ {len(unmatched_sales)} sales had no matching inventory")
+        
         return {
             "success": True,
             "total_sales_processed": processed_sales,
             "total_cogs_calculated": round(total_cogs, 2),
-            "processed_skus": len(working_inventory['sku'].unique())
+            "processed_skus": len(working_inventory['sku'].unique()),
+            "unmatched_sales_count": len(unmatched_sales),
+            "unmatched_sales": unmatched_sales
         }
     
     def _save_cogs_attribution(self, tenant_id: str, run_id: str, sale_row: pd.Series, sku: str, quantity: int, cogs: float):
