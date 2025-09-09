@@ -52,6 +52,9 @@ async def debug_database():
     import os
     from api.services.supabase_service import supabase_service
     
+    # Force reinitialize to pick up any new environment variables
+    supabase_service._init_client()
+    
     diagnostics = {
         "timestamp": datetime.now().isoformat(),
         "environment_variables": {
@@ -59,6 +62,7 @@ async def debug_database():
             "SUPABASE_URL_length": len(os.getenv("SUPABASE_URL", "")),
             "SUPABASE_ANON_KEY_exists": bool(os.getenv("SUPABASE_ANON_KEY")),
             "SUPABASE_ANON_KEY_length": len(os.getenv("SUPABASE_ANON_KEY", "")),
+            "PYTHONPATH": os.getenv("PYTHONPATH", "not set"),
         },
         "supabase_client_status": supabase_service.supabase is not None,
     }
@@ -99,6 +103,18 @@ try:
     logging.info("Successfully loaded API routes")
 except Exception as e:
     logging.error(f"Failed to load API routes: {e}")
+
+# Initialize Supabase on startup
+@app.on_event("startup")
+async def startup_event():
+    """Initialize services on startup"""
+    from api.services.supabase_service import supabase_service
+    logging.info("Initializing Supabase connection...")
+    # This will trigger the connection attempt and log the results
+    if supabase_service.supabase:
+        logging.info("✅ Supabase client is initialized")
+    else:
+        logging.warning("⚠️ Supabase client is NOT initialized - running in demo mode")
 
 if __name__ == "__main__":
     import uvicorn
