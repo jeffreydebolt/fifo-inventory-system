@@ -10,7 +10,7 @@ const UploadPage = () => {
   const [error, setError] = useState('');
   const [uploadProgress, setUploadProgress] = useState({ lots: null, sales: null });
 
-  const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+import { API_BASE } from '../lib/config';
 
   const handleFileChange = (type, event) => {
     const file = event.target.files[0];
@@ -243,7 +243,7 @@ const UploadPage = () => {
           marginBottom: '2rem',
           textAlign: 'center'
         }}>
-          <h2 style={{ color: 'white', marginBottom: '1rem', fontSize: '1.5rem' }}>FIFO Processing Pipeline — v6 CACHE CLEAR</h2>
+          <h2 style={{ color: 'white', marginBottom: '1rem', fontSize: '1.5rem' }}>FIFO Processing Pipeline — v7</h2>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '2rem', fontSize: '0.875rem' }}>
             <div style={{ opacity: (lotsFile && uploadProgress.lots) ? 1 : 0.7 }}>
               {getProgressIcon(uploadProgress.lots)} Upload Lots

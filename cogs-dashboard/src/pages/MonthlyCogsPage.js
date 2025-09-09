@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useClient } from '../contexts/ClientContext';
+import { API_BASE } from '../lib/config';
 
 const MonthlyCogsPage = () => {
   const { client } = useClient();
@@ -7,7 +8,6 @@ const MonthlyCogsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
   useEffect(() => {
     loadMonthlyCogs();

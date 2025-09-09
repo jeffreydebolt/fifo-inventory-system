@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useClient } from '../contexts/ClientContext';
+import { API_BASE } from '../lib/config';
 
 const LotHistoryPage = () => {
   const { client } = useClient();
@@ -8,7 +9,6 @@ const LotHistoryPage = () => {
   const [error, setError] = useState('');
   const [filter, setFilter] = useState('active'); // 'all', 'active', 'depleted'
 
-  const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
   const loadLotHistory = useCallback(async () => {
     try {
