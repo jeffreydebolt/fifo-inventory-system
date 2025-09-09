@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useClient } from '../contexts/ClientContext';
+import { API_BASE } from '../lib/config';
 
 const UploadPage = () => {
   const { client } = useClient();
@@ -9,8 +10,6 @@ const UploadPage = () => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
   const [uploadProgress, setUploadProgress] = useState({ lots: null, sales: null });
-
-import { API_BASE } from '../lib/config';
 
   const handleFileChange = (type, event) => {
     const file = event.target.files[0];
