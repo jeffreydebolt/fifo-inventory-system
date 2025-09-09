@@ -32,7 +32,8 @@ export const ClientProvider = ({ children }) => {
     // Demo: Simple credential check (for beta deployment)
     const demoClients = {
       'acme_corp': { password: 'test123', company_name: 'Acme Corp', email: 'test1@acme.com' },
-      'beta_industries': { password: 'test456', company_name: 'Beta Industries', email: 'test2@beta.com' }
+      'beta_industries': { password: 'test456', company_name: 'Beta Industries', email: 'test2@beta.com' },
+      '1001': { password: 'client1001', company_name: 'FirstLot Client 1001', email: 'client1001@firstlot.co' }
     };
     
     const clientData = demoClients[clientId];
