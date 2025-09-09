@@ -36,7 +36,9 @@ export const ClientProvider = ({ children }) => {
       '1001': { password: 'client1001', company_name: 'FirstLot Client 1001', email: 'client1001@firstlot.co' }
     };
     
-    const clientData = demoClients[clientId];
+    // ensure we always treat the id as a string
+    const normalizedId = String(clientId).trim().toLowerCase();
+    const clientData = demoClients[normalizedId];
     
     if (clientData && password === clientData.password) {
       const loginData = {
