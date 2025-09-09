@@ -99,6 +99,54 @@ async def healthz():
         "commit": os.getenv("GIT_COMMIT", "unknown")
     }
 
+# Diagnostic endpoint for debugging database connection
+@app.get("/debug/database")
+async def debug_database():
+    """Debug database connection status"""
+    from datetime import datetime
+    from api.services.supabase_service import supabase_service
+    
+    # Force reinitialize to pick up any new environment variables
+    supabase_service._init_client()
+    
+    diagnostics = {
+        "timestamp": datetime.now().isoformat(),
+        "environment_variables": {
+            "SUPABASE_URL_exists": bool(os.getenv("SUPABASE_URL")),
+            "SUPABASE_URL_length": len(os.getenv("SUPABASE_URL", "")),
+            "SUPABASE_ANON_KEY_exists": bool(os.getenv("SUPABASE_ANON_KEY")),
+            "SUPABASE_ANON_KEY_length": len(os.getenv("SUPABASE_ANON_KEY", "")),
+            "PYTHONPATH": os.getenv("PYTHONPATH", "not set"),
+        },
+        "supabase_client_status": supabase_service.supabase is not None,
+        "app_file": "api.app (main app.py)"
+    }
+    
+    # Test database connection
+    if supabase_service.supabase:
+        try:
+            # Try a simple table read
+            result = supabase_service.supabase.table('uploaded_files').select("*").limit(1).execute()
+            diagnostics["database_test"] = {
+                "status": "success",
+                "rows_returned": len(result.data),
+                "error": None
+            }
+        except Exception as e:
+            diagnostics["database_test"] = {
+                "status": "failed",
+                "error_type": type(e).__name__,
+                "error_message": str(e),
+                "error": None if not str(e) else str(e)
+            }
+    else:
+        diagnostics["database_test"] = {
+            "status": "no_client",
+            "error": "Supabase client not initialized"
+        }
+    
+    return diagnostics
+
 # Metrics endpoint
 @app.get("/metrics")
 async def metrics():
@@ -149,8 +197,15 @@ async def startup_event():
     """Application startup"""
     logging.info("FIFO COGS API starting up...")
     
-    # Initialize database connections, etc.
-    # db_adapter = create_db_adapter()
+    # Check Supabase initialization
+    from api.services.supabase_service import supabase_service
+    logging.info("Checking Supabase connection...")
+    if supabase_service.supabase:
+        logging.info("✅ Supabase client is initialized")
+    else:
+        logging.warning("⚠️ Supabase client is NOT initialized - running in demo mode")
+        logging.warning(f"SUPABASE_URL exists: {bool(os.getenv('SUPABASE_URL'))}")
+        logging.warning(f"SUPABASE_ANON_KEY exists: {bool(os.getenv('SUPABASE_ANON_KEY'))}")
     
     logging.info("FIFO COGS API startup complete")
 
