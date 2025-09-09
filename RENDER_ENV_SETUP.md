@@ -5,7 +5,7 @@ To fix the Supabase database connection in production, you need to set these env
 ## Required Environment Variables
 
 1. **SUPABASE_URL**: `https://mdjukynmoingazraqyio.supabase.co`
-2. **SUPABASE_SERVICE_ROLE_KEY**: `sb_secret_TpPqDtrx3Gj432OOAHxrWQ_P1goOhku`
+2. **SUPABASE_SERVICE_ROLE_KEY**: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1kanVreW5tb2luZ2F6cmFxeWlvIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc0NzI1NjgyMiwiZXhwIjoyMDYyODMyODIyfQ.50Z9ybett-PhwkJjj4jh8fTFM2wXNS-2rGjjq8i3ubY`
 
 ## Steps to Add Environment Variables on Render:
 
@@ -36,7 +36,7 @@ The response should look like:
     "SUPABASE_URL_exists": true,
     "SUPABASE_URL_length": 44,
     "SUPABASE_SERVICE_ROLE_KEY_exists": true,
-    "SUPABASE_SERVICE_ROLE_KEY_length": 43
+    "SUPABASE_SERVICE_ROLE_KEY_length": 253
   },
   "supabase_client_status": true,
   "database_test": {
