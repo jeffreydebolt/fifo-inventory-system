@@ -27,6 +27,11 @@ class SupabaseService:
         url = os.getenv("SUPABASE_URL")
         key = os.getenv("SUPABASE_ANON_KEY")
         
+        # Add detailed logging for debugging
+        logger.info(f"Initializing Supabase client...")
+        logger.info(f"SUPABASE_URL found: {bool(url)}, length: {len(url) if url else 0}")
+        logger.info(f"SUPABASE_ANON_KEY found: {bool(key)}, length: {len(key) if key else 0}")
+        
         if not url or not key:
             logger.warning("Supabase credentials not found, using demo mode")
             return
@@ -34,9 +39,15 @@ class SupabaseService:
         try:
             # Simple Supabase client initialization
             self.supabase = create_client(url, key)
-            logger.info("Supabase client initialized successfully")
+            logger.info("✅ Supabase client initialized successfully")
+            
+            # Test the connection immediately
+            test_result = self.supabase.table('uploaded_files').select("count", count='exact').limit(1).execute()
+            logger.info(f"✅ Database connection test successful")
+            
         except Exception as e:
-            logger.error(f"Failed to initialize Supabase client: {e}")
+            logger.error(f"❌ Failed to initialize Supabase client: {type(e).__name__}: {e}")
+            logger.error(f"Full error details: {repr(e)}")
             self.supabase = None
     
     def save_uploaded_file(self, tenant_id: str, filename: str, file_type: str, file_size: int, df: pd.DataFrame) -> str:
@@ -69,6 +80,7 @@ class SupabaseService:
             
         except Exception as e:
             logger.error(f"❌ Database save failed, using demo mode for {filename}: {type(e).__name__}: {e}")
+            logger.error(f"Full error details: {repr(e)}")
             # Fallback to demo mode
             file_id = f"demo_file_{uuid.uuid4()}"
             self._store_file_data(file_id, df)
@@ -104,7 +116,8 @@ class SupabaseService:
                 return pd.DataFrame()
                 
         except Exception as e:
-            logger.error(f"Failed to get current inventory: {e}")
+            logger.error(f"Failed to get current inventory: {type(e).__name__}: {e}")
+            logger.error(f"Full error details: {repr(e)}")
             return pd.DataFrame()
     
     def process_fifo_with_database(self, tenant_id: str, lots_file_id: str, sales_file_id: str) -> Dict:
