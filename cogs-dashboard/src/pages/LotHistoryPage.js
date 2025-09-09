@@ -17,58 +17,36 @@ const LotHistoryPage = () => {
   const loadLotHistory = async () => {
     try {
       setLoading(true);
-      // For now, simulate data - in production this would call your backend
-      const mockLots = [
-        {
-          po_number: 'P-1234',
-          sku: 'ABC-123',
-          received_date: '2024-07-15',
-          original_quantity: 100,
-          remaining_quantity: 15,
-          unit_price: 9.50,
-          status: 'active'
-        },
-        {
-          po_number: 'P-1235',
-          sku: 'ABC-123',
-          received_date: '2024-08-20',
-          original_quantity: 200,
-          remaining_quantity: 200,
-          unit_price: 8.75,
-          status: 'active'
-        },
-        {
-          po_number: 'P-1236',
-          sku: 'XYZ-789',
-          received_date: '2024-09-01',
-          original_quantity: 50,
-          remaining_quantity: 0,
-          unit_price: 12.00,
-          status: 'depleted'
-        },
-        {
-          po_number: 'P-1237',
-          sku: 'DEF-456',
-          received_date: '2024-09-15',
-          original_quantity: 75,
-          remaining_quantity: 45,
-          unit_price: 11.25,
-          status: 'active'
-        },
-        {
-          po_number: 'P-1238',
-          sku: 'GHI-789',
-          received_date: '2024-10-01',
-          original_quantity: 120,
-          remaining_quantity: 0,
-          unit_price: 15.50,
-          status: 'depleted'
+      
+      // Fetch real lot history from API
+      const response = await fetch(`${API_BASE}/api/v1/lots/history?tenant_id=${client.client_id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
         }
-      ];
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch lot history: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      // Transform API data to match UI format
+      const formattedLots = data.lots.map(lot => ({
+        po_number: lot.lot_id || lot.po_number,
+        sku: lot.sku,
+        received_date: lot.received_date,
+        original_quantity: lot.original_quantity,
+        remaining_quantity: lot.remaining_quantity,
+        unit_price: lot.unit_price,
+        freight_cost_per_unit: lot.freight_cost_per_unit || 0,
+        status: lot.remaining_quantity > 0 ? 'active' : 'depleted'
+      }));
 
       // Sort by date descending
-      mockLots.sort((a, b) => new Date(b.received_date) - new Date(a.received_date));
-      setLots(mockLots);
+      formattedLots.sort((a, b) => new Date(b.received_date) - new Date(a.received_date));
+      setLots(formattedLots);
       
     } catch (err) {
       setError(`Failed to load lot history: ${err.message}`);

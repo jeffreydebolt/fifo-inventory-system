@@ -16,7 +16,25 @@ const MonthlyCogsPage = () => {
   const loadMonthlyCogs = async () => {
     try {
       setLoading(true);
-      // For now, simulate data - in production this would call your backend
+      
+      // Fetch real monthly COGS data from API
+      const response = await fetch(`${API_BASE}/api/v1/cogs/monthly?tenant_id=${client.client_id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch monthly COGS: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setMonthlyData(data.monthly_data || []);
+      
+      return;
+      
+      // Remove mock data below
       const mockData = [
         {
           month: 'November 2024',
