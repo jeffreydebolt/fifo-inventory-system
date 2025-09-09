@@ -444,7 +444,7 @@ const UploadPage = () => {
             >
               {processing ? '⏳ Uploading...' : 
                !lotsFile ? 'Select Lots File' :
-               '📦 Upload Lots'}
+               '📦 Upload Lots Only'}
             </button>
 
             <button
@@ -463,7 +463,7 @@ const UploadPage = () => {
             >
               {processing ? '⏳ Uploading...' : 
                !salesFile ? 'Select Sales File' :
-               '💰 Upload Sales'}
+               '💰 Upload Sales Only'}
             </button>
 
             <button
@@ -482,14 +482,14 @@ const UploadPage = () => {
             >
               {processing ? '⏳ Processing...' : 
                !salesFile ? 'Need Sales File' :
-               '🚀 Process FIFO'}
+               '🚀 Process Sales vs Existing Inventory'}
             </button>
             
-            {(!lotsFile || !salesFile) && !processing && (
-              <p style={{ color: '#6b7280', fontSize: '0.875rem', marginTop: '0.5rem' }}>
-                Both files are required for accurate FIFO calculation
+            <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+              <p style={{ color: '#6b7280', fontSize: '0.875rem' }}>
+                Upload lots and sales separately, or process sales against existing inventory
               </p>
-            )}
+            </div>
           </div>
         </div>
 
