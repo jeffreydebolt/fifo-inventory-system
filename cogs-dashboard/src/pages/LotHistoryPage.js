@@ -19,7 +19,7 @@ const LotHistoryPage = () => {
       setLoading(true);
       
       // Fetch real lot history from API
-      const response = await fetch(`${API_BASE}/api/v1/lots/history?tenant_id=${client.client_id}`, {
+      const response = await fetch(`${API_BASE}/api/v1/runs/inventory/${client.client_id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

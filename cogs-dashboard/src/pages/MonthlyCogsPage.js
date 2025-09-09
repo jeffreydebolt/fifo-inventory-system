@@ -18,7 +18,7 @@ const MonthlyCogsPage = () => {
       setLoading(true);
       
       // Fetch real monthly COGS data from API
-      const response = await fetch(`${API_BASE}/api/v1/cogs/monthly?tenant_id=${client.client_id}`, {
+      const response = await fetch(`${API_BASE}/api/v1/runs/monthly-cogs/${client.client_id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

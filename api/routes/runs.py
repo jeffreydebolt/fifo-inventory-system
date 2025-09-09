@@ -87,6 +87,56 @@ async def create_run(
         }
 
 
+@router.get("/inventory/{tenant_id}")
+async def get_inventory(tenant_id: str):
+    """Get current inventory/lot history for a tenant"""
+    try:
+        from api.services.supabase_service import supabase_service
+        
+        # Get current inventory
+        df = supabase_service.get_current_inventory(tenant_id)
+        
+        if df.empty:
+            return {"lots": [], "total": 0}
+        
+        # Convert to list of dicts for JSON response
+        lots = []
+        for _, row in df.iterrows():
+            lots.append({
+                "lot_id": str(row.get("lot_id", "")),
+                "po_number": str(row.get("lot_id", "")),  # Use lot_id as PO number
+                "sku": str(row.get("sku", "")),
+                "received_date": str(row.get("received_date", "")),
+                "original_quantity": int(row.get("original_quantity", 0)),
+                "remaining_quantity": int(row.get("remaining_quantity", 0)),
+                "unit_price": float(row.get("unit_price", 0)),
+                "freight_cost_per_unit": float(row.get("freight_cost_per_unit", 0))
+            })
+        
+        return {
+            "lots": lots,
+            "total": len(lots)
+        }
+        
+    except Exception as e:
+        logger.error(f"Error fetching inventory: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to fetch inventory: {str(e)}")
+
+
+@router.get("/monthly-cogs/{tenant_id}")
+async def get_monthly_cogs(tenant_id: str):
+    """Get monthly COGS summary for a tenant"""
+    try:
+        # For now, return empty data until we implement monthly aggregation
+        return {
+            "monthly_data": [],
+            "tenant_id": tenant_id
+        }
+    except Exception as e:
+        logger.error(f"Error fetching monthly COGS: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Failed to fetch monthly COGS: {str(e)}")
+
+
 @router.get("/{run_id}")
 async def get_run(run_id: str, tenant_id: Optional[str] = Query(None)):
     """Get details of a specific run"""
