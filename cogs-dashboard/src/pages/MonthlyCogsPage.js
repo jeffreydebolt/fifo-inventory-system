@@ -30,63 +30,7 @@ const MonthlyCogsPage = () => {
       }
 
       const data = await response.json();
-      setMonthlyData(data.monthly_data || []);
-      
-      return;
-      
-      // Remove mock data below
-      const mockData = [
-        {
-          month: 'November 2024',
-          sales: 142234,
-          cogs: 48234,
-          cogs_percentage: 34.2,
-          change: 2.1,
-          trend: 'up'
-        },
-        {
-          month: 'October 2024',
-          sales: 135456,
-          cogs: 42386,
-          cogs_percentage: 32.1,
-          change: -0.5,
-          trend: 'down'
-        },
-        {
-          month: 'September 2024',
-          sales: 128900,
-          cogs: 41448,
-          cogs_percentage: 32.6,
-          change: null,
-          trend: 'none'
-        },
-        {
-          month: 'August 2024',
-          sales: 118500,
-          cogs: 38640,
-          cogs_percentage: 32.6,
-          change: 1.2,
-          trend: 'up'
-        },
-        {
-          month: 'July 2024',
-          sales: 112300,
-          cogs: 36142,
-          cogs_percentage: 32.2,
-          change: -0.8,
-          trend: 'down'
-        },
-        {
-          month: 'June 2024',
-          sales: 105800,
-          cogs: 34914,
-          cogs_percentage: 33.0,
-          change: 0.3,
-          trend: 'up'
-        }
-      ];
-
-      setMonthlyCogs(mockData);
+      setMonthlyCogs(data.monthly_data || []);
       
     } catch (err) {
       setError(`Failed to load monthly COGS data: ${err.message}`);
