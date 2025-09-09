@@ -23,10 +23,12 @@ const LotHistoryPage = () => {
       });
 
       if (!response.ok) {
-        throw new Error(`Failed to fetch lot history: ${response.status}`);
+        const errorText = await response.text();
+        throw new Error(`API Error ${response.status}: ${errorText}`);
       }
 
       const data = await response.json();
+      console.log('API Response:', data); // Debug log
       
       // Transform API data to match UI format
       const formattedLots = data.lots.map(lot => ({
@@ -45,6 +47,7 @@ const LotHistoryPage = () => {
       setLots(formattedLots);
       
     } catch (err) {
+      console.error('Lot History Error:', err); // Debug log
       setError(`Failed to load lot history: ${err.message}`);
     } finally {
       setLoading(false);
