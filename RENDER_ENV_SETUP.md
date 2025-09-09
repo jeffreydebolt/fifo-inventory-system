@@ -5,7 +5,7 @@ To fix the Supabase database connection in production, you need to set these env
 ## Required Environment Variables
 
 1. **SUPABASE_URL**: `https://mdjukynmoingazraqyio.supabase.co`
-2. **SUPABASE_ANON_KEY**: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1kanVreW5tb2luZ2F6cmFxeWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDcyNTY4MjIsImV4cCI6MjA2MjgzMjgyMn0.ebRyktrN2kKAsIsrWFI4eWP3YhrbCPTTt54F2CYp06o`
+2. **SUPABASE_SERVICE_ROLE_KEY**: `sb_secret_TpPqDtrx3Gj432OOAHxrWQ_P1goOhku`
 
 ## Steps to Add Environment Variables on Render:
 
@@ -15,7 +15,7 @@ To fix the Supabase database connection in production, you need to set these env
 4. Add the following environment variables:
    - Click "Add Environment Variable"
    - Add SUPABASE_URL with the value above
-   - Add SUPABASE_ANON_KEY with the value above
+   - Add SUPABASE_SERVICE_ROLE_KEY with the value above
 5. Save changes
 6. Render will automatically redeploy your service
 
@@ -35,8 +35,8 @@ The response should look like:
   "environment_variables": {
     "SUPABASE_URL_exists": true,
     "SUPABASE_URL_length": 44,
-    "SUPABASE_ANON_KEY_exists": true,
-    "SUPABASE_ANON_KEY_length": 253
+    "SUPABASE_SERVICE_ROLE_KEY_exists": true,
+    "SUPABASE_SERVICE_ROLE_KEY_length": 43
   },
   "supabase_client_status": true,
   "database_test": {

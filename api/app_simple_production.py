@@ -60,8 +60,8 @@ async def debug_database():
         "environment_variables": {
             "SUPABASE_URL_exists": bool(os.getenv("SUPABASE_URL")),
             "SUPABASE_URL_length": len(os.getenv("SUPABASE_URL", "")),
-            "SUPABASE_ANON_KEY_exists": bool(os.getenv("SUPABASE_ANON_KEY")),
-            "SUPABASE_ANON_KEY_length": len(os.getenv("SUPABASE_ANON_KEY", "")),
+            "SUPABASE_SERVICE_ROLE_KEY_exists": bool(os.getenv("SUPABASE_SERVICE_ROLE_KEY")),
+            "SUPABASE_SERVICE_ROLE_KEY_length": len(os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")),
             "PYTHONPATH": os.getenv("PYTHONPATH", "not set"),
         },
         "supabase_client_status": supabase_service.supabase is not None,

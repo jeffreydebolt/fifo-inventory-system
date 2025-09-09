@@ -25,12 +25,12 @@ class SupabaseService:
     def _init_client(self):
         """Initialize Supabase client"""
         url = os.getenv("SUPABASE_URL")
-        key = os.getenv("SUPABASE_ANON_KEY")
+        key = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
         
         # Add detailed logging for debugging
         logger.info(f"Initializing Supabase client...")
         logger.info(f"SUPABASE_URL found: {bool(url)}, length: {len(url) if url else 0}")
-        logger.info(f"SUPABASE_ANON_KEY found: {bool(key)}, length: {len(key) if key else 0}")
+        logger.info(f"SUPABASE_SERVICE_ROLE_KEY found: {bool(key)}, length: {len(key) if key else 0}")
         
         if not url or not key:
             logger.warning("Supabase credentials not found, using demo mode")

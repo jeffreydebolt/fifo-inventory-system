@@ -114,8 +114,8 @@ async def debug_database():
         "environment_variables": {
             "SUPABASE_URL_exists": bool(os.getenv("SUPABASE_URL")),
             "SUPABASE_URL_length": len(os.getenv("SUPABASE_URL", "")),
-            "SUPABASE_ANON_KEY_exists": bool(os.getenv("SUPABASE_ANON_KEY")),
-            "SUPABASE_ANON_KEY_length": len(os.getenv("SUPABASE_ANON_KEY", "")),
+            "SUPABASE_SERVICE_ROLE_KEY_exists": bool(os.getenv("SUPABASE_SERVICE_ROLE_KEY")),
+            "SUPABASE_SERVICE_ROLE_KEY_length": len(os.getenv("SUPABASE_SERVICE_ROLE_KEY", "")),
             "PYTHONPATH": os.getenv("PYTHONPATH", "not set"),
         },
         "supabase_client_status": supabase_service.supabase is not None,
@@ -205,7 +205,7 @@ async def startup_event():
     else:
         logging.warning("⚠️ Supabase client is NOT initialized - running in demo mode")
         logging.warning(f"SUPABASE_URL exists: {bool(os.getenv('SUPABASE_URL'))}")
-        logging.warning(f"SUPABASE_ANON_KEY exists: {bool(os.getenv('SUPABASE_ANON_KEY'))}")
+        logging.warning(f"SUPABASE_SERVICE_ROLE_KEY exists: {bool(os.getenv('SUPABASE_SERVICE_ROLE_KEY'))}")
     
     logging.info("FIFO COGS API startup complete")
 

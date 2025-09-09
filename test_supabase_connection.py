@@ -8,11 +8,13 @@ load_dotenv()
 
 def test_connection():
     url = os.getenv("SUPABASE_URL")
-    key = os.getenv("SUPABASE_ANON_KEY")
+    key = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
     
     print(f"Testing Supabase connection...")
     print(f"URL: {url[:30]}..." if url else "URL not found")
-    print(f"Key: {key[:30]}..." if key else "Key not found")
+    print(f"Service Role Key: {key[:30]}..." if key else "Service Role Key not found")
+    print(f"Key format check - starts with 'eyJ': {key.startswith('eyJ') if key else False}")
+    print(f"Key format check - starts with 'sb_': {key.startswith('sb_') if key else False}")
     
     if not url or not key:
         print("❌ Missing credentials")
