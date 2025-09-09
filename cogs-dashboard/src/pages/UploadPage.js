@@ -51,39 +51,73 @@ const UploadPage = () => {
     return await response.json();
   };
 
-  const processFiles = async () => {
-    if (!lotsFile || !salesFile) {
-      setError('Please select both purchase lots and sales files');
+  const uploadLots = async () => {
+    if (!lotsFile) {
+      setError('Please select a lots file');
+      return;
+    }
+
+    setProcessing(true);
+    setError('');
+    setUploadProgress({ lots: 'uploading', sales: null });
+
+    try {
+      const lotsResult = await uploadFile(lotsFile, 'lots');
+      setUploadProgress({ lots: 'uploaded', sales: null });
+      setResult({ message: 'Lots file uploaded successfully!', file_id: lotsResult.file_id });
+    } catch (err) {
+      setError(`Upload failed: ${err.message}`);
+      setUploadProgress({ lots: 'error', sales: null });
+    } finally {
+      setProcessing(false);
+    }
+  };
+
+  const uploadSales = async () => {
+    if (!salesFile) {
+      setError('Please select a sales file');
+      return;
+    }
+
+    setProcessing(true);
+    setError('');
+    setUploadProgress({ lots: null, sales: 'uploading' });
+
+    try {
+      const salesResult = await uploadFile(salesFile, 'sales');
+      setUploadProgress({ lots: null, sales: 'uploaded' });
+      setResult({ message: 'Sales file uploaded successfully!', file_id: salesResult.file_id });
+    } catch (err) {
+      setError(`Upload failed: ${err.message}`);
+      setUploadProgress({ lots: null, sales: 'error' });
+    } finally {
+      setProcessing(false);
+    }
+  };
+
+  const processSalesOnly = async () => {
+    if (!salesFile) {
+      setError('Please select a sales file');
       return;
     }
 
     setProcessing(true);
     setError('');
     setResult(null);
-    setUploadProgress({ lots: 'uploading', sales: 'uploading' });
+    setUploadProgress({ lots: null, sales: 'processing' });
 
     try {
-      // Upload lots file
-      setUploadProgress(prev => ({ ...prev, lots: 'uploading' }));
-      const lotsResult = await uploadFile(lotsFile, 'lots');
-      setUploadProgress(prev => ({ ...prev, lots: 'uploaded' }));
-
-      // Upload sales file  
-      setUploadProgress(prev => ({ ...prev, sales: 'uploading' }));
+      // Upload sales file
       const salesResult = await uploadFile(salesFile, 'sales');
-      setUploadProgress(prev => ({ ...prev, sales: 'uploaded' }));
-
-      // Create and execute FIFO run
-      setUploadProgress(prev => ({ ...prev, lots: 'processing', sales: 'processing' }));
       
+      // Process FIFO with existing inventory (no lots file)
       const runResponse = await fetch(`${API_BASE}/api/v1/runs`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           tenant_id: client.client_id,
-          lots_file_id: lotsResult.file_id,
-          sales_file_id: salesResult.file_id,
-          mode: 'production'
+          sales_file_id: salesResult.file_id
+          // Note: no lots_file_id - uses existing inventory
         })
       });
 
@@ -94,19 +128,19 @@ const UploadPage = () => {
 
       const runResult = await runResponse.json();
       
-      setUploadProgress({ lots: 'completed', sales: 'completed' });
+      setUploadProgress({ lots: null, sales: 'completed' });
       setResult({
         run_id: runResult.run_id,
         total_sales_processed: runResult.total_sales_processed,
         total_cogs_calculated: runResult.total_cogs_calculated,
-        lots_uploaded: lotsResult.rows_count,
-        sales_uploaded: salesResult.rows_count
+        processed_skus: runResult.processed_skus,
+        unmatched_sales_count: runResult.unmatched_sales_count || 0,
+        warning: runResult.warning
       });
 
     } catch (err) {
-      console.error('Upload error:', err);
-      setError(`Processing failed: ${err.message || err.toString()}`);
-      setUploadProgress({ lots: null, sales: null });
+      setError(`Processing failed: ${err.message}`);
+      setUploadProgress({ lots: null, sales: 'error' });
     } finally {
       setProcessing(false);
     }
@@ -392,26 +426,63 @@ const UploadPage = () => {
             </div>
           </div>
 
-          {/* Process Button */}
-          <div style={{ textAlign: 'center' }}>
+          {/* Action Buttons */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', textAlign: 'center' }}>
             <button
-              onClick={processFiles}
-              disabled={!lotsFile || !salesFile || processing}
+              onClick={uploadLots}
+              disabled={!lotsFile || processing}
               style={{
-                backgroundColor: (!lotsFile || !salesFile || processing) ? '#9ca3af' : '#10b981',
+                backgroundColor: (!lotsFile || processing) ? '#9ca3af' : '#3b82f6',
                 color: 'white',
-                padding: '1rem 3rem',
+                padding: '1rem 2rem',
                 border: 'none',
                 borderRadius: '8px',
-                cursor: (!lotsFile || !salesFile || processing) ? 'not-allowed' : 'pointer',
-                fontSize: '1.125rem',
-                fontWeight: '600',
-                minWidth: '200px'
+                cursor: (!lotsFile || processing) ? 'not-allowed' : 'pointer',
+                fontSize: '1rem',
+                fontWeight: '600'
               }}
             >
-              {processing ? '⏳ Processing FIFO...' : 
-               (!lotsFile || !salesFile) ? 'Select Both Files' :
-               '🚀 Process FIFO COGS'}
+              {processing ? '⏳ Uploading...' : 
+               !lotsFile ? 'Select Lots File' :
+               '📦 Upload Lots'}
+            </button>
+
+            <button
+              onClick={uploadSales}
+              disabled={!salesFile || processing}
+              style={{
+                backgroundColor: (!salesFile || processing) ? '#9ca3af' : '#f59e0b',
+                color: 'white',
+                padding: '1rem 2rem',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: (!salesFile || processing) ? 'not-allowed' : 'pointer',
+                fontSize: '1rem',
+                fontWeight: '600'
+              }}
+            >
+              {processing ? '⏳ Uploading...' : 
+               !salesFile ? 'Select Sales File' :
+               '💰 Upload Sales'}
+            </button>
+
+            <button
+              onClick={processSalesOnly}
+              disabled={!salesFile || processing}
+              style={{
+                backgroundColor: (!salesFile || processing) ? '#9ca3af' : '#10b981',
+                color: 'white',
+                padding: '1rem 2rem',
+                border: 'none',
+                borderRadius: '8px',
+                cursor: (!salesFile || processing) ? 'not-allowed' : 'pointer',
+                fontSize: '1rem',
+                fontWeight: '600'
+              }}
+            >
+              {processing ? '⏳ Processing...' : 
+               !salesFile ? 'Need Sales File' :
+               '🚀 Process FIFO'}
             </button>
             
             {(!lotsFile || !salesFile) && !processing && (
