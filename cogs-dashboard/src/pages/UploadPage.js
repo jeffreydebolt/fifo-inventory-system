@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useClient } from '../contexts/ClientContext';
-import { API_BASE } from '../lib/config';
+// import { API_BASE } from '../lib/config';
+const API_BASE = 'https://api.firstlot.co';
 
 export default function UploadPage() {
   const { client } = useClient();
