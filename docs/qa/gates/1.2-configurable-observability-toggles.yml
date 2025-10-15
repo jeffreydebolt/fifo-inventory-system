@@ -1,0 +1,34 @@
+schema: 1
+story: "1.2"
+story_title: "configurable-observability-toggles"
+gate: PASS
+status_reason: >-
+  Observability toggles validated; metrics, Sentry, and debug endpoints honor configuration with tests and documentation updated.
+reviewer: "Quinn (Test Architect)"
+updated: "2025-10-15T00:00:00Z"
+quality_score: 100
+trace:
+  ac_covered: [1, 2, 3, 4]
+  ac_gaps: []
+  tests_reviewed:
+    manual:
+      - "pytest tests/unit/test_observability_toggles.py"
+nfr_validation:
+  security:
+    status: PASS
+    notes: "Toggle allows disabling Sentry where sensitive environments require it; no auth changes introduced."
+  performance:
+    status: PASS
+    notes: "Prometheus instrumentation can be disabled to remove histogram/counter overhead when needed."
+  reliability:
+    status: PASS
+    notes: "Health endpoints remain available; startup logs reveal toggle state for debugging."
+  maintainability:
+    status: PASS
+    notes: "Configuration centralized in api/settings.py with clear documentation."
+recommendations:
+  immediate: []
+  future:
+    - action: "Refine tests to use an isolated Prometheus CollectorRegistry rather than touching private globals."
+      refs: ["tests/unit/test_observability_toggles.py"]
+      suggested_owner: dev

@@ -7,7 +7,7 @@
 - Primary datastore is Supabase Postgres. When credentials are missing, many pathways fall back to “demo mode” with in-memory caches or CSVs.
 
 ## Runtime Contexts
-- **API Service (`api/`)** – FastAPI apps (`app.py`, `app_simple.py`, `app_simple_production.py`) expose upload, run-execution, and diagnostics endpoints. Routes call lightweight services in `api/services/`.
+- **API Service (`api/`)** – A single canonical FastAPI application (`api/app.py`) exposes upload, run-execution, and diagnostics endpoints. Historic entrypoints (`app_simple*`, `app_minimal`) now delegate to this module for backward compatibility. Routes call lightweight services in `api/services/`.
 - **CLI (`app/cli.py`)** – Orchestrates end-to-end COGS runs and rollbacks from the shell, producing CSV/TXT artefacts and relying on `JournaledCalculator`.
 - **Automation Scripts (`root/*.py`, `services/*.py`)** – Large collection of one-off tools for data migration, validation, and debugging. Many bypass shared services and talk directly to Supabase or local CSVs.
 - **Upload Pipeline (`services/intelligent_upload_pipeline.py`)** – Composes format detection, validation, previews, and quarantine handling for messy CSV imports.
@@ -40,13 +40,13 @@
 - Safe adapters capture detailed error categories, store recovery artefacts on disk (`snapshots/`, output dirs).
 - Numerous manual scripts exist for migrations, cleanup, and anomaly detection (e.g., `check_*`, `rollback_*`, `debug_*`). They vary in safety; many expect direct environment access.
 - Health endpoints: `/health`, `/healthz`, `/debug/database`, `/metrics`. Database diagnostics reinitialize Supabase client on demand.
+- Observability toggles (loaded via `api/settings.py`) allow environments to disable Prometheus metrics (`ENABLE_PROMETHEUS`), Sentry initialization (`ENABLE_SENTRY` in combination with `SENTRY_DSN`), and debug endpoints such as `/debug/database` (`ENABLE_DEBUG_ENDPOINTS`). All default to enabled to preserve production behavior.
 
 ## Technical Debt & Known Issues
-- **Duplication** – Multiple FastAPI entrypoints (`app.py`, `app_simple.py`, `app_minimal.py`, `app_simple_production.py`) with overlapping logic and inconsistent middleware.
+- **Legacy aliases** – Deprecated FastAPI entrypoints still exist as thin shims around `api/app.py`; downstream references should be updated so the aliases can eventually be removed.
 - **Persistence gaps** – `JournaledCalculator` expects a DB adapter but defaults to `None`; API route fallbacks store uploads in process memory, losing data after restart.
 - **Mixed calculation paths** – CLI uses full journaled engine while API route uses simplified pandas-based FIFO; parity is not guaranteed.
 - **Dependency drift** – `click` and other runtime deps used in code but missing from `requirements.txt`. Several scripts assume packages beyond base requirements (e.g., `supabase_adapter_safe` uses JSON, pandas, interactive prompts).
 - **Testing coverage** – Unit tests cover core FIFO logic, but API routes, Supabase integrations, and safe processors lack automated coverage.
 - **Archived artefacts** – Large backups (`cogs-dashboard_PRODUCTION_BACKUP_*`, `fifo_production_outputs_backup_*`) live in repo and complicate navigation.
 - **Operational risk** – Production safeguards rely on manual confirmation prompts and local snapshots; there is no centralized audit store for recovery outputs.
-
