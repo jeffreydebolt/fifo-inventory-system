@@ -36,10 +36,18 @@ export SUPABASE_URL="your_supabase_project_url"
 export SUPABASE_SERVICE_ROLE_KEY="your_service_role_key"
 
 # Run the API server
-cd api/
-python app.py
+uvicorn api.app:app --reload --host 0.0.0.0 --port 8000
 # Server runs on http://localhost:8000
 ```
+
+### 1.1 Smoke Test
+
+```bash
+pytest tests/integration/test_launchers_smoke.py
+```
+
+This verifies the canonical FastAPI entrypoint exposes `/`, `/health`, `/healthz`, and `/metrics`.
+Add this test (or `pytest tests/integration/test_launchers_smoke.py`) to your CI pipeline to catch regressions before deploy.
 
 ### 2. Database Setup
 
@@ -98,7 +106,7 @@ services:
     name: fifo-cogs-api
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "python api/app.py"
+    startCommand: "uvicorn api.app:app --host 0.0.0.0 --port ${PORT}"
     envVars:
       - key: SUPABASE_URL
         value: your_supabase_project_url
