@@ -1,29 +1,23 @@
 """
-Ultra minimal FastAPI for Railway testing.
+Deprecated ultra-minimal alias kept for compatibility with older deployments.
+All new usage should import :mod:`api.app` instead.
 """
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 import os
+import warnings
 
-app = FastAPI()
+from .app import app  # re-export canonical application
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+warnings.warn(
+    "api.app_minimal is deprecated; use api.app instead.",
+    DeprecationWarning,
+    stacklevel=2,
 )
 
-@app.get("/")
-def root():
-    return {"message": "FirstLot API is running"}
+__all__ = ["app"]
 
-@app.get("/health")
-def health():
-    return {"status": "healthy"}
 
 if __name__ == "__main__":
     import uvicorn
+
     port = int(os.getenv("PORT", "8000"))
-    uvicorn.run("api.app_minimal:app", host="0.0.0.0", port=port)
+    uvicorn.run("api.app:app", host="0.0.0.0", port=port, log_level="info")

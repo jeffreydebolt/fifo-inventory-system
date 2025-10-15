@@ -2,7 +2,7 @@
 
 ## Root
 - `app/` – Click CLI entrypoint for executing FIFO runs and rollbacks.
-- `api/` – FastAPI apps (`app.py`, `app_simple_production.py`, etc.), routers (`routes/`), and API-specific services/models.
+- `api/` – Canonical FastAPI application (`app.py`), legacy aliases (`app_simple*`, `app_minimal`) that now import the canonical app, configuration helpers (`settings.py`), routers (`routes/`), and API-specific services/models.
 - `core/` – Domain models, FIFO engine, validators, and DB DTOs.
 - `services/` – Application services (journaled calculator, tenant isolation, intelligent upload pipeline, safe processors, Supabase adapters).
 - `infra/` – Database migrations and deployment helpers.

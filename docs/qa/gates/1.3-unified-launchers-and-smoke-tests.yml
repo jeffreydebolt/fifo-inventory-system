@@ -1,0 +1,34 @@
+schema: 1
+story: "1.3"
+story_title: "unified-launchers-and-smoke-tests"
+gate: PASS
+status_reason: >-
+  All launch paths now invoke uvicorn api.app:app; smoke tests and documentation confirm unified runtime behaviour.
+reviewer: "Quinn (Test Architect)"
+updated: "2025-10-15T00:00:00Z"
+quality_score: 100
+trace:
+  ac_covered: [1, 2, 3, 4]
+  ac_gaps: []
+  tests_reviewed:
+    integration: ["pytest tests/integration/test_launchers_smoke.py"]
+    unit: ["pytest tests/unit/test_observability_toggles.py"]
+nfr_validation:
+  security:
+    status: PASS
+    notes: "No auth changes; documentation clarifies runtime command."
+  performance:
+    status: PASS
+    notes: "Unified entrypoint avoids redundant app initialization paths."
+  reliability:
+    status: PASS
+    notes: "Smoke test ensures health endpoints respond; launchers share consistent command."
+  maintainability:
+    status: PASS
+    notes: "Single entrypoint reduces drift; docs/tests guide future deploys."
+recommendations:
+  immediate: []
+  future:
+    - action: "Add smoke coverage for toggle-off scenarios (e.g., metrics disabled) to ensure consistent behaviour under configuration changes."
+      refs: ["tests/integration/test_launchers_smoke.py"]
+      suggested_owner: dev
