@@ -1,0 +1,2 @@
+sale_id,sku,sale_date,requested_quantity,allocated_quantity,shortfall_quantity,available_quantity,reason,message
+SALE-002,SKU-A,2026-05-20T00:00:00,7,6,1,6,INSUFFICIENT_INVENTORY,"Insufficient inventory for SKU SKU-A. Needed: 7, Available: 6"
