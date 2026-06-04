@@ -9,6 +9,7 @@ from datetime import datetime
 from pathlib import Path
 
 from core.csv_ingest import load_movement_csv, load_purchase_lots_csv
+from core.failed_sku_workflow import assert_queue_clear, build_fix_plan, load_failed_sku_queue
 from core.month_history import append_month_close_record, build_rollback_plan, load_month_history
 from core.output_files import write_fifo_report
 from core.outputs import run_fifo_report
@@ -68,6 +69,30 @@ def _parse_args() -> argparse.Namespace:
     rollback_parser.add_argument("--period", required=True, help="Close period (YYYY-MM)")
     rollback_parser.add_argument("--generated-at", default="2026-06-03T23:00:00")
     rollback_parser.add_argument("--note", default="")
+
+    failed_parser = subparsers.add_parser(
+        "failed-skus",
+        help="Review failed SKU queue rows or assert a local fix/rerun cleared them",
+    )
+    failed_parser.add_argument("--out", required=True, help="Output directory containing failed_sku_queue.json/csv")
+    failed_parser.add_argument("--period", help="Optional period filter (YYYY-MM)")
+    failed_parser.add_argument("--sku", help="Optional SKU filter")
+    failed_parser.add_argument(
+        "--assert-clear",
+        action="store_true",
+        help="Exit non-zero if matching failed SKU queue rows remain",
+    )
+
+    fix_parser = subparsers.add_parser(
+        "fix-plan",
+        help="Print a read-only failed-SKU fix/rerun plan; performs no mutations",
+    )
+    fix_parser.add_argument("--out", required=True, help="Output directory containing failed_sku_queue.json/csv")
+    fix_parser.add_argument("--period", help="Optional period filter (YYYY-MM)")
+    fix_parser.add_argument("--sku", help="Optional SKU filter")
+    fix_parser.add_argument("--lots", help="Optional purchase lots CSV path to include in rerun args")
+    fix_parser.add_argument("--movement", help="Optional movement/sales CSV path to include in rerun args")
+    fix_parser.add_argument("--note", default="")
     return parser.parse_args()
 
 
@@ -84,6 +109,31 @@ def main() -> int:
             args.out,
             args.period,
             recorded_at=generated_at,
+            note=args.note,
+        )
+        print(json.dumps(plan, indent=2, sort_keys=True))
+        return 0
+
+    if args.command == "failed-skus":
+        if args.assert_clear:
+            result = assert_queue_clear(args.out, period=args.period, sku=args.sku)
+            print(json.dumps(result, indent=2, sort_keys=True))
+            return 0 if result["clear"] else 1
+        rows = load_failed_sku_queue(args.out)
+        if args.period:
+            rows = [record for record in rows if record.period == args.period]
+        if args.sku:
+            rows = [record for record in rows if record.sku == args.sku]
+        print(json.dumps([record.__dict__ for record in rows], indent=2, sort_keys=True))
+        return 0
+
+    if args.command == "fix-plan":
+        plan = build_fix_plan(
+            args.out,
+            period=args.period,
+            sku=args.sku,
+            lots_path=args.lots,
+            movement_path=args.movement,
             note=args.note,
         )
         print(json.dumps(plan, indent=2, sort_keys=True))

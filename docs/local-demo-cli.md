@@ -94,6 +94,40 @@ Safety behavior for month history:
 - `python3 -m app.local_cli history --out /tmp/firstlot-demo` prints the local history,
 - `python3 -m app.local_cli rollback-plan --out /tmp/firstlot-demo --period 2026-05` prints a read-only operator plan and performs no file deletes, restores, or live-data mutations.
 
+## Failed-SKU fix/rerun queue workflow
+
+After a run writes `failed_sku_queue.csv/json`, operators can review the local
+queue, generate a non-mutating fix plan, and gate completion on a clear queue:
+
+```bash
+python3 -m app.local_cli failed-skus \
+  --out /tmp/firstlot-demo \
+  --period 2026-05
+
+python3 -m app.local_cli fix-plan \
+  --out /tmp/firstlot-demo \
+  --period 2026-05 \
+  --lots tests/fixtures/firstlot_demo/purchase_lots.csv \
+  --movement tests/fixtures/firstlot_demo/movement.csv \
+  --note "add missing local lot and rerun"
+```
+
+The fix plan is JSON with `read_only: true`, `mutations_performed: []`, affected
+SKUs/periods, minimum additional available units needed, and suggested rerun
+arguments. Once the local purchase lots or movement CSV has been corrected, rerun
+the close with `--reopen` or `--append-prior-month`, then assert the queue is
+clear:
+
+```bash
+python3 -m app.local_cli failed-skus \
+  --out /tmp/firstlot-demo \
+  --period 2026-05 \
+  --assert-clear
+```
+
+`--assert-clear` exits non-zero while matching failed-SKU rows remain, making it
+usable in a local smoke check or review script without touching live data.
+
 ## Safety boundary
 
 Use this CLI for synthetic fixtures and local/demo outputs only. Do not wire it to live Supabase or Storage Standard data without a separate reviewed adapter and explicit dry-run/commit split.
