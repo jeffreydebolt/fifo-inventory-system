@@ -1,0 +1,71 @@
+name: FirstLot demo safety check
+
+on:
+  pull_request:
+    paths:
+      - 'core/**'
+      - 'app/local_cli.py'
+      - 'scripts/regenerate_firstlot_demo_artifacts.py'
+      - 'scripts/check_firstlot_demo.py'
+      - 'tests/fixtures/firstlot_demo/**'
+      - 'tests/unit/test_firstlot_demo_outputs.py'
+      - 'tests/unit/test_local_csv_cli.py'
+      - 'cogs-dashboard/src/**'
+      - 'cogs-dashboard/package*.json'
+      - 'Makefile'
+      - '.github/workflows/firstlot-demo.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'core/**'
+      - 'app/local_cli.py'
+      - 'scripts/regenerate_firstlot_demo_artifacts.py'
+      - 'scripts/check_firstlot_demo.py'
+      - 'tests/fixtures/firstlot_demo/**'
+      - 'tests/unit/test_firstlot_demo_outputs.py'
+      - 'tests/unit/test_local_csv_cli.py'
+      - 'cogs-dashboard/src/**'
+      - 'cogs-dashboard/package*.json'
+      - 'Makefile'
+      - '.github/workflows/firstlot-demo.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  CI: 'true'
+  FIRSTLOT_DEMO_MODE: 'fixture-only'
+
+jobs:
+  firstlot-demo:
+    name: Fixture-backed local demo
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: cogs-dashboard/package-lock.json
+
+      - name: Install dashboard dependencies
+        working-directory: cogs-dashboard
+        run: npm ci --no-audit --no-fund
+
+      - name: Run safe local demo check
+        run: make check-firstlot-demo
+
+      - name: Build dashboard
+        working-directory: cogs-dashboard
+        run: npm run build
