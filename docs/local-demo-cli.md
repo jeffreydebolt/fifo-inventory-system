@@ -32,6 +32,7 @@ Expected artifacts:
 - `remaining_layers.csv` and `remaining_layers.json`
 - `audit_trail.csv` and `audit_trail.json`
 - `shortfalls.csv` and `shortfalls.json`
+- `failed_sku_queue.csv` and `failed_sku_queue.json`
 
 The fixture demonstrates:
 
@@ -39,6 +40,7 @@ The fixture demonstrates:
 - remaining layer output for `SKU-B`,
 - sale-to-lot audit rows,
 - an explicit partial shortfall for `SALE-002`,
+- a SKU/month failed-SKU queue row for fix/rerun triage,
 - deterministic report timestamps via `--generated-at`.
 
 ## Reproducible reviewer check
@@ -67,6 +69,30 @@ Optional flags:
 - `--out <dir>` writes regenerated artifacts to a chosen local directory,
 - `--keep-out` keeps the temporary regenerated artifacts for inspection,
 - `--skip-dashboard` runs only the fixture artifact regeneration check.
+
+## Local month-close history, reopen, append, and rollback-plan workflow
+
+The local CLI can also append an audit/history row for fixture-backed monthly close
+runs. This stays local-file only and writes `month_history.csv` plus
+`month_history.json` in the chosen output directory:
+
+```bash
+python3 -m app.local_cli run \
+  --lots tests/fixtures/firstlot_demo/purchase_lots.csv \
+  --movement tests/fixtures/firstlot_demo/movement.csv \
+  --out /tmp/firstlot-demo \
+  --generated-at 2026-06-03T23:00:00 \
+  --period 2026-05 \
+  --note "initial May close"
+```
+
+Safety behavior for month history:
+
+- a second run for the same `--period` is blocked by default,
+- use `--reopen --note "..."` for an intentional fix/rerun of that period,
+- use `--append-prior-month --note "..."` for an intentional append/reclose of a prior month,
+- `python3 -m app.local_cli history --out /tmp/firstlot-demo` prints the local history,
+- `python3 -m app.local_cli rollback-plan --out /tmp/firstlot-demo --period 2026-05` prints a read-only operator plan and performs no file deletes, restores, or live-data mutations.
 
 ## Safety boundary
 

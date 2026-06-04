@@ -80,6 +80,8 @@ function expectCoreMvpScreen() {
   expect(container.textContent).toContain('2026-04');
   expect(container.textContent).toContain('Run version');
   expect(container.textContent).toContain('Failed SKU queue');
+  expect(container.textContent).toContain('SKU / month');
+  expect(container.textContent).toContain('NEEDS FIX RERUN');
   expect(container.textContent).toContain('Sales quantity exceeds available FIFO lots.');
   expect(container.textContent).toContain('Upload corrected purchase lots CSV, validate, then rerun the full month.');
   expect(container.textContent).toContain('Fix, rerun, append, and rollback audit');

@@ -133,6 +133,28 @@ def test_demo_fixture_shortfalls_match_expected_csv():
     ]
 
 
+def test_demo_fixture_failed_sku_queue_matches_expected_csv():
+    report = _report()
+
+    actual = [dataclass_row_dict(row) for row in report.failed_sku_queue]
+
+    assert actual == [
+        {
+            "sku": row["sku"],
+            "period": row["period"],
+            "failure_count": int(row["failure_count"]),
+            "first_sale_date": row["first_sale_date"],
+            "last_sale_date": row["last_sale_date"],
+            "requested_quantity": int(row["requested_quantity"]),
+            "allocated_quantity": int(row["allocated_quantity"]),
+            "shortfall_quantity": int(row["shortfall_quantity"]),
+            "reasons": row["reasons"],
+            "status": row["status"],
+        }
+        for row in _read_csv("expected_failed_sku_queue.csv")
+    ]
+
+
 def test_demo_fixture_generated_at_is_deterministic():
     report = _report()
 

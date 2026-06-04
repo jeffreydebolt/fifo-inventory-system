@@ -1,0 +1,2 @@
+sku,period,failure_count,first_sale_date,last_sale_date,requested_quantity,allocated_quantity,shortfall_quantity,reasons,status
+SKU-A,2026-05,1,2026-05-20T00:00:00,2026-05-20T00:00:00,7,6,1,INSUFFICIENT_INVENTORY,NEEDS_FIX_RERUN

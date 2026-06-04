@@ -25,6 +25,8 @@ EXPECTED_ARTIFACTS = (
     "audit_trail.json",
     "shortfalls.csv",
     "shortfalls.json",
+    "failed_sku_queue.csv",
+    "failed_sku_queue.json",
 )
 
 

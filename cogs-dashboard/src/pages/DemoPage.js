@@ -168,7 +168,7 @@ function issueLabel(row) {
 }
 
 function FailedSkuQueue() {
-  if (demoRun.shortfalls.length === 0) {
+  if (demoRun.failedSkuQueue.length === 0) {
     return <p style={{ margin: 0, color: '#166534' }}>No failed SKUs in this fixture run.</p>;
   }
 
@@ -177,21 +177,35 @@ function FailedSkuQueue() {
       <table style={tableStyle}>
         <thead>
           <tr>
-            {['SKU', 'Issue', 'Needed', 'Suggested fix', 'Fix/rerun status'].map((header) => (
+            {['SKU / month', 'Issue', 'Requested / allocated / short', 'Suggested fix', 'Fix/rerun status'].map((header) => (
               <th key={header} style={{ ...cellStyle, background: '#fff7ed', color: '#9a3412', fontWeight: 900 }}>{header}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {demoRun.shortfalls.map((row) => (
-            <tr key={`${row.sale_id}-${row.sku}`}>
-              <td style={cellStyle}><strong>{row.sku}</strong><br />Sale {row.sale_id}</td>
-              <td style={cellStyle}>{issueLabel(row)}</td>
-              <td style={cellStyle}>{number(row.requested_quantity)} sold; short {number(row.shortfall_quantity)}</td>
-              <td style={cellStyle}>Upload corrected purchase lots CSV, validate, then rerun the full month.</td>
-              <td style={cellStyle}><Pill tone="amber">Queued for fixture rerun</Pill></td>
-            </tr>
-          ))}
+          {demoRun.failedSkuQueue.map((queueRow) => {
+            const saleIssues = demoRun.shortfalls.filter((shortfall) => (
+              shortfall.sku === queueRow.sku && shortfall.sale_date.startsWith(queueRow.period)
+            ));
+            return (
+              <tr key={`${queueRow.period}-${queueRow.sku}`}>
+                <td style={cellStyle}>
+                  <strong>{queueRow.sku}</strong><br />
+                  {queueRow.period} · {number(queueRow.failure_count)} sale issue(s)
+                </td>
+                <td style={cellStyle}>
+                  {saleIssues.map((issue) => (
+                    <div key={issue.sale_id}>{issue.sale_id}: {issueLabel(issue)}</div>
+                  ))}
+                </td>
+                <td style={cellStyle}>
+                  {number(queueRow.requested_quantity)} requested; {number(queueRow.allocated_quantity)} allocated; short {number(queueRow.shortfall_quantity)}
+                </td>
+                <td style={cellStyle}>Upload corrected purchase lots CSV, validate, then rerun the full month.</td>
+                <td style={cellStyle}><Pill tone="amber">{queueRow.status.replaceAll('_', ' ')}</Pill></td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
@@ -330,7 +344,7 @@ export default function DemoPage() {
             <div><strong>Total COGS:</strong> {money(totalCogs)}</div>
             <div><strong>Units sold:</strong> {number(unitsSold)}</div>
             <div><strong>SKUs processed:</strong> {number(rows.length)}</div>
-            <div><strong>Failed SKUs:</strong> {number(demoRun.shortfalls.length)}</div>
+            <div><strong>Failed SKUs:</strong> {number(demoRun.failedSkuQueue.length)}</div>
           </div>
         </section>
 
