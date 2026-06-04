@@ -6,6 +6,8 @@ import shortfalls from './demo-output/firstlot_demo/shortfalls.json';
 export const demoRun = {
   generatedAt: '2026-06-03T23:00:00',
   safetyMode: 'Local/demo mode — fixture data only, no live DB writes',
+  month: '2026-05',
+  runVersion: 'v1',
   inputs: {
     purchaseLots: 'tests/fixtures/firstlot_demo/purchase_lots.csv',
     movement: 'tests/fixtures/firstlot_demo/movement.csv',
@@ -18,3 +20,50 @@ export const demoRun = {
   auditTrail,
   shortfalls
 };
+
+export const monthHistory = [
+  {
+    month: '2026-05',
+    status: 'Needs fix',
+    runVersion: 'v1',
+    cogsTotal: 250,
+    failedSkus: 1,
+    lastRun: 'Jun 3, 11:00 PM',
+    note: 'Fixture run has one shortfall queued for fix/rerun.'
+  },
+  {
+    month: '2026-04',
+    status: 'Complete',
+    runVersion: 'v2',
+    cogsTotal: 1840,
+    failedSkus: 0,
+    lastRun: 'May 7, 4:10 PM',
+    note: 'Prior fixture month completed after corrected lots append.'
+  },
+  {
+    month: '2026-03',
+    status: 'Reopened',
+    runVersion: 'v1',
+    cogsTotal: null,
+    failedSkus: null,
+    lastRun: 'Apr 2, 8:14 PM',
+    note: 'Read-only rollback/reopen example; no rollback action is wired.'
+  }
+];
+
+export const runVersions = [
+  {
+    month: '2026-04',
+    version: 'v1',
+    status: 'Needs fix',
+    summary: 'Original run had missing purchase lots for 3 fixture SKUs.',
+    delta: 'Baseline'
+  },
+  {
+    month: '2026-04',
+    version: 'v2',
+    status: 'Complete',
+    summary: 'Corrected lots CSV appended, then full month rerun completed.',
+    delta: '+$214.00 COGS across corrected fixture SKUs'
+  }
+];

@@ -68,6 +68,7 @@ function expectCoreMvpScreen() {
   expect(container.textContent).toContain('Shipping Cost');
   expect(container.textContent).toContain('Total Cost');
   expect(container.textContent).toContain('Average Cost');
+  expect(container.textContent).toContain('Status');
   expect(container.textContent).toContain('SKU-A');
   expect(container.textContent).toContain('SKU-B');
   expect(container.textContent).toContain('$14.00');
@@ -75,6 +76,16 @@ function expectCoreMvpScreen() {
   expect(container.textContent).toContain('$210.00');
   expect(container.textContent).toContain('$40.00');
   expect(container.textContent).toContain('Download results CSV');
+  expect(container.textContent).toContain('Month history');
+  expect(container.textContent).toContain('2026-04');
+  expect(container.textContent).toContain('Run version');
+  expect(container.textContent).toContain('Failed SKU queue');
+  expect(container.textContent).toContain('Sales quantity exceeds available FIFO lots.');
+  expect(container.textContent).toContain('Upload corrected purchase lots CSV, validate, then rerun the full month.');
+  expect(container.textContent).toContain('Fix, rerun, append, and rollback audit');
+  expect(container.textContent).toContain('Append/reopen version example');
+  expect(container.textContent).toContain('Rollback audit / read-only');
+  expect(container.textContent).toContain('does not execute rollback scripts');
   expect(container.textContent).toContain('Safe check: make check-firstlot-demo');
 
   for (const term of overcomplicatedTerms) {
