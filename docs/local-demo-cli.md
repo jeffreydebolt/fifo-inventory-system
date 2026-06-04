@@ -41,6 +41,33 @@ The fixture demonstrates:
 - an explicit partial shortfall for `SALE-002`,
 - deterministic report timestamps via `--generated-at`.
 
+## Reproducible reviewer check
+
+Use this command before changing the local demo path or dashboard demo view:
+
+```bash
+make check-firstlot-demo
+```
+
+Equivalent direct command:
+
+```bash
+python3 scripts/check_firstlot_demo.py
+```
+
+The check is intentionally safe and reproducible:
+
+- regenerates the FirstLot CSV/JSON artifacts into a temporary directory with `python3 scripts/regenerate_firstlot_demo_artifacts.py --out <tmp>`,
+- verifies the expected artifact files exist and JSON parses,
+- runs the dashboard smoke test for `/demo` with `npm test -- --runTestsByPath src/App.test.js --watchAll=false`,
+- avoids `.env`, Supabase, API imports, production services, and live database writes.
+
+Optional flags:
+
+- `--out <dir>` writes regenerated artifacts to a chosen local directory,
+- `--keep-out` keeps the temporary regenerated artifacts for inspection,
+- `--skip-dashboard` runs only the fixture artifact regeneration check.
+
 ## Safety boundary
 
 Use this CLI for synthetic fixtures and local/demo outputs only. Do not wire it to live Supabase or Storage Standard data without a separate reviewed adapter and explicit dry-run/commit split.

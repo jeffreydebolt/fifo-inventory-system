@@ -108,6 +108,7 @@ export default function DemoPage() {
             <li>Movement/sales: <code>{demoRun.inputs.movement}</code></li>
             <li>Checked-in output artifacts: <code>{demoRun.inputs.artifactDirectory}</code></li>
             <li>Regenerate command: <code>{demoRun.inputs.regenerateCommand}</code></li>
+            <li>Safe reviewer check: <code>{demoRun.inputs.safeCheckCommand}</code></li>
           </ul>
         </div>
 
