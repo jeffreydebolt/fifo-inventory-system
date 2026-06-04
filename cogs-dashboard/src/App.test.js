@@ -42,7 +42,13 @@ test('renders /demo as a workflow product preview with checked-in local FIFO art
   expect(container.textContent).toContain('Local/demo mode');
   expect(container.textContent).toContain('setup/start → sample data or upload/map mock → run/review exceptions → results summary → drilldowns → export packet');
   expect(container.textContent).toContain('Mapping review');
+  expect(container.textContent).toContain('Needs operator review');
   expect(container.textContent).toContain('Exception-first review');
+  expect(container.textContent).toContain('Resolve insufficient inventory before close');
+  expect(container.textContent).toContain('Inventory tracking mock');
+  expect(container.textContent).toContain('On-hand, inbound, adjustments, and valuation snapshots');
+  expect(container.textContent).toContain('Demand-planning mock');
+  expect(container.textContent).toContain('Velocity, lead time, reorder guidance, and margin impact');
   expect(container.textContent).toContain('Results summary');
   expect(container.textContent).toContain('Export packet preview');
   expect(container.textContent).toContain('Drilldown tables');
@@ -52,6 +58,22 @@ test('renders /demo as a workflow product preview with checked-in local FIFO art
   expect(container.textContent).toContain('SKU-A');
   expect(container.textContent).toContain('LOT-B-001');
   expect(container.textContent).toContain('INSUFFICIENT_INVENTORY');
+  expect(global.fetch).not.toHaveBeenCalled();
+});
+
+test('toggles between sample-data and upload-mock intake states without network calls', () => {
+  renderAt('/demo');
+
+  expect(container.textContent).toContain('Sample FIFO packet is ready to run');
+  const uploadMockButton = Array.from(container.querySelectorAll('button')).find((button) => button.textContent === 'Upload mock');
+
+  act(() => {
+    uploadMockButton.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+  });
+
+  expect(container.textContent).toContain('Upload lane is mocked and does not send files');
+  expect(container.textContent).toContain('File pickers, production APIs, and live storage writes stay disabled');
+  expect(container.textContent).toContain('Review mappings before enabling real uploads');
   expect(global.fetch).not.toHaveBeenCalled();
 });
 

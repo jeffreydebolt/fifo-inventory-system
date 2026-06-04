@@ -1,5 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { demoRun } from '../demoData';
+import {
+  columnMappings,
+  demandPlanning,
+  exceptionGuidance,
+  intakeModes,
+  inventoryTracking,
+  valuationSnapshots
+} from '../workflowMocks';
 
 const page = {
   minHeight: '100vh',
@@ -179,12 +187,6 @@ function DownloadLink({ sectionName, rows, label }) {
 }
 
 function MappingReview() {
-  const mappings = [
-    ['Purchase lots', 'lot_id, sku, received_date, quantity, unit_cost', 'Ready'],
-    ['Sales/movement', 'sale_id, sku, sale_date, quantity', 'Ready'],
-    ['Landed cost inputs', 'freight/tariff/duty adjustments', 'Mock optional lane'],
-    ['SKU mapping', 'source SKU → FirstLot SKU', 'Static review']
-  ];
   return (
     <section style={{ ...softCard, padding: '1.25rem' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem', marginBottom: '1rem' }}>
@@ -195,11 +197,15 @@ function MappingReview() {
         <Pill tone="green">All required demo columns present</Pill>
       </div>
       <div style={grid}>
-        {mappings.map(([name, columns, status]) => (
-          <div key={name} style={{ border: '1px solid #e5e7eb', borderRadius: '0.9rem', padding: '0.9rem', background: '#f8fafc' }}>
-            <strong>{name}</strong>
-            <p style={{ margin: '0.45rem 0', color: '#475569' }}>{columns}</p>
-            <Pill tone={status === 'Ready' ? 'green' : 'amber'}>{status}</Pill>
+        {columnMappings.map((mapping) => (
+          <div key={mapping.source} style={{ border: '1px solid #e5e7eb', borderRadius: '0.9rem', padding: '0.9rem', background: '#f8fafc' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: '0.75rem', alignItems: 'center' }}>
+              <strong>{mapping.source}</strong>
+              <Pill tone={mapping.tone}>{mapping.required ? 'Required' : 'Optional'}</Pill>
+            </div>
+            <p style={{ margin: '0.45rem 0', color: '#475569' }}>{mapping.matched.join(', ')}</p>
+            <p style={{ margin: '0 0 0.65rem', color: '#64748b', lineHeight: 1.4 }}>{mapping.reviewNote}</p>
+            <Pill tone={mapping.tone}>{mapping.status}</Pill>
           </div>
         ))}
       </div>
@@ -207,7 +213,118 @@ function MappingReview() {
   );
 }
 
+function IntakeModeReview({ mode, onModeChange }) {
+  const active = intakeModes[mode];
+  return (
+    <section style={{ ...softCard, padding: '1.25rem', marginBottom: '1.25rem', borderColor: mode === 'sample' ? '#bbf7d0' : '#fde68a' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+        <div>
+          <Pill tone={active.tone}>{active.status}</Pill>
+          <h2 style={{ margin: '0.75rem 0 0.35rem' }}>Intake mode: {active.label}</h2>
+          <p style={{ margin: 0, color: '#4b5563', lineHeight: 1.5 }}>{active.body}</p>
+        </div>
+        <div style={{ display: 'flex', gap: '0.65rem', alignItems: 'start', flexWrap: 'wrap' }}>
+          {Object.values(intakeModes).map((option) => (
+            <button
+              key={option.key}
+              type="button"
+              onClick={() => onModeChange(option.key)}
+              style={{
+                border: option.key === mode ? '2px solid #111827' : '1px solid #cbd5e1',
+                background: option.key === mode ? '#111827' : 'white',
+                color: option.key === mode ? 'white' : '#334155',
+                borderRadius: '0.85rem',
+                padding: '0.75rem 0.9rem',
+                fontWeight: 900,
+                cursor: 'pointer'
+              }}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '1rem', padding: '1rem' }}>
+        <strong>{active.headline}</strong>
+        <p style={{ margin: '0.45rem 0 0', color: '#475569' }}>Next action: {active.nextAction}</p>
+      </div>
+    </section>
+  );
+}
+
+function ActionGuidance() {
+  return (
+    <div style={{ display: 'grid', gap: '0.85rem', marginTop: '1rem' }}>
+      {exceptionGuidance.map((item) => (
+        <div key={item.title} style={{ display: 'grid', gridTemplateColumns: 'minmax(130px, 0.35fr) 1fr', gap: '0.8rem', border: '1px solid #e5e7eb', borderRadius: '1rem', padding: '0.95rem', background: '#fff' }}>
+          <div>
+            <Pill tone={item.tone}>{item.severity}</Pill>
+            <div style={{ color: '#64748b', marginTop: '0.5rem', fontWeight: 800 }}>{item.owner}</div>
+          </div>
+          <div>
+            <strong>{item.title}</strong>
+            <p style={{ margin: '0.4rem 0 0', color: '#475569', lineHeight: 1.45 }}>{item.action}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function InventoryTrackingMock() {
+  return (
+    <section style={{ ...softCard, padding: '1.25rem', marginBottom: '1.25rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+        <div>
+          <Pill tone="blue">Inventory tracking mock</Pill>
+          <h2 style={{ margin: '0.75rem 0 0.35rem' }}>On-hand, inbound, adjustments, and valuation snapshots</h2>
+          <p style={{ margin: 0, color: '#4b5563' }}>Fixture-only planning layer showing how FirstLot can move beyond month-end COGS into inventory control.</p>
+        </div>
+        <Pill tone="green">Local mock data only</Pill>
+      </div>
+      <div style={grid}>
+        {inventoryTracking.map((item) => (
+          <div key={item.sku} style={{ border: '1px solid #e5e7eb', borderRadius: '1rem', padding: '1rem', background: '#f8fafc' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.75rem' }}>
+              <strong>{item.sku}</strong>
+              <Pill tone={item.status === 'Healthy' ? 'green' : item.status === 'Watch' ? 'amber' : 'red'}>{item.status}</Pill>
+            </div>
+            <p style={{ margin: '0.65rem 0', color: '#475569' }}>On hand: <strong>{item.onHand}</strong> · Inbound: <strong>{item.inbound}</strong> · Adjustments: <strong>{item.adjustments}</strong></p>
+            <p style={{ margin: '0 0 0.65rem', color: '#475569' }}>Valuation snapshot: <strong>{money(item.valuation)}</strong></p>
+            <p style={{ margin: 0, color: '#64748b', lineHeight: 1.4 }}>{item.guidance}</p>
+          </div>
+        ))}
+      </div>
+      <div style={{ ...grid, marginTop: '1rem' }}>
+        {valuationSnapshots.map(([label, value]) => (
+          <div key={label} style={{ background: '#eef2ff', borderRadius: '0.9rem', padding: '0.9rem', border: '1px solid #c7d2fe' }}>
+            <div style={{ color: '#4338ca', fontWeight: 900 }}>{label}</div>
+            <div style={{ fontSize: '1.35rem', fontWeight: 900, marginTop: '0.25rem' }}>{value}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function DemandPlanningMock() {
+  return (
+    <section style={{ ...softCard, padding: '1.25rem', marginBottom: '1.25rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+        <div>
+          <Pill tone="amber">Demand-planning mock</Pill>
+          <h2 style={{ margin: '0.75rem 0 0.35rem' }}>Velocity, lead time, reorder guidance, and margin impact</h2>
+          <p style={{ margin: 0, color: '#4b5563' }}>Static local mock demonstrating the future planner without Amazon, Shopify, or production API calls.</p>
+        </div>
+        <Pill tone="slate">No connector execution</Pill>
+      </div>
+      <DemoTable title="Planner recommendations" rows={demandPlanning} />
+    </section>
+  );
+}
+
 export default function DemoPage() {
+  const [intakeMode, setIntakeMode] = useState('sample');
   const totalCogs = total(demoRun.cogsSummary, 'total_cogs');
   const inventoryValue = total(demoRun.remainingLayers, 'remaining_value');
   const lotsConsumed = new Set(demoRun.auditTrail.map((row) => row.lot_id)).size;
@@ -240,6 +357,8 @@ export default function DemoPage() {
             <a href="/upload" style={{ background: '#fef3c7', color: '#92400e', padding: '0.85rem 1rem', borderRadius: '0.9rem', textDecoration: 'none', fontWeight: 900 }}>Upload mock / quarantined</a>
           </div>
         </section>
+
+        <IntakeModeReview mode={intakeMode} onModeChange={setIntakeMode} />
 
         <section id="setup" style={{ marginBottom: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: '1rem', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
@@ -279,6 +398,7 @@ export default function DemoPage() {
               </div>
             ))}
           </div>
+          <ActionGuidance />
         </section>
 
         <section style={{ marginBottom: '1.25rem' }}>
@@ -309,6 +429,10 @@ export default function DemoPage() {
             Regenerate: <code>{demoRun.inputs.regenerateCommand}</code> · Safe check: <code>{demoRun.inputs.safeCheckCommand}</code> · Artifacts: <code>{demoRun.inputs.artifactDirectory}</code>
           </p>
         </section>
+
+        <InventoryTrackingMock />
+
+        <DemandPlanningMock />
 
         <section style={{ marginBottom: '1.25rem' }}>
           <div style={{ marginBottom: '0.75rem' }}>
