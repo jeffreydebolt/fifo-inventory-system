@@ -45,6 +45,9 @@ def test_output_writer_generates_canonical_csv_and_json_files(tmp_path):
     assert _rows(tmp_path / "remaining_layers.csv") == _rows(FIXTURE_DIR / "expected_remaining_layers.csv")
     assert _rows(tmp_path / "audit_trail.csv") == _rows(FIXTURE_DIR / "expected_audit_trail.csv")
     assert _rows(tmp_path / "shortfalls.csv") == _rows(FIXTURE_DIR / "expected_shortfalls.csv")
+    assert (tmp_path / "cogs_summary.csv").read_bytes() == (
+        FIXTURE_DIR / "expected_cogs_summary.csv"
+    ).read_bytes()
 
 
 def test_local_cli_runs_fixture_to_output_dir(tmp_path):
