@@ -7,10 +7,13 @@ global.IS_REACT_ACT_ENVIRONMENT = true;
 
 let container;
 let root;
+let originalFetch;
 
 beforeEach(() => {
   container = document.createElement('div');
   document.body.appendChild(container);
+  originalFetch = global.fetch;
+  global.fetch = jest.fn();
 });
 
 afterEach(() => {
@@ -21,20 +24,28 @@ afterEach(() => {
   container.remove();
   container = null;
   window.history.pushState({}, '', '/');
+  global.fetch = originalFetch;
 });
 
-test('renders /demo with checked-in local FIFO artifacts and no network calls', () => {
-  const originalFetch = global.fetch;
-  global.fetch = jest.fn();
-  window.history.pushState({}, '', '/demo');
-
+function renderAt(path) {
+  window.history.pushState({}, '', path);
   act(() => {
     root = createRoot(container);
     root.render(<App />);
   });
+}
 
-  expect(container.textContent).toContain('FirstLot local MVP demo');
+test('renders /demo as a workflow product preview with checked-in local FIFO artifacts and no network calls', () => {
+  renderAt('/demo');
+
+  expect(container.textContent).toContain('Close inventory with FIFO confidence');
   expect(container.textContent).toContain('Local/demo mode');
+  expect(container.textContent).toContain('setup/start → sample data or upload/map mock → run/review exceptions → results summary → drilldowns → export packet');
+  expect(container.textContent).toContain('Mapping review');
+  expect(container.textContent).toContain('Exception-first review');
+  expect(container.textContent).toContain('Results summary');
+  expect(container.textContent).toContain('Export packet preview');
+  expect(container.textContent).toContain('Drilldown tables');
   expect(container.textContent).toContain('cogs-dashboard/src/demo-output/firstlot_demo');
   expect(container.textContent).toContain('python3 scripts/regenerate_firstlot_demo_artifacts.py');
   expect(container.textContent).toContain('make check-firstlot-demo');
@@ -42,37 +53,24 @@ test('renders /demo with checked-in local FIFO artifacts and no network calls', 
   expect(container.textContent).toContain('LOT-B-001');
   expect(container.textContent).toContain('INSUFFICIENT_INVENTORY');
   expect(global.fetch).not.toHaveBeenCalled();
-
-  global.fetch = originalFetch;
 });
 
-test('renders / as the safe fixture demo by default with no network calls', () => {
-  const originalFetch = global.fetch;
-  global.fetch = jest.fn();
-  window.history.pushState({}, '', '/');
+test('renders / as the safe fixture workflow by default with no network calls', () => {
+  renderAt('/');
 
-  act(() => {
-    root = createRoot(container);
-    root.render(<App />);
-  });
-
-  expect(container.textContent).toContain('FirstLot local MVP demo');
-  expect(container.textContent).toContain('Default MVP review route');
-  expect(container.textContent).toContain('performs no API fetches');
+  expect(container.textContent).toContain('Friday MVP mode');
+  expect(container.textContent).toContain('Uses checked-in sample artifacts only');
+  expect(container.textContent).toContain('No live DB writes');
+  expect(container.textContent).toContain('no API fetches');
+  expect(container.textContent).toContain('Start inventory close');
   expect(global.fetch).not.toHaveBeenCalled();
-
-  global.fetch = originalFetch;
 });
 
-test('labels /upload as quarantined legacy production upload', () => {
-  window.history.pushState({}, '', '/upload');
-
-  act(() => {
-    root = createRoot(container);
-    root.render(<App />);
-  });
+test('labels /upload as quarantined legacy production upload and does not fetch', () => {
+  renderAt('/upload');
 
   expect(container.textContent).toContain('Legacy production upload quarantined');
   expect(container.textContent).toContain('Upload and template actions are intentionally disabled');
   expect(container.textContent).toContain('Legacy Upload Disabled');
+  expect(global.fetch).not.toHaveBeenCalled();
 });
