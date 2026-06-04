@@ -45,6 +45,18 @@ CSV_SECTIONS = {
         "reason",
         "message",
     ],
+    "failed_sku_queue": [
+        "sku",
+        "period",
+        "failure_count",
+        "first_sale_date",
+        "last_sale_date",
+        "requested_quantity",
+        "allocated_quantity",
+        "shortfall_quantity",
+        "reasons",
+        "status",
+    ],
 }
 
 
@@ -65,6 +77,7 @@ def write_fifo_report(report: FIFOReport, out_dir: str | Path, include_json: boo
         "remaining_layers": report.remaining_layers,
         "audit_trail": report.audit_trail,
         "shortfalls": report.shortfalls,
+        "failed_sku_queue": report.failed_sku_queue,
     }
     written: list[Path] = []
 

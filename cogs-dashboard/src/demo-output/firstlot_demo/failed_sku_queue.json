@@ -1,0 +1,14 @@
+[
+  {
+    "allocated_quantity": 6,
+    "failure_count": 1,
+    "first_sale_date": "2026-05-20T00:00:00",
+    "last_sale_date": "2026-05-20T00:00:00",
+    "period": "2026-05",
+    "reasons": "INSUFFICIENT_INVENTORY",
+    "requested_quantity": 7,
+    "shortfall_quantity": 1,
+    "sku": "SKU-A",
+    "status": "NEEDS_FIX_RERUN"
+  }
+]

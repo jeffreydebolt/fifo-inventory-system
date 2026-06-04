@@ -13,6 +13,7 @@ from .models import (
     AuditTrailRow,
     COGSAttribution,
     COGSSummary,
+    FailedSKUQueueRow,
     InventorySnapshot,
     PurchaseLot,
     RemainingLayer,
@@ -30,6 +31,7 @@ class FIFOReport:
     remaining_layers: List[RemainingLayer]
     audit_trail: List[AuditTrailRow]
     shortfalls: List[Shortfall]
+    failed_sku_queue: List[FailedSKUQueueRow]
 
 
 def remaining_layers(snapshot: InventorySnapshot) -> List[RemainingLayer]:
@@ -74,6 +76,32 @@ def audit_trail_rows(
     return sorted(rows, key=lambda row: (row.sale_date, row.sale_id, row.lot_id))
 
 
+def failed_sku_queue_rows(shortfalls: Iterable[Shortfall]) -> List[FailedSKUQueueRow]:
+    """Aggregate sale shortfalls into a SKU/month fix-and-rerun queue."""
+    grouped: dict[tuple[str, str], list[Shortfall]] = {}
+    for shortfall in shortfalls:
+        period = shortfall.sale_date.strftime("%Y-%m")
+        grouped.setdefault((shortfall.sku, period), []).append(shortfall)
+
+    rows: List[FailedSKUQueueRow] = []
+    for (sku, period), sku_shortfalls in grouped.items():
+        sorted_shortfalls = sorted(sku_shortfalls, key=lambda row: (row.sale_date, row.sale_id))
+        rows.append(
+            FailedSKUQueueRow(
+                sku=sku,
+                period=period,
+                failure_count=len(sorted_shortfalls),
+                first_sale_date=sorted_shortfalls[0].sale_date,
+                last_sale_date=sorted_shortfalls[-1].sale_date,
+                requested_quantity=sum(row.requested_quantity for row in sorted_shortfalls),
+                allocated_quantity=sum(row.allocated_quantity for row in sorted_shortfalls),
+                shortfall_quantity=sum(row.shortfall_quantity for row in sorted_shortfalls),
+                reasons="|".join(sorted({row.reason for row in sorted_shortfalls})),
+            )
+        )
+    return sorted(rows, key=lambda row: (row.period, row.sku))
+
+
 def run_fifo_report(
     initial_inventory: InventorySnapshot,
     sales: List[Sale],
@@ -89,12 +117,14 @@ def run_fifo_report(
         snapshot_timestamp=timestamp,
         allow_partial_shortfalls=allow_partial_shortfalls,
     )
+    shortfalls = engine.get_shortfalls()
     return FIFOReport(
         generated_at=timestamp,
         cogs_summary=engine.calculate_summary(attributions),
         remaining_layers=remaining_layers(final_inventory),
         audit_trail=audit_trail_rows(attributions, final_inventory.lots),
-        shortfalls=engine.get_shortfalls(),
+        shortfalls=shortfalls,
+        failed_sku_queue=failed_sku_queue_rows(shortfalls),
     )
 
 

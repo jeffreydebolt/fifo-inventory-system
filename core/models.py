@@ -106,6 +106,21 @@ class Shortfall:
 
 
 @dataclass
+class FailedSKUQueueRow:
+    """SKU/month queue row for failed or partially failed FIFO close items."""
+    sku: str
+    period: str
+    failure_count: int
+    first_sale_date: datetime
+    last_sale_date: datetime
+    requested_quantity: int
+    allocated_quantity: int
+    shortfall_quantity: int
+    reasons: str
+    status: str = "NEEDS_FIX_RERUN"
+
+
+@dataclass
 class RemainingLayer:
     """Serializable remaining inventory layer after FIFO processing."""
     lot_id: str

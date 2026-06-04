@@ -4,10 +4,12 @@ This entrypoint is intentionally local-file only. It does not import API,
 Supabase, dotenv, or any live client adapters.
 """
 import argparse
+import json
 from datetime import datetime
 from pathlib import Path
 
 from core.csv_ingest import load_movement_csv, load_purchase_lots_csv
+from core.month_history import append_month_close_record, build_rollback_plan, load_month_history
 from core.output_files import write_fifo_report
 from core.outputs import run_fifo_report
 
@@ -35,11 +37,58 @@ def _parse_args() -> argparse.Namespace:
         action="store_true",
         help="Write CSV artifacts only; omit JSON copies",
     )
+    run_parser.add_argument(
+        "--period",
+        help="Optional close period (YYYY-MM) to append to local month_history CSV/JSON",
+    )
+    run_parser.add_argument(
+        "--reopen",
+        action="store_true",
+        help="Allow rerun of an existing period and mark the history row REOPENED",
+    )
+    run_parser.add_argument(
+        "--append-prior-month",
+        action="store_true",
+        help="Allow appending/reclosing a prior period and mark history APPENDED_PRIOR_MONTH",
+    )
+    run_parser.add_argument(
+        "--note",
+        default="",
+        help="Optional local audit note for month history records",
+    )
+
+    history_parser = subparsers.add_parser("history", help="Print local month close history")
+    history_parser.add_argument("--out", required=True, help="Output directory containing month_history.json")
+
+    rollback_parser = subparsers.add_parser(
+        "rollback-plan",
+        help="Print a read-only rollback plan for a local period; performs no mutations",
+    )
+    rollback_parser.add_argument("--out", required=True, help="Output directory containing month_history.json")
+    rollback_parser.add_argument("--period", required=True, help="Close period (YYYY-MM)")
+    rollback_parser.add_argument("--generated-at", default="2026-06-03T23:00:00")
+    rollback_parser.add_argument("--note", default="")
     return parser.parse_args()
 
 
 def main() -> int:
     args = _parse_args()
+    if args.command == "history":
+        rows = [record.__dict__ for record in load_month_history(args.out)]
+        print(json.dumps(rows, indent=2, sort_keys=True))
+        return 0
+
+    if args.command == "rollback-plan":
+        generated_at = datetime.fromisoformat(args.generated_at)
+        plan = build_rollback_plan(
+            args.out,
+            args.period,
+            recorded_at=generated_at,
+            note=args.note,
+        )
+        print(json.dumps(plan, indent=2, sort_keys=True))
+        return 0
+
     if args.command != "run":
         raise AssertionError(f"Unsupported command: {args.command}")
 
@@ -53,6 +102,17 @@ def main() -> int:
         allow_partial_shortfalls=not args.strict_shortfalls,
     )
     written = write_fifo_report(report, Path(args.out), include_json=not args.csv_only)
+    if args.period:
+        _, history_files = append_month_close_record(
+            report,
+            Path(args.out),
+            args.period,
+            recorded_at=generated_at,
+            reopen=args.reopen,
+            append_prior_month=args.append_prior_month,
+            note=args.note,
+        )
+        written.extend(history_files)
 
     print("Local/demo FIFO run complete — no live DB writes.")
     for path in written:
