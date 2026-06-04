@@ -42,6 +42,10 @@ test('renders /demo as a workflow product preview with checked-in local FIFO art
   expect(container.textContent).toContain('Local/demo mode');
   expect(container.textContent).toContain('setup/start → sample data or upload/map mock → run/review exceptions → results summary → drilldowns → export packet');
   expect(container.textContent).toContain('Mapping review');
+  expect(container.textContent).toContain('Upload mock queue');
+  expect(container.textContent).toContain('Sample/upload review before mapping');
+  expect(container.textContent).toContain('purchase_lots_sample.csv');
+  expect(container.textContent).toContain('No file leaves the browser');
   expect(container.textContent).toContain('Needs operator review');
   expect(container.textContent).toContain('Exception-first review');
   expect(container.textContent).toContain('Resolve insufficient inventory before close');
@@ -49,11 +53,16 @@ test('renders /demo as a workflow product preview with checked-in local FIFO art
   expect(container.textContent).toContain('Operator guidance after the run');
   expect(container.textContent).toContain('Export packet polish');
   expect(container.textContent).toContain('Close packet checklist');
+  expect(container.textContent).toContain('Export manifest and sign-off gates');
+  expect(container.textContent).toContain('Blocked until reviewed');
+  expect(container.textContent).toContain('export manifest JSON');
   expect(container.textContent).toContain('Close notes');
   expect(container.textContent).toContain('Inventory tracking mock');
   expect(container.textContent).toContain('On-hand, inbound, adjustments, and valuation snapshots');
   expect(container.textContent).toContain('Demand-planning mock');
   expect(container.textContent).toContain('Velocity, lead time, reorder guidance, and margin impact');
+  expect(container.textContent).toContain('Replenishment action plan');
+  expect(container.textContent).toContain('Escalate replenishment');
   expect(container.textContent).toContain('Local connector mock');
   expect(container.textContent).toContain('Amazon connector mock: import-only, local fixture contract');
   expect(container.textContent).toContain('No Seller Central, SP-API, settlement, or order endpoint is called');

@@ -36,3 +36,13 @@ The demo UI presents three future import lanes that must remain local until revi
 - UI data lives in `cogs-dashboard/src/workflowMocks.js`.
 - UI rendering lives in `cogs-dashboard/src/pages/DemoPage.js`.
 - Dashboard tests assert connector mocks render and make no network calls.
+
+## Cycle 3 fixture/product additions
+
+The PR branch now also previews three local-only assistant bricks:
+
+1. **Upload mock queue** — fixture filenames, row counts, required-column coverage, and operator guidance. It intentionally does not expose real file pickers or storage writes.
+2. **Export manifest gates** — packet file names, record counts, owners, and sign-off gates so accounting can see which artifacts are ready and which are blocked by exceptions.
+3. **Replenishment action plan** — demand-planning recommendations converted into operator actions without Amazon/Shopify execution.
+
+These remain static UI/documentation contracts until Jeff explicitly approves live connector or upload work.

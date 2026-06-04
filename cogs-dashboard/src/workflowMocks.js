@@ -54,6 +54,30 @@ export const columnMappings = [
   }
 ];
 
+export const uploadMockFiles = [
+  {
+    fileName: 'purchase_lots_sample.csv',
+    rows: 5,
+    requiredColumns: '5 / 5',
+    status: 'Ready for mapping',
+    guidance: 'Use as the lot-cost source of truth for this local demo close.'
+  },
+  {
+    fileName: 'movement_sample.csv',
+    rows: 4,
+    requiredColumns: '4 / 4',
+    status: 'Ready for mapping',
+    guidance: 'Movement is sorted by sale date and consumed against available lots.'
+  },
+  {
+    fileName: 'landed_costs_optional.csv',
+    rows: 0,
+    requiredColumns: '0 / optional',
+    status: 'Deferred',
+    guidance: 'Freight, duty, and tariff allocation are visible as a future lane, not applied to fixture COGS.'
+  }
+];
+
 export const exceptionGuidance = [
   {
     title: 'Resolve insufficient inventory before close',
@@ -145,6 +169,27 @@ export const demandPlanning = [
   }
 ];
 
+export const replenishmentPlan = [
+  {
+    sku: 'SKU-A',
+    action: 'Monitor',
+    dueBy: 'After May close',
+    reason: 'On-hand plus inbound keeps projected cover above reorder point.'
+  },
+  {
+    sku: 'SKU-B',
+    action: 'Confirm ETA',
+    dueBy: 'This week',
+    reason: 'Medium risk if the inbound PO slips past current lead-time assumption.'
+  },
+  {
+    sku: 'SKU-C',
+    action: 'Escalate replenishment',
+    dueBy: 'Before close export',
+    reason: 'Shortfall is already present in the fixture run and should block final packet approval.'
+  }
+];
+
 export const exportPacketChecklist = [
   {
     artifact: 'COGS summary',
@@ -180,6 +225,37 @@ export const exportPacketChecklist = [
     status: 'Drafted in UI',
     reviewer: 'Close operator',
     closeUse: 'Summarize actions taken, remaining blockers, and regeneration commands.'
+  }
+];
+
+export const exportPacketManifest = [
+  {
+    fileName: 'cogs_summary.csv',
+    records: 2,
+    owner: 'Bookkeeping',
+    gate: 'Ready',
+    note: 'Post SKU-level FIFO COGS after exception sign-off.'
+  },
+  {
+    fileName: 'remaining_layers.csv',
+    records: 2,
+    owner: 'Controller',
+    gate: 'Ready',
+    note: 'Tie ending inventory valuation back to open lot layers.'
+  },
+  {
+    fileName: 'shortfalls.csv',
+    records: 1,
+    owner: 'Ops lead',
+    gate: 'Blocked until reviewed',
+    note: 'SKU-C insufficient inventory must be resolved or signed off before final close.'
+  },
+  {
+    fileName: 'audit_trail.csv',
+    records: 4,
+    owner: 'Audit support',
+    gate: 'Ready',
+    note: 'Sale-to-lot attribution for every allocated movement row.'
   }
 ];
 

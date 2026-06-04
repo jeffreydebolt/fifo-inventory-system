@@ -7,8 +7,11 @@ import {
   demandPlanning,
   exceptionGuidance,
   exportPacketChecklist,
+  exportPacketManifest,
   intakeModes,
   inventoryTracking,
+  replenishmentPlan,
+  uploadMockFiles,
   valuationSnapshots
 } from '../workflowMocks';
 
@@ -255,6 +258,25 @@ function IntakeModeReview({ mode, onModeChange }) {
   );
 }
 
+function UploadMockReview() {
+  return (
+    <section style={{ ...softCard, padding: '1.25rem', marginBottom: '1.25rem', borderColor: '#fed7aa' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+        <div>
+          <Pill tone="amber">Upload mock queue</Pill>
+          <h2 style={{ margin: '0.75rem 0 0.35rem' }}>Sample/upload review before mapping</h2>
+          <p style={{ margin: 0, color: '#4b5563' }}>Shows the future upload acceptance checklist while keeping file pickers and storage writes disabled.</p>
+        </div>
+        <Pill tone="green">No file leaves the browser</Pill>
+      </div>
+      <DemoTable title="Mock intake files" rows={uploadMockFiles} />
+      <div style={{ marginTop: '1rem', border: '1px dashed #f59e0b', borderRadius: '1rem', padding: '1rem', background: '#fffbeb', color: '#92400e' }}>
+        Real uploads remain quarantined until reviewed. Autonomous demo mode only previews filenames, row counts, required-column coverage, and next operator guidance.
+      </div>
+    </section>
+  );
+}
+
 function ActionGuidance() {
   return (
     <div style={{ display: 'grid', gap: '0.85rem', marginTop: '1rem' }}>
@@ -322,6 +344,9 @@ function DemandPlanningMock() {
         <Pill tone="slate">No connector execution</Pill>
       </div>
       <DemoTable title="Planner recommendations" rows={demandPlanning} />
+      <div style={{ marginTop: '1rem' }}>
+        <DemoTable title="Replenishment action plan" rows={replenishmentPlan} />
+      </div>
     </section>
   );
 }
@@ -364,6 +389,9 @@ function ExportPacketChecklist() {
         <Pill tone="green">No-network downloads</Pill>
       </div>
       <DemoTable title="Close packet artifacts" rows={exportPacketChecklist} />
+      <div style={{ marginTop: '1rem' }}>
+        <DemoTable title="Export manifest and sign-off gates" rows={exportPacketManifest} />
+      </div>
       <div style={{ marginTop: '1rem', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '1rem', padding: '1rem' }}>
         <strong>Draft close notes</strong>
         <p style={{ margin: '0.45rem 0 0', color: '#475569', lineHeight: 1.45 }}>
@@ -438,6 +466,8 @@ export default function DemoPage() {
 
         <IntakeModeReview mode={intakeMode} onModeChange={setIntakeMode} />
 
+        <UploadMockReview />
+
         <section id="setup" style={{ marginBottom: '1.25rem' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'end', gap: '1rem', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
             <div>
@@ -504,6 +534,7 @@ export default function DemoPage() {
             <DownloadLink sectionName="remaining_layers" label="remaining layers JSON" rows={demoRun.remainingLayers} />
             <DownloadLink sectionName="shortfalls" label="exceptions JSON" rows={demoRun.shortfalls} />
             <DownloadLink sectionName="audit_trail" label="audit trail JSON" rows={demoRun.auditTrail} />
+            <DownloadLink sectionName="export_manifest" label="export manifest JSON" rows={exportPacketManifest} />
           </div>
           <p style={{ margin: '1rem 0 0', color: '#64748b' }}>
             Regenerate: <code>{demoRun.inputs.regenerateCommand}</code> · Safe check: <code>{demoRun.inputs.safeCheckCommand}</code> · Artifacts: <code>{demoRun.inputs.artifactDirectory}</code>
