@@ -144,3 +144,90 @@ export const demandPlanning = [
     recommendation: 'Escalate replenishment or pause oversell channel.'
   }
 ];
+
+export const exportPacketChecklist = [
+  {
+    artifact: 'COGS summary',
+    format: 'CSV + JSON',
+    status: 'Ready from fixture run',
+    reviewer: 'Bookkeeping',
+    closeUse: 'Post FIFO COGS by SKU for the May close packet.'
+  },
+  {
+    artifact: 'Remaining layers',
+    format: 'CSV + JSON',
+    status: 'Ready from fixture run',
+    reviewer: 'Controller',
+    closeUse: 'Tie ending inventory value back to open lots and unit costs.'
+  },
+  {
+    artifact: 'Exceptions',
+    format: 'CSV + JSON',
+    status: 'Requires sign-off',
+    reviewer: 'Ops lead',
+    closeUse: 'Document insufficient inventory before final export.'
+  },
+  {
+    artifact: 'Sale-to-lot audit trail',
+    format: 'CSV + JSON',
+    status: 'Ready from fixture run',
+    reviewer: 'Audit support',
+    closeUse: 'Trace each sale movement to consumed FIFO lots.'
+  },
+  {
+    artifact: 'Close notes',
+    format: 'Markdown mock',
+    status: 'Drafted in UI',
+    reviewer: 'Close operator',
+    closeUse: 'Summarize actions taken, remaining blockers, and regeneration commands.'
+  }
+];
+
+export const amazonConnectorMock = {
+  headline: 'Amazon connector mock: import-only, local fixture contract',
+  safety: 'No Seller Central, SP-API, settlement, or order endpoint is called by this demo.',
+  lanes: [
+    {
+      name: 'Orders / movements',
+      source: 'amazon_orders_fixture.csv',
+      mappedTo: 'movement.csv rows',
+      status: 'Mock contract',
+      guardrail: 'Read local CSV only; no production API token or .env access.'
+    },
+    {
+      name: 'SKU aliases',
+      source: 'amazon_sku_aliases_fixture.csv',
+      mappedTo: 'FirstLot SKU mapping review',
+      status: 'Needs operator approval',
+      guardrail: 'Alias changes are staged in review and never written to live catalog data.'
+    },
+    {
+      name: 'Returns / adjustments',
+      source: 'amazon_returns_fixture.csv',
+      mappedTo: 'Exception and adjustment review',
+      status: 'Future fixture lane',
+      guardrail: 'Returns are shown as proposed close exceptions until reviewed.'
+    }
+  ]
+};
+
+export const closeActionQueue = [
+  {
+    step: '1',
+    title: 'Fix blocker exceptions',
+    detail: 'Resolve SKU-C short inventory by adding a lot, correcting movement, or documenting the accounting exception.',
+    tone: 'red'
+  },
+  {
+    step: '2',
+    title: 'Confirm mappings and landed-cost policy',
+    detail: 'Approve required lot/movement fields and decide whether freight/tariff allocation is in scope for this close.',
+    tone: 'amber'
+  },
+  {
+    step: '3',
+    title: 'Export reviewed packet',
+    detail: 'Download or regenerate the local packet after exceptions and mappings are signed off.',
+    tone: 'blue'
+  }
+];

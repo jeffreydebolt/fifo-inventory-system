@@ -2,7 +2,12 @@
 
 The `/demo` route renders checked-in JSON artifacts generated from the safe local
 FirstLot fixture CSVs. It does not fetch from the API or Supabase during demo
-rendering.
+rendering. The current product preview wraps those artifacts in a workflow for
+sample intake, mapping review, exception guidance, export packet review,
+inventory/demand planning mocks, and local connector mock lanes.
+
+Connector mocks are local documentation/UI state only; see
+[`../docs/firstlot-local-connector-mocks.md`](../docs/firstlot-local-connector-mocks.md).
 
 From the repository root, regenerate those artifacts with:
 

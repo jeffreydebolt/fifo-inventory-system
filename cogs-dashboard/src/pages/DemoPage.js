@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { demoRun } from '../demoData';
 import {
+  amazonConnectorMock,
+  closeActionQueue,
   columnMappings,
   demandPlanning,
   exceptionGuidance,
+  exportPacketChecklist,
   intakeModes,
   inventoryTracking,
   valuationSnapshots
@@ -323,6 +326,81 @@ function DemandPlanningMock() {
   );
 }
 
+function CloseActionQueue() {
+  return (
+    <section style={{ ...softCard, padding: '1.25rem', marginBottom: '1.25rem', borderColor: '#bfdbfe' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+        <div>
+          <Pill tone="blue">Close action queue</Pill>
+          <h2 style={{ margin: '0.75rem 0 0.35rem' }}>Operator guidance after the run</h2>
+          <p style={{ margin: 0, color: '#4b5563' }}>A concise safe next-step lane so FirstLot reads like an assistant, not a raw dashboard.</p>
+        </div>
+        <Pill tone="slate">Fixture decisions only</Pill>
+      </div>
+      <div style={grid}>
+        {closeActionQueue.map((item) => (
+          <div key={item.step} style={{ border: '1px solid #e5e7eb', borderRadius: '1rem', padding: '1rem', background: '#f8fafc' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '0.65rem' }}>
+              <span style={{ width: '2rem', height: '2rem', borderRadius: '999px', display: 'grid', placeItems: 'center', background: '#111827', color: 'white', fontWeight: 900 }}>{item.step}</span>
+              <Pill tone={item.tone}>{item.title}</Pill>
+            </div>
+            <p style={{ margin: 0, color: '#475569', lineHeight: 1.45 }}>{item.detail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ExportPacketChecklist() {
+  return (
+    <section style={{ ...softCard, padding: '1.25rem', marginBottom: '1.25rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+        <div>
+          <Pill tone="green">Export packet polish</Pill>
+          <h2 style={{ margin: '0.75rem 0 0.35rem' }}>Close packet checklist</h2>
+          <p style={{ margin: 0, color: '#4b5563' }}>Shows what accounting receives, who reviews it, and why each artifact belongs in the close packet.</p>
+        </div>
+        <Pill tone="green">No-network downloads</Pill>
+      </div>
+      <DemoTable title="Close packet artifacts" rows={exportPacketChecklist} />
+      <div style={{ marginTop: '1rem', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '1rem', padding: '1rem' }}>
+        <strong>Draft close notes</strong>
+        <p style={{ margin: '0.45rem 0 0', color: '#475569', lineHeight: 1.45 }}>
+          May fixture run generated FIFO COGS, ending layers, one inventory exception, and an audit trail. Export after SKU-C exception is resolved or signed off.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function AmazonConnectorMock() {
+  return (
+    <section style={{ ...softCard, padding: '1.25rem', marginBottom: '1.25rem', borderColor: '#fde68a' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+        <div>
+          <Pill tone="amber">Local connector mock</Pill>
+          <h2 style={{ margin: '0.75rem 0 0.35rem' }}>{amazonConnectorMock.headline}</h2>
+          <p style={{ margin: 0, color: '#4b5563' }}>{amazonConnectorMock.safety}</p>
+        </div>
+        <Pill tone="red">Production APIs disabled</Pill>
+      </div>
+      <div style={grid}>
+        {amazonConnectorMock.lanes.map((lane) => (
+          <div key={lane.name} style={{ border: '1px solid #e5e7eb', borderRadius: '1rem', padding: '1rem', background: '#fff7ed' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: '0.75rem', alignItems: 'center' }}>
+              <strong>{lane.name}</strong>
+              <Pill tone={lane.status === 'Mock contract' ? 'green' : 'amber'}>{lane.status}</Pill>
+            </div>
+            <p style={{ margin: '0.55rem 0', color: '#7c2d12' }}>Fixture: <strong>{lane.source}</strong> → {lane.mappedTo}</p>
+            <p style={{ margin: 0, color: '#9a3412', lineHeight: 1.4 }}>{lane.guardrail}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function DemoPage() {
   const [intakeMode, setIntakeMode] = useState('sample');
   const totalCogs = total(demoRun.cogsSummary, 'total_cogs');
@@ -401,6 +479,8 @@ export default function DemoPage() {
           <ActionGuidance />
         </section>
 
+        <CloseActionQueue />
+
         <section style={{ marginBottom: '1.25rem' }}>
           <h2 style={{ margin: '0 0 0.75rem' }}>Results summary</h2>
           <div style={grid}>
@@ -430,9 +510,13 @@ export default function DemoPage() {
           </p>
         </section>
 
+        <ExportPacketChecklist />
+
         <InventoryTrackingMock />
 
         <DemandPlanningMock />
+
+        <AmazonConnectorMock />
 
         <section style={{ marginBottom: '1.25rem' }}>
           <div style={{ marginBottom: '0.75rem' }}>
