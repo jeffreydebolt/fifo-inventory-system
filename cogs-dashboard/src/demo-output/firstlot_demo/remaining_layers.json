@@ -1,0 +1,11 @@
+[
+  {
+    "lot_id": "LOT-B-001",
+    "original_quantity": 5,
+    "received_date": "2026-05-03T00:00:00",
+    "remaining_quantity": 3,
+    "remaining_value": "60.00",
+    "sku": "SKU-B",
+    "unit_cost": "20.00"
+  }
+]

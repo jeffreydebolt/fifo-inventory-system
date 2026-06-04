@@ -106,6 +106,7 @@ export default function DemoPage() {
           <ul style={{ margin: 0, color: '#4b5563' }}>
             <li>Purchase lots: <code>{demoRun.inputs.purchaseLots}</code></li>
             <li>Movement/sales: <code>{demoRun.inputs.movement}</code></li>
+            <li>Checked-in output artifacts: <code>{demoRun.inputs.artifactDirectory}</code></li>
           </ul>
         </div>
 

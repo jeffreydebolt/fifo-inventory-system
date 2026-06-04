@@ -1,5 +1,6 @@
 """Narrow tests for safe local CSV ingest and CLI output writing."""
 import csv
+import json
 import subprocess
 import sys
 from pathlib import Path
@@ -9,6 +10,8 @@ from core.output_files import write_fifo_report
 from core.outputs import run_fifo_report
 
 FIXTURE_DIR = Path(__file__).resolve().parents[1] / "fixtures" / "firstlot_demo"
+REPO_ROOT = Path(__file__).resolve().parents[2]
+DASHBOARD_DEMO_OUTPUT_DIR = REPO_ROOT / "cogs-dashboard" / "src" / "demo-output" / "firstlot_demo"
 
 
 def _rows(path: Path):
@@ -75,3 +78,38 @@ def test_local_cli_runs_fixture_to_output_dir(tmp_path):
     assert "no live DB writes" in result.stdout
     assert _rows(tmp_path / "cogs_summary.csv") == _rows(FIXTURE_DIR / "expected_cogs_summary.csv")
     assert _rows(tmp_path / "shortfalls.csv") == _rows(FIXTURE_DIR / "expected_shortfalls.csv")
+
+
+def test_checked_in_dashboard_demo_json_matches_local_cli_output(tmp_path):
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "app.local_cli",
+            "run",
+            "--lots",
+            str(FIXTURE_DIR / "purchase_lots.csv"),
+            "--movement",
+            str(FIXTURE_DIR / "movement.csv"),
+            "--out",
+            str(tmp_path),
+            "--generated-at",
+            "2026-06-03T23:00:00",
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0, result.stderr
+    for artifact_name in [
+        "cogs_summary.json",
+        "remaining_layers.json",
+        "audit_trail.json",
+        "shortfalls.json",
+    ]:
+        with (tmp_path / artifact_name).open() as generated_handle:
+            generated = json.load(generated_handle)
+        with (DASHBOARD_DEMO_OUTPUT_DIR / artifact_name).open() as checked_in_handle:
+            checked_in = json.load(checked_in_handle)
+        assert checked_in == generated

@@ -1,0 +1,16 @@
+[
+  {
+    "average_unit_cost": "11.67",
+    "period": "2026-05",
+    "sku": "SKU-A",
+    "total_cogs": "210.00",
+    "total_quantity_sold": 18
+  },
+  {
+    "average_unit_cost": "20.00",
+    "period": "2026-05",
+    "sku": "SKU-B",
+    "total_cogs": "40.00",
+    "total_quantity_sold": 2
+  }
+]
