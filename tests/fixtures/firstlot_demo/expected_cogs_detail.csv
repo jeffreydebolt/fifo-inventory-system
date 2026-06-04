@@ -1,0 +1,3 @@
+sku,period,total_quantity_sold,merchandise_cost,shipping_cost,total_cost,average_cost
+SKU-A,2026-05,18,196.00,14.00,210.00,11.67
+SKU-B,2026-05,2,40.00,0.00,40.00,20.00

@@ -225,6 +225,18 @@ class COGSSummary:
 
 
 @dataclass
+class COGSDetail:
+    """SKU/month COGS with merchandise and shipping split for FirstLot close."""
+    sku: str
+    period: str
+    total_quantity_sold: int
+    merchandise_cost: Decimal
+    shipping_cost: Decimal
+    total_cost: Decimal
+    average_cost: Decimal
+
+
+@dataclass
 class ValidationError:
     """Represents a validation error in the data"""
     error_type: str

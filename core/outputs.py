@@ -6,12 +6,13 @@ side effects unless a caller explicitly writes the returned rows elsewhere.
 from dataclasses import asdict, dataclass
 from datetime import datetime
 from decimal import Decimal
-from typing import Iterable, List, Optional
+from typing import Iterable, List, Optional, cast
 
 from .fifo_engine import FIFOEngine
 from .models import (
     AuditTrailRow,
     COGSAttribution,
+    COGSDetail,
     COGSSummary,
     FailedSKUQueueRow,
     InventorySnapshot,
@@ -32,6 +33,7 @@ class FIFOReport:
     audit_trail: List[AuditTrailRow]
     shortfalls: List[Shortfall]
     failed_sku_queue: List[FailedSKUQueueRow]
+    cogs_detail: List[COGSDetail]
 
 
 def remaining_layers(snapshot: InventorySnapshot) -> List[RemainingLayer]:
@@ -102,6 +104,50 @@ def failed_sku_queue_rows(shortfalls: Iterable[Shortfall]) -> List[FailedSKUQueu
     return sorted(rows, key=lambda row: (row.period, row.sku))
 
 
+def cogs_detail_rows(
+    attributions: Iterable[COGSAttribution],
+    lots: Iterable[PurchaseLot],
+) -> List[COGSDetail]:
+    """Return SKU/month unit, shipping, total, and average costs for month close."""
+
+    lots_by_id = {lot.lot_id: lot for lot in lots}
+    grouped: dict[tuple[str, str], dict[str, Decimal | int]] = {}
+    for attr in attributions:
+        period = attr.sale_date.strftime("%Y-%m")
+        bucket = grouped.setdefault(
+            (attr.sku, period),
+            {
+                "quantity": 0,
+                "merchandise_cost": Decimal("0"),
+                "shipping_cost": Decimal("0"),
+            },
+        )
+        for allocation in attr.allocations:
+            lot = lots_by_id[allocation.lot_id]
+            bucket["quantity"] += allocation.quantity
+            bucket["merchandise_cost"] += lot.unit_price * Decimal(allocation.quantity)
+            bucket["shipping_cost"] += lot.freight_cost_per_unit * Decimal(allocation.quantity)
+
+    rows: List[COGSDetail] = []
+    for (sku, period), bucket in grouped.items():
+        quantity = int(bucket["quantity"])
+        merchandise_cost = cast(Decimal, bucket["merchandise_cost"])
+        shipping_cost = cast(Decimal, bucket["shipping_cost"])
+        total_cost = merchandise_cost + shipping_cost
+        rows.append(
+            COGSDetail(
+                sku=sku,
+                period=period,
+                total_quantity_sold=quantity,
+                merchandise_cost=merchandise_cost,
+                shipping_cost=shipping_cost,
+                total_cost=total_cost,
+                average_cost=total_cost / Decimal(quantity) if quantity > 0 else Decimal("0"),
+            )
+        )
+    return sorted(rows, key=lambda row: (row.period, row.sku))
+
+
 def run_fifo_report(
     initial_inventory: InventorySnapshot,
     sales: List[Sale],
@@ -125,6 +171,7 @@ def run_fifo_report(
         audit_trail=audit_trail_rows(attributions, final_inventory.lots),
         shortfalls=shortfalls,
         failed_sku_queue=failed_sku_queue_rows(shortfalls),
+        cogs_detail=cogs_detail_rows(attributions, final_inventory.lots),
     )
 
 

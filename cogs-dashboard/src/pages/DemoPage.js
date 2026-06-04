@@ -36,17 +36,6 @@ const cellStyle = {
   verticalAlign: 'top'
 };
 
-const fixtureCostBreakdown = {
-  'SKU-A': {
-    merchandiseCost: 196,
-    shippingCost: 14
-  },
-  'SKU-B': {
-    merchandiseCost: 40,
-    shippingCost: 0
-  }
-};
-
 function money(value) {
   if (value === null || value === undefined) {
     return '—';
@@ -64,24 +53,15 @@ function number(value) {
 }
 
 function cogsRows() {
-  return demoRun.cogsSummary.map((row) => {
-    const unitsSold = Number(row.total_quantity_sold);
-    const totalCost = Number(row.total_cogs);
-    const breakdown = fixtureCostBreakdown[row.sku] || {
-      merchandiseCost: totalCost,
-      shippingCost: 0
-    };
-
-    return {
-      sku: row.sku,
-      unitsSold,
-      unitCost: breakdown.merchandiseCost / unitsSold,
-      shippingCost: breakdown.shippingCost,
-      totalCost,
-      averageCost: totalCost / unitsSold,
-      status: demoRun.shortfalls.some((shortfall) => shortfall.sku === row.sku) ? 'Needs fix' : 'Complete'
-    };
-  });
+  return demoRun.cogsDetail.map((row) => ({
+    sku: row.sku,
+    unitsSold: Number(row.total_quantity_sold),
+    unitCost: Number(row.merchandise_cost) / Number(row.total_quantity_sold),
+    shippingCost: Number(row.shipping_cost),
+    totalCost: Number(row.total_cost),
+    averageCost: Number(row.average_cost),
+    status: demoRun.shortfalls.some((shortfall) => shortfall.sku === row.sku) ? 'Needs fix' : 'Complete'
+  }));
 }
 
 function Pill({ children, tone = 'green' }) {

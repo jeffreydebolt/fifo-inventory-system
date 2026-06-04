@@ -3,6 +3,7 @@ import remainingLayers from './demo-output/firstlot_demo/remaining_layers.json';
 import auditTrail from './demo-output/firstlot_demo/audit_trail.json';
 import shortfalls from './demo-output/firstlot_demo/shortfalls.json';
 import failedSkuQueue from './demo-output/firstlot_demo/failed_sku_queue.json';
+import cogsDetail from './demo-output/firstlot_demo/cogs_detail.json';
 
 export const demoRun = {
   generatedAt: '2026-06-03T23:00:00',
@@ -20,7 +21,8 @@ export const demoRun = {
   remainingLayers,
   auditTrail,
   shortfalls,
-  failedSkuQueue
+  failedSkuQueue,
+  cogsDetail
 };
 
 export const monthHistory = [

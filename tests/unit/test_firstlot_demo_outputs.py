@@ -155,6 +155,25 @@ def test_demo_fixture_failed_sku_queue_matches_expected_csv():
     ]
 
 
+def test_demo_fixture_cogs_detail_matches_expected_csv():
+    report = _report()
+
+    actual = [dataclass_row_dict(row) for row in report.cogs_detail]
+
+    assert actual == [
+        {
+            "sku": row["sku"],
+            "period": row["period"],
+            "total_quantity_sold": int(row["total_quantity_sold"]),
+            "merchandise_cost": row["merchandise_cost"],
+            "shipping_cost": row["shipping_cost"],
+            "total_cost": row["total_cost"],
+            "average_cost": row["average_cost"],
+        }
+        for row in _read_csv("expected_cogs_detail.csv")
+    ]
+
+
 def test_demo_fixture_generated_at_is_deterministic():
     report = _report()
 

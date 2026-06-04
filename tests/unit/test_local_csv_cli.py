@@ -37,6 +37,8 @@ def test_output_writer_generates_canonical_csv_and_json_files(tmp_path):
     assert {path.name for path in written} == {
         "audit_trail.csv",
         "audit_trail.json",
+        "cogs_detail.csv",
+        "cogs_detail.json",
         "cogs_summary.csv",
         "cogs_summary.json",
         "failed_sku_queue.csv",
@@ -47,6 +49,7 @@ def test_output_writer_generates_canonical_csv_and_json_files(tmp_path):
         "shortfalls.json",
     }
     assert _rows(tmp_path / "cogs_summary.csv") == _rows(FIXTURE_DIR / "expected_cogs_summary.csv")
+    assert _rows(tmp_path / "cogs_detail.csv") == _rows(FIXTURE_DIR / "expected_cogs_detail.csv")
     assert _rows(tmp_path / "remaining_layers.csv") == _rows(FIXTURE_DIR / "expected_remaining_layers.csv")
     assert _rows(tmp_path / "audit_trail.csv") == _rows(FIXTURE_DIR / "expected_audit_trail.csv")
     assert _rows(tmp_path / "shortfalls.csv") == _rows(FIXTURE_DIR / "expected_shortfalls.csv")
@@ -82,6 +85,7 @@ def test_local_cli_runs_fixture_to_output_dir(tmp_path):
     assert result.returncode == 0, result.stderr
     assert "no live DB writes" in result.stdout
     assert _rows(tmp_path / "cogs_summary.csv") == _rows(FIXTURE_DIR / "expected_cogs_summary.csv")
+    assert _rows(tmp_path / "cogs_detail.csv") == _rows(FIXTURE_DIR / "expected_cogs_detail.csv")
     assert _rows(tmp_path / "shortfalls.csv") == _rows(FIXTURE_DIR / "expected_shortfalls.csv")
     assert _rows(tmp_path / "failed_sku_queue.csv") == _rows(
         FIXTURE_DIR / "expected_failed_sku_queue.csv"
@@ -112,6 +116,7 @@ def test_checked_in_dashboard_demo_json_matches_local_cli_output(tmp_path):
     assert result.returncode == 0, result.stderr
     for artifact_name in [
         "cogs_summary.json",
+        "cogs_detail.json",
         "remaining_layers.json",
         "audit_trail.json",
         "shortfalls.json",
@@ -144,6 +149,8 @@ def test_regenerate_demo_artifacts_script_runs_against_temp_output(tmp_path):
     assert sorted(path.name for path in tmp_path.iterdir()) == [
         "audit_trail.csv",
         "audit_trail.json",
+        "cogs_detail.csv",
+        "cogs_detail.json",
         "cogs_summary.csv",
         "cogs_summary.json",
         "failed_sku_queue.csv",

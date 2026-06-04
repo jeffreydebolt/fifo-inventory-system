@@ -29,6 +29,7 @@ Supabase/API imports, and no live database writes.
 Expected artifacts:
 
 - `cogs_summary.csv` and `cogs_summary.json`
+- `cogs_detail.csv` and `cogs_detail.json` with SKU/month merchandise, shipping, total, and average cost columns
 - `remaining_layers.csv` and `remaining_layers.json`
 - `audit_trail.csv` and `audit_trail.json`
 - `shortfalls.csv` and `shortfalls.json`
