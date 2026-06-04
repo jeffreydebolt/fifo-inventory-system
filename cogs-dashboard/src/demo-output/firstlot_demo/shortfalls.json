@@ -1,0 +1,13 @@
+[
+  {
+    "allocated_quantity": 6,
+    "available_quantity": 6,
+    "message": "Insufficient inventory for SKU SKU-A. Needed: 7, Available: 6",
+    "reason": "INSUFFICIENT_INVENTORY",
+    "requested_quantity": 7,
+    "sale_date": "2026-05-20T00:00:00",
+    "sale_id": "SALE-002",
+    "shortfall_quantity": 1,
+    "sku": "SKU-A"
+  }
+]

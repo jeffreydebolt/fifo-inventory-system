@@ -88,7 +88,6 @@ class SupabaseService:
     
     def _store_file_data(self, file_id: str, df: pd.DataFrame):
         """Temporarily store file data (would use proper file storage in production)"""
-        global _global_file_cache
         _global_file_cache[file_id] = df
     
     def get_current_inventory(self, tenant_id: str) -> pd.DataFrame:
@@ -145,7 +144,6 @@ class SupabaseService:
             current_inventory = self.get_current_inventory(tenant_id)
             
             # Get uploaded sales data
-            global _global_file_cache
             sales_df = _global_file_cache.get(sales_file_id, pd.DataFrame())
             logger.info(f"Retrieved sales data: {len(sales_df)} rows for file_id {sales_file_id}")
             

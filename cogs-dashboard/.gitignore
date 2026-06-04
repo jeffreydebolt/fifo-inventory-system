@@ -2,6 +2,7 @@
 node_modules
 cogs-dashboard/node_modules
 cogs-dashboard/build
+.netlify/
 
 # Environment variables
 .env
@@ -34,4 +35,3 @@ dist/
 # OS files
 .DS_Store
 Thumbs.db
-EOF < /dev/null

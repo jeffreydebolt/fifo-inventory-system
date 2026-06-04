@@ -9,7 +9,7 @@ import logging
 
 from .models import (
     PurchaseLot, Sale, COGSAttribution, InventorySnapshot,
-    COGSSummary, ValidationError, TransactionType
+    COGSSummary, ValidationError, TransactionType, Shortfall
 )
 
 
@@ -19,11 +19,14 @@ class FIFOEngine:
     def __init__(self, logger: Optional[logging.Logger] = None):
         self.logger = logger or logging.getLogger(__name__)
         self.validation_errors: List[ValidationError] = []
+        self.shortfalls: List[Shortfall] = []
     
     def process_transactions(
         self, 
         initial_inventory: InventorySnapshot,
-        sales: List[Sale]
+        sales: List[Sale],
+        snapshot_timestamp: Optional[datetime] = None,
+        allow_partial_shortfalls: bool = False,
     ) -> Tuple[List[COGSAttribution], InventorySnapshot]:
         """
         Process sales transactions using FIFO logic.
@@ -37,7 +40,7 @@ class FIFOEngine:
         """
         # Create a working copy of inventory
         working_inventory = InventorySnapshot(
-            timestamp=datetime.now(),
+            timestamp=snapshot_timestamp or datetime.now(),
             lots=[self._copy_lot(lot) for lot in initial_inventory.lots]
         )
         
@@ -54,7 +57,11 @@ class FIFOEngine:
         # Process each sale
         attributions = []
         for sale in sorted_sales:
-            attribution = self._process_single_sale(working_inventory, sale)
+            attribution = self._process_single_sale(
+                working_inventory,
+                sale,
+                allow_partial_shortfalls=allow_partial_shortfalls,
+            )
             if attribution:
                 attributions.append(attribution)
         
@@ -96,7 +103,8 @@ class FIFOEngine:
     def _process_single_sale(
         self, 
         inventory: InventorySnapshot, 
-        sale: Sale
+        sale: Sale,
+        allow_partial_shortfalls: bool = False,
     ) -> Optional[COGSAttribution]:
         """Process a single sale transaction"""
         attribution = COGSAttribution(
@@ -110,10 +118,22 @@ class FIFOEngine:
         available_lots = inventory.get_available_lots(sale.sku, sale.sale_date)
         
         if not available_lots:
+            message = f"No inventory available for SKU {sale.sku} on {sale.sale_date}"
+            self.shortfalls.append(Shortfall(
+                sale_id=sale.sale_id,
+                sku=sale.sku,
+                sale_date=sale.sale_date,
+                requested_quantity=sale.quantity_sold,
+                allocated_quantity=0,
+                shortfall_quantity=sale.quantity_sold,
+                available_quantity=0,
+                reason="NO_INVENTORY",
+                message=message,
+            ))
             self.validation_errors.append(ValidationError(
                 error_type="NO_INVENTORY",
                 sku=sale.sku,
-                message=f"No inventory available for SKU {sale.sku} on {sale.sale_date}",
+                message=message,
                 sale_date=sale.sale_date,
                 quantity=sale.quantity_sold
             ))
@@ -122,18 +142,31 @@ class FIFOEngine:
         # Check if we have enough total inventory
         total_available = sum(lot.remaining_quantity for lot in available_lots)
         if total_available < sale.quantity_sold:
+            message = (f"Insufficient inventory for SKU {sale.sku}. "
+                       f"Needed: {sale.quantity_sold}, Available: {total_available}")
+            self.shortfalls.append(Shortfall(
+                sale_id=sale.sale_id,
+                sku=sale.sku,
+                sale_date=sale.sale_date,
+                requested_quantity=sale.quantity_sold,
+                allocated_quantity=total_available if allow_partial_shortfalls else 0,
+                shortfall_quantity=sale.quantity_sold - total_available,
+                available_quantity=total_available,
+                reason="INSUFFICIENT_INVENTORY",
+                message=message,
+            ))
             self.validation_errors.append(ValidationError(
                 error_type="INSUFFICIENT_INVENTORY",
                 sku=sale.sku,
-                message=f"Insufficient inventory for SKU {sale.sku}. "
-                        f"Needed: {sale.quantity_sold}, Available: {total_available}",
+                message=message,
                 sale_date=sale.sale_date,
                 quantity=sale.quantity_sold
             ))
-            return None
+            if not allow_partial_shortfalls:
+                return None
         
         # Allocate from lots using FIFO
-        remaining_to_allocate = sale.quantity_sold
+        remaining_to_allocate = min(sale.quantity_sold, total_available)
         
         for lot in available_lots:
             if remaining_to_allocate <= 0:
@@ -169,7 +202,11 @@ class FIFOEngine:
             )
             return None
         
-        return attribution
+        allocated_quantity = sum(allocation.quantity for allocation in attribution.allocations)
+        if allow_partial_shortfalls and allocated_quantity < sale.quantity_sold:
+            attribution.quantity_sold = allocated_quantity
+
+        return attribution if attribution.allocations else None
     
     def calculate_summary(
         self, 
@@ -214,7 +251,12 @@ class FIFOEngine:
     def get_validation_errors(self) -> List[ValidationError]:
         """Get all validation errors encountered during processing"""
         return self.validation_errors.copy()
+
+    def get_shortfalls(self) -> List[Shortfall]:
+        """Get explicit shortfalls encountered during processing."""
+        return self.shortfalls.copy()
     
     def clear_validation_errors(self) -> None:
         """Clear all validation errors"""
         self.validation_errors.clear()
+        self.shortfalls.clear()

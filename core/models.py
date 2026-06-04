@@ -92,6 +92,45 @@ class LotAllocation:
 
 
 @dataclass
+class Shortfall:
+    """Explicit inventory shortfall for a sale that could not be fully allocated."""
+    sale_id: str
+    sku: str
+    sale_date: datetime
+    requested_quantity: int
+    allocated_quantity: int
+    shortfall_quantity: int
+    available_quantity: int
+    reason: str
+    message: str
+
+
+@dataclass
+class RemainingLayer:
+    """Serializable remaining inventory layer after FIFO processing."""
+    lot_id: str
+    sku: str
+    received_date: datetime
+    original_quantity: int
+    remaining_quantity: int
+    unit_cost: Decimal
+    remaining_value: Decimal
+
+
+@dataclass
+class AuditTrailRow:
+    """One sale-to-lot attribution row for audit/export."""
+    sale_id: str
+    sku: str
+    sale_date: datetime
+    lot_id: str
+    lot_received_date: datetime
+    quantity: int
+    unit_cost: Decimal
+    total_cost: Decimal
+
+
+@dataclass
 class COGSAttribution:
     """Detailed COGS attribution for a single sale"""
     sale_id: str

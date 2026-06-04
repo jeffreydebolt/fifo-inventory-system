@@ -3,13 +3,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ClientProvider } from './contexts/ClientContext';
 import LoginPage from './pages/LoginPage';
 import UploadPage from './pages/UploadPage';
+import DemoPage from './pages/DemoPage';
 
 function App() {
   return (
     <ClientProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/" element={<DemoPage />} />
+          <Route path="/demo" element={<DemoPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/upload" element={<UploadPage />} />
         </Routes>
       </Router>
