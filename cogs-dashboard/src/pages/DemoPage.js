@@ -103,6 +103,9 @@ export default function DemoPage() {
           <p style={{ margin: '0 0 1rem', color: '#4b5563' }}>
             Static fixture review of purchase lots CSV + movement CSV → local FIFO outputs. Generated at {demoRun.generatedAt}.
           </p>
+          <p style={{ margin: '0 0 1rem', color: '#166534', fontWeight: 700 }}>
+            Default MVP review route: this page is loaded at <code>/</code> and <code>/demo</code>, uses checked-in fixture artifacts only, and performs no API fetches.
+          </p>
           <ul style={{ margin: 0, color: '#4b5563' }}>
             <li>Purchase lots: <code>{demoRun.inputs.purchaseLots}</code></li>
             <li>Movement/sales: <code>{demoRun.inputs.movement}</code></li>
@@ -110,6 +113,10 @@ export default function DemoPage() {
             <li>Regenerate command: <code>{demoRun.inputs.regenerateCommand}</code></li>
             <li>Safe reviewer check: <code>{demoRun.inputs.safeCheckCommand}</code></li>
           </ul>
+          <div style={{ marginTop: '1rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <a href="/demo" style={{ color: '#166534', fontWeight: 700 }}>Review safe fixture demo</a>
+            <a href="/upload" style={{ color: '#92400e', fontWeight: 700 }}>Legacy upload is quarantined</a>
+          </div>
         </div>
 
         <section style={{ ...sectionStyle, padding: '1rem 1.25rem' }}>

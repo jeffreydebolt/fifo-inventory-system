@@ -45,3 +45,34 @@ test('renders /demo with checked-in local FIFO artifacts and no network calls', 
 
   global.fetch = originalFetch;
 });
+
+test('renders / as the safe fixture demo by default with no network calls', () => {
+  const originalFetch = global.fetch;
+  global.fetch = jest.fn();
+  window.history.pushState({}, '', '/');
+
+  act(() => {
+    root = createRoot(container);
+    root.render(<App />);
+  });
+
+  expect(container.textContent).toContain('FirstLot local MVP demo');
+  expect(container.textContent).toContain('Default MVP review route');
+  expect(container.textContent).toContain('performs no API fetches');
+  expect(global.fetch).not.toHaveBeenCalled();
+
+  global.fetch = originalFetch;
+});
+
+test('labels /upload as quarantined legacy production upload', () => {
+  window.history.pushState({}, '', '/upload');
+
+  act(() => {
+    root = createRoot(container);
+    root.render(<App />);
+  });
+
+  expect(container.textContent).toContain('Legacy production upload quarantined');
+  expect(container.textContent).toContain('Upload and template actions are intentionally disabled');
+  expect(container.textContent).toContain('Legacy Upload Disabled');
+});

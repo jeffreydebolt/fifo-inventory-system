@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useClient } from '../contexts/ClientContext';
 // import { API_BASE } from '../lib/config';
-const API_BASE = 'https://api.firstlot.co';
+const LEGACY_API_BASE = 'https://api.firstlot.co';
+const LEGACY_UPLOAD_DISABLED = true;
 
 export default function UploadPage() {
   const { client } = useClient();
@@ -14,6 +15,9 @@ export default function UploadPage() {
   const onPick = (setter) => (e) => setter(e.target.files?.[0] ?? null);
 
   async function uploadCSV(url, file) {
+    if (LEGACY_UPLOAD_DISABLED) {
+      throw new Error('Legacy production upload is quarantined for MVP review. Use the safe fixture demo at /demo.');
+    }
     const fd = new FormData();
     fd.append('file', file);
     fd.append('tenant_id', 'test_user_9999'); // Test tenant - NOT your real data
@@ -28,7 +32,7 @@ export default function UploadPage() {
     setMsg('Uploading lots…');
     setProgress({ step: 2, total: 3 });
     try { 
-      await uploadCSV(`${API_BASE}/api/v1/files/lots`, lotsFile); 
+      await uploadCSV(`${LEGACY_API_BASE}/api/v1/files/lots`, lotsFile);
       setMsg('✅ Lots uploaded successfully'); 
       setProgress({ step: 3, total: 3 });
     }
@@ -42,7 +46,7 @@ export default function UploadPage() {
     setMsg('Uploading sales…');
     setProgress({ step: 2, total: 3 });
     try { 
-      await uploadCSV(`${API_BASE}/api/v1/files/sales`, salesFile); 
+      await uploadCSV(`${LEGACY_API_BASE}/api/v1/files/sales`, salesFile);
       setMsg('✅ Sales uploaded successfully'); 
       setProgress({ step: 3, total: 3 });
     }
@@ -56,7 +60,7 @@ export default function UploadPage() {
     setMsg('Processing sales against existing inventory…');
     setProgress({ step: 2, total: 3 });
     try { 
-      await uploadCSV(`${API_BASE}/api/v1/runs`, salesFile); 
+      await uploadCSV(`${LEGACY_API_BASE}/api/v1/runs`, salesFile);
       setMsg('✅ COGS calculation completed successfully'); 
       setProgress({ step: 3, total: 3 });
     }
@@ -66,7 +70,10 @@ export default function UploadPage() {
 
   const downloadTemplate = async (type) => {
     try {
-      const response = await fetch(`${API_BASE}/api/v1/files/templates/${type}`);
+      if (LEGACY_UPLOAD_DISABLED) {
+        throw new Error('Legacy production template download is quarantined for MVP review. Use checked-in fixture files from the safe demo instead.');
+      }
+      const response = await fetch(`${LEGACY_API_BASE}/api/v1/files/templates/${type}`);
       const csv = await response.text();
       const blob = new Blob([csv], { type: 'text/csv' });
       const url = window.URL.createObjectURL(blob);
@@ -130,6 +137,22 @@ export default function UploadPage() {
       </header>
 
       <main style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
+        <div className="card fade-in" style={{
+          backgroundColor: '#fffbeb',
+          border: '2px solid #f59e0b',
+          color: '#78350f',
+          marginBottom: '2rem'
+        }}>
+          <h2 style={{ marginTop: 0, color: '#78350f' }}>Legacy production upload quarantined</h2>
+          <p style={{ marginBottom: '0.75rem' }}>
+            This route references the legacy FirstLot production API (<code>{LEGACY_API_BASE}</code>) and is not the MVP review path.
+            Upload and template actions are intentionally disabled here to avoid accidental production API calls.
+          </p>
+          <p style={{ marginBottom: 0 }}>
+            Review the safe fixture-backed demo at <a href="/demo" style={{ color: '#92400e', fontWeight: 700 }}>/demo</a> or the default route <a href="/" style={{ color: '#92400e', fontWeight: 700 }}>/</a>.
+          </p>
+        </div>
+
         {/* Process Overview with Progress */}
         <div className="card fade-in" style={{
           background: 'linear-gradient(135deg, var(--primary-500) 0%, var(--success-500) 100%)',
@@ -143,12 +166,12 @@ export default function UploadPage() {
             marginBottom: '1rem', 
             fontSize: '1.75rem',
             fontWeight: '700'
-          }}>FIFO Processing Pipeline</h2>
+          }}>Legacy FIFO Processing Pipeline</h2>
           <p style={{ 
             color: 'rgba(255,255,255,0.9)', 
             marginBottom: '2rem',
             fontSize: '1rem'
-          }}>Upload your data and calculate COGS using First-In-First-Out methodology</p>
+          }}>Quarantined legacy upload UI. Use the safe fixture demo for MVP review.</p>
           
           {/* Progress Steps */}
           <div style={{ 
@@ -299,17 +322,20 @@ export default function UploadPage() {
                 <button
                   type="button"
                   onClick={() => downloadTemplate('lots')}
+                  disabled={LEGACY_UPLOAD_DISABLED}
                   className="btn"
                   style={{
                     backgroundColor: 'var(--gray-600)',
                     color: 'white',
                     fontSize: '0.75rem',
                     padding: '0.5rem 1rem',
-                    gap: '0.25rem'
+                    gap: '0.25rem',
+                    opacity: LEGACY_UPLOAD_DISABLED ? 0.6 : 1,
+                    cursor: LEGACY_UPLOAD_DISABLED ? 'not-allowed' : 'pointer'
                   }}
                 >
                   <span>📥</span>
-                  <span>Template</span>
+                  <span>Legacy Template Disabled</span>
                 </button>
               </div>
             </div>
@@ -375,17 +401,20 @@ export default function UploadPage() {
                 <button
                   type="button"
                   onClick={() => downloadTemplate('sales')}
+                  disabled={LEGACY_UPLOAD_DISABLED}
                   className="btn"
                   style={{
                     backgroundColor: 'var(--gray-600)',
                     color: 'white',
                     fontSize: '0.75rem',
                     padding: '0.5rem 1rem',
-                    gap: '0.25rem'
+                    gap: '0.25rem',
+                    opacity: LEGACY_UPLOAD_DISABLED ? 0.6 : 1,
+                    cursor: LEGACY_UPLOAD_DISABLED ? 'not-allowed' : 'pointer'
                   }}
                 >
                   <span>📥</span>
-                  <span>Template</span>
+                  <span>Legacy Template Disabled</span>
                 </button>
               </div>
             </div>
@@ -400,10 +429,10 @@ export default function UploadPage() {
             <button
               className={`btn ${(!lotsFile || processing) ? '' : 'btn-primary'}`}
               onClick={doUploadLots}
-              disabled={!lotsFile || processing}
+              disabled={LEGACY_UPLOAD_DISABLED || !lotsFile || processing}
               style={{
-                backgroundColor: (!lotsFile || processing) ? 'var(--gray-400)' : undefined,
-                cursor: (!lotsFile || processing) ? 'not-allowed' : 'pointer',
+                backgroundColor: (LEGACY_UPLOAD_DISABLED || !lotsFile || processing) ? 'var(--gray-400)' : undefined,
+                cursor: (LEGACY_UPLOAD_DISABLED || !lotsFile || processing) ? 'not-allowed' : 'pointer',
                 gap: '0.5rem',
                 justifyContent: 'center'
               }}
@@ -412,6 +441,11 @@ export default function UploadPage() {
                 <>
                   <span className="pulse">⏳</span>
                   <span>Uploading...</span>
+                </>
+              ) : LEGACY_UPLOAD_DISABLED ? (
+                <>
+                  <span>🚧</span>
+                  <span>Legacy Upload Disabled</span>
                 </>
               ) : !lotsFile ? (
                 <>
@@ -429,10 +463,10 @@ export default function UploadPage() {
             <button
               className={`btn ${(!salesFile || processing) ? '' : 'btn-warning'}`}
               onClick={doUploadSales}
-              disabled={!salesFile || processing}
+              disabled={LEGACY_UPLOAD_DISABLED || !salesFile || processing}
               style={{
-                backgroundColor: (!salesFile || processing) ? 'var(--gray-400)' : undefined,
-                cursor: (!salesFile || processing) ? 'not-allowed' : 'pointer',
+                backgroundColor: (LEGACY_UPLOAD_DISABLED || !salesFile || processing) ? 'var(--gray-400)' : undefined,
+                cursor: (LEGACY_UPLOAD_DISABLED || !salesFile || processing) ? 'not-allowed' : 'pointer',
                 gap: '0.5rem',
                 justifyContent: 'center'
               }}
@@ -441,6 +475,11 @@ export default function UploadPage() {
                 <>
                   <span className="pulse">⏳</span>
                   <span>Uploading...</span>
+                </>
+              ) : LEGACY_UPLOAD_DISABLED ? (
+                <>
+                  <span>🚧</span>
+                  <span>Legacy Upload Disabled</span>
                 </>
               ) : !salesFile ? (
                 <>
@@ -458,10 +497,10 @@ export default function UploadPage() {
             <button
               className={`btn ${(!salesFile || processing) ? '' : 'btn-success'}`}
               onClick={doProcessSalesOnly}
-              disabled={!salesFile || processing}
+              disabled={LEGACY_UPLOAD_DISABLED || !salesFile || processing}
               style={{
-                backgroundColor: (!salesFile || processing) ? 'var(--gray-400)' : undefined,
-                cursor: (!salesFile || processing) ? 'not-allowed' : 'pointer',
+                backgroundColor: (LEGACY_UPLOAD_DISABLED || !salesFile || processing) ? 'var(--gray-400)' : undefined,
+                cursor: (LEGACY_UPLOAD_DISABLED || !salesFile || processing) ? 'not-allowed' : 'pointer',
                 gap: '0.5rem',
                 justifyContent: 'center'
               }}
@@ -470,6 +509,11 @@ export default function UploadPage() {
                 <>
                   <span className="pulse">⚙️</span>
                   <span>Processing...</span>
+                </>
+              ) : LEGACY_UPLOAD_DISABLED ? (
+                <>
+                  <span>🚧</span>
+                  <span>Legacy Processing Disabled</span>
                 </>
               ) : !salesFile ? (
                 <>

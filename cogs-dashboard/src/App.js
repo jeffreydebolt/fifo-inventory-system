@@ -10,9 +10,10 @@ function App() {
     <ClientProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/upload" element={<UploadPage />} />
+          <Route path="/" element={<DemoPage />} />
           <Route path="/demo" element={<DemoPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/upload" element={<UploadPage />} />
         </Routes>
       </Router>
     </ClientProvider>
