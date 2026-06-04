@@ -9,7 +9,7 @@ This repo contains a live/client-derived FIFO inventory system. Treat it as safe
 3. **Do not mutate Storage Standard client data.** Work in this public repo only unless Jeff explicitly approves a client-data task.
 4. **No main-branch pushes.** Autonomous work must happen on a named branch and be reported for review.
 5. **Prefer fixtures/tests over production data.** Use tiny synthetic CSV fixtures under `tests/fixtures/` or `examples/`.
-6. **Separate engine from app.** The priority is a deterministic, test-covered FIFO engine/CLI that can become a free GitHub project. Paid UI/reporting comes later.
+6. **Separate engine from app.** Keep the deterministic FIFO engine/CLI isolated and test-covered. UI work is allowed when it stays fixture/local/demo-only and does not touch live data or production APIs.
 7. **Before running any command, classify it:** read-only, test-only, local file edit, or live mutation. Never run live mutation commands.
 
 ## Dangerous script name patterns
