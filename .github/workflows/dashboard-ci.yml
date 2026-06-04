@@ -28,7 +28,7 @@ jobs:
         cache-dependency-path: cogs-dashboard/package-lock.json
 
     - name: Install dependencies
-      run: npm install --legacy-peer-deps
+      run: npm ci --no-audit --no-fund
 
     - name: Lint code
       run: |
@@ -72,7 +72,7 @@ jobs:
         cache-dependency-path: cogs-dashboard/package-lock.json
 
     - name: Install dependencies
-      run: npm install --legacy-peer-deps
+      run: npm ci --no-audit --no-fund
 
     - name: Build for production
       env:
