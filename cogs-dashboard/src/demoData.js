@@ -9,7 +9,8 @@ export const demoRun = {
   inputs: {
     purchaseLots: 'tests/fixtures/firstlot_demo/purchase_lots.csv',
     movement: 'tests/fixtures/firstlot_demo/movement.csv',
-    artifactDirectory: 'cogs-dashboard/src/demo-output/firstlot_demo'
+    artifactDirectory: 'cogs-dashboard/src/demo-output/firstlot_demo',
+    regenerateCommand: 'python3 scripts/regenerate_firstlot_demo_artifacts.py'
   },
   cogsSummary,
   remainingLayers,

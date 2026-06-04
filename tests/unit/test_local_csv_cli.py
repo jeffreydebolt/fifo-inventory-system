@@ -113,3 +113,37 @@ def test_checked_in_dashboard_demo_json_matches_local_cli_output(tmp_path):
         with (DASHBOARD_DEMO_OUTPUT_DIR / artifact_name).open() as checked_in_handle:
             checked_in = json.load(checked_in_handle)
         assert checked_in == generated
+
+
+def test_regenerate_demo_artifacts_script_runs_against_temp_output(tmp_path):
+    result = subprocess.run(
+        [
+            sys.executable,
+            "scripts/regenerate_firstlot_demo_artifacts.py",
+            "--out",
+            str(tmp_path),
+        ],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0, result.stderr
+    assert "local fixtures only" in result.stdout
+    assert "no .env reads" in result.stdout
+    assert sorted(path.name for path in tmp_path.iterdir()) == [
+        "audit_trail.csv",
+        "audit_trail.json",
+        "cogs_summary.csv",
+        "cogs_summary.json",
+        "remaining_layers.csv",
+        "remaining_layers.json",
+        "shortfalls.csv",
+        "shortfalls.json",
+    ]
+    with (tmp_path / "cogs_summary.json").open() as generated_handle:
+        generated = json.load(generated_handle)
+    with (DASHBOARD_DEMO_OUTPUT_DIR / "cogs_summary.json").open() as checked_in_handle:
+        checked_in = json.load(checked_in_handle)
+    assert generated == checked_in

@@ -107,6 +107,7 @@ export default function DemoPage() {
             <li>Purchase lots: <code>{demoRun.inputs.purchaseLots}</code></li>
             <li>Movement/sales: <code>{demoRun.inputs.movement}</code></li>
             <li>Checked-in output artifacts: <code>{demoRun.inputs.artifactDirectory}</code></li>
+            <li>Regenerate command: <code>{demoRun.inputs.regenerateCommand}</code></li>
           </ul>
         </div>
 

@@ -36,6 +36,7 @@ test('renders /demo with checked-in local FIFO artifacts and no network calls', 
   expect(container.textContent).toContain('FirstLot local MVP demo');
   expect(container.textContent).toContain('Local/demo mode');
   expect(container.textContent).toContain('cogs-dashboard/src/demo-output/firstlot_demo');
+  expect(container.textContent).toContain('python3 scripts/regenerate_firstlot_demo_artifacts.py');
   expect(container.textContent).toContain('SKU-A');
   expect(container.textContent).toContain('LOT-B-001');
   expect(container.textContent).toContain('INSUFFICIENT_INVENTORY');

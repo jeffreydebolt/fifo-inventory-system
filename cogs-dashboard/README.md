@@ -1,6 +1,26 @@
-# Getting Started with Create React App
+# FirstLot demo dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The `/demo` route renders checked-in JSON artifacts generated from the safe local
+FirstLot fixture CSVs. It does not fetch from the API or Supabase during demo
+rendering.
+
+From the repository root, regenerate those artifacts with:
+
+```bash
+python3 scripts/regenerate_firstlot_demo_artifacts.py
+```
+
+Then verify the dashboard locally with:
+
+```bash
+cd cogs-dashboard
+npm test -- --watchAll=false
+npm run build
+```
+
+## Create React App reference
+
+This dashboard was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 

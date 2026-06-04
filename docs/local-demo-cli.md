@@ -12,6 +12,20 @@ python3 -m app.local_cli run \
   --generated-at 2026-06-03T23:00:00
 ```
 
+## Regenerate dashboard demo artifacts
+
+Reviewers can refresh the checked-in dashboard demo output from the same safe local
+fixture path with one command from the repo root:
+
+```bash
+python3 scripts/regenerate_firstlot_demo_artifacts.py
+```
+
+That command rewrites `cogs-dashboard/src/demo-output/firstlot_demo/*.csv` and
+`*.json`, then verifies the expected files exist and the JSON parses. It is still
+local-file only: fixture CSV input, deterministic timestamp, no `.env`, no
+Supabase/API imports, and no live database writes.
+
 Expected artifacts:
 
 - `cogs_summary.csv` and `cogs_summary.json`
