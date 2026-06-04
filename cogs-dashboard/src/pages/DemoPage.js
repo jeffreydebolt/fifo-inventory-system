@@ -3,6 +3,7 @@ import { demoRun } from '../demoData';
 import {
   amazonConnectorMock,
   closeActionQueue,
+  closeReadinessTimeline,
   columnMappings,
   demandPlanning,
   exceptionGuidance,
@@ -10,6 +11,8 @@ import {
   exportPacketManifest,
   intakeModes,
   inventoryTracking,
+  mappingReviewChecklist,
+  packetCoverSheet,
   replenishmentPlan,
   uploadMockFiles,
   valuationSnapshots
@@ -215,6 +218,36 @@ function MappingReview() {
           </div>
         ))}
       </div>
+      <div style={{ marginTop: '1rem' }}>
+        <DemoTable title="Mapping confidence checklist" rows={mappingReviewChecklist} />
+      </div>
+    </section>
+  );
+}
+
+function ReadinessTimeline() {
+  return (
+    <section style={{ ...softCard, padding: '1.25rem', marginBottom: '1.25rem', borderColor: '#c7d2fe' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+        <div>
+          <Pill tone="blue">Close readiness timeline</Pill>
+          <h2 style={{ margin: '0.75rem 0 0.35rem' }}>What can close now, and what still needs sign-off?</h2>
+          <p style={{ margin: 0, color: '#4b5563' }}>Visual final-cycle polish that turns workflow status into a reviewable operator timeline.</p>
+        </div>
+        <Pill tone="red">Exception blocks final approval</Pill>
+      </div>
+      <div style={{ display: 'grid', gap: '0.75rem' }}>
+        {closeReadinessTimeline.map((item) => (
+          <div key={item.stage} style={{ display: 'grid', gridTemplateColumns: 'minmax(170px, 0.35fr) minmax(130px, 0.2fr) 1fr', gap: '0.85rem', alignItems: 'start', border: '1px solid #e5e7eb', borderRadius: '1rem', padding: '0.95rem', background: '#fff' }}>
+            <strong>{item.stage}</strong>
+            <div>
+              <Pill tone={item.tone}>{item.state}</Pill>
+              <div style={{ color: '#64748b', marginTop: '0.45rem', fontWeight: 800 }}>{item.owner}</div>
+            </div>
+            <p style={{ margin: 0, color: '#475569', lineHeight: 1.45 }}>{item.evidence}</p>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
@@ -388,7 +421,10 @@ function ExportPacketChecklist() {
         </div>
         <Pill tone="green">No-network downloads</Pill>
       </div>
-      <DemoTable title="Close packet artifacts" rows={exportPacketChecklist} />
+      <DemoTable title="Accounting packet cover sheet" rows={packetCoverSheet} />
+      <div style={{ marginTop: '1rem' }}>
+        <DemoTable title="Close packet artifacts" rows={exportPacketChecklist} />
+      </div>
       <div style={{ marginTop: '1rem' }}>
         <DemoTable title="Export manifest and sign-off gates" rows={exportPacketManifest} />
       </div>
@@ -487,6 +523,8 @@ export default function DemoPage() {
         <div style={{ marginBottom: '1.25rem' }}>
           <MappingReview />
         </div>
+
+        <ReadinessTimeline />
 
         <section style={{ ...softCard, padding: '1.25rem', marginBottom: '1.25rem', borderColor: '#fecaca' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>

@@ -42,6 +42,9 @@ test('renders /demo as a workflow product preview with checked-in local FIFO art
   expect(container.textContent).toContain('Local/demo mode');
   expect(container.textContent).toContain('setup/start → sample data or upload/map mock → run/review exceptions → results summary → drilldowns → export packet');
   expect(container.textContent).toContain('Mapping review');
+  expect(container.textContent).toContain('Mapping confidence checklist');
+  expect(container.textContent).toContain('Required FIFO keys');
+  expect(container.textContent).toContain('Channel SKU aliases');
   expect(container.textContent).toContain('Upload mock queue');
   expect(container.textContent).toContain('Sample/upload review before mapping');
   expect(container.textContent).toContain('purchase_lots_sample.csv');
@@ -51,8 +54,14 @@ test('renders /demo as a workflow product preview with checked-in local FIFO art
   expect(container.textContent).toContain('Resolve insufficient inventory before close');
   expect(container.textContent).toContain('Close action queue');
   expect(container.textContent).toContain('Operator guidance after the run');
+  expect(container.textContent).toContain('Close readiness timeline');
+  expect(container.textContent).toContain('What can close now, and what still needs sign-off?');
+  expect(container.textContent).toContain('Exception blocks final approval');
+  expect(container.textContent).toContain('Accounting packet');
   expect(container.textContent).toContain('Export packet polish');
   expect(container.textContent).toContain('Close packet checklist');
+  expect(container.textContent).toContain('Accounting packet cover sheet');
+  expect(container.textContent).toContain('May inventory close review');
   expect(container.textContent).toContain('Export manifest and sign-off gates');
   expect(container.textContent).toContain('Blocked until reviewed');
   expect(container.textContent).toContain('export manifest JSON');

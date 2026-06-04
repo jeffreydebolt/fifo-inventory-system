@@ -46,3 +46,13 @@ The PR branch now also previews three local-only assistant bricks:
 3. **Replenishment action plan** — demand-planning recommendations converted into operator actions without Amazon/Shopify execution.
 
 These remain static UI/documentation contracts until Jeff explicitly approves live connector or upload work.
+
+## Cycle 4 final make-up polish
+
+The final make-up cycle added three more safe/demo bricks without widening the live-data surface:
+
+1. **Mapping confidence checklist** — expands mapping review from field cards into pass/review/deferred checks for FIFO keys, date parsing, landed-cost policy, and channel SKU aliases.
+2. **Close readiness timeline** — visual operator timeline that separates ready intake, mapping review, generated FIFO artifacts, blocked exception sign-off, and draft accounting packet readiness.
+3. **Accounting packet cover sheet** — export packet preview now includes prepared-for/prepared-by/open-blocker/regeneration-command rows before the artifact manifest.
+
+These are fixture-backed UI states only. They do not enable real uploads, connector execution, API fetches, `.env` reads, live Supabase writes, or Storage Standard/client data mutation.
