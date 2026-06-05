@@ -1,0 +1,52 @@
+{
+  "artifact_files": [
+    "cogs_summary.csv",
+    "cogs_summary.json",
+    "remaining_layers.csv",
+    "remaining_layers.json",
+    "audit_trail.csv",
+    "audit_trail.json",
+    "shortfalls.csv",
+    "shortfalls.json",
+    "failed_sku_queue.csv",
+    "failed_sku_queue.json",
+    "cogs_detail.csv",
+    "cogs_detail.json"
+  ],
+  "generated_at": "2026-06-03T23:00:00",
+  "history": null,
+  "input_files": {
+    "movement": {
+      "name": "movement.csv",
+      "path": "tests/fixtures/firstlot_demo/movement.csv",
+      "sha256": "9eb3c62bda9c90dc1dcbf50f71363fb94388d81d3da671f7dd200596607411ff"
+    },
+    "purchase_lots": {
+      "name": "purchase_lots.csv",
+      "path": "tests/fixtures/firstlot_demo/purchase_lots.csv",
+      "sha256": "78f980fbe1a8a799af5803c27a962a0bc10e4470df2d0a86aa961a909d4894a6"
+    }
+  },
+  "live_mutations_performed": [],
+  "operator_next_step": "Fix local input CSVs and rerun with --reopen, then assert failed-skus --assert-clear.",
+  "packet_type": "firstlot_local_month_close",
+  "period": "2026-05",
+  "periods_in_outputs": [
+    "2026-05"
+  ],
+  "safety_mode": "local_fixture_only_no_live_writes",
+  "summary": {
+    "failed_sku_count": 1,
+    "failed_skus": [
+      "SKU-A"
+    ],
+    "shortfall_quantity": 1,
+    "sku_count": 2,
+    "skus_processed": [
+      "SKU-A",
+      "SKU-B"
+    ],
+    "total_cogs": "250.00",
+    "total_units_sold": 20
+  }
+}
