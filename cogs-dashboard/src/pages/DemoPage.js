@@ -1,5 +1,5 @@
 import React from 'react';
-import { demoRun, monthHistory, runVersions } from '../demoData';
+import { demoRun, fixedDemoRun, monthHistory, runVersions } from '../demoData';
 
 const page = {
   minHeight: '100vh',
@@ -52,16 +52,20 @@ function number(value) {
   return Number(value).toLocaleString('en-US');
 }
 
-function cogsRows() {
-  return demoRun.cogsDetail.map((row) => ({
+function cogsRowsFor(run) {
+  return run.cogsDetail.map((row) => ({
     sku: row.sku,
     unitsSold: Number(row.total_quantity_sold),
     unitCost: Number(row.merchandise_cost) / Number(row.total_quantity_sold),
     shippingCost: Number(row.shipping_cost),
     totalCost: Number(row.total_cost),
     averageCost: Number(row.average_cost),
-    status: demoRun.shortfalls.some((shortfall) => shortfall.sku === row.sku) ? 'Needs fix' : 'Complete'
+    status: run.shortfalls.some((shortfall) => shortfall.sku === row.sku) ? 'Needs fix' : 'Complete'
   }));
+}
+
+function cogsRows() {
+  return cogsRowsFor(demoRun);
 }
 
 function Pill({ children, tone = 'green' }) {
@@ -221,6 +225,44 @@ function MonthHistory() {
   );
 }
 
+function FixedRerunComparison() {
+  const v1Rows = cogsRowsFor(demoRun);
+  const v2Rows = cogsRowsFor(fixedDemoRun);
+  const v1Total = v1Rows.reduce((sum, row) => sum + row.totalCost, 0);
+  const v2Total = v2Rows.reduce((sum, row) => sum + row.totalCost, 0);
+  const v1Failed = demoRun.failedSkuQueue.length;
+  const v2Failed = fixedDemoRun.failedSkuQueue.length;
+  const skuAFixed = v2Rows.find((row) => row.sku === 'SKU-A');
+
+  return (
+    <div style={grid}>
+      <div style={{ ...card, padding: '1rem', boxShadow: 'none', borderColor: '#fed7aa', background: '#fff7ed' }}>
+        <h3 style={{ margin: '0 0 0.6rem' }}>Run v1: needs fix</h3>
+        <p style={{ margin: '0 0 0.5rem', color: '#7c2d12', lineHeight: 1.5 }}>
+          Uses <code>{demoRun.inputs.purchaseLots}</code>. SKU-A sales exceed available purchase lots, so the failed SKU queue contains {number(v1Failed)} row.
+        </p>
+        <p style={{ margin: 0, color: '#7c2d12' }}><strong>Total COGS:</strong> {money(v1Total)} · <strong>Failed SKUs:</strong> {number(v1Failed)}</p>
+      </div>
+
+      <div style={{ ...card, padding: '1rem', boxShadow: 'none', borderColor: '#bbf7d0', background: '#f0fdf4' }}>
+        <h3 style={{ margin: '0 0 0.6rem' }}>Run v2: complete after corrected purchase lots</h3>
+        <p style={{ margin: '0 0 0.5rem', color: '#166534', lineHeight: 1.5 }}>
+          Uses <code>{fixedDemoRun.inputs.purchaseLots}</code>. The rerun writes <code>{fixedDemoRun.inputs.artifactDirectory}</code> and clears shortfalls and failed SKUs.
+        </p>
+        <p style={{ margin: 0, color: '#166534' }}><strong>Total COGS:</strong> {money(v2Total)} · <strong>Failed SKUs:</strong> {number(v2Failed)} · <strong>SKU-A units:</strong> {number(skuAFixed?.unitsSold)}</p>
+      </div>
+
+      <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
+        <h3 style={{ margin: '0 0 0.6rem' }}>Deterministic rerun delta</h3>
+        <p style={{ margin: '0 0 0.5rem', color: '#475569', lineHeight: 1.5 }}>
+          V2 adds the one missing SKU-A unit from LOT-A-FIX-001, increasing total COGS by {money(v2Total - v1Total)} and reducing failed SKU rows from {number(v1Failed)} to {number(v2Failed)}.
+        </p>
+        <p style={{ margin: 0, color: '#334155' }}><strong>Completion check:</strong> <code>{fixedDemoRun.inputs.assertClearCommand}</code></p>
+      </div>
+    </div>
+  );
+}
+
 function RerunAndRollbackAudit() {
   return (
     <div style={grid}>
@@ -342,6 +384,14 @@ export default function DemoPage() {
         <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
           <h2 style={{ margin: '0 0 0.75rem' }}>Month history</h2>
           <MonthHistory />
+        </section>
+
+        <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
+          <h2 style={{ margin: '0 0 0.75rem' }}>Fixed rerun artifacts</h2>
+          <FixedRerunComparison />
+          <p style={{ margin: '1rem 0 0', color: '#64748b', lineHeight: 1.5 }}>
+            The fixed rerun folder is checked in separately so reviewers can compare the v1 failed SKU queue with v2 fixed output without touching live data.
+          </p>
         </section>
 
         <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>

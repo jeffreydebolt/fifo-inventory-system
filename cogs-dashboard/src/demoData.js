@@ -4,6 +4,13 @@ import auditTrail from './demo-output/firstlot_demo/audit_trail.json';
 import shortfalls from './demo-output/firstlot_demo/shortfalls.json';
 import failedSkuQueue from './demo-output/firstlot_demo/failed_sku_queue.json';
 import cogsDetail from './demo-output/firstlot_demo/cogs_detail.json';
+import fixedCogsSummary from './demo-output/firstlot_demo_fixed/cogs_summary.json';
+import fixedRemainingLayers from './demo-output/firstlot_demo_fixed/remaining_layers.json';
+import fixedAuditTrail from './demo-output/firstlot_demo_fixed/audit_trail.json';
+import fixedShortfalls from './demo-output/firstlot_demo_fixed/shortfalls.json';
+import fixedFailedSkuQueue from './demo-output/firstlot_demo_fixed/failed_sku_queue.json';
+import fixedCogsDetail from './demo-output/firstlot_demo_fixed/cogs_detail.json';
+import fixedMonthHistory from './demo-output/firstlot_demo_fixed/month_history.json';
 
 export const demoRun = {
   generatedAt: '2026-06-03T23:00:00',
@@ -23,6 +30,27 @@ export const demoRun = {
   shortfalls,
   failedSkuQueue,
   cogsDetail
+};
+
+export const fixedDemoRun = {
+  generatedAt: '2026-06-03T23:00:00',
+  safetyMode: 'Local/demo mode — fixture data only, no live DB writes',
+  month: '2026-05',
+  runVersion: 'v2',
+  inputs: {
+    purchaseLots: 'tests/fixtures/firstlot_demo/purchase_lots_fixed.csv',
+    movement: 'tests/fixtures/firstlot_demo/movement.csv',
+    artifactDirectory: 'cogs-dashboard/src/demo-output/firstlot_demo_fixed',
+    regenerateCommand: 'python3 scripts/regenerate_firstlot_demo_artifacts.py',
+    assertClearCommand: 'python3 -m app.local_cli failed-skus --out cogs-dashboard/src/demo-output/firstlot_demo_fixed --period 2026-05 --assert-clear'
+  },
+  cogsSummary: fixedCogsSummary,
+  remainingLayers: fixedRemainingLayers,
+  auditTrail: fixedAuditTrail,
+  shortfalls: fixedShortfalls,
+  failedSkuQueue: fixedFailedSkuQueue,
+  cogsDetail: fixedCogsDetail,
+  monthHistory: fixedMonthHistory
 };
 
 export const monthHistory = [
@@ -57,17 +85,17 @@ export const monthHistory = [
 
 export const runVersions = [
   {
-    month: '2026-04',
+    month: '2026-05',
     version: 'v1',
     status: 'Needs fix',
-    summary: 'Original run had missing purchase lots for 3 fixture SKUs.',
-    delta: 'Baseline'
+    summary: 'Original fixture run uses purchase_lots.csv and leaves SKU-A short by 1 unit.',
+    delta: 'Baseline: $250.00 COGS, 1 failed SKU queued'
   },
   {
-    month: '2026-04',
+    month: '2026-05',
     version: 'v2',
     status: 'Complete',
-    summary: 'Corrected lots CSV appended, then full month rerun completed.',
-    delta: '+$214.00 COGS across corrected fixture SKUs'
+    summary: 'Corrected purchase_lots_fixed.csv is rerun for the full month and clears the failed SKU queue.',
+    delta: '+$13.00 COGS; SKU-A completed with 19 units sold and no shortfalls'
   }
 ];

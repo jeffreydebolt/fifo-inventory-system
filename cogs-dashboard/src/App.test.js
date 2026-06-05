@@ -84,6 +84,12 @@ function expectCoreMvpScreen() {
   expect(container.textContent).toContain('Month history');
   expect(container.textContent).toContain('2026-04');
   expect(container.textContent).toContain('Run version');
+  expect(container.textContent).toContain('Fixed rerun artifacts');
+  expect(container.textContent).toContain('Run v1: needs fix');
+  expect(container.textContent).toContain('Run v2: complete after corrected purchase lots');
+  expect(container.textContent).toContain('purchase_lots_fixed.csv');
+  expect(container.textContent).toContain('failed SKU rows from 1 to 0');
+  expect(container.textContent).toContain('firstlot_demo_fixed');
   expect(container.textContent).toContain('Failed SKU queue');
   expect(container.textContent).toContain('SKU / month');
   expect(container.textContent).toContain('NEEDS FIX RERUN');

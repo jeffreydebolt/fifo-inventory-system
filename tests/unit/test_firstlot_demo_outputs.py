@@ -1,5 +1,8 @@
 """Fixture-backed tests for deterministic FirstLot MVP outputs."""
 import csv
+import json
+import subprocess
+import sys
 from datetime import datetime
 from decimal import Decimal
 from pathlib import Path
@@ -16,9 +19,9 @@ def _read_csv(name):
         return list(csv.DictReader(handle))
 
 
-def _demo_lots():
+def _demo_lots(name="purchase_lots.csv"):
     lots = []
-    for row in _read_csv("purchase_lots.csv"):
+    for row in _read_csv(name):
         lots.append(
             PurchaseLot(
                 lot_id=row["lot_id"],
@@ -47,13 +50,18 @@ def _demo_sales():
     return sales
 
 
-def _report():
+def _report(lots_name="purchase_lots.csv"):
     return run_fifo_report(
-        InventorySnapshot(timestamp=DETERMINISTIC_TS, lots=_demo_lots()),
+        InventorySnapshot(timestamp=DETERMINISTIC_TS, lots=_demo_lots(lots_name)),
         _demo_sales(),
         generated_at=DETERMINISTIC_TS,
         allow_partial_shortfalls=True,
     )
+
+
+def _artifact_json(path: Path, name: str):
+    with (path / name).open() as handle:
+        return json.load(handle)
 
 
 def test_demo_fixture_cogs_summary_matches_expected_csv():
@@ -178,3 +186,68 @@ def test_demo_fixture_generated_at_is_deterministic():
     report = _report()
 
     assert report.generated_at == DETERMINISTIC_TS
+
+
+def test_fixed_rerun_fixture_clears_failed_queue_and_completes_sku_a():
+    report = _report("purchase_lots_fixed.csv")
+
+    assert [dataclass_row_dict(row) for row in report.failed_sku_queue] == []
+    assert [dataclass_row_dict(row) for row in report.shortfalls] == []
+    assert [dataclass_row_dict(row) for row in report.cogs_detail] == [
+        {
+            "sku": "SKU-A",
+            "period": "2026-05",
+            "total_quantity_sold": 19,
+            "merchandise_cost": "209.00",
+            "shipping_cost": "14.00",
+            "total_cost": "223.00",
+            "average_cost": "11.74",
+        },
+        {
+            "sku": "SKU-B",
+            "period": "2026-05",
+            "total_quantity_sold": 2,
+            "merchandise_cost": "40.00",
+            "shipping_cost": "0.00",
+            "total_cost": "40.00",
+            "average_cost": "20.00",
+        },
+    ]
+
+
+def test_regenerate_demo_artifacts_can_write_fixed_rerun_folder(tmp_path):
+    v1_out = tmp_path / "firstlot_demo"
+    fixed_out = tmp_path / "firstlot_demo_fixed"
+    result = subprocess.run(
+        [
+            sys.executable,
+            "scripts/regenerate_firstlot_demo_artifacts.py",
+            "--out",
+            str(v1_out),
+            "--fixed-out",
+            str(fixed_out),
+        ],
+        cwd=Path(__file__).resolve().parents[2],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0, result.stderr
+    assert _artifact_json(v1_out, "failed_sku_queue.json")[0]["sku"] == "SKU-A"
+    assert _artifact_json(fixed_out, "failed_sku_queue.json") == []
+    assert _artifact_json(fixed_out, "shortfalls.json") == []
+    history = _artifact_json(fixed_out, "month_history.json")
+    assert [(row["run_sequence"], row["status"], row["shortfall_quantity"]) for row in history] == [
+        (1, "CLOSED", 1),
+        (2, "REOPENED", 0),
+    ]
+    assert _artifact_json(fixed_out, "cogs_detail.json")[0] == {
+        "average_cost": "11.74",
+        "merchandise_cost": "209.00",
+        "period": "2026-05",
+        "shipping_cost": "14.00",
+        "sku": "SKU-A",
+        "total_cost": "223.00",
+        "total_quantity_sold": 19,
+    }

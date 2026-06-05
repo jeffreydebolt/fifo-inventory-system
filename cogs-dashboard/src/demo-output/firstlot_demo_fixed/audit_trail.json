@@ -1,0 +1,52 @@
+[
+  {
+    "lot_id": "LOT-A-001",
+    "lot_received_date": "2026-05-01T00:00:00",
+    "quantity": 10,
+    "sale_date": "2026-05-15T00:00:00",
+    "sale_id": "SALE-001",
+    "sku": "SKU-A",
+    "total_cost": "110.00",
+    "unit_cost": "11.00"
+  },
+  {
+    "lot_id": "LOT-A-002",
+    "lot_received_date": "2026-05-10T00:00:00",
+    "quantity": 2,
+    "sale_date": "2026-05-15T00:00:00",
+    "sale_id": "SALE-001",
+    "sku": "SKU-A",
+    "total_cost": "25.00",
+    "unit_cost": "12.50"
+  },
+  {
+    "lot_id": "LOT-A-002",
+    "lot_received_date": "2026-05-10T00:00:00",
+    "quantity": 6,
+    "sale_date": "2026-05-20T00:00:00",
+    "sale_id": "SALE-002",
+    "sku": "SKU-A",
+    "total_cost": "75.00",
+    "unit_cost": "12.50"
+  },
+  {
+    "lot_id": "LOT-A-FIX-001",
+    "lot_received_date": "2026-05-12T00:00:00",
+    "quantity": 1,
+    "sale_date": "2026-05-20T00:00:00",
+    "sale_id": "SALE-002",
+    "sku": "SKU-A",
+    "total_cost": "13.00",
+    "unit_cost": "13.00"
+  },
+  {
+    "lot_id": "LOT-B-001",
+    "lot_received_date": "2026-05-03T00:00:00",
+    "quantity": 2,
+    "sale_date": "2026-05-21T00:00:00",
+    "sale_id": "SALE-003",
+    "sku": "SKU-B",
+    "total_cost": "40.00",
+    "unit_cost": "20.00"
+  }
+]
