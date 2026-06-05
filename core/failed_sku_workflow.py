@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import csv
 import json
+import shlex
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Iterable
@@ -93,6 +94,71 @@ def filter_queue(
     return sorted(filtered, key=lambda row: (row.period, row.sku))
 
 
+def _shell_command(args: list[str]) -> str:
+    """Return a copy/paste-safe shell command string for display in JSON output."""
+
+    return " ".join(shlex.quote(str(arg)) for arg in args)
+
+
+def _pluralize(count: int, singular: str, plural: str | None = None) -> str:
+    if count == 1:
+        return f"1 {singular}"
+    return f"{count} {plural or singular + 's'}"
+
+
+def _build_summary(
+    records: list[FailedSKUQueueRecord],
+    *,
+    total_shortfall_quantity: int,
+    affected_periods: list[str],
+    affected_skus: list[str],
+) -> str:
+    if not records:
+        return "No failed SKU queue rows match the requested filters; no CSV fix is currently required."
+    return (
+        f"{_pluralize(len(records), 'failed SKU queue row')} across "
+        f"{_pluralize(len(affected_skus), 'SKU')} and "
+        f"{_pluralize(len(affected_periods), 'period')} requires "
+        f"{_pluralize(total_shortfall_quantity, 'additional available unit')} before rerun."
+    )
+
+
+def _build_recommended_next_action(records: list[FailedSKUQueueRecord], affected_periods: list[str]) -> str:
+    if not records:
+        return "Run the completion check command; if it remains clear, continue month-close review."
+    if len(records) == 1:
+        record = records[0]
+        period_text = record.period
+        return (
+            f"Add at least {record.shortfall_quantity} unit(s) of {record.sku} available before "
+            f"{record.first_sale_date}, then rerun {period_text} with --reopen."
+        )
+    period_text = affected_periods[0] if len(affected_periods) == 1 else "the affected periods"
+    return (
+        "Fix the local purchase lots or sales CSV so each recommended_csv_fixes row has enough "
+        f"available FIFO quantity, then rerun {period_text} with --reopen or the correct prior-month correction mode."
+    )
+
+
+def _build_completion_check_args(
+    out_dir: str | Path,
+    *,
+    period: str | None,
+    sku: str | None,
+    affected_periods: list[str],
+    affected_skus: list[str],
+) -> list[str]:
+    args = ["python", "-m", "app.local_cli", "failed-skus", "--out", str(Path(out_dir))]
+    check_period = period or (affected_periods[0] if len(affected_periods) == 1 else None)
+    check_sku = sku or (affected_skus[0] if len(affected_skus) == 1 and period else None)
+    if check_period:
+        args.extend(["--period", check_period])
+    if check_sku:
+        args.extend(["--sku", check_sku])
+    args.append("--assert-clear")
+    return args
+
+
 def build_fix_plan(
     out_dir: str | Path,
     *,
@@ -123,9 +189,26 @@ def build_fix_plan(
     if len(affected_periods) == 1:
         rerun_args.extend(["--period", affected_periods[0], "--reopen"])
 
+    completion_check_args = _build_completion_check_args(
+        out_dir,
+        period=period,
+        sku=sku,
+        affected_periods=affected_periods,
+        affected_skus=affected_skus,
+    )
+
     return {
         "read_only": True,
         "mutations_performed": [],
+        "summary": _build_summary(
+            records,
+            total_shortfall_quantity=total_shortfall_quantity,
+            affected_periods=affected_periods,
+            affected_skus=affected_skus,
+        ),
+        "recommended_next_action": _build_recommended_next_action(records, affected_periods),
+        "suggested_rerun_command": _shell_command(rerun_args),
+        "completion_check_command": _shell_command(completion_check_args),
         "note": note,
         "queue_record_count": len(records),
         "affected_periods": affected_periods,

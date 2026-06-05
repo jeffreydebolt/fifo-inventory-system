@@ -84,6 +84,19 @@ def test_failed_skus_review_and_fix_plan_are_read_only(tmp_path):
     payload = json.loads(plan.stdout)
     assert payload["read_only"] is True
     assert payload["mutations_performed"] == []
+    assert payload["summary"] == (
+        "1 failed SKU queue row across 1 SKU and 1 period requires "
+        "1 additional available unit before rerun."
+    )
+    assert payload["recommended_next_action"] == (
+        "Add at least 1 unit(s) of SKU-A available before 2026-05-20T00:00:00, "
+        "then rerun 2026-05 with --reopen."
+    )
+    assert payload["suggested_rerun_command"].startswith("python -m app.local_cli run --lots ")
+    assert "--period 2026-05 --reopen" in payload["suggested_rerun_command"]
+    assert payload["completion_check_command"].endswith(
+        f"--out {tmp_path} --period 2026-05 --sku SKU-A --assert-clear"
+    )
     assert payload["affected_skus"] == ["SKU-A"]
     assert payload["recommended_csv_fixes"][0]["minimum_additional_available_units_needed"] == 1
     assert "--reopen" in payload["rerun_command_args"]
