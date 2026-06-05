@@ -149,6 +149,8 @@ def test_regenerate_demo_artifacts_script_runs_against_temp_output(tmp_path):
     assert sorted(path.name for path in tmp_path.iterdir()) == [
         "audit_trail.csv",
         "audit_trail.json",
+        "close_packet.json",
+        "close_packet.md",
         "cogs_detail.csv",
         "cogs_detail.json",
         "cogs_summary.csv",

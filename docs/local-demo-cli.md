@@ -75,6 +75,7 @@ Expected artifacts:
 - `audit_trail.csv` and `audit_trail.json`
 - `shortfalls.csv` and `shortfalls.json`
 - `failed_sku_queue.csv` and `failed_sku_queue.json`
+- `close_packet.json` and `close_packet.md` with input checksums, safety mode, total COGS, failed SKU count, history status, and artifact list
 
 The fixture demonstrates:
 
@@ -111,6 +112,15 @@ Optional flags:
 - `--out <dir>` writes regenerated artifacts to a chosen local directory,
 - `--keep-out` keeps the temporary regenerated artifacts for inspection,
 - `--skip-dashboard` runs only the fixture artifact regeneration check.
+
+## Local month-close packet
+
+Every default JSON-producing `run` writes `close_packet.json` and
+`close_packet.md` alongside the FIFO artifacts. The packet is a local audit
+handoff containing input file names/checksums, generated timestamp, safety mode,
+total COGS, processed SKUs, failed SKU count, optional month-history row, and the
+artifact list. Use `--no-close-packet` only for explicit local/debug compatibility
+checks; `--csv-only` also suppresses JSON/Markdown packet output.
 
 ## Local month-close history, reopen, append, and rollback-plan workflow
 

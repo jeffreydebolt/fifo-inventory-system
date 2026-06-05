@@ -8,6 +8,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
+from core.close_packet import write_close_packet
 from core.csv_ingest import load_movement_csv, load_purchase_lots_csv
 from core.csv_validation import validate_firstlot_csvs
 from core.failed_sku_workflow import assert_queue_clear, build_fix_plan, load_failed_sku_queue
@@ -62,6 +63,11 @@ def _parse_args() -> argparse.Namespace:
         "--skip-validation",
         action="store_true",
         help="Explicitly bypass pre-run CSV validation for local/debug use",
+    )
+    run_parser.add_argument(
+        "--no-close-packet",
+        action="store_true",
+        help="Do not write close_packet.json/md for this local run",
     )
 
     validate_parser = subparsers.add_parser(
@@ -175,8 +181,9 @@ def main() -> int:
         allow_partial_shortfalls=not args.strict_shortfalls,
     )
     written = write_fifo_report(report, Path(args.out), include_json=not args.csv_only)
+    history_record = None
     if args.period:
-        _, history_files = append_month_close_record(
+        history_record, history_files = append_month_close_record(
             report,
             Path(args.out),
             args.period,
@@ -186,6 +193,17 @@ def main() -> int:
             note=args.note,
         )
         written.extend(history_files)
+    if not args.no_close_packet and not args.csv_only:
+        close_packet_files = write_close_packet(
+            report,
+            Path(args.out),
+            lots_path=args.lots,
+            movement_path=args.movement,
+            artifact_paths=written,
+            period=args.period,
+            history_record=history_record,
+        )
+        written.extend(close_packet_files)
 
     print("Local/demo FIFO run complete — no live DB writes.")
     for path in written:

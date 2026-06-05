@@ -32,6 +32,8 @@ EXPECTED_ARTIFACTS = (
     "failed_sku_queue.json",
     "cogs_detail.csv",
     "cogs_detail.json",
+    "close_packet.json",
+    "close_packet.md",
 )
 EXPECTED_FIXED_ARTIFACTS = (*EXPECTED_ARTIFACTS, "month_history.csv", "month_history.json")
 

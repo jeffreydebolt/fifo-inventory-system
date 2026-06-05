@@ -1,0 +1,64 @@
+{
+  "artifact_files": [
+    "cogs_summary.csv",
+    "cogs_summary.json",
+    "remaining_layers.csv",
+    "remaining_layers.json",
+    "audit_trail.csv",
+    "audit_trail.json",
+    "shortfalls.csv",
+    "shortfalls.json",
+    "failed_sku_queue.csv",
+    "failed_sku_queue.json",
+    "cogs_detail.csv",
+    "cogs_detail.json",
+    "month_history.csv",
+    "month_history.json"
+  ],
+  "generated_at": "2026-06-03T23:00:00",
+  "history": {
+    "cogs_sku_count": 2,
+    "generated_at": "2026-06-03T23:00:00",
+    "note": "v2 fixed rerun uses corrected purchase_lots_fixed.csv and clears queue",
+    "period": "2026-05",
+    "recorded_at": "2026-06-03T23:00:00",
+    "run_sequence": 2,
+    "shortfall_quantity": 0,
+    "shortfall_sku_count": 0,
+    "status": "REOPENED",
+    "total_cogs": "263.00",
+    "total_quantity_sold": 21
+  },
+  "input_files": {
+    "movement": {
+      "name": "movement.csv",
+      "path": "tests/fixtures/firstlot_demo/movement.csv",
+      "sha256": "9eb3c62bda9c90dc1dcbf50f71363fb94388d81d3da671f7dd200596607411ff"
+    },
+    "purchase_lots": {
+      "name": "purchase_lots_fixed.csv",
+      "path": "tests/fixtures/firstlot_demo/purchase_lots_fixed.csv",
+      "sha256": "e43ed38b8e90929219243bbb04a2811222abab8082bf5c734b8f03bf590ab356"
+    }
+  },
+  "live_mutations_performed": [],
+  "operator_next_step": "Review close packet and retain artifacts for local audit handoff.",
+  "packet_type": "firstlot_local_month_close",
+  "period": "2026-05",
+  "periods_in_outputs": [
+    "2026-05"
+  ],
+  "safety_mode": "local_fixture_only_no_live_writes",
+  "summary": {
+    "failed_sku_count": 0,
+    "failed_skus": [],
+    "shortfall_quantity": 0,
+    "sku_count": 2,
+    "skus_processed": [
+      "SKU-A",
+      "SKU-B"
+    ],
+    "total_cogs": "263.00",
+    "total_units_sold": 21
+  }
+}
