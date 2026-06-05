@@ -1,0 +1,20 @@
+[
+  {
+    "average_cost": "11.74",
+    "merchandise_cost": "209.00",
+    "period": "2026-05",
+    "shipping_cost": "14.00",
+    "sku": "SKU-A",
+    "total_cost": "223.00",
+    "total_quantity_sold": 19
+  },
+  {
+    "average_cost": "20.00",
+    "merchandise_cost": "40.00",
+    "period": "2026-05",
+    "shipping_cost": "0.00",
+    "sku": "SKU-B",
+    "total_cost": "40.00",
+    "total_quantity_sold": 2
+  }
+]

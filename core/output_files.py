@@ -57,6 +57,15 @@ CSV_SECTIONS = {
         "reasons",
         "status",
     ],
+    "cogs_detail": [
+        "sku",
+        "period",
+        "total_quantity_sold",
+        "merchandise_cost",
+        "shipping_cost",
+        "total_cost",
+        "average_cost",
+    ],
 }
 
 
@@ -78,6 +87,7 @@ def write_fifo_report(report: FIFOReport, out_dir: str | Path, include_json: boo
         "audit_trail": report.audit_trail,
         "shortfalls": report.shortfalls,
         "failed_sku_queue": report.failed_sku_queue,
+        "cogs_detail": report.cogs_detail,
     }
     written: list[Path] = []
 

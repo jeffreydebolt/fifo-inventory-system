@@ -1,5 +1,5 @@
 import React from 'react';
-import { demoRun, monthHistory, runVersions } from '../demoData';
+import { demoRun, fixedDemoRun, monthHistory, runVersions } from '../demoData';
 
 const page = {
   minHeight: '100vh',
@@ -36,17 +36,6 @@ const cellStyle = {
   verticalAlign: 'top'
 };
 
-const fixtureCostBreakdown = {
-  'SKU-A': {
-    merchandiseCost: 196,
-    shippingCost: 14
-  },
-  'SKU-B': {
-    merchandiseCost: 40,
-    shippingCost: 0
-  }
-};
-
 function money(value) {
   if (value === null || value === undefined) {
     return '—';
@@ -63,25 +52,20 @@ function number(value) {
   return Number(value).toLocaleString('en-US');
 }
 
-function cogsRows() {
-  return demoRun.cogsSummary.map((row) => {
-    const unitsSold = Number(row.total_quantity_sold);
-    const totalCost = Number(row.total_cogs);
-    const breakdown = fixtureCostBreakdown[row.sku] || {
-      merchandiseCost: totalCost,
-      shippingCost: 0
-    };
+function cogsRowsFor(run) {
+  return run.cogsDetail.map((row) => ({
+    sku: row.sku,
+    unitsSold: Number(row.total_quantity_sold),
+    unitCost: Number(row.merchandise_cost) / Number(row.total_quantity_sold),
+    shippingCost: Number(row.shipping_cost),
+    totalCost: Number(row.total_cost),
+    averageCost: Number(row.average_cost),
+    status: run.shortfalls.some((shortfall) => shortfall.sku === row.sku) ? 'Needs fix' : 'Complete'
+  }));
+}
 
-    return {
-      sku: row.sku,
-      unitsSold,
-      unitCost: breakdown.merchandiseCost / unitsSold,
-      shippingCost: breakdown.shippingCost,
-      totalCost,
-      averageCost: totalCost / unitsSold,
-      status: demoRun.shortfalls.some((shortfall) => shortfall.sku === row.sku) ? 'Needs fix' : 'Complete'
-    };
-  });
+function cogsRows() {
+  return cogsRowsFor(demoRun);
 }
 
 function Pill({ children, tone = 'green' }) {
@@ -127,7 +111,7 @@ function StepCard({ number: stepNumber, title, body }) {
 
 function DownloadCsvLink({ rows }) {
   const csv = [
-    ['SKU', 'Units Sold', 'Unit Cost', 'Shipping Cost', 'Total Cost', 'Average Cost', 'Status'].join(','),
+    ['SKU', 'Units sold', 'Merchandise/unit cost', 'Shipping cost', 'Total COGS', 'Average COGS', 'Status'].join(','),
     ...rows.map((row) => [
       row.sku,
       row.unitsSold,
@@ -241,6 +225,44 @@ function MonthHistory() {
   );
 }
 
+function FixedRerunComparison() {
+  const v1Rows = cogsRowsFor(demoRun);
+  const v2Rows = cogsRowsFor(fixedDemoRun);
+  const v1Total = v1Rows.reduce((sum, row) => sum + row.totalCost, 0);
+  const v2Total = v2Rows.reduce((sum, row) => sum + row.totalCost, 0);
+  const v1Failed = demoRun.failedSkuQueue.length;
+  const v2Failed = fixedDemoRun.failedSkuQueue.length;
+  const skuAFixed = v2Rows.find((row) => row.sku === 'SKU-A');
+
+  return (
+    <div style={grid}>
+      <div style={{ ...card, padding: '1rem', boxShadow: 'none', borderColor: '#fed7aa', background: '#fff7ed' }}>
+        <h3 style={{ margin: '0 0 0.6rem' }}>Run v1: needs fix</h3>
+        <p style={{ margin: '0 0 0.5rem', color: '#7c2d12', lineHeight: 1.5 }}>
+          Uses <code>{demoRun.inputs.purchaseLots}</code>. SKU-A sales exceed available purchase lots, so the failed SKU queue contains {number(v1Failed)} row.
+        </p>
+        <p style={{ margin: 0, color: '#7c2d12' }}><strong>Total COGS:</strong> {money(v1Total)} · <strong>Failed SKUs:</strong> {number(v1Failed)}</p>
+      </div>
+
+      <div style={{ ...card, padding: '1rem', boxShadow: 'none', borderColor: '#bbf7d0', background: '#f0fdf4' }}>
+        <h3 style={{ margin: '0 0 0.6rem' }}>Run v2: complete after corrected purchase lots</h3>
+        <p style={{ margin: '0 0 0.5rem', color: '#166534', lineHeight: 1.5 }}>
+          Uses <code>{fixedDemoRun.inputs.purchaseLots}</code>. The rerun writes <code>{fixedDemoRun.inputs.artifactDirectory}</code> and clears shortfalls and failed SKUs.
+        </p>
+        <p style={{ margin: 0, color: '#166534' }}><strong>Total COGS:</strong> {money(v2Total)} · <strong>Failed SKUs:</strong> {number(v2Failed)} · <strong>SKU-A units:</strong> {number(skuAFixed?.unitsSold)}</p>
+      </div>
+
+      <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
+        <h3 style={{ margin: '0 0 0.6rem' }}>Deterministic rerun delta</h3>
+        <p style={{ margin: '0 0 0.5rem', color: '#475569', lineHeight: 1.5 }}>
+          V2 adds the one missing SKU-A unit from LOT-A-FIX-001, increasing total COGS by {money(v2Total - v1Total)} and reducing failed SKU rows from {number(v1Failed)} to {number(v2Failed)}.
+        </p>
+        <p style={{ margin: 0, color: '#334155' }}><strong>Completion check:</strong> <code>{fixedDemoRun.inputs.assertClearCommand}</code></p>
+      </div>
+    </div>
+  );
+}
+
 function RerunAndRollbackAudit() {
   return (
     <div style={grid}>
@@ -293,11 +315,22 @@ export default function DemoPage() {
           </p>
         </section>
 
+        <section style={{ ...card, padding: '1rem 1.25rem', marginBottom: '1rem', borderColor: '#fed7aa', background: '#fff7ed' }}>
+          <h2 style={{ margin: '0 0 0.35rem', color: '#9a3412' }}>Fixture/demo mode only — no live DB writes.</h2>
+          <p style={{ margin: 0, color: '#7c2d12', lineHeight: 1.5 }}>
+            This page is a local operator story backed by fixture CSVs and checked-in generated artifacts. Upload, run, fix, and rerun controls are descriptive only; nothing writes to Supabase, Storage Standard data, production APIs, or live inventory.
+          </p>
+        </section>
+
         <section id="process" style={{ marginBottom: '1rem' }}>
+          <h2 style={{ margin: '0 0 0.75rem' }}>Month close workflow</h2>
           <div style={grid}>
             <StepCard number="1" title="Upload purchase lots CSV" body={`Fixture selected: ${demoRun.inputs.purchaseLots}`} />
-            <StepCard number="2" title="Upload sales data CSV" body={`Fixture selected: ${demoRun.inputs.movement}`} />
-            <StepCard number="3" title="Run monthly COGS" body={`Month selected: ${demoRun.month}. Run ${demoRun.runVersion} is simulated from local FIFO engine output.`} />
+            <StepCard number="2" title="Upload sales CSV" body={`Fixture selected: ${demoRun.inputs.movement}`} />
+            <StepCard number="3" title="Run FIFO COGS for selected month" body={`Month selected: ${demoRun.month}. Run ${demoRun.runVersion} is simulated from local FIFO engine output.`} />
+            <StepCard number="4" title="Review SKU costs" body="Inspect units sold, merchandise/unit cost, shipping cost, total COGS, average COGS, and status for every fixture SKU." />
+            <StepCard number="5" title="Fix failed SKUs and rerun" body="Failed SKUs require corrected local CSV inputs, then a full-month rerun with the queue asserted clear." />
+            <StepCard number="6" title="Preserve close history" body="Each month/run status remains visible so reopened or appended fixture runs do not erase prior history." />
           </div>
         </section>
 
@@ -316,7 +349,7 @@ export default function DemoPage() {
             <table style={tableStyle}>
               <thead>
                 <tr>
-                  {['SKU', 'Units Sold', 'Unit Cost', 'Shipping Cost', 'Total Cost', 'Average Cost', 'Status'].map((header) => (
+                  {['SKU', 'Units sold', 'Merchandise/unit cost', 'Shipping cost', 'Total COGS', 'Average COGS', 'Status'].map((header) => (
                     <th key={header} style={{ ...cellStyle, background: '#f9fafb', color: '#374151', fontWeight: 900 }}>{header}</th>
                   ))}
                 </tr>
@@ -354,8 +387,19 @@ export default function DemoPage() {
         </section>
 
         <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
+          <h2 style={{ margin: '0 0 0.75rem' }}>Fixed rerun artifacts</h2>
+          <FixedRerunComparison />
+          <p style={{ margin: '1rem 0 0', color: '#64748b', lineHeight: 1.5 }}>
+            The fixed rerun folder is checked in separately so reviewers can compare the v1 failed SKU queue with v2 fixed output without touching live data.
+          </p>
+        </section>
+
+        <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
           <h2 style={{ margin: '0 0 0.75rem' }}>Failed SKU queue</h2>
           <FailedSkuQueue />
+          <p style={{ margin: '0.85rem 0 0', color: '#64748b', lineHeight: 1.5 }}>
+            A failed SKU means sales exceeded available purchase lots for that SKU/month. Fix input CSV, rerun full month, then assert queue clear.
+          </p>
         </section>
 
         <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>

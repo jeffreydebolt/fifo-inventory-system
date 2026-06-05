@@ -1,0 +1,28 @@
+[
+  {
+    "cogs_sku_count": 2,
+    "generated_at": "2026-06-03T23:00:00",
+    "note": "v1 fixture run queued SKU-A shortfall for local fix/rerun",
+    "period": "2026-05",
+    "recorded_at": "2026-06-03T23:00:00",
+    "run_sequence": 1,
+    "shortfall_quantity": 1,
+    "shortfall_sku_count": 1,
+    "status": "CLOSED",
+    "total_cogs": "250.00",
+    "total_quantity_sold": 20
+  },
+  {
+    "cogs_sku_count": 2,
+    "generated_at": "2026-06-03T23:00:00",
+    "note": "v2 fixed rerun uses corrected purchase_lots_fixed.csv and clears queue",
+    "period": "2026-05",
+    "recorded_at": "2026-06-03T23:00:00",
+    "run_sequence": 2,
+    "shortfall_quantity": 0,
+    "shortfall_sku_count": 0,
+    "status": "REOPENED",
+    "total_cogs": "263.00",
+    "total_quantity_sold": 21
+  }
+]

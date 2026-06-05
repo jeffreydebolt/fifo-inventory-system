@@ -1,0 +1,5 @@
+lot_id,sku,received_date,original_quantity,remaining_quantity,unit_price,freight_cost_per_unit
+LOT-A-001,SKU-A,2026-05-01,10,10,10.00,1.00
+LOT-A-002,SKU-A,2026-05-10,8,8,12.00,0.50
+LOT-A-FIX-001,SKU-A,2026-05-12,1,1,13.00,0.00
+LOT-B-001,SKU-B,2026-05-03,5,5,20.00,0.00
