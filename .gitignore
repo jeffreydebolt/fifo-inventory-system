@@ -47,8 +47,11 @@ validation_log.txt
 fifo_test_outputs/
 fifo_outputs_supabase/
 
-# CSV files (except specific ones that should be tracked)
+# CSV files (except tiny synthetic fixtures/examples that are already tracked intentionally)
 *.csv
-!lots_to_upload.csv
-!sales_data.csv
-!analysis.csv 
+!tests/fixtures/**/*.csv
+!examples/**/*.csv
+
+# Client/live exports must never be re-added from local working directories.
+analysis.csv
+fifo_processing_log*.txt
