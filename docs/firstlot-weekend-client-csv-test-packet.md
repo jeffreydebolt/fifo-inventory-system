@@ -109,7 +109,35 @@ git status --short local-client-fixtures/weekend-client-a
 
 If git shows real client files as staged or tracked, stop and unstage/remove them from the repo workflow before continuing.
 
-## 4. Validate only — no FIFO artifacts written
+## 4. Normalize client-shaped CSV exports when needed
+
+Some real exports will be close to the FirstLot shape but not exact. For example, lot exports may use `po_number`, `original_unit_qty`, `remaining_unit_qty`, `$` currency values, comma quantities, M/D/YY dates, and trailing blank columns. Sales exports may use `SKU`, `Quantity_Sold`, `Sale_Month_Str`, and omit sale IDs.
+
+Inspect the inputs first:
+
+```bash
+python3 -m app.local_cli inspect-lots \
+  --lots local-client-fixtures/weekend-client-a/lots_export.csv
+
+python3 -m app.local_cli inspect-movement \
+  --movement local-client-fixtures/weekend-client-a/sales_export.csv
+```
+
+Normalize into the strict file names used by the FIFO runner:
+
+```bash
+python3 -m app.local_cli normalize-lots \
+  --lots local-client-fixtures/weekend-client-a/lots_export.csv \
+  --out local-client-fixtures/weekend-client-a/purchase_lots.csv
+
+python3 -m app.local_cli normalize-movement \
+  --movement local-client-fixtures/weekend-client-a/sales_export.csv \
+  --out local-client-fixtures/weekend-client-a/movement.csv
+```
+
+Normalization is local-file only. It does not read `.env`, import Supabase/API adapters, call production systems, or mutate live/client data. When the sales export lacks `sale_id`, FirstLot generates deterministic local IDs like `SALE-0001` for the test run.
+
+## 5. Validate only — no FIFO artifacts written
 
 Run validation first:
 
@@ -130,7 +158,7 @@ Proceed only when the JSON response includes:
 
 If validation fails, fix the local CSV copy and rerun validation. Do not use `--skip-validation` for weekend client testing.
 
-## 5. Run the local month-close packet
+## 6. Run the local month-close packet
 
 Choose the month being tested, then run into `/tmp`:
 
@@ -165,7 +193,7 @@ The wrapper prints a JSON summary with:
 - processed SKUs,
 - safety statement.
 
-## 6. Review generated artifacts
+## 7. Review generated artifacts
 
 Open the temp output folder only; do not move generated real-client artifacts into git:
 
@@ -187,7 +215,7 @@ Review these files:
 | `shortfalls.csv/json` | Sale-level partial/unmatched quantities |
 | `month_history.csv/json` | Local output-folder history row for the period |
 
-## 7. Interpret failed SKUs safely
+## 8. Interpret failed SKUs safely
 
 If failed SKUs remain, generate a read-only operator plan:
 
@@ -227,7 +255,7 @@ python3 -m app.local_cli failed-skus \
   --assert-clear
 ```
 
-## 8. Weekend result note template
+## 9. Weekend result note template
 
 Use this short template for the 06:05 report or PR/test notes:
 
@@ -247,7 +275,7 @@ Use this short template for the 06:05 report or PR/test notes:
 - Follow-up: <CSV cleanup / SKU mapping / lot availability / ready for reviewer>
 ```
 
-## 9. Stop conditions
+## 10. Stop conditions
 
 Stop and report instead of continuing if:
 
