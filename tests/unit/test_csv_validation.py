@@ -9,6 +9,9 @@ from core.csv_validation import validate_firstlot_csvs
 REPO_ROOT = Path(__file__).resolve().parents[2]
 FIXTURE_DIR = Path(__file__).resolve().parents[1] / "fixtures" / "firstlot_demo"
 BAD_FIXTURE_DIR = Path(__file__).resolve().parents[1] / "fixtures" / "firstlot_validation"
+SECOND_SYNTHETIC_FIXTURE_DIR = (
+    Path(__file__).resolve().parents[1] / "fixtures" / "firstlot_second_synthetic_client"
+)
 
 
 def test_validate_firstlot_csvs_accepts_good_demo_inputs():
@@ -88,3 +91,44 @@ def test_local_cli_run_stops_before_artifact_writes_when_validation_fails(tmp_pa
     payload = json.loads(result.stdout)
     assert payload["valid"] is False
     assert list(tmp_path.iterdir()) == []
+
+
+def test_second_synthetic_client_fixture_validates_cleanly():
+    result = validate_firstlot_csvs(
+        SECOND_SYNTHETIC_FIXTURE_DIR / "purchase_lots.csv",
+        SECOND_SYNTHETIC_FIXTURE_DIR / "movement.csv",
+    )
+
+    assert result.valid is True
+    assert result.errors == []
+    assert result.warnings == []
+
+
+def test_generic_client_fixture_workflow_runs_second_synthetic_client(tmp_path):
+    result = subprocess.run(
+        [
+            sys.executable,
+            "scripts/run_firstlot_client_fixture.py",
+            "--fixture-dir",
+            str(SECOND_SYNTHETIC_FIXTURE_DIR),
+            "--out",
+            str(tmp_path / "second-client-output"),
+            "--period",
+            "2026-06",
+            "--expect-clear",
+        ],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0, result.stderr
+    payload = json.loads(result.stdout)
+    assert payload["read_only_local_fixture_workflow"] is True
+    assert payload["mutations_performed"] == []
+    assert payload["validation"]["valid"] is True
+    assert payload["failed_sku_check"]["clear"] is True
+    assert payload["total_cogs"] == "723.00"
+    assert payload["remaining_inventory_value"] == "485.50"
+    assert payload["skus"] == ["CAMERA-KIT", "STRAP-BUNDLE", "TRIPOD"]

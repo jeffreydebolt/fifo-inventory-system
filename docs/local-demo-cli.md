@@ -32,6 +32,43 @@ quantities.
 when validation fails. Use `--skip-validation` only as an explicit local/debug
 override; do not use it for client-test readiness checks.
 
+## Generic client-test fixture workflow
+
+For a second synthetic client-style fixture, use the wrapper below. It expects a
+local folder containing `purchase_lots.csv` and `movement.csv`, validates those
+files, runs FIFO into a local output directory, writes a close packet, and can
+assert that the failed-SKU queue is clear. It is still local-only and does not
+read `.env`, import Supabase/API code, mutate live data, or deploy anything.
+
+```bash
+python3 scripts/run_firstlot_client_fixture.py \
+  --fixture-dir tests/fixtures/firstlot_second_synthetic_client \
+  --out /tmp/firstlot-second-synthetic-client \
+  --period 2026-06 \
+  --expect-clear \
+  --clean-output
+```
+
+Expected synthetic result: validation passes, failed-SKU queue is clear, total
+COGS is `723.00`, remaining inventory value is `485.50`, and artifacts are written
+under `/tmp/firstlot-second-synthetic-client`.
+
+To try another local CSV export this weekend, copy/export files into a folder with
+these exact filenames and run the same command with a temp output path:
+
+```bash
+python3 scripts/run_firstlot_client_fixture.py \
+  --fixture-dir /path/to/local-client-fixture \
+  --out /tmp/firstlot-client-test \
+  --period 2026-06 \
+  --clean-output
+```
+
+Add `--expect-clear` when you want the command to fail unless all sales were fully
+matched. If the same output folder/period is intentionally rerun without cleaning,
+add `--reopen` so local month history records it as a rerun instead of blocking a
+duplicate close. `--clean-output` only deletes temp-directory outputs.
+
 ## Regenerate dashboard demo artifacts
 
 Reviewers can refresh the checked-in dashboard demo output from the same safe local
