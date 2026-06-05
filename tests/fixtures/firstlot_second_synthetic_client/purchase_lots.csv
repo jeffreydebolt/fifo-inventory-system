@@ -1,0 +1,5 @@
+lot_id,sku,received_date,original_quantity,remaining_quantity,unit_price,freight_cost_per_unit
+CAM-LOT-001,CAMERA-KIT,2026-06-01,5,5,100.00,5.00
+CAM-LOT-002,CAMERA-KIT,2026-06-10,4,4,110.00,6.00
+STRAP-LOT-001,STRAP-BUNDLE,2026-06-03,10,10,12.00,1.25
+TRIPOD-LOT-001,TRIPOD,2026-06-05,3,3,25.00,4.00
