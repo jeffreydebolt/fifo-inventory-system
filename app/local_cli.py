@@ -8,6 +8,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
+from core.client_smoke import run_client_smoke
 from core.close_packet import write_close_packet
 from core.csv_ingest import load_movement_csv, load_purchase_lots_csv
 from core.csv_validation import validate_firstlot_csvs
@@ -121,6 +122,26 @@ def _parse_args() -> argparse.Namespace:
     normalize_movement_parser.add_argument("--movement", required=True, help="Input movement/sales CSV path")
     normalize_movement_parser.add_argument("--out", required=True, help="Output normalized movement.csv path")
 
+    client_smoke_parser = subparsers.add_parser(
+        "client-smoke",
+        help="Normalize raw client-shaped lots/sales, run local FIFO, and emit fix-plan artifacts",
+    )
+    client_smoke_parser.add_argument("--lots", required=True, help="Raw/client-shaped purchase lots CSV path")
+    client_smoke_parser.add_argument("--movement", required=True, help="Raw/client-shaped movement/sales CSV path")
+    client_smoke_parser.add_argument("--out", required=True, help="Output directory for normalized files and artifacts")
+    client_smoke_parser.add_argument("--period", required=True, help="Close period (YYYY-MM)")
+    client_smoke_parser.add_argument("--generated-at", default="2026-06-03T23:00:00")
+    client_smoke_parser.add_argument(
+        "--expect-clear",
+        action="store_true",
+        help="Exit non-zero when failed SKU queue rows remain after the smoke run",
+    )
+    client_smoke_parser.add_argument(
+        "--clean-output",
+        action="store_true",
+        help="Delete the output folder first; allowed only for /tmp or /private/tmp paths",
+    )
+
     history_parser = subparsers.add_parser("history", help="Print local month close history")
     history_parser.add_argument("--out", required=True, help="Output directory containing month_history.json")
 
@@ -178,6 +199,19 @@ def main() -> int:
 
     if args.command == "normalize-movement":
         result = normalize_movement_csv(args.movement, args.out)
+        print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
+        return 0 if result.ok else 1
+
+    if args.command == "client-smoke":
+        result = run_client_smoke(
+            lots_path=args.lots,
+            movement_path=args.movement,
+            out_dir=args.out,
+            period=args.period,
+            generated_at=args.generated_at,
+            expect_clear=args.expect_clear,
+            clean_output=args.clean_output,
+        )
         print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
         return 0 if result.ok else 1
 
