@@ -21,10 +21,31 @@ fixture path with one command from the repo root:
 python3 scripts/regenerate_firstlot_demo_artifacts.py
 ```
 
-That command rewrites `cogs-dashboard/src/demo-output/firstlot_demo/*.csv` and
-`*.json`, then verifies the expected files exist and the JSON parses. It is still
-local-file only: fixture CSV input, deterministic timestamp, no `.env`, no
-Supabase/API imports, and no live database writes.
+That command rewrites the checked-in v1 failed-run artifacts in
+`cogs-dashboard/src/demo-output/firstlot_demo/` and, by default, the v2 fixed-rerun
+artifacts in `cogs-dashboard/src/demo-output/firstlot_demo_fixed/`. It verifies
+that the expected files exist and the JSON parses. It is still local-file only:
+fixture CSV input, deterministic timestamp, no `.env`, no Supabase/API imports,
+and no live database writes.
+
+To regenerate into temporary/reviewer directories instead of the checked-in demo
+folders:
+
+```bash
+python3 scripts/regenerate_firstlot_demo_artifacts.py \
+  --out /tmp/firstlot-demo-v1 \
+  --fixed-out /tmp/firstlot-demo-fixed
+```
+
+If only a custom fixed-rerun directory is needed, either provide `--fixed-out` or
+use `--include-fixed-rerun` with the default fixed output:
+
+```bash
+python3 scripts/regenerate_firstlot_demo_artifacts.py \
+  --out /tmp/firstlot-demo-v1 \
+  --fixed-out /tmp/firstlot-demo-fixed \
+  --include-fixed-rerun
+```
 
 Expected artifacts:
 
@@ -98,15 +119,31 @@ Safety behavior for month history:
 ## Failed-SKU fix/rerun queue workflow
 
 After a run writes `failed_sku_queue.csv/json`, operators can review the local
-queue, generate a non-mutating fix plan, and gate completion on a clear queue:
+queue, generate a non-mutating fix plan, rerun with corrected local input CSVs,
+and gate completion on a clear queue.
+
+Start with the intentionally short v1 fixture run:
+
+```bash
+rm -rf /tmp/firstlot-demo-rerun
+python3 -m app.local_cli run \
+  --lots tests/fixtures/firstlot_demo/purchase_lots.csv \
+  --movement tests/fixtures/firstlot_demo/movement.csv \
+  --out /tmp/firstlot-demo-rerun \
+  --generated-at 2026-06-03T23:00:00 \
+  --period 2026-05 \
+  --note "v1 local fixture run queues SKU-A shortfall"
+```
+
+Review the local queue and generate a read-only fix plan:
 
 ```bash
 python3 -m app.local_cli failed-skus \
-  --out /tmp/firstlot-demo \
+  --out /tmp/firstlot-demo-rerun \
   --period 2026-05
 
 python3 -m app.local_cli fix-plan \
-  --out /tmp/firstlot-demo \
+  --out /tmp/firstlot-demo-rerun \
   --period 2026-05 \
   --lots tests/fixtures/firstlot_demo/purchase_lots.csv \
   --movement tests/fixtures/firstlot_demo/movement.csv \
@@ -115,19 +152,34 @@ python3 -m app.local_cli fix-plan \
 
 The fix plan is JSON with `read_only: true`, `mutations_performed: []`, affected
 SKUs/periods, minimum additional available units needed, and suggested rerun
-arguments. Once the local purchase lots or movement CSV has been corrected, rerun
-the close with `--reopen` or `--append-prior-month`, then assert the queue is
-clear:
+arguments.
+
+Then rerun the same month with the corrected local fixture and `--reopen`:
+
+```bash
+python3 -m app.local_cli run \
+  --lots tests/fixtures/firstlot_demo/purchase_lots_fixed.csv \
+  --movement tests/fixtures/firstlot_demo/movement.csv \
+  --out /tmp/firstlot-demo-rerun \
+  --generated-at 2026-06-03T23:00:00 \
+  --period 2026-05 \
+  --reopen \
+  --note "v2 fixed rerun clears SKU-A queue"
+```
+
+Finally, assert the fixed queue is clear:
 
 ```bash
 python3 -m app.local_cli failed-skus \
-  --out /tmp/firstlot-demo \
+  --out /tmp/firstlot-demo-rerun \
   --period 2026-05 \
   --assert-clear
 ```
 
 `--assert-clear` exits non-zero while matching failed-SKU rows remain, making it
-usable in a local smoke check or review script without touching live data.
+usable in a local smoke check or review script without touching live data. The
+fixed rerun should print JSON with `"clear": true`, `"queue_record_count": 0`,
+and `"total_shortfall_quantity": 0`.
 
 ## Safety boundary
 
