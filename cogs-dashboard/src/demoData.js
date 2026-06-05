@@ -42,7 +42,8 @@ export const fixedDemoRun = {
     movement: 'tests/fixtures/firstlot_demo/movement.csv',
     artifactDirectory: 'cogs-dashboard/src/demo-output/firstlot_demo_fixed',
     regenerateCommand: 'python3 scripts/regenerate_firstlot_demo_artifacts.py',
-    assertClearCommand: 'python3 -m app.local_cli failed-skus --out cogs-dashboard/src/demo-output/firstlot_demo_fixed --period 2026-05 --assert-clear'
+    assertClearCommand: 'python3 -m app.local_cli failed-skus --out cogs-dashboard/src/demo-output/firstlot_demo_fixed --period 2026-05 --assert-clear',
+    compareCommand: 'python3 -m app.local_cli compare-runs --before cogs-dashboard/src/demo-output/firstlot_demo --after cogs-dashboard/src/demo-output/firstlot_demo_fixed --period 2026-05'
   },
   cogsSummary: fixedCogsSummary,
   remainingLayers: fixedRemainingLayers,

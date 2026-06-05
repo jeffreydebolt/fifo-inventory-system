@@ -23,6 +23,7 @@ from core.month_close_workflow import build_month_close_workflow
 from core.month_history import append_month_close_record, build_rollback_plan, load_month_history
 from core.output_files import write_fifo_report
 from core.outputs import run_fifo_report
+from core.run_comparison import compare_run_artifacts
 
 
 def _client_smoke_human_summary(payload: dict) -> str:
@@ -222,6 +223,14 @@ def _parse_args() -> argparse.Namespace:
     fix_parser.add_argument("--lots", help="Optional purchase lots CSV path to include in rerun args")
     fix_parser.add_argument("--movement", help="Optional movement/sales CSV path to include in rerun args")
     fix_parser.add_argument("--note", default="")
+
+    compare_parser = subparsers.add_parser(
+        "compare-runs",
+        help="Compare two local month-close artifact folders; read-only fix/rerun delta review",
+    )
+    compare_parser.add_argument("--before", required=True, help="Previous/local baseline artifact directory")
+    compare_parser.add_argument("--after", required=True, help="Rerun/fixed artifact directory")
+    compare_parser.add_argument("--period", help="Optional period filter (YYYY-MM)")
     return parser.parse_args()
 
 
@@ -316,6 +325,11 @@ def main() -> int:
             note=args.note,
         )
         print(json.dumps(plan, indent=2, sort_keys=True))
+        return 0
+
+    if args.command == "compare-runs":
+        comparison = compare_run_artifacts(args.before, args.after, period=args.period)
+        print(json.dumps(comparison, indent=2, sort_keys=True))
         return 0
 
     if args.command == "validate":

@@ -32,6 +32,12 @@
 - `month_history.csv`
 - `month_history.json`
 
+## Local review commands
+
+- failed_sku_queue: `python -m app.local_cli failed-skus --out cogs-dashboard/src/demo-output/firstlot_demo_fixed --period 2026-05`
+- assert_failed_skus_clear: `python -m app.local_cli failed-skus --out cogs-dashboard/src/demo-output/firstlot_demo_fixed --period 2026-05 --assert-clear`
+- rollback_plan_read_only: `python -m app.local_cli rollback-plan --out cogs-dashboard/src/demo-output/firstlot_demo_fixed --period 2026-05`
+
 ## Safety
 
 No live database writes, no Supabase/API imports, no `.env` reads, and no Storage Standard/client-data mutation are part of this packet.
