@@ -34,6 +34,12 @@ override; do not use it for client-test readiness checks.
 
 ## Generic client-test fixture workflow
 
+For the concrete weekend packet, use
+[`docs/firstlot-weekend-client-csv-test-packet.md`](firstlot-weekend-client-csv-test-packet.md).
+It includes CSV schemas, copy/paste commands, artifact review steps, failed-SKU
+rerun instructions, and stop conditions for trying another client's CSV exports
+without committing or mutating client data.
+
 For a second synthetic client-style fixture, use the wrapper below. It expects a
 local folder containing `purchase_lots.csv` and `movement.csv`, validates those
 files, runs FIFO into a local output directory, writes a close packet, and can

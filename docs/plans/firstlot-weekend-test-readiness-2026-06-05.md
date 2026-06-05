@@ -29,6 +29,17 @@ Run the combined weekend-ready local suite:
 make check-firstlot-weekend
 ```
 
+Concrete tester packet/instructions for another client's CSV copies are now in:
+
+```text
+docs/firstlot-weekend-client-csv-test-packet.md
+```
+
+Use that packet for CSV schemas, local scratch-folder prep, validation, month-close
+run commands, generated artifact review, failed-SKU fix/rerun handling, and stop
+conditions. It explicitly keeps real client CSVs and generated client artifacts out
+of git and out of live systems.
+
 This runs:
 
 1. `make check-no-client-data-commit`

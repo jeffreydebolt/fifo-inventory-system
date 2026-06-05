@@ -55,3 +55,4 @@ fifo_outputs_supabase/
 # Client/live exports must never be re-added from local working directories.
 analysis.csv
 fifo_processing_log*.txt
+local-client-fixtures/
