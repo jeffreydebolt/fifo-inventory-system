@@ -12,6 +12,26 @@ python3 -m app.local_cli run \
   --generated-at 2026-06-03T23:00:00
 ```
 
+## Validate CSVs before a local run
+
+Client-test readiness starts with validation, not FIFO allocation. The CLI can
+check local purchase lots and movement CSVs without writing artifacts:
+
+```bash
+python3 -m app.local_cli validate \
+  --lots tests/fixtures/firstlot_demo/purchase_lots.csv \
+  --movement tests/fixtures/firstlot_demo/movement.csv
+```
+
+The JSON response includes `valid`, `summary`, `errors`, and `warnings`. Current
+checks cover required columns, valid ISO dates, integer quantities, nonnegative
+cost/freight fields, duplicate lot IDs, duplicate sale IDs, and positive sale
+quantities.
+
+`run` performs this validation by default and exits before writing output files
+when validation fails. Use `--skip-validation` only as an explicit local/debug
+override; do not use it for client-test readiness checks.
+
 ## Regenerate dashboard demo artifacts
 
 Reviewers can refresh the checked-in dashboard demo output from the same safe local
