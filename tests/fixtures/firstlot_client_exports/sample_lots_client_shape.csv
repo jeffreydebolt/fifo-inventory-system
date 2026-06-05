@@ -1,0 +1,6 @@
+po_number,sku,received_date,original_unit_qty,unit_price,freight_cost_per_unit,remaining_unit_qty,,,,
+ST0001,DEMO-SKU-001,12/1/22,"1,002",$7.00 ,$2.69 ,"1,002",,,,
+ST0002,DEMO-SKU-002,11/2/22,"1,002",$12.83 ,$4.49 ,"1,002",,,,
+ST0003,DEMO-SKU-003,1/12/23,"1,008",$8.35 ,$1.31 ,"1,008",,,,
+ST0004,DEMO-SKU-004,12/5/22,"1,488",$2.12 ,$0.66 ,"1,488",,,,
+ST0005,DEMO-SKU-005,12/5/22,500,$9.84 ,$2.98 ,500,,,,
