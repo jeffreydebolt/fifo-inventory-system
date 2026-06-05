@@ -107,7 +107,7 @@ function StepCard({ number: stepNumber, title, body }) {
 
 function DownloadCsvLink({ rows }) {
   const csv = [
-    ['SKU', 'Units Sold', 'Unit Cost', 'Shipping Cost', 'Total Cost', 'Average Cost', 'Status'].join(','),
+    ['SKU', 'Units sold', 'Merchandise/unit cost', 'Shipping cost', 'Total COGS', 'Average COGS', 'Status'].join(','),
     ...rows.map((row) => [
       row.sku,
       row.unitsSold,
@@ -273,11 +273,22 @@ export default function DemoPage() {
           </p>
         </section>
 
+        <section style={{ ...card, padding: '1rem 1.25rem', marginBottom: '1rem', borderColor: '#fed7aa', background: '#fff7ed' }}>
+          <h2 style={{ margin: '0 0 0.35rem', color: '#9a3412' }}>Fixture/demo mode only — no live DB writes.</h2>
+          <p style={{ margin: 0, color: '#7c2d12', lineHeight: 1.5 }}>
+            This page is a local operator story backed by fixture CSVs and checked-in generated artifacts. Upload, run, fix, and rerun controls are descriptive only; nothing writes to Supabase, Storage Standard data, production APIs, or live inventory.
+          </p>
+        </section>
+
         <section id="process" style={{ marginBottom: '1rem' }}>
+          <h2 style={{ margin: '0 0 0.75rem' }}>Month close workflow</h2>
           <div style={grid}>
             <StepCard number="1" title="Upload purchase lots CSV" body={`Fixture selected: ${demoRun.inputs.purchaseLots}`} />
-            <StepCard number="2" title="Upload sales data CSV" body={`Fixture selected: ${demoRun.inputs.movement}`} />
-            <StepCard number="3" title="Run monthly COGS" body={`Month selected: ${demoRun.month}. Run ${demoRun.runVersion} is simulated from local FIFO engine output.`} />
+            <StepCard number="2" title="Upload sales CSV" body={`Fixture selected: ${demoRun.inputs.movement}`} />
+            <StepCard number="3" title="Run FIFO COGS for selected month" body={`Month selected: ${demoRun.month}. Run ${demoRun.runVersion} is simulated from local FIFO engine output.`} />
+            <StepCard number="4" title="Review SKU costs" body="Inspect units sold, merchandise/unit cost, shipping cost, total COGS, average COGS, and status for every fixture SKU." />
+            <StepCard number="5" title="Fix failed SKUs and rerun" body="Failed SKUs require corrected local CSV inputs, then a full-month rerun with the queue asserted clear." />
+            <StepCard number="6" title="Preserve close history" body="Each month/run status remains visible so reopened or appended fixture runs do not erase prior history." />
           </div>
         </section>
 
@@ -296,7 +307,7 @@ export default function DemoPage() {
             <table style={tableStyle}>
               <thead>
                 <tr>
-                  {['SKU', 'Units Sold', 'Unit Cost', 'Shipping Cost', 'Total Cost', 'Average Cost', 'Status'].map((header) => (
+                  {['SKU', 'Units sold', 'Merchandise/unit cost', 'Shipping cost', 'Total COGS', 'Average COGS', 'Status'].map((header) => (
                     <th key={header} style={{ ...cellStyle, background: '#f9fafb', color: '#374151', fontWeight: 900 }}>{header}</th>
                   ))}
                 </tr>
@@ -336,6 +347,9 @@ export default function DemoPage() {
         <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
           <h2 style={{ margin: '0 0 0.75rem' }}>Failed SKU queue</h2>
           <FailedSkuQueue />
+          <p style={{ margin: '0.85rem 0 0', color: '#64748b', lineHeight: 1.5 }}>
+            A failed SKU means sales exceeded available purchase lots for that SKU/month. Fix input CSV, rerun full month, then assert queue clear.
+          </p>
         </section>
 
         <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
