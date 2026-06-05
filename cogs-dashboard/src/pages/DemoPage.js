@@ -1,5 +1,5 @@
-import React from 'react';
-import { demoRun, fixedDemoRun, monthHistory, runVersions } from '../demoData';
+import React, { useState } from 'react';
+import { clientTestFixtures, demoRun, fixedDemoRun, monthHistory, runVersions } from '../demoData';
 
 const page = {
   minHeight: '100vh',
@@ -140,6 +140,74 @@ function DownloadCsvLink({ rows }) {
     >
       Download results CSV
     </a>
+  );
+}
+
+function LocalClientTestFlow() {
+  const [selectedId, setSelectedId] = useState(clientTestFixtures[0].id);
+  const selectedFixture = clientTestFixtures.find((fixture) => fixture.id === selectedId) || clientTestFixtures[0];
+
+  return (
+    <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+        <div>
+          <h2 style={{ margin: '0 0 0.35rem' }}>Local client-test file selection</h2>
+          <p style={{ margin: 0, color: '#64748b', lineHeight: 1.5 }}>
+            This browser-only prototype lets a reviewer select from checked-in fixture packets and see the exact purchase lots CSV, sales CSV, month, validation, run status, failed queue state, and close-packet location before a real upload flow exists.
+          </p>
+        </div>
+        <Pill tone="slate">No network calls · no uploads · fixture choices only</Pill>
+      </div>
+
+      <label htmlFor="client-fixture-select" style={{ display: 'block', fontWeight: 900, marginBottom: '0.45rem' }}>
+        Choose local fixture packet
+      </label>
+      <select
+        id="client-fixture-select"
+        value={selectedId}
+        onChange={(event) => setSelectedId(event.target.value)}
+        style={{
+          width: '100%',
+          border: '1px solid #cbd5e1',
+          borderRadius: '0.8rem',
+          padding: '0.8rem',
+          fontSize: '1rem',
+          marginBottom: '1rem',
+          background: 'white'
+        }}
+      >
+        {clientTestFixtures.map((fixture) => (
+          <option key={fixture.id} value={fixture.id}>{fixture.label}</option>
+        ))}
+      </select>
+
+      <div style={grid}>
+        <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
+          <h3 style={{ margin: '0 0 0.55rem' }}>Selected files</h3>
+          <p style={{ margin: '0 0 0.35rem', color: '#475569' }}><strong>Client:</strong> {selectedFixture.client}</p>
+          <p style={{ margin: '0 0 0.35rem', color: '#475569' }}><strong>Purchase lots CSV:</strong> <code>{selectedFixture.purchaseLots}</code></p>
+          <p style={{ margin: 0, color: '#475569' }}><strong>Sales CSV:</strong> <code>{selectedFixture.movement}</code></p>
+        </div>
+
+        <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
+          <h3 style={{ margin: '0 0 0.55rem' }}>Run preview</h3>
+          <p style={{ margin: '0 0 0.35rem', color: '#475569' }}><strong>Selected month:</strong> {selectedFixture.period}</p>
+          <p style={{ margin: '0 0 0.35rem', color: '#475569' }}><strong>Validation status:</strong> {selectedFixture.validationStatus}</p>
+          <p style={{ margin: 0, color: '#475569' }}><strong>Run status:</strong> {selectedFixture.runStatus}</p>
+        </div>
+
+        <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
+          <h3 style={{ margin: '0 0 0.55rem' }}>Generated artifacts</h3>
+          <p style={{ margin: '0 0 0.35rem', color: '#475569' }}><strong>Failed queue:</strong> {selectedFixture.queueSummary}</p>
+          <p style={{ margin: '0 0 0.35rem', color: '#475569' }}><strong>Close packet:</strong> <code>{selectedFixture.closePacket}</code></p>
+          <p style={{ margin: 0, color: '#475569' }}><strong>Artifact directory:</strong> <code>{selectedFixture.artifactDirectory}</code></p>
+        </div>
+      </div>
+
+      <p style={{ margin: '1rem 0 0', color: '#92400e', fontWeight: 800 }}>
+        Client-test controls are intentionally local page state only. They do not read files from disk, upload data, call APIs, or mutate live/client records.
+      </p>
+    </section>
   );
 }
 
@@ -321,6 +389,8 @@ export default function DemoPage() {
             This page is a local operator story backed by fixture CSVs and checked-in generated artifacts. Upload, run, fix, and rerun controls are descriptive only; nothing writes to Supabase, Storage Standard data, production APIs, or live inventory.
           </p>
         </section>
+
+        <LocalClientTestFlow />
 
         <section id="process" style={{ marginBottom: '1rem' }}>
           <h2 style={{ margin: '0 0 0.75rem' }}>Month close workflow</h2>
