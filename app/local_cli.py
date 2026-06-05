@@ -9,6 +9,7 @@ from datetime import datetime
 from pathlib import Path
 
 from core.csv_ingest import load_movement_csv, load_purchase_lots_csv
+from core.csv_validation import validate_firstlot_csvs
 from core.failed_sku_workflow import assert_queue_clear, build_fix_plan, load_failed_sku_queue
 from core.month_history import append_month_close_record, build_rollback_plan, load_month_history
 from core.output_files import write_fifo_report
@@ -57,6 +58,18 @@ def _parse_args() -> argparse.Namespace:
         default="",
         help="Optional local audit note for month history records",
     )
+    run_parser.add_argument(
+        "--skip-validation",
+        action="store_true",
+        help="Explicitly bypass pre-run CSV validation for local/debug use",
+    )
+
+    validate_parser = subparsers.add_parser(
+        "validate",
+        help="Validate local FirstLot CSV inputs without running FIFO or writing artifacts",
+    )
+    validate_parser.add_argument("--lots", required=True, help="Purchase lots CSV path")
+    validate_parser.add_argument("--movement", required=True, help="Movement/sales CSV path")
 
     history_parser = subparsers.add_parser("history", help="Print local month close history")
     history_parser.add_argument("--out", required=True, help="Output directory containing month_history.json")
@@ -139,8 +152,18 @@ def main() -> int:
         print(json.dumps(plan, indent=2, sort_keys=True))
         return 0
 
+    if args.command == "validate":
+        result = validate_firstlot_csvs(args.lots, args.movement)
+        print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
+        return 0 if result.valid else 1
+
     if args.command != "run":
         raise AssertionError(f"Unsupported command: {args.command}")
+
+    validation = validate_firstlot_csvs(args.lots, args.movement)
+    if not validation.valid and not args.skip_validation:
+        print(json.dumps(validation.to_dict(), indent=2, sort_keys=True))
+        return 1
 
     generated_at = datetime.fromisoformat(args.generated_at)
     inventory = load_purchase_lots_csv(args.lots, snapshot_timestamp=generated_at)

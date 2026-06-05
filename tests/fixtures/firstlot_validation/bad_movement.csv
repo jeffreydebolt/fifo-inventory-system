@@ -1,0 +1,4 @@
+sale_id,sku,sale_date,quantity_sold
+SALE-001,SKU-A,2026-05-15,12
+SALE-001,SKU-A,bad-date,0
+SALE-003,,2026-05-21,-2
