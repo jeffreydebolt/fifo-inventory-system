@@ -58,6 +58,18 @@ function expectCoreMvpScreen() {
   expect(container.textContent).toContain('Local/demo mode');
   expect(container.textContent).toContain('Fixture/demo mode only — no live DB writes.');
   expect(container.textContent).toContain('fixture artifacts only');
+  expect(container.textContent).toContain('Local client-test file selection');
+  expect(container.textContent).toContain('Choose local fixture packet');
+  expect(container.textContent).toContain('No network calls · no uploads · fixture choices only');
+  expect(container.textContent).toContain('Selected files');
+  expect(container.textContent).toContain('Purchase lots CSV');
+  expect(container.textContent).toContain('Sales CSV');
+  expect(container.textContent).toContain('Run preview');
+  expect(container.textContent).toContain('Selected month');
+  expect(container.textContent).toContain('Validation status');
+  expect(container.textContent).toContain('Generated artifacts');
+  expect(container.textContent).toContain('Close packet');
+  expect(container.textContent).toContain('Client-test controls are intentionally local page state only');
   expect(container.textContent).toContain('Month close workflow');
   expect(container.textContent).toContain('Upload purchase lots CSV');
   expect(container.textContent).toContain('Upload sales CSV');
@@ -114,6 +126,23 @@ test('renders /demo as Jeff core MVP process with checked-in local FIFO artifact
   renderAt('/demo');
 
   expectCoreMvpScreen();
+});
+
+test('fixture selector changes the local client-test preview without network calls', () => {
+  renderAt('/demo');
+
+  const selector = container.querySelector('#client-fixture-select');
+  expect(selector).not.toBeNull();
+
+  act(() => {
+    selector.value = 'second-synthetic-client';
+    selector.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+
+  expect(container.textContent).toContain('Second synthetic fixture client');
+  expect(container.textContent).toContain('tests/fixtures/firstlot_second_synthetic_client/purchase_lots.csv');
+  expect(container.textContent).toContain('Expected clear queue when run with --expect-clear');
+  expect(global.fetch).not.toHaveBeenCalled();
 });
 
 test('renders / as the same safe fixture MVP process by default with no overcomplicated workflow sections', () => {

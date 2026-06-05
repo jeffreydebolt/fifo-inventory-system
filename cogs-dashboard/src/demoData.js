@@ -99,3 +99,45 @@ export const runVersions = [
     delta: '+$13.00 COGS; SKU-A completed with 19 units sold and no shortfalls'
   }
 ];
+
+export const clientTestFixtures = [
+  {
+    id: 'firstlot-demo-v1',
+    label: 'FirstLot demo — v1 needs fix',
+    client: 'Synthetic local demo client',
+    period: '2026-05',
+    purchaseLots: demoRun.inputs.purchaseLots,
+    movement: demoRun.inputs.movement,
+    artifactDirectory: demoRun.inputs.artifactDirectory,
+    validationStatus: 'Valid fixture CSVs',
+    runStatus: 'Needs fix rerun',
+    queueSummary: '1 failed SKU queued (SKU-A short by 1 unit)',
+    closePacket: 'cogs-dashboard/src/demo-output/firstlot_demo/close_packet.json'
+  },
+  {
+    id: 'firstlot-demo-v2-fixed',
+    label: 'FirstLot demo — v2 corrected rerun',
+    client: 'Synthetic local demo client',
+    period: '2026-05',
+    purchaseLots: fixedDemoRun.inputs.purchaseLots,
+    movement: fixedDemoRun.inputs.movement,
+    artifactDirectory: fixedDemoRun.inputs.artifactDirectory,
+    validationStatus: 'Valid fixture CSVs',
+    runStatus: 'Complete after corrected purchase lots',
+    queueSummary: '0 failed SKUs; assert-clear passes',
+    closePacket: 'cogs-dashboard/src/demo-output/firstlot_demo_fixed/close_packet.json'
+  },
+  {
+    id: 'second-synthetic-client',
+    label: 'Second synthetic client — clean close',
+    client: 'Second synthetic fixture client',
+    period: '2026-06',
+    purchaseLots: 'tests/fixtures/firstlot_second_synthetic_client/purchase_lots.csv',
+    movement: 'tests/fixtures/firstlot_second_synthetic_client/movement.csv',
+    artifactDirectory: '/tmp/firstlot-second-synthetic-client-check',
+    validationStatus: 'Valid fixture CSVs via scripts/run_firstlot_client_fixture.py',
+    runStatus: 'Client-test wrapper ready',
+    queueSummary: 'Expected clear queue when run with --expect-clear',
+    closePacket: '/tmp/firstlot-second-synthetic-client-check/close_packet.json'
+  }
+];

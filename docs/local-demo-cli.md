@@ -69,6 +69,25 @@ matched. If the same output folder/period is intentionally rerun without cleanin
 add `--reopen` so local month history records it as a rerun instead of blocking a
 duplicate close. `--clean-output` only deletes temp-directory outputs.
 
+## Dashboard local client-test file-selection flow
+
+The `/demo` page includes a browser-only client-test selector backed by
+`cogs-dashboard/src/demoData.js`. It does not read local files directly, upload
+CSV content, call APIs, or mutate any live/client records. It only changes React
+page state between known fixture packets so reviewers can see the intended flow:
+
+1. choose a fixture packet,
+2. confirm purchase lots CSV and sales CSV paths,
+3. confirm selected month and validation/run status,
+4. inspect failed-queue and close-packet artifact locations,
+5. continue to the month-close workflow, SKU costs, failed queue, fixed rerun, and
+   history sections.
+
+Current fixture choices are the v1 FirstLot demo with one failed SKU, the v2 fixed
+rerun with a clear queue, and the second synthetic client-style fixture. The UI
+smoke test asserts this section is visible and that changing the selector still
+makes no `fetch` calls.
+
 ## Regenerate dashboard demo artifacts
 
 Reviewers can refresh the checked-in dashboard demo output from the same safe local
