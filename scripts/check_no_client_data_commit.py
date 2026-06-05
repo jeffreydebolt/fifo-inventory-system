@@ -23,6 +23,11 @@ DATA_SUFFIXES = {
 }
 
 BLOCKED_BASENAMES = {
+    ".env",
+    ".env.local",
+    ".env.production",
+    ".env.development",
+    ".env.test",
     "analysis.csv",
     "fifo_processing_log.txt",
     "fifo_processing_log_supabase.txt",
@@ -93,6 +98,10 @@ def _looks_like_client_data(path: str, text: str) -> list[str]:
 def check_staged(repo_root: Path) -> tuple[bool, list[str]]:
     violations: list[str] = []
     for path in staged_paths(repo_root):
+        if Path(path).name in BLOCKED_BASENAMES:
+            violations.append(f"{path}: blocked filename {Path(path).name}")
+            continue
+
         if not _is_data_file(path):
             continue
 

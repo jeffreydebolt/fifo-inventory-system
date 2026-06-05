@@ -57,6 +57,18 @@ def test_no_client_data_guard_blocks_storage_standard_export(tmp_path):
     assert "Storage Standard" in result.stderr
 
 
+def test_no_client_data_guard_blocks_staged_env_file_by_name_without_printing_secret(tmp_path):
+    _init_repo(tmp_path)
+    (tmp_path / ".env").write_text("SUPABASE_KEY=super-secret-test-value\n")
+    assert _run(["git", "add", ".env"], tmp_path).returncode == 0
+
+    result = _run([sys.executable, str(GUARD_SCRIPT), "--repo-root", str(tmp_path)], tmp_path)
+
+    assert result.returncode == 1
+    assert "blocked filename .env" in result.stderr
+    assert "super-secret-test-value" not in result.stderr
+
+
 def test_no_client_data_guard_blocks_client_markers_even_under_fixture_paths(tmp_path):
     _init_repo(tmp_path)
     fixture_dir = tmp_path / "tests" / "fixtures" / "unsafe"
