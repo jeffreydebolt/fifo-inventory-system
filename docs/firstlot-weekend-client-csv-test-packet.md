@@ -137,7 +137,31 @@ python3 -m app.local_cli normalize-movement \
 
 Normalization is local-file only. It does not read `.env`, import Supabase/API adapters, call production systems, or mutate live/client data. When the sales export lacks `sale_id`, FirstLot generates deterministic local IDs like `SALE-0001` for the test run.
 
-## 5. Validate only — no FIFO artifacts written
+## 5. One-command raw client CSV smoke run
+
+Use this when you have raw client-shaped lots and sales exports and want the full local weekend result in one folder:
+
+```bash
+python3 -m app.local_cli client-smoke \
+  --lots /tmp/client/lots_export.csv \
+  --movement /tmp/client/sales_export.csv \
+  --out /tmp/firstlot-client-smoke \
+  --period 2025-09 \
+  --clean-output
+```
+
+The command performs the safe local sequence end-to-end:
+
+1. Inspect and normalize the lot export into `normalized/purchase_lots.csv`.
+2. Inspect and normalize the sales/movement export into `normalized/movement.csv`.
+3. Validate both normalized files against the strict FirstLot CSV contract.
+4. Run local FIFO only; no `.env`, no Supabase/API imports, no live DB writes.
+5. Write close artifacts, `client_smoke_summary.json`, and `fix_plan.json`.
+6. If failed SKU rows remain, write `synthetic_repair_lots_SANDBOX_ONLY.csv` as a clearly labeled shape/template. Do not use synthetic rows for real COGS.
+
+Add `--expect-clear` when the run should fail CI/local scripts if any failed SKU queue rows remain.
+
+## 6. Validate only — no FIFO artifacts written
 
 Run validation first:
 
@@ -158,7 +182,7 @@ Proceed only when the JSON response includes:
 
 If validation fails, fix the local CSV copy and rerun validation. Do not use `--skip-validation` for weekend client testing.
 
-## 6. Run the local month-close packet
+## 7. Run the local month-close packet
 
 Choose the month being tested, then run into `/tmp`:
 
@@ -193,7 +217,7 @@ The wrapper prints a JSON summary with:
 - processed SKUs,
 - safety statement.
 
-## 7. Review generated artifacts
+## 8. Review generated artifacts
 
 Open the temp output folder only; do not move generated real-client artifacts into git:
 
@@ -215,7 +239,7 @@ Review these files:
 | `shortfalls.csv/json` | Sale-level partial/unmatched quantities |
 | `month_history.csv/json` | Local output-folder history row for the period |
 
-## 8. Interpret failed SKUs safely
+## 9. Interpret failed SKUs safely
 
 If failed SKUs remain, generate a read-only operator plan:
 
@@ -255,7 +279,7 @@ python3 -m app.local_cli failed-skus \
   --assert-clear
 ```
 
-## 9. Weekend result note template
+## 10. Weekend result note template
 
 Use this short template for the 06:05 report or PR/test notes:
 
@@ -275,7 +299,7 @@ Use this short template for the 06:05 report or PR/test notes:
 - Follow-up: <CSV cleanup / SKU mapping / lot availability / ready for reviewer>
 ```
 
-## 10. Stop conditions
+## 11. Stop conditions
 
 Stop and report instead of continuing if:
 
