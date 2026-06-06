@@ -147,8 +147,11 @@ python3 -m app.local_cli client-smoke \
   --movement /tmp/client/sales_export.csv \
   --out /tmp/firstlot-client-smoke \
   --period 2025-09 \
+  --json-out /tmp/firstlot-client-smoke-summary.json \
   --clean-output
 ```
+
+For Jeff's first weekend pass, prefer `--json-out`: it writes the exact machine-readable payload to the requested path and keeps terminal output to a concise operator summary with period, total COGS, failed-SKU count, output folder, and next command. Without `--json-out`, stdout remains the full JSON payload for script compatibility.
 
 The command performs the safe local sequence end-to-end:
 
@@ -157,9 +160,10 @@ The command performs the safe local sequence end-to-end:
 3. Validate both normalized files against the strict FirstLot CSV contract.
 4. Run local FIFO only; no `.env`, no Supabase/API imports, no live DB writes.
 5. Write close artifacts, `client_smoke_summary.json`, and `fix_plan.json`.
-6. If failed SKU rows remain, write `synthetic_repair_lots_SANDBOX_ONLY.csv` as a clearly labeled shape/template. Do not use synthetic rows for real COGS.
+6. If failed SKU rows remain, write `missing_lot_request.csv` first: a source-backed repair request with SKU, period, minimum units needed, sale-date window, reason, and source document needed.
+7. Also write `synthetic_repair_lots_SANDBOX_ONLY.csv` as a clearly labeled shape/template. Do not use synthetic rows for real COGS.
 
-Add `--expect-clear` when the run should fail CI/local scripts if any failed SKU queue rows remain.
+Add `--expect-clear` when the run should fail CI/local scripts if any failed SKU queue rows remain. With `--json-out`, a failed expectation prints a clear terminal status (`FAILED SKU queue remains`) plus the exact `fix-plan` command to run next, while preserving the full failed summary in the JSON file.
 
 ## 6. Validate only — no FIFO artifacts written
 
@@ -236,6 +240,7 @@ Review these files:
 | `remaining_layers.csv/json` | Unsold remaining purchase layers |
 | `audit_trail.csv/json` | Sale-to-lot FIFO allocation trail |
 | `failed_sku_queue.csv/json` | SKUs where sales exceeded available purchase lots |
+| `missing_lot_request.csv` | Source-backed purchase-lot data needed to repair failed SKUs; use this before any synthetic shape row |
 | `shortfalls.csv/json` | Sale-level partial/unmatched quantities |
 | `month_history.csv/json` | Local output-folder history row for the period |
 

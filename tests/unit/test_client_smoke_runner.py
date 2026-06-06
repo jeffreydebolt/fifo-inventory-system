@@ -48,6 +48,7 @@ def test_client_smoke_normalizes_runs_and_writes_operator_artifacts(tmp_path):
     assert payload["movement_normalization"]["rows_written"] == 5
     assert payload["failed_sku_count"] == 0
     assert payload["total_shortfall_quantity"] == 0
+    assert payload["missing_lot_request_path"] is None
     assert payload["synthetic_repair_lots_path"] is None
 
     expected_paths = [
@@ -69,7 +70,7 @@ def test_client_smoke_normalizes_runs_and_writes_operator_artifacts(tmp_path):
     assert fix_plan["recommended_csv_fixes"] == []
 
 
-def test_client_smoke_expect_clear_returns_nonzero_when_queue_remains(tmp_path):
+def _write_lots_with_missing_sku(tmp_path: Path) -> Path:
     lots_with_missing_sku = tmp_path / "lots_missing_one_sku.csv"
     rows = list(csv.DictReader((FIXTURE_DIR / "sample_lots_client_shape.csv").open(newline="")))
     with lots_with_missing_sku.open("w", newline="") as handle:
@@ -78,6 +79,11 @@ def test_client_smoke_expect_clear_returns_nonzero_when_queue_remains(tmp_path):
         for row in rows:
             if row["sku"] != "DEMO-SKU-005":
                 writer.writerow(row)
+    return lots_with_missing_sku
+
+
+def test_client_smoke_expect_clear_returns_nonzero_when_queue_remains(tmp_path):
+    lots_with_missing_sku = _write_lots_with_missing_sku(tmp_path)
 
     result = subprocess.run(
         [
@@ -114,11 +120,83 @@ def test_client_smoke_expect_clear_returns_nonzero_when_queue_remains(tmp_path):
             "status": "NEEDS_FIX_RERUN",
         }
     ]
+    missing_lot_request_path = Path(payload["missing_lot_request_path"])
+    assert missing_lot_request_path.exists()
+    with missing_lot_request_path.open(newline="") as handle:
+        missing_rows = list(csv.DictReader(handle))
+    assert missing_rows == [
+        {
+            "sku": "DEMO-SKU-005",
+            "period": "2025-09",
+            "minimum_units_needed": "1",
+            "first_sale_date": "2025-09-01T00:00:00",
+            "last_sale_date": "2025-09-01T00:00:00",
+            "reason": "NO_INVENTORY",
+            "source_document_needed": "Source-backed purchase lot with received date on/before first sale date, available units, unit cost, and freight cost",
+            "operator_note": "Do not invent COGS: add only purchase-lot data supported by source exports/invoices, then rerun client-smoke or local FIFO.",
+        }
+    ]
     repair_path = Path(payload["synthetic_repair_lots_path"])
     assert repair_path.exists()
     repair_text = repair_path.read_text()
     assert "SANDBOX ONLY" in repair_text
     assert "SYNTH-REPAIR-DEMO-SKU-005" in repair_text
+
+
+def test_client_smoke_json_out_writes_same_payload_and_prints_human_summary(tmp_path):
+    json_out = tmp_path / "operator" / "summary.json"
+    result = _run_client_smoke(tmp_path / "smoke", "--json-out", str(json_out))
+
+    assert result.returncode == 0, result.stderr
+    assert json_out.exists()
+    explicit_payload = json.loads(json_out.read_text())
+    generated_payload = json.loads((tmp_path / "smoke" / "client_smoke_summary.json").read_text())
+    assert explicit_payload == generated_payload
+    assert "FirstLot client-smoke complete" in result.stdout
+    assert "Period: 2025-09" in result.stdout
+    assert "Total COGS:" in result.stdout
+    assert "Failed SKU count: 0" in result.stdout
+    assert "Output folder:" in result.stdout
+    assert "JSON summary:" in result.stdout
+    assert "client-smoke" not in result.stderr
+
+
+def test_client_smoke_expect_clear_json_out_prints_clear_failure_summary(tmp_path):
+    lots_with_missing_sku = _write_lots_with_missing_sku(tmp_path)
+    json_out = tmp_path / "operator" / "failed-summary.json"
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "app.local_cli",
+            "client-smoke",
+            "--lots",
+            str(lots_with_missing_sku),
+            "--movement",
+            str(FIXTURE_DIR / "sample_sales_client_shape.csv"),
+            "--out",
+            str(tmp_path / "smoke-json"),
+            "--period",
+            "2025-09",
+            "--expect-clear",
+            "--json-out",
+            str(json_out),
+        ],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 1
+    assert json_out.exists()
+    payload = json.loads(json_out.read_text())
+    assert payload["ok"] is False
+    assert payload["failed_sku_count"] == 1
+    assert "FAILED SKU queue remains" in result.stdout
+    assert "Next command: python3 -m app.local_cli fix-plan" in result.stdout
+    assert "DEMO-SKU-005" in json.dumps(payload["fix_plan"])
 
 
 def test_client_smoke_clean_output_is_limited_to_tmp_paths(tmp_path):

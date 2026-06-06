@@ -103,6 +103,10 @@ fixture path with one command from the repo root:
 python3 scripts/regenerate_firstlot_demo_artifacts.py
 ```
 
+Use this before a PR handoff when the FIFO engine, demo fixture, close-packet
+writer, or dashboard fixture data changes. The command is deterministic for the
+checked-in fixtures and should leave only intentional demo-output diffs.
+
 That command rewrites the checked-in v1 failed-run artifacts in
 `cogs-dashboard/src/demo-output/firstlot_demo/` and, by default, the v2 fixed-rerun
 artifacts in `cogs-dashboard/src/demo-output/firstlot_demo_fixed/`. It verifies
@@ -243,8 +247,10 @@ python3 -m app.local_cli fix-plan \
 ```
 
 The fix plan is JSON with `read_only: true`, `mutations_performed: []`, affected
-SKUs/periods, minimum additional available units needed, and suggested rerun
-arguments.
+SKUs/periods, minimum additional available units needed, operator-facing summary
+copy, recommended next action, `suggested_rerun_command`, and
+`completion_check_command`. The command strings are guidance only; the command
+does not edit CSVs, delete history, or touch live systems.
 
 Then rerun the same month with the corrected local fixture and `--reopen`:
 
@@ -272,6 +278,28 @@ python3 -m app.local_cli failed-skus \
 usable in a local smoke check or review script without touching live data. The
 fixed rerun should print JSON with `"clear": true`, `"queue_record_count": 0`,
 and `"total_shortfall_quantity": 0`.
+
+## PR-ready local handoff checklist
+
+Before handing a local FirstLot demo branch to review, run the fixture-only checks
+from the repo root:
+
+```bash
+python3 -m pytest tests/unit/test_local_csv_cli.py tests/unit/test_firstlot_demo_outputs.py tests/unit/test_failed_sku_workflow.py -q
+make check-firstlot-demo
+```
+
+If dashboard dependencies are installed, also run:
+
+```bash
+cd cogs-dashboard
+npm test -- --runTestsByPath src/App.test.js --watchAll=false
+```
+
+The PR handoff doc for this checkpoint is
+[`docs/plans/firstlot-local-month-close-pr-readiness.md`](plans/firstlot-local-month-close-pr-readiness.md).
+It summarizes the safe workflow, regeneration commands, fixed-rerun flow,
+`--assert-clear` gate, verification commands, and explicit out-of-scope items.
 
 ## Safety boundary
 

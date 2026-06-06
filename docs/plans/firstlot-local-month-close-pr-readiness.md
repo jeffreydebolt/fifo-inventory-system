@@ -4,8 +4,11 @@ This handoff describes the current PR checkpoint for the safe, fixture-backed Fi
 
 ## Current branch checkpoint
 
-- Branch: `autonomous/fifo-nightly-2026-06-04-early`
+- Branch at this handoff update: `autonomous/fifo-nightly-2026-06-06-cycle1`
 - Intended PR theme: complete the local FirstLot fix/rerun demo workflow.
+- Current local commits ahead of `main` at handoff time:
+  - `1b5258e6 feat: clarify FirstLot demo operator story`
+  - `efa4bc7b feat: clarify failed SKU fix-plan commands`
 - Reviewer entry points:
   - CLI/docs: `docs/local-demo-cli.md`
   - Demo UI: `cogs-dashboard/src/pages/DemoPage.js`
@@ -90,7 +93,10 @@ Expected safety fields in the fix plan:
 - `mutations_performed: []`
 - `affected_skus` / affected period metadata
 - minimum additional units required
-- suggested rerun arguments
+- human `summary`
+- `recommended_next_action`
+- `rerun_command_args` and `suggested_rerun_command`
+- `completion_check_command` using `failed-skus --assert-clear`
 
 Rerun the period with corrected fixture input:
 
@@ -162,6 +168,25 @@ If dashboard dependencies are available, also run:
 cd cogs-dashboard
 npm test -- --runTestsByPath src/App.test.js --watchAll=false
 ```
+
+The verification commands are fixture/local only. They regenerate demo artifacts
+in temp directories or exercise checked-in synthetic fixture output; they do not
+read `.env`, import Supabase adapters, deploy, or mutate live/client records.
+
+## PR-ready handoff status
+
+This checkpoint is ready to package as a local/demo PR when the verification
+commands above pass on the final branch state. The PR description should call out:
+
+- safe local workflow: fixture CSV inputs → FIFO run → SKU costs/failed queue →
+  read-only fix plan → fixed rerun with `--reopen` → `--assert-clear`,
+- regenerated demo artifacts: v1 failed run and v2 fixed rerun,
+- dashboard story: fixture/demo mode only, no live DB writes, explicit operator
+  month-close steps,
+- review gates: pytest unit subset, `make check-firstlot-demo`, and dashboard Jest
+  smoke test when dependencies are present,
+- remaining scope after this PR: broader CSV validation, arbitrary browser upload
+  flow, local API wrapper, connector mocks, and live-adapter design.
 
 ## Out of scope for this PR checkpoint
 

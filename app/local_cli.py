@@ -24,6 +24,34 @@ from core.output_files import write_fifo_report
 from core.outputs import run_fifo_report
 
 
+def _client_smoke_human_summary(payload: dict) -> str:
+    """Return concise operator output for weekend client-smoke runs."""
+
+    lines = [
+        "FirstLot client-smoke complete — local files only; no live DB writes.",
+        f"Period: {payload['period']}",
+        f"Total COGS: {payload['total_cogs']}",
+        f"Failed SKU count: {payload['failed_sku_count']}",
+        f"Output folder: {payload['out']}",
+    ]
+    if payload["failed_sku_count"]:
+        lines.append(
+            "Status: FAILED SKU queue remains; review missing_lot_request.csv and fix_plan.json for source-backed lots before relying on COGS."
+        )
+        lines.append(
+            "Next command: python3 -m app.local_cli fix-plan "
+            f"--out {payload['out']} --period {payload['period']} "
+            f"--lots {payload['normalized_lots']} --movement {payload['normalized_movement']}"
+        )
+    else:
+        lines.append("Status: failed SKU queue clear.")
+        lines.append(
+            "Next command: python3 -m app.local_cli failed-skus "
+            f"--out {payload['out']} --period {payload['period']} --assert-clear"
+        )
+    return "\n".join(lines)
+
+
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run a local FirstLot FIFO demo from CSV inputs.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -141,6 +169,10 @@ def _parse_args() -> argparse.Namespace:
         action="store_true",
         help="Delete the output folder first; allowed only for /tmp or /private/tmp paths",
     )
+    client_smoke_parser.add_argument(
+        "--json-out",
+        help="Optional path for a copy of client_smoke_summary.json; stdout becomes a concise human summary",
+    )
 
     history_parser = subparsers.add_parser("history", help="Print local month close history")
     history_parser.add_argument("--out", required=True, help="Output directory containing month_history.json")
@@ -212,7 +244,15 @@ def main() -> int:
             expect_clear=args.expect_clear,
             clean_output=args.clean_output,
         )
-        print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
+        payload = result.to_dict()
+        if args.json_out:
+            json_out = Path(args.json_out)
+            json_out.parent.mkdir(parents=True, exist_ok=True)
+            json_out.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+            print(_client_smoke_human_summary(payload))
+            print(f"JSON summary: {json_out}")
+        else:
+            print(json.dumps(payload, indent=2, sort_keys=True))
         return 0 if result.ok else 1
 
     if args.command == "history":
