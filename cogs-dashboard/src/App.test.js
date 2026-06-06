@@ -58,6 +58,10 @@ function expectCoreMvpScreen() {
   expect(container.textContent).toContain('Local/demo mode');
   expect(container.textContent).toContain('Fixture/demo mode only — no live DB writes.');
   expect(container.textContent).toContain('fixture artifacts only');
+  expect(container.textContent).toContain('Operator story controls');
+  expect(container.textContent).toContain('Display only · no mutations');
+  expect(container.textContent).toContain('They are not wired to uploads, APIs, or data mutations in demo mode.');
+  expect(container.textContent).toContain('Run monthly COGS');
   expect(container.textContent).toContain('Local client-test file selection');
   expect(container.textContent).toContain('Choose local fixture packet');
   expect(container.textContent).toContain('No network calls · no uploads · fixture choices only');

@@ -143,6 +143,51 @@ function DownloadCsvLink({ rows }) {
   );
 }
 
+function OperatorActionRail() {
+  const actions = [
+    'Upload purchase lots CSV',
+    'Upload sales CSV',
+    'Run monthly COGS',
+    'Review SKU costs',
+    'Fix failed SKUs and rerun',
+    'Preserve month history'
+  ];
+
+  return (
+    <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+        <div>
+          <h2 style={{ margin: '0 0 0.35rem' }}>Operator story controls</h2>
+          <p style={{ margin: 0, color: '#64748b', lineHeight: 1.5 }}>
+            These disabled controls show the intended close path from file intake through rerun and history review. They are not wired to uploads, APIs, or data mutations in demo mode.
+          </p>
+        </div>
+        <Pill tone="amber">Display only · no mutations</Pill>
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.7rem' }}>
+        {actions.map((action) => (
+          <button
+            key={action}
+            disabled
+            type="button"
+            style={{
+              background: '#f8fafc',
+              border: '1px dashed #94a3b8',
+              borderRadius: '0.85rem',
+              color: '#334155',
+              cursor: 'not-allowed',
+              fontWeight: 800,
+              padding: '0.75rem 0.9rem'
+            }}
+          >
+            {action}
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function LocalClientTestFlow() {
   const [selectedId, setSelectedId] = useState(clientTestFixtures[0].id);
   const selectedFixture = clientTestFixtures.find((fixture) => fixture.id === selectedId) || clientTestFixtures[0];
@@ -389,6 +434,8 @@ export default function DemoPage() {
             This page is a local operator story backed by fixture CSVs and checked-in generated artifacts. Upload, run, fix, and rerun controls are descriptive only; nothing writes to Supabase, Storage Standard data, production APIs, or live inventory.
           </p>
         </section>
+
+        <OperatorActionRail />
 
         <LocalClientTestFlow />
 
