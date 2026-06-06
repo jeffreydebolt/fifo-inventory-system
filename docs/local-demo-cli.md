@@ -212,6 +212,32 @@ Safety behavior for month history:
 - `python3 -m app.local_cli history --out /tmp/firstlot-demo` prints the local history,
 - `python3 -m app.local_cli rollback-plan --out /tmp/firstlot-demo --period 2026-05` prints a read-only operator plan and performs no file deletes, restores, or live-data mutations.
 
+## FIFO month-close management workflow summary
+
+Use `workflow` after a local monthly run to see the corrected FirstLot management
+lane in one read-only JSON payload: purchase-lot upload, sales upload, monthly COGS
+run, SKU-level COGS table, failed-SKU queue, fix/rerun mode, append/reopen modes,
+and rollback-plan visibility.
+
+```bash
+python3 -m app.local_cli workflow \
+  --out /tmp/firstlot-demo \
+  --period 2026-05 \
+  --include-rollback-plan
+```
+
+The payload is intentionally boring and operational. It includes:
+
+- `workflow_steps` for the real five-step FIFO close flow,
+- `sku_level_cogs` rows with unit, shipping, total, and average cost fields derived from `cogs_detail`,
+- `failed_sku_queue` rows for source CSV fixes,
+- `month_history` for reopen/append audit context,
+- `management_actions` with suggested local `failed-skus`, `fix-plan`, `--reopen`, `--append-prior-month`, and read-only rollback-plan commands,
+- `live_mutations_performed: []` and prohibited-scope reminders.
+
+It does not add demand planning, inventory planning, Amazon/Shopify connector UI,
+mapping confidence panels, or product-planning workflow sections.
+
 ## Failed-SKU fix/rerun queue workflow
 
 After a run writes `failed_sku_queue.csv/json`, operators can review the local

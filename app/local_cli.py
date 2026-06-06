@@ -19,6 +19,7 @@ from core.lots_normalizer import (
     normalize_lot_csv,
     normalize_movement_csv,
 )
+from core.month_close_workflow import build_month_close_workflow
 from core.month_history import append_month_close_record, build_rollback_plan, load_month_history
 from core.output_files import write_fifo_report
 from core.outputs import run_fifo_report
@@ -177,6 +178,18 @@ def _parse_args() -> argparse.Namespace:
     history_parser = subparsers.add_parser("history", help="Print local month close history")
     history_parser.add_argument("--out", required=True, help="Output directory containing month_history.json")
 
+    workflow_parser = subparsers.add_parser(
+        "workflow",
+        help="Print read-only FIFO month-close management workflow from local artifacts",
+    )
+    workflow_parser.add_argument("--out", required=True, help="Output directory containing local FIFO artifacts")
+    workflow_parser.add_argument("--period", required=True, help="Close period (YYYY-MM)")
+    workflow_parser.add_argument(
+        "--include-rollback-plan",
+        action="store_true",
+        help="Include read-only rollback plan when month history exists; performs no mutations",
+    )
+
     rollback_parser = subparsers.add_parser(
         "rollback-plan",
         help="Print a read-only rollback plan for a local period; performs no mutations",
@@ -258,6 +271,15 @@ def main() -> int:
     if args.command == "history":
         rows = [record.__dict__ for record in load_month_history(args.out)]
         print(json.dumps(rows, indent=2, sort_keys=True))
+        return 0
+
+    if args.command == "workflow":
+        workflow = build_month_close_workflow(
+            args.out,
+            period=args.period,
+            include_rollback_plan=args.include_rollback_plan,
+        )
+        print(json.dumps(workflow, indent=2, sort_keys=True))
         return 0
 
     if args.command == "rollback-plan":
