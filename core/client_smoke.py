@@ -41,6 +41,7 @@ class ClientSmokeResult:
     lots_normalization: dict | None = None
     movement_normalization: dict | None = None
     fix_plan: dict | None = None
+    missing_lot_request_path: str | None = None
     synthetic_repair_lots_path: str | None = None
 
     def to_dict(self) -> dict:
@@ -59,6 +60,7 @@ class ClientSmokeResult:
             "lots_normalization": self.lots_normalization,
             "movement_normalization": self.movement_normalization,
             "fix_plan": self.fix_plan,
+            "missing_lot_request_path": self.missing_lot_request_path,
             "synthetic_repair_lots_path": self.synthetic_repair_lots_path,
             "safety": "local client CSV smoke only; no .env, no Supabase/API imports, no live DB writes",
         }
@@ -158,8 +160,11 @@ def run_client_smoke(
         note="client-smoke generated fix plan",
     )
     _write_json(out / "fix_plan.json", fix_plan)
+    missing_lot_request_path = None
     synthetic_repair_path = None
     if queue_records:
+        missing_lot_request_path = out / "missing_lot_request.csv"
+        _write_missing_lot_request(missing_lot_request_path, queue_records)
         synthetic_repair_path = out / "synthetic_repair_lots_SANDBOX_ONLY.csv"
         _write_synthetic_repair_lots(synthetic_repair_path, queue_records, period)
 
@@ -177,6 +182,7 @@ def run_client_smoke(
         lots_normalization=lots_result.to_dict(),
         movement_normalization=movement_result.to_dict(),
         fix_plan=fix_plan,
+        missing_lot_request_path=str(missing_lot_request_path) if missing_lot_request_path else None,
         synthetic_repair_lots_path=str(synthetic_repair_path) if synthetic_repair_path else None,
     )
     _write_json(out / "client_smoke_summary.json", result.to_dict())
@@ -194,6 +200,39 @@ def _clean_temp_output(out: Path) -> None:
 
 def _write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def _write_missing_lot_request(path: Path, queue_records: list) -> None:
+    """Write source-backed missing-lot requirements for operator repair."""
+
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(
+            handle,
+            fieldnames=[
+                "sku",
+                "period",
+                "minimum_units_needed",
+                "first_sale_date",
+                "last_sale_date",
+                "reason",
+                "source_document_needed",
+                "operator_note",
+            ],
+        )
+        writer.writeheader()
+        for record in queue_records:
+            writer.writerow(
+                {
+                    "sku": record.sku,
+                    "period": record.period,
+                    "minimum_units_needed": str(record.shortfall_quantity),
+                    "first_sale_date": record.first_sale_date,
+                    "last_sale_date": record.last_sale_date,
+                    "reason": record.reasons,
+                    "source_document_needed": "Source-backed purchase lot with received date on/before first sale date, available units, unit cost, and freight cost",
+                    "operator_note": "Do not invent COGS: add only purchase-lot data supported by source exports/invoices, then rerun client-smoke or local FIFO.",
+                }
+            )
 
 
 def _write_synthetic_repair_lots(path: Path, queue_records: list, period: str) -> None:
