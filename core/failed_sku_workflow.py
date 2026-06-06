@@ -106,6 +106,10 @@ def _pluralize(count: int, singular: str, plural: str | None = None) -> str:
     return f"{count} {plural or singular + 's'}"
 
 
+def _unit_phrase(count: int) -> str:
+    return _pluralize(count, "unit")
+
+
 def _build_summary(
     records: list[FailedSKUQueueRecord],
     *,
@@ -130,7 +134,7 @@ def _build_recommended_next_action(records: list[FailedSKUQueueRecord], affected
         record = records[0]
         period_text = record.period
         return (
-            f"Add at least {record.shortfall_quantity} unit(s) of {record.sku} available before "
+            f"Add at least {_unit_phrase(record.shortfall_quantity)} of {record.sku} available before "
             f"{record.first_sale_date}, then rerun {period_text} with --reopen."
         )
     period_text = affected_periods[0] if len(affected_periods) == 1 else "the affected periods"
@@ -148,7 +152,7 @@ def _build_completion_check_args(
     affected_periods: list[str],
     affected_skus: list[str],
 ) -> list[str]:
-    args = ["python", "-m", "app.local_cli", "failed-skus", "--out", str(Path(out_dir))]
+    args = ["python3", "-m", "app.local_cli", "failed-skus", "--out", str(Path(out_dir))]
     check_period = period or (affected_periods[0] if len(affected_periods) == 1 else None)
     check_sku = sku or (affected_skus[0] if len(affected_skus) == 1 and period else None)
     if check_period:
@@ -180,7 +184,7 @@ def build_fix_plan(
     affected_periods = sorted({record.period for record in records})
     affected_skus = sorted({record.sku for record in records})
 
-    rerun_args = ["python", "-m", "app.local_cli", "run"]
+    rerun_args = ["python3", "-m", "app.local_cli", "run"]
     if lots_path:
         rerun_args.extend(["--lots", lots_path])
     if movement_path:
