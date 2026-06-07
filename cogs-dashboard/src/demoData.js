@@ -142,3 +142,70 @@ export const clientTestFixtures = [
     closePacket: '/tmp/firstlot-second-synthetic-client-check/close_packet.json'
   }
 ];
+
+export const amazonOnboardingTimeline = [
+  'Connect Amazon',
+  'Pull SKUs and available inventory',
+  'Confirm other warehouses',
+  'Upload outside-Amazon SKU/counts',
+  'Upload source-backed purchase lots/freight',
+  'Match current in-stock to lots',
+  'Propose FIFO day 0'
+];
+
+export const inventoryTrackingRows = [
+  {
+    sku: 'CAMERA-KIT',
+    amazonAvailable: 42,
+    otherWarehouseAvailable: 11,
+    totalAvailable: 53,
+    inbound: 18,
+    valuation: 742.50,
+    statusAction: 'Match 53 units to source-backed lots'
+  },
+  {
+    sku: 'TRIPOD',
+    amazonAvailable: 16,
+    otherWarehouseAvailable: 2,
+    totalAvailable: 18,
+    inbound: 0,
+    valuation: 466.20,
+    statusAction: 'Confirm QA hold count before day 0'
+  },
+  {
+    sku: 'STRAP-BUNDLE',
+    amazonAvailable: 7,
+    otherWarehouseAvailable: 0,
+    totalAvailable: 7,
+    inbound: 24,
+    valuation: 145.60,
+    statusAction: 'Upload freight allocation for inbound lot'
+  }
+];
+
+export const planningRows = [
+  {
+    sku: 'CAMERA-KIT',
+    velocity: '5.8 units/day',
+    leadTime: '21 days',
+    coverDays: 9,
+    stockoutRisk: 'High',
+    recommendation: 'Reorder now; inbound does not fully cover lead time.'
+  },
+  {
+    sku: 'TRIPOD',
+    velocity: '1.2 units/day',
+    leadTime: '14 days',
+    coverDays: 15,
+    stockoutRisk: 'Medium',
+    recommendation: 'Confirm non-Amazon count before purchasing.'
+  },
+  {
+    sku: 'STRAP-BUNDLE',
+    velocity: '2.7 units/day',
+    leadTime: '30 days',
+    coverDays: 3,
+    stockoutRisk: 'Critical',
+    recommendation: 'Prioritize inbound receipt and source docs.'
+  }
+];
