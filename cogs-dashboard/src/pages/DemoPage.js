@@ -371,6 +371,7 @@ function FixedRerunComparison() {
           V2 adds the one missing SKU-A unit from LOT-A-FIX-001, increasing total COGS by {money(v2Total - v1Total)} and reducing failed SKU rows from {number(v1Failed)} to {number(v2Failed)}.
         </p>
         <p style={{ margin: 0, color: '#334155' }}><strong>Completion check:</strong> <code>{fixedDemoRun.inputs.assertClearCommand}</code></p>
+        <p style={{ margin: '0.45rem 0 0', color: '#334155' }}><strong>Compare before/after:</strong> <code>{fixedDemoRun.inputs.compareCommand}</code></p>
       </div>
     </div>
   );

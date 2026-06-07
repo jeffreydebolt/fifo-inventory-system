@@ -19,9 +19,11 @@ from core.lots_normalizer import (
     normalize_lot_csv,
     normalize_movement_csv,
 )
+from core.month_close_workflow import build_month_close_workflow
 from core.month_history import append_month_close_record, build_rollback_plan, load_month_history
 from core.output_files import write_fifo_report
 from core.outputs import run_fifo_report
+from core.run_comparison import compare_run_artifacts
 
 
 def _client_smoke_human_summary(payload: dict) -> str:
@@ -177,6 +179,18 @@ def _parse_args() -> argparse.Namespace:
     history_parser = subparsers.add_parser("history", help="Print local month close history")
     history_parser.add_argument("--out", required=True, help="Output directory containing month_history.json")
 
+    workflow_parser = subparsers.add_parser(
+        "workflow",
+        help="Print read-only FIFO month-close management workflow from local artifacts",
+    )
+    workflow_parser.add_argument("--out", required=True, help="Output directory containing local FIFO artifacts")
+    workflow_parser.add_argument("--period", required=True, help="Close period (YYYY-MM)")
+    workflow_parser.add_argument(
+        "--include-rollback-plan",
+        action="store_true",
+        help="Include read-only rollback plan when month history exists; performs no mutations",
+    )
+
     rollback_parser = subparsers.add_parser(
         "rollback-plan",
         help="Print a read-only rollback plan for a local period; performs no mutations",
@@ -209,6 +223,14 @@ def _parse_args() -> argparse.Namespace:
     fix_parser.add_argument("--lots", help="Optional purchase lots CSV path to include in rerun args")
     fix_parser.add_argument("--movement", help="Optional movement/sales CSV path to include in rerun args")
     fix_parser.add_argument("--note", default="")
+
+    compare_parser = subparsers.add_parser(
+        "compare-runs",
+        help="Compare two local month-close artifact folders; read-only fix/rerun delta review",
+    )
+    compare_parser.add_argument("--before", required=True, help="Previous/local baseline artifact directory")
+    compare_parser.add_argument("--after", required=True, help="Rerun/fixed artifact directory")
+    compare_parser.add_argument("--period", help="Optional period filter (YYYY-MM)")
     return parser.parse_args()
 
 
@@ -260,6 +282,15 @@ def main() -> int:
         print(json.dumps(rows, indent=2, sort_keys=True))
         return 0
 
+    if args.command == "workflow":
+        workflow = build_month_close_workflow(
+            args.out,
+            period=args.period,
+            include_rollback_plan=args.include_rollback_plan,
+        )
+        print(json.dumps(workflow, indent=2, sort_keys=True))
+        return 0
+
     if args.command == "rollback-plan":
         generated_at = datetime.fromisoformat(args.generated_at)
         plan = build_rollback_plan(
@@ -294,6 +325,11 @@ def main() -> int:
             note=args.note,
         )
         print(json.dumps(plan, indent=2, sort_keys=True))
+        return 0
+
+    if args.command == "compare-runs":
+        comparison = compare_run_artifacts(args.before, args.after, period=args.period)
+        print(json.dumps(comparison, indent=2, sort_keys=True))
         return 0
 
     if args.command == "validate":

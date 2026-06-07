@@ -1,4 +1,24 @@
 {
+  "accountant_review_columns": {
+    "cogs_detail": [
+      "sku",
+      "period",
+      "total_quantity_sold",
+      "merchandise_cost",
+      "shipping_cost",
+      "total_cost",
+      "average_cost"
+    ],
+    "failed_sku_queue": [
+      "sku",
+      "period",
+      "requested_quantity",
+      "allocated_quantity",
+      "shortfall_quantity",
+      "reasons",
+      "status"
+    ]
+  },
   "artifact_files": [
     "cogs_summary.csv",
     "cogs_summary.json",
@@ -42,6 +62,11 @@
     }
   },
   "live_mutations_performed": [],
+  "local_review_commands": {
+    "assert_failed_skus_clear": "python -m app.local_cli failed-skus --out cogs-dashboard/src/demo-output/firstlot_demo_fixed --period 2026-05 --assert-clear",
+    "failed_sku_queue": "python -m app.local_cli failed-skus --out cogs-dashboard/src/demo-output/firstlot_demo_fixed --period 2026-05",
+    "rollback_plan_read_only": "python -m app.local_cli rollback-plan --out cogs-dashboard/src/demo-output/firstlot_demo_fixed --period 2026-05"
+  },
   "operator_next_step": "Review close packet and retain artifacts for local audit handoff.",
   "packet_type": "firstlot_local_month_close",
   "period": "2026-05",

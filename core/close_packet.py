@@ -69,6 +69,7 @@ def build_close_packet(
     shortfall_quantity = sum(row.shortfall_quantity for row in report.failed_sku_queue)
     failed_skus = sorted({row.sku for row in report.failed_sku_queue})
     processed_skus = sorted({row.sku for row in report.cogs_summary})
+    review_out_dir = _display_path(out_dir)
 
     return {
         "packet_type": "firstlot_local_month_close",
@@ -91,6 +92,31 @@ def build_close_packet(
             "shortfall_quantity": shortfall_quantity,
         },
         "history": asdict(history_record) if history_record else None,
+        "accountant_review_columns": {
+            "cogs_detail": [
+                "sku",
+                "period",
+                "total_quantity_sold",
+                "merchandise_cost",
+                "shipping_cost",
+                "total_cost",
+                "average_cost",
+            ],
+            "failed_sku_queue": [
+                "sku",
+                "period",
+                "requested_quantity",
+                "allocated_quantity",
+                "shortfall_quantity",
+                "reasons",
+                "status",
+            ],
+        },
+        "local_review_commands": {
+            "failed_sku_queue": f"python -m app.local_cli failed-skus --out {review_out_dir} --period {packet_period}",
+            "assert_failed_skus_clear": f"python -m app.local_cli failed-skus --out {review_out_dir} --period {packet_period} --assert-clear",
+            "rollback_plan_read_only": f"python -m app.local_cli rollback-plan --out {review_out_dir} --period {packet_period}",
+        },
         "artifact_files": [_relative_artifact(out_dir, path) for path in artifact_paths],
         "operator_next_step": (
             "Fix local input CSVs and rerun with --reopen, then assert failed-skus --assert-clear."
@@ -100,15 +126,19 @@ def build_close_packet(
     }
 
 
+def _display_path(path: str | Path) -> str:
+    file_path = Path(path)
+    try:
+        return file_path.resolve().relative_to(Path.cwd().resolve()).as_posix()
+    except ValueError:
+        return file_path.as_posix()
+
+
 def _file_fingerprint(path: str | Path) -> dict:
     file_path = Path(path)
-    display_path = file_path
-    try:
-        display_path = file_path.resolve().relative_to(Path.cwd().resolve())
-    except ValueError:
-        pass
+    display_path = _display_path(file_path)
     return {
-        "path": display_path.as_posix(),
+        "path": display_path,
         "name": file_path.name,
         "sha256": hashlib.sha256(file_path.read_bytes()).hexdigest(),
     }
@@ -147,6 +177,16 @@ def _packet_markdown(packet: dict) -> str:
         "",
     ]
     lines.extend(f"- `{artifact}`" for artifact in packet["artifact_files"])
+    lines.extend(
+        [
+            "",
+            "## Local review commands",
+            "",
+        ]
+    )
+    lines.extend(
+        f"- {name}: `{command}`" for name, command in packet["local_review_commands"].items()
+    )
     lines.extend(
         [
             "",

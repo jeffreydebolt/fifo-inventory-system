@@ -55,6 +55,21 @@ def test_local_cli_writes_close_packet_for_month_run(tmp_path):
     }
     assert packet["history"]["status"] == "CLOSED"
     assert packet["history"]["run_sequence"] == 1
+    assert packet["accountant_review_columns"]["cogs_detail"] == [
+        "sku",
+        "period",
+        "total_quantity_sold",
+        "merchandise_cost",
+        "shipping_cost",
+        "total_cost",
+        "average_cost",
+    ]
+    assert packet["local_review_commands"]["failed_sku_queue"].endswith(
+        f"--out {tmp_path} --period 2026-05"
+    )
+    assert packet["local_review_commands"]["rollback_plan_read_only"].endswith(
+        f"--out {tmp_path} --period 2026-05"
+    )
     assert packet["input_files"]["purchase_lots"]["name"] == "purchase_lots.csv"
     assert packet["input_files"]["movement"]["name"] == "movement.csv"
     assert "cogs_summary.csv" in packet["artifact_files"]
@@ -62,6 +77,8 @@ def test_local_cli_writes_close_packet_for_month_run(tmp_path):
 
     markdown = (tmp_path / "close_packet.md").read_text()
     assert "# FirstLot local close packet" in markdown
+    assert "## Local review commands" in markdown
+    assert "rollback-plan" in markdown
     assert "No live database writes" in markdown
     assert "Fix local input CSVs and rerun" in markdown
 
