@@ -28,6 +28,14 @@ The current mock payload includes these readiness gates:
 - Freight allocations are attached or explicitly not required.
 - Operator approves the proposed FIFO day 0.
 
+The latest mock payload also carries operator-facing evidence detail per SKU:
+
+- source documents present (for example supplier invoices already attached in the fixture),
+- freight documents present and whether allocation is complete, partial, not required, or missing,
+- unit cost plus freight per unit used for draft valuation,
+- unmatched units and a mock readiness score, and
+- a formula trace for the backward reconstruction calculation.
+
 ## Backward reconstruction draft
 
 For each Amazon SKU, the mock computes:
@@ -46,6 +54,19 @@ This is intentionally a first-pass operator planning estimate, not an accounting
 - SKU mapping/archival decisions for warehouse-only SKUs.
 
 Negative estimated start units are automatically blocked because receipts appear to exceed current stock plus sales in the mock rollback window.
+
+The reconstruction trace is intentionally transparent rather than clever. Each row states the formula inputs, estimated start units, oldest source-backed receipt date, evidence quality, and the next operator decision. That makes the day-0 proposal reviewable without implying FirstLot has already accepted the start layer for accounting.
+
+## Draft evidence/readiness semantics
+
+The fixture currently treats the day-0 packet as **blocked** even when some source support exists:
+
+- `CAMERA-KIT`: partial supplier invoice support and partial freight support; current stock still has a source gap.
+- `TRIPOD`: purchase lot support is complete, but a non-Amazon QA-hold count needs supervisor sign-off.
+- `STRAP-BUNDLE`: inbound receipts appear in the rollback period but source and freight documents are missing, causing a negative estimated start-unit check.
+- `LENS-CAP-ONLY`: warehouse-only SKU must be mapped, archived, or excluded before day 0.
+
+The mock readiness score is not an accounting metric. It is a UX/progress indicator based on source-backed units divided by current units to reconcile, while blockers still control whether the packet is usable.
 
 ## Live Amazon approval boundary
 

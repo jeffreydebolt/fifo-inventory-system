@@ -164,7 +164,10 @@ export const inventoryTrackingRows = [
     sourceBackedUnits: 47,
     sourceGap: 6,
     inbound: 18,
-    valuation: 669.75,
+    unitCost: 14.25,
+    freightPerUnit: 1.85,
+    valuation: 756.70,
+    evidence: '2 invoices + partial freight bill',
     statusAction: 'Blocked: upload freight bill + 6 more source-backed units'
   },
   {
@@ -177,7 +180,10 @@ export const inventoryTrackingRows = [
     sourceBackedUnits: 18,
     sourceGap: 0,
     inbound: 0,
+    unitCost: 25.90,
+    freightPerUnit: 0,
     valuation: 466.20,
+    evidence: 'Invoice present; count sign-off pending',
     statusAction: 'Blocked: approve QA hold count before day 0'
   },
   {
@@ -190,7 +196,10 @@ export const inventoryTrackingRows = [
     sourceBackedUnits: 0,
     sourceGap: 7,
     inbound: 24,
+    unitCost: 20.80,
+    freightPerUnit: 2.10,
     valuation: 0,
+    evidence: 'No invoice/freight attached',
     statusAction: 'Blocked: upload invoice and freight allocation for inbound lot'
   }
 ];
@@ -200,7 +209,9 @@ export const dayZeroProposal = {
   confidence: 'Blocked · review required',
   currentUnitsToReconcile: 92,
   sourceBackedUnits: 65,
+  unmatchedUnits: 27,
   sourceSupportRatio: '70.65%',
+  readinessScore: 71,
   ruleDraft: 'Earliest close month start where current Amazon + outside-warehouse stock can be backed to purchase lots/freight, with every exception carried as a blocker.',
   nextOperatorAction: 'Resolve blockers, upload/approve source-backed purchase lots and freight, then confirm or adjust FIFO day 0.'
 };

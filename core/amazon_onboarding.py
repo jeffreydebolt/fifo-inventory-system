@@ -29,6 +29,7 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
     inventory_tracking = []
     unmatched_inventory = []
     rollback_reconstruction = []
+    reconciliation_trace = []
     day_zero_blockers = [
         "Verify Amazon sales history covers the rollback window.",
         "Approve the proposed FIFO day 0 before any accounting packet is relied on.",
@@ -43,6 +44,7 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
         source_units = int(guidance.get("draft_source_units_available") or 0)
         receipts_in_period = int(guidance.get("draft_receipts_in_rollback_period") or 0)
         unit_cost = float(guidance.get("draft_unit_cost") or 0)
+        freight_per_unit = float(guidance.get("draft_freight_per_unit") or 0)
         support_gap = max(total_available - source_units, 0)
         lot_status = str(guidance.get("status", "missing_source_support"))
         freight_status = str(guidance.get("freight_allocation_status", "missing"))
@@ -63,6 +65,9 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
                     "quantity_gap": support_gap,
                     "blockers": blockers,
                     "source_documents_needed": guidance.get("source_documents_needed", ["supplier invoice", "freight allocation"]),
+                    "source_documents_present": guidance.get("source_documents_present", []),
+                    "freight_documents_present": guidance.get("freight_documents_present", []),
+                    "reconciliation_note": guidance.get("reconciliation_note", "Fixture-only blocker; operator source review required."),
                     "operator_guidance": "Upload/approve source docs and counts before accepting day 0 for this SKU.",
                 }
             )
@@ -82,7 +87,12 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
                 "draft_source_units_available": source_units,
                 "source_support_gap": support_gap,
                 "supported_lot_ids": guidance.get("supported_lot_ids", []),
-                "draft_inventory_value": round(min(total_available, source_units) * unit_cost, 2),
+                "source_documents_present": guidance.get("source_documents_present", []),
+                "freight_documents_present": guidance.get("freight_documents_present", []),
+                "evidence_quality": guidance.get("evidence_quality", "missing"),
+                "draft_unit_cost": unit_cost,
+                "draft_freight_per_unit": freight_per_unit,
+                "draft_inventory_value": round(min(total_available, source_units) * (unit_cost + freight_per_unit), 2),
                 "lot_match_status": "blocked" if blockers else "ready_for_day_zero_review",
                 "reconciliation_action": "Confirm day-0 layer" if not blockers else "Resolve blockers before day 0",
             }
@@ -104,6 +114,19 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
                 ),
             }
         )
+        reconciliation_trace.append(
+            {
+                "sku": sku,
+                "formula": "current_units + period_sales_units - draft_receipts_in_period",
+                "current_units": total_available,
+                "period_sales_units": sales_by_sku.get(sku, 0),
+                "draft_receipts_in_period": receipts_in_period,
+                "estimated_units_at_period_start": estimated_period_start_units,
+                "evidence_quality": guidance.get("evidence_quality", "missing"),
+                "oldest_supported_receipt_date": guidance.get("oldest_supported_receipt_date"),
+                "operator_decision_required": "approve_day_zero_layer" if not blockers and estimated_period_start_units >= 0 else "resolve_blockers_before_day_zero",
+            }
+        )
 
     warehouse_only_skus = [row for row in other_counts if row["sku"] not in amazon_skus]
     for row in warehouse_only_skus:
@@ -113,6 +136,9 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
                 "quantity_gap": int(row.get("available", 0)),
                 "blockers": ["Outside-Amazon SKU is not matched to the Amazon catalog/FirstLot SKU map."],
                 "source_documents_needed": ["warehouse count", "SKU map decision"],
+                "source_documents_present": [f"warehouse count at {row.get('location')}"] if row.get("counted_at") else [],
+                "freight_documents_present": [],
+                "reconciliation_note": "Warehouse-only fixture count cannot join FIFO until an SKU map/include/exclude decision is made.",
                 "operator_guidance": "Map, archive, or exclude this warehouse-only SKU before accepting day 0.",
             }
         )
@@ -131,9 +157,18 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
         "blockers": day_zero_blockers,
         "unmatched_inventory": unmatched_inventory,
         "rollback_reconstruction": rollback_reconstruction,
+        "reconciliation_trace": reconciliation_trace,
         "source_support_ratio": round(source_backed_units / max(current_units_to_reconcile, 1), 4),
+        "unmatched_units": current_units_to_reconcile - source_backed_units,
+        "mock_readiness_score": round((source_backed_units / max(current_units_to_reconcile, 1)) * 100),
         "source_backed_units": source_backed_units,
         "current_units_to_reconcile": current_units_to_reconcile,
+        "operator_decisions_required": [
+            "Confirm Amazon sales/order/report history is complete for rollback period.",
+            "Map, archive, or exclude warehouse-only SKUs before day 0.",
+            "Attach supplier invoices and freight allocations for unsupported units.",
+            "Approve or reject the proposed FIFO day 0; do not rely on COGS while blocked.",
+        ],
         "readiness_checklist": [
             {"label": "Amazon sales history covers rollback window", "status": "needs_operator_confirmation"},
             {"label": "Every current SKU mapped to Amazon or explicit outside-warehouse decision", "status": "blocked"},

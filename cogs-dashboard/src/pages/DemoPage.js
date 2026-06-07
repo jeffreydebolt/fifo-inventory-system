@@ -295,7 +295,7 @@ function CommandCenterTables() {
           <table style={tableStyle}>
             <thead>
               <tr>
-                {['SKU', 'Amazon available / reserved', 'Other warehouse available', 'Total available', 'Source-backed units', 'Gap', 'Inbound', 'Draft Valuation', 'Status/action'].map((header) => (
+                {['SKU', 'Amazon available / reserved', 'Other warehouse available', 'Total available', 'Source-backed units', 'Gap', 'Inbound', 'Source evidence', 'Draft unit+freight', 'Draft Valuation', 'Status/action'].map((header) => (
                   <th key={header} style={{ ...cellStyle, background: '#eef2ff', color: '#3730a3', fontWeight: 900 }}>{header}</th>
                 ))}
               </tr>
@@ -310,6 +310,8 @@ function CommandCenterTables() {
                   <td style={cellStyle}>{number(row.sourceBackedUnits)}</td>
                   <td style={cellStyle}><Pill tone={row.sourceGap > 0 ? 'amber' : 'green'}>{number(row.sourceGap)}</Pill></td>
                   <td style={cellStyle}>{number(row.inbound)}</td>
+                  <td style={cellStyle}>{row.evidence}</td>
+                  <td style={cellStyle}>{money(row.unitCost)} + {money(row.freightPerUnit)}</td>
                   <td style={cellStyle}>{money(row.valuation)}</td>
                   <td style={cellStyle}>{row.statusAction}</td>
                 </tr>
@@ -339,7 +341,12 @@ function CommandCenterTables() {
           <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
             <h3 style={{ margin: '0 0 0.35rem' }}>Source support</h3>
             <p style={{ margin: 0, fontSize: '1.35rem', fontWeight: 900 }}>{dayZeroProposal.sourceSupportRatio}</p>
-            <p style={{ margin: '0.35rem 0 0', color: '#64748b' }}>{number(dayZeroProposal.sourceBackedUnits)} source-backed units</p>
+            <p style={{ margin: '0.35rem 0 0', color: '#64748b' }}>{number(dayZeroProposal.sourceBackedUnits)} source-backed units · {number(dayZeroProposal.unmatchedUnits)} unmatched</p>
+          </div>
+          <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
+            <h3 style={{ margin: '0 0 0.35rem' }}>Mock readiness score</h3>
+            <p style={{ margin: 0, fontSize: '1.35rem', fontWeight: 900 }}>{number(dayZeroProposal.readinessScore)} / 100</p>
+            <p style={{ margin: '0.35rem 0 0', color: '#64748b' }}>Blocked score; not accounting-ready.</p>
           </div>
         </div>
         <div style={{ overflowX: 'auto', marginTop: '1rem' }}>

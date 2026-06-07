@@ -41,7 +41,10 @@ def test_day_zero_proposal_blocks_until_inventory_is_source_backed():
     assert proposal["rule_draft"].startswith("Earliest close month start")
     assert proposal["current_units_to_reconcile"] == 92
     assert proposal["source_backed_units"] == 65
+    assert proposal["unmatched_units"] == 27
     assert proposal["source_support_ratio"] == 0.7065
+    assert proposal["mock_readiness_score"] == 71
+    assert proposal["operator_decisions_required"][-1] == "Approve or reject the proposed FIFO day 0; do not rely on COGS while blocked."
     assert proposal["readiness_checklist"][0] == {
         "label": "Amazon sales history covers rollback window",
         "status": "needs_operator_confirmation",
@@ -62,10 +65,17 @@ def test_unmatched_inventory_explains_quantity_gaps_and_operator_actions():
         "supplier invoice",
         "freight bill",
     ]
+    assert unmatched_by_sku["CAMERA-KIT"]["source_documents_present"] == [
+        "supplier invoice PO-1842",
+        "supplier invoice PO-1904",
+    ]
+    assert unmatched_by_sku["CAMERA-KIT"]["freight_documents_present"] == ["freight bill FB-2201 partial allocation"]
+    assert unmatched_by_sku["CAMERA-KIT"]["reconciliation_note"].startswith("Two supplier invoices")
     assert unmatched_by_sku["TRIPOD"]["quantity_gap"] == 0
     assert unmatched_by_sku["TRIPOD"]["blockers"] == [
         "Other-warehouse count status is needs_supervisor_signoff."
     ]
+    assert unmatched_by_sku["LENS-CAP-ONLY"]["source_documents_present"] == ["warehouse count at 3PL-West"]
     assert unmatched_by_sku["LENS-CAP-ONLY"]["operator_guidance"].startswith("Map, archive")
 
 
@@ -76,7 +86,11 @@ def test_source_backed_purchase_lot_and_freight_guidance_feeds_reconciliation_ro
     assert rows["CAMERA-KIT"]["draft_source_units_available"] == 47
     assert rows["CAMERA-KIT"]["source_support_gap"] == 6
     assert rows["CAMERA-KIT"]["supported_lot_ids"] == ["PO-1842-CAM-01", "PO-1904-CAM-02"]
-    assert rows["CAMERA-KIT"]["draft_inventory_value"] == 669.75
+    assert rows["CAMERA-KIT"]["source_documents_present"] == ["supplier invoice PO-1842", "supplier invoice PO-1904"]
+    assert rows["CAMERA-KIT"]["draft_unit_cost"] == 14.25
+    assert rows["CAMERA-KIT"]["draft_freight_per_unit"] == 1.85
+    assert rows["CAMERA-KIT"]["draft_inventory_value"] == 756.7
+    assert rows["TRIPOD"]["evidence_quality"] == "source_backed_count_blocked"
     assert rows["TRIPOD"]["lot_match_status"] == "blocked"
     assert rows["STRAP-BUNDLE"]["reconciliation_action"] == "Resolve blockers before day 0"
 
@@ -100,3 +114,24 @@ def test_rollback_reconstruction_estimates_day_zero_units_from_current_sales_and
     assert rollback["TRIPOD"]["rollback_status"] == "blocked"
     assert rollback["STRAP-BUNDLE"]["estimated_units_at_period_start"] == -9
     assert rollback["STRAP-BUNDLE"]["rollback_note"].startswith("Receipts exceed current plus sales")
+
+
+def test_reconciliation_trace_shows_formula_evidence_and_operator_decisions():
+    payload = build_amazon_onboarding_mock(fixture_dir=FIXTURE_DIR, period="2026-05")
+    trace = {
+        row["sku"]: row for row in payload["proposed_fifo_day_0"]["reconciliation_trace"]
+    }
+
+    assert trace["CAMERA-KIT"] == {
+        "sku": "CAMERA-KIT",
+        "formula": "current_units + period_sales_units - draft_receipts_in_period",
+        "current_units": 53,
+        "period_sales_units": 5,
+        "draft_receipts_in_period": 12,
+        "estimated_units_at_period_start": 46,
+        "evidence_quality": "partial",
+        "oldest_supported_receipt_date": "2026-04-10",
+        "operator_decision_required": "resolve_blockers_before_day_zero",
+    }
+    assert trace["TRIPOD"]["evidence_quality"] == "source_backed_count_blocked"
+    assert trace["STRAP-BUNDLE"]["operator_decision_required"] == "resolve_blockers_before_day_zero"
