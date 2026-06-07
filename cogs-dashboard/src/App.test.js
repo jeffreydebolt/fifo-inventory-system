@@ -54,6 +54,12 @@ function expectCoreMvpScreen() {
   expect(container.textContent).toContain('Upload source-backed purchase lots/freight');
   expect(container.textContent).toContain('Match current in-stock to lots');
   expect(container.textContent).toContain('Propose FIFO day 0');
+  expect(container.textContent).toContain('Readiness gate');
+  expect(container.textContent).toContain('Amazon sales history covers rollback window');
+  expect(container.textContent).toContain('Estimated day-0 units');
+  expect(container.textContent).toContain('Source support');
+  expect(container.textContent).toContain('70.65%');
+  expect(container.textContent).toContain('receipts exceed current + sales');
   expect(container.textContent).toContain('Inventory tracking');
   expect(container.textContent).toContain('Amazon available');
   expect(container.textContent).toContain('Other warehouse available');

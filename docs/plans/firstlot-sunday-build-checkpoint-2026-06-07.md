@@ -151,6 +151,18 @@ No Storage Standard/client data mutation.
 No real client CSVs committed.
 No push / no PR opened.
 
+## Later Sunday continuation
+
+Added a deeper day-zero readiness pass after the checkpoint:
+
+- mock purchase-lot guidance now includes supported lot IDs and draft receipts inside the rollback period,
+- Amazon onboarding payload now emits `rollback_reconstruction`, `source_support_ratio`, source document guidance, and a day-zero readiness checklist,
+- `/demo` now shows readiness gates, source support percentage, and a per-SKU backward reconstruction table,
+- deterministic tests cover day-zero readiness fields, unmatched inventory document guidance, supported lot IDs, and rollback estimates,
+- new doc: `docs/plans/firstlot-day-zero-readiness-draft-2026-06-07.md`.
+
+This continuation remains fixture/local/mock-only.
+
 ## Remaining product questions for Jeff review
 
 1. FIFO day 0: should day 0 be the earliest date where current in-stock can be reconciled to source-backed lots/freight, with exceptions shown as blockers?

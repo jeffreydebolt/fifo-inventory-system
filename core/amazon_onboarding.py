@@ -28,6 +28,7 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
 
     inventory_tracking = []
     unmatched_inventory = []
+    rollback_reconstruction = []
     day_zero_blockers = [
         "Verify Amazon sales history covers the rollback window.",
         "Approve the proposed FIFO day 0 before any accounting packet is relied on.",
@@ -40,6 +41,7 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
         total_available = amazon_available + outside_available
         guidance = guidance_by_sku.get(sku, {})
         source_units = int(guidance.get("draft_source_units_available") or 0)
+        receipts_in_period = int(guidance.get("draft_receipts_in_rollback_period") or 0)
         unit_cost = float(guidance.get("draft_unit_cost") or 0)
         support_gap = max(total_available - source_units, 0)
         lot_status = str(guidance.get("status", "missing_source_support"))
@@ -60,6 +62,7 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
                     "sku": sku,
                     "quantity_gap": support_gap,
                     "blockers": blockers,
+                    "source_documents_needed": guidance.get("source_documents_needed", ["supplier invoice", "freight allocation"]),
                     "operator_guidance": "Upload/approve source docs and counts before accepting day 0 for this SKU.",
                 }
             )
@@ -78,9 +81,27 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
                 "recent_units_sold": sales_by_sku.get(sku, 0),
                 "draft_source_units_available": source_units,
                 "source_support_gap": support_gap,
+                "supported_lot_ids": guidance.get("supported_lot_ids", []),
                 "draft_inventory_value": round(min(total_available, source_units) * unit_cost, 2),
                 "lot_match_status": "blocked" if blockers else "ready_for_day_zero_review",
                 "reconciliation_action": "Confirm day-0 layer" if not blockers else "Resolve blockers before day 0",
+            }
+        )
+        estimated_period_start_units = total_available + sales_by_sku.get(sku, 0) - receipts_in_period
+        rollback_reconstruction.append(
+            {
+                "sku": sku,
+                "current_units": total_available,
+                "period_sales_units": sales_by_sku.get(sku, 0),
+                "draft_receipts_in_period": receipts_in_period,
+                "estimated_units_at_period_start": estimated_period_start_units,
+                "source_backed_start_units": min(max(estimated_period_start_units, 0), source_units),
+                "rollback_status": "blocked" if blockers or estimated_period_start_units < 0 else "ready_for_operator_review",
+                "rollback_note": (
+                    "Receipts exceed current plus sales; confirm inbound timing or earlier sales."
+                    if estimated_period_start_units < 0
+                    else "Fixture-only rollback estimate; operator must confirm sales history, purchase lots, freight, and counts."
+                ),
             }
         )
 
@@ -91,10 +112,16 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
                 "sku": row["sku"],
                 "quantity_gap": int(row.get("available", 0)),
                 "blockers": ["Outside-Amazon SKU is not matched to the Amazon catalog/FirstLot SKU map."],
+                "source_documents_needed": ["warehouse count", "SKU map decision"],
                 "operator_guidance": "Map, archive, or exclude this warehouse-only SKU before accepting day 0.",
             }
         )
         day_zero_blockers.append(f"{row['sku']}: outside-Amazon SKU must be mapped, archived, or excluded.")
+
+    current_units_to_reconcile = sum(row["total_available"] for row in inventory_tracking) + sum(
+        int(row.get("available", 0)) for row in warehouse_only_skus
+    )
+    source_backed_units = sum(row["draft_source_units_available"] for row in inventory_tracking)
 
     proposed_day_zero = {
         "proposed_start_date": f"{period}-01",
@@ -103,8 +130,17 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
         "requires_operator_confirmation": True,
         "blockers": day_zero_blockers,
         "unmatched_inventory": unmatched_inventory,
-        "source_backed_units": sum(row["draft_source_units_available"] for row in inventory_tracking),
-        "current_units_to_reconcile": sum(row["total_available"] for row in inventory_tracking) + sum(int(row.get("available", 0)) for row in warehouse_only_skus),
+        "rollback_reconstruction": rollback_reconstruction,
+        "source_support_ratio": round(source_backed_units / max(current_units_to_reconcile, 1), 4),
+        "source_backed_units": source_backed_units,
+        "current_units_to_reconcile": current_units_to_reconcile,
+        "readiness_checklist": [
+            {"label": "Amazon sales history covers rollback window", "status": "needs_operator_confirmation"},
+            {"label": "Every current SKU mapped to Amazon or explicit outside-warehouse decision", "status": "blocked"},
+            {"label": "Purchase lots source-backed for all current units", "status": "blocked"},
+            {"label": "Freight allocations attached or explicitly not required", "status": "blocked"},
+            {"label": "FIFO day 0 approved by operator", "status": "not_started"},
+        ],
         "next_operator_action": "Resolve blockers, upload/approve source-backed purchase lots and freight, then confirm or adjust FIFO day 0.",
     }
 

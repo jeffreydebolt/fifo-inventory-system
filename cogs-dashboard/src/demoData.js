@@ -200,9 +200,24 @@ export const dayZeroProposal = {
   confidence: 'Blocked · review required',
   currentUnitsToReconcile: 92,
   sourceBackedUnits: 65,
+  sourceSupportRatio: '70.65%',
   ruleDraft: 'Earliest close month start where current Amazon + outside-warehouse stock can be backed to purchase lots/freight, with every exception carried as a blocker.',
   nextOperatorAction: 'Resolve blockers, upload/approve source-backed purchase lots and freight, then confirm or adjust FIFO day 0.'
 };
+
+export const dayZeroReadiness = [
+  { label: 'Amazon sales history covers rollback window', status: 'Needs operator confirmation' },
+  { label: 'Every current SKU mapped to Amazon or outside-warehouse decision', status: 'Blocked' },
+  { label: 'Purchase lots source-backed for all current units', status: 'Blocked' },
+  { label: 'Freight allocations attached or explicitly not required', status: 'Blocked' },
+  { label: 'FIFO day 0 approved by operator', status: 'Not started' }
+];
+
+export const rollbackReconstructionRows = [
+  { sku: 'CAMERA-KIT', currentUnits: 53, salesUnits: 5, receiptsInPeriod: 12, estimatedStartUnits: 46, sourceBackedStartUnits: 46, status: 'Blocked: partial freight + 6 current units unsupported' },
+  { sku: 'TRIPOD', currentUnits: 18, salesUnits: 3, receiptsInPeriod: 0, estimatedStartUnits: 21, sourceBackedStartUnits: 18, status: 'Blocked: supervisor sign-off required for QA count' },
+  { sku: 'STRAP-BUNDLE', currentUnits: 7, salesUnits: 8, receiptsInPeriod: 24, estimatedStartUnits: -9, sourceBackedStartUnits: 0, status: 'Blocked: receipts exceed current + sales; confirm inbound timing' }
+];
 
 export const dayZeroBlockers = [
   { sku: 'CAMERA-KIT', issue: 'Need source-backed lots for 6 more units and complete partial freight allocation.', action: 'Attach supplier invoice + freight bill before accepting day 0.' },

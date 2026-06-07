@@ -4,11 +4,13 @@ import {
   clientTestFixtures,
   dayZeroBlockers,
   dayZeroProposal,
+  dayZeroReadiness,
   demoRun,
   fixedDemoRun,
   inventoryTrackingRows,
   monthHistory,
   planningRows,
+  rollbackReconstructionRows,
   runVersions
 } from '../demoData';
 
@@ -335,9 +337,53 @@ function CommandCenterTables() {
             <p style={{ margin: 0, fontSize: '1.35rem', fontWeight: 900 }}>{number(dayZeroProposal.currentUnitsToReconcile)}</p>
           </div>
           <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
-            <h3 style={{ margin: '0 0 0.35rem' }}>Source-backed units</h3>
-            <p style={{ margin: 0, fontSize: '1.35rem', fontWeight: 900 }}>{number(dayZeroProposal.sourceBackedUnits)}</p>
+            <h3 style={{ margin: '0 0 0.35rem' }}>Source support</h3>
+            <p style={{ margin: 0, fontSize: '1.35rem', fontWeight: 900 }}>{dayZeroProposal.sourceSupportRatio}</p>
+            <p style={{ margin: '0.35rem 0 0', color: '#64748b' }}>{number(dayZeroProposal.sourceBackedUnits)} source-backed units</p>
           </div>
+        </div>
+        <div style={{ overflowX: 'auto', marginTop: '1rem' }}>
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                {['Readiness gate', 'Status'].map((header) => (
+                  <th key={header} style={{ ...cellStyle, background: '#eff6ff', color: '#1d4ed8', fontWeight: 900 }}>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {dayZeroReadiness.map((row) => (
+                <tr key={row.label}>
+                  <td style={cellStyle}><strong>{row.label}</strong></td>
+                  <td style={cellStyle}><Pill tone={row.status === 'Blocked' ? 'amber' : 'slate'}>{row.status}</Pill></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div style={{ overflowX: 'auto', marginTop: '1rem' }}>
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                {['SKU', 'Current units', 'May sales', 'Draft receipts', 'Estimated day-0 units', 'Source-backed start', 'Rollback status'].map((header) => (
+                  <th key={header} style={{ ...cellStyle, background: '#f8fafc', color: '#334155', fontWeight: 900 }}>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rollbackReconstructionRows.map((row) => (
+                <tr key={row.sku}>
+                  <td style={cellStyle}><strong>{row.sku}</strong></td>
+                  <td style={cellStyle}>{number(row.currentUnits)}</td>
+                  <td style={cellStyle}>{number(row.salesUnits)}</td>
+                  <td style={cellStyle}>{number(row.receiptsInPeriod)}</td>
+                  <td style={cellStyle}>{number(row.estimatedStartUnits)}</td>
+                  <td style={cellStyle}>{number(row.sourceBackedStartUnits)}</td>
+                  <td style={cellStyle}>{row.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
         <div style={{ overflowX: 'auto', marginTop: '1rem' }}>
           <table style={tableStyle}>
