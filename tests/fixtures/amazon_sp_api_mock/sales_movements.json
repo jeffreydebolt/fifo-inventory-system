@@ -1,0 +1,6 @@
+[
+  {"sale_id": "AMZ-2026-05-001", "sku": "CAMERA-KIT", "sale_date": "2026-05-03", "quantity_sold": 5, "marketplace": "US"},
+  {"sale_id": "AMZ-2026-05-002", "sku": "TRIPOD", "sale_date": "2026-05-07", "quantity_sold": 3, "marketplace": "US"},
+  {"sale_id": "AMZ-2026-05-003", "sku": "STRAP-BUNDLE", "sale_date": "2026-05-12", "quantity_sold": 8, "marketplace": "US"},
+  {"sale_id": "AMZ-2026-04-001", "sku": "CAMERA-KIT", "sale_date": "2026-04-18", "quantity_sold": 2, "marketplace": "US"}
+]

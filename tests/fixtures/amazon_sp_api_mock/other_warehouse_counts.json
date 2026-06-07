@@ -1,0 +1,5 @@
+[
+  {"sku": "CAMERA-KIT", "location": "3PL-East", "available": 11, "counted_at": "2026-06-06"},
+  {"sku": "TRIPOD", "location": "Garage QA hold", "available": 2, "counted_at": "2026-06-06"},
+  {"sku": "STRAP-BUNDLE", "location": "3PL-East", "available": 0, "counted_at": "2026-06-06"}
+]

@@ -8,6 +8,7 @@ import json
 from datetime import datetime
 from pathlib import Path
 
+from core.amazon_onboarding import build_amazon_onboarding_mock
 from core.client_smoke import run_client_smoke
 from core.close_packet import write_close_packet
 from core.csv_ingest import load_movement_csv, load_purchase_lots_csv
@@ -237,6 +238,12 @@ def _parse_args() -> argparse.Namespace:
     compare_parser.add_argument("--after", required=True, help="Rerun/fixed artifact directory")
     compare_parser.add_argument("--period", help="Optional period filter (YYYY-MM)")
 
+    amazon_parser = subparsers.add_parser(
+        "amazon-onboarding-mock",
+        help="Print fixture-backed Amazon onboarding workflow; no credentials or live calls",
+    )
+    amazon_parser.add_argument("--fixture-dir", required=True, help="Amazon mock fixture directory")
+    amazon_parser.add_argument("--period", required=True, help="Sales period to preview (YYYY-MM)")
     return parser.parse_args()
 
 
@@ -336,6 +343,11 @@ def main() -> int:
     if args.command == "compare-runs":
         comparison = compare_run_artifacts(args.before, args.after, period=args.period)
         print(json.dumps(comparison, indent=2, sort_keys=True))
+        return 0
+
+    if args.command == "amazon-onboarding-mock":
+        payload = build_amazon_onboarding_mock(fixture_dir=args.fixture_dir, period=args.period)
+        print(json.dumps(payload, indent=2, sort_keys=True))
         return 0
 
     if args.command == "validate":

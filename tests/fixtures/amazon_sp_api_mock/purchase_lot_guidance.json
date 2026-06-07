@@ -1,0 +1,5 @@
+[
+  {"sku": "CAMERA-KIT", "source_documents_needed": ["supplier invoice", "freight bill"], "minimum_units_to_match_current_stock": 53, "status": "ready_for_operator_upload"},
+  {"sku": "TRIPOD", "source_documents_needed": ["supplier invoice"], "minimum_units_to_match_current_stock": 18, "status": "ready_for_operator_upload"},
+  {"sku": "STRAP-BUNDLE", "source_documents_needed": ["supplier invoice", "freight allocation"], "minimum_units_to_match_current_stock": 7, "status": "ready_for_operator_upload"}
+]
