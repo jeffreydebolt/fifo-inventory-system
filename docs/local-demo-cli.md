@@ -4,6 +4,16 @@ This demo path is local-file only. It does **not** import the API app, Supabase 
 
 ## Run the fixture demo
 
+For Jeff/reviewer handoff, run the whole local demo packet generator from the repo root:
+
+```bash
+make firstlot-demo-run
+```
+
+It writes the v1 failed-queue packet to `/tmp/firstlot-demo-v1`, the v2 fixed-rerun packet to `/tmp/firstlot-demo-fixed`, and prints the `/demo` dashboard URL to open after `npm start`. The target is local-file only and uses synthetic fixtures.
+
+For the lower-level single-run CLI command:
+
 ```bash
 python3 -m app.local_cli run \
   --lots tests/fixtures/firstlot_demo/purchase_lots.csv \
