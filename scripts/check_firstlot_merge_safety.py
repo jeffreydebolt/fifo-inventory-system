@@ -19,6 +19,7 @@ class MergeSafetyConfig:
     repo_root: Path = dataclasses.field(default_factory=Path.cwd)
     fast: bool = False
     dry_run: bool = False
+    allow_main: bool = False
     base_ref: str = "origin/main"
 
 
@@ -114,7 +115,7 @@ def _check_git_state(config: MergeSafetyConfig) -> list[str]:
     failures: list[str] = []
 
     branch = _run(["git", "branch", "--show-current"], repo_root).stdout.strip()
-    if branch in {"main", "master"}:
+    if branch in {"main", "master"} and not config.allow_main:
         failures.append("Refusing merge-safety pass while working directly on main/master.")
 
     diff_name_status = _run(["git", "diff", "--name-status", f"{config.base_ref}...HEAD"], repo_root)
@@ -168,12 +169,13 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--base-ref", default="origin/main")
     parser.add_argument("--fast", action="store_true", help="Run fast local merge gate without dashboard build/full weekend suite.")
     parser.add_argument("--dry-run", action="store_true", help="Print the checks that would run without executing them.")
+    parser.add_argument("--allow-main", action="store_true", help="Allow dry-run/test use on main; default gate refuses main.")
     return parser.parse_args()
 
 
 def main() -> int:
     args = _parse_args()
-    return run_gate(MergeSafetyConfig(repo_root=args.repo_root, fast=args.fast, dry_run=args.dry_run, base_ref=args.base_ref))
+    return run_gate(MergeSafetyConfig(repo_root=args.repo_root, fast=args.fast, dry_run=args.dry_run, allow_main=args.allow_main, base_ref=args.base_ref))
 
 
 if __name__ == "__main__":
