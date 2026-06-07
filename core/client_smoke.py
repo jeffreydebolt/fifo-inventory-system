@@ -104,6 +104,7 @@ def run_client_smoke(
             movement_normalization=movement_result.to_dict(),
         )
         _write_json(out / "client_smoke_summary.json", result.to_dict())
+        _write_operator_summary_md(out / "client_smoke_summary.md", result.to_dict())
         return result
 
     validation = validate_firstlot_csvs(normalized_lots, normalized_movement).to_dict()
@@ -123,6 +124,7 @@ def run_client_smoke(
             movement_normalization=movement_result.to_dict(),
         )
         _write_json(out / "client_smoke_summary.json", result.to_dict())
+        _write_operator_summary_md(out / "client_smoke_summary.md", result.to_dict())
         return result
 
     generated_dt = datetime.fromisoformat(generated_at)
@@ -186,6 +188,7 @@ def run_client_smoke(
         synthetic_repair_lots_path=str(synthetic_repair_path) if synthetic_repair_path else None,
     )
     _write_json(out / "client_smoke_summary.json", result.to_dict())
+    _write_operator_summary_md(out / "client_smoke_summary.md", result.to_dict())
     return result
 
 
@@ -200,6 +203,61 @@ def _clean_temp_output(out: Path) -> None:
 
 def _write_json(path: Path, payload: dict) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def _write_operator_summary_md(path: Path, payload: dict) -> None:
+    """Write a concise human review note next to the machine-readable smoke JSON."""
+
+    validation = payload.get("validation") or {}
+    fix_plan = payload.get("fix_plan") or {}
+    recommended_fixes = fix_plan.get("recommended_csv_fixes") or []
+    status = "PASS — failed SKU queue clear" if payload.get("failed_sku_count") == 0 else "NEEDS FIX — failed SKU queue remains"
+    next_command = fix_plan.get("completion_check_command") or (
+        "python3 -m app.local_cli failed-skus "
+        f"--out {payload.get('out')} --period {payload.get('period')} --assert-clear"
+    )
+    lines = [
+        "# FirstLot client CSV smoke summary",
+        "",
+        f"- Status: {status}",
+        f"- Period: {payload.get('period')}",
+        f"- Output folder: `{payload.get('out')}`",
+        f"- Validation valid: {validation.get('valid')}",
+        f"- Total COGS: {payload.get('total_cogs')}",
+        f"- Failed SKU count: {payload.get('failed_sku_count')}",
+        f"- Total shortfall quantity: {payload.get('total_shortfall_quantity')}",
+        f"- Normalized lots: `{payload.get('normalized_lots')}`",
+        f"- Normalized movement: `{payload.get('normalized_movement')}`",
+        "- Safety: local client CSV smoke only; no .env, no Supabase/API imports, no live DB writes",
+        "- Mutations performed: none",
+        "",
+        "## Next operator command",
+        "",
+        "```bash",
+        str(next_command),
+        "```",
+    ]
+    if payload.get("missing_lot_request_path"):
+        lines.extend(
+            [
+                "",
+                "## Failed SKU repair files",
+                "",
+                f"- Source-backed missing-lot request: `{payload.get('missing_lot_request_path')}`",
+                f"- Sandbox shape/template only: `{payload.get('synthetic_repair_lots_path')}`",
+                "- Do not rely on synthetic repair rows for real COGS; replace with source-backed lot data first.",
+            ]
+        )
+    if recommended_fixes:
+        lines.extend(["", "## Recommended CSV fixes", ""])
+        for fix in recommended_fixes:
+            lines.append(
+                "- "
+                f"{fix.get('sku')} {fix.get('period')}: add at least "
+                f"{fix.get('minimum_additional_available_units_needed')} source-backed unit(s) "
+                f"({fix.get('reason')})."
+            )
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def _write_missing_lot_request(path: Path, queue_records: list) -> None:

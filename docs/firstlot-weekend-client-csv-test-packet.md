@@ -159,7 +159,7 @@ The command performs the safe local sequence end-to-end:
 2. Inspect and normalize the sales/movement export into `normalized/movement.csv`.
 3. Validate both normalized files against the strict FirstLot CSV contract.
 4. Run local FIFO only; no `.env`, no Supabase/API imports, no live DB writes.
-5. Write close artifacts, `client_smoke_summary.json`, and `fix_plan.json`.
+5. Write close artifacts, `client_smoke_summary.json`, `client_smoke_summary.md`, and `fix_plan.json`.
 6. If failed SKU rows remain, write `missing_lot_request.csv` first: a source-backed repair request with SKU, period, minimum units needed, sale-date window, reason, and source document needed.
 7. Also write `synthetic_repair_lots_SANDBOX_ONLY.csv` as a clearly labeled shape/template. Do not use synthetic rows for real COGS.
 
@@ -233,6 +233,8 @@ Review these files:
 
 | Artifact | What to check |
 | --- | --- |
+| `client_smoke_summary.md` | Concise human operator summary with pass/fix status, totals, safety line, and next command |
+| `client_smoke_summary.json` | Machine-readable smoke summary for exact totals, normalization, validation, and fix-plan payload |
 | `close_packet.md` | Executive close summary, safety mode, input checksums, artifact list |
 | `close_packet.json` | Machine-readable packet for exact totals and failed count |
 | `cogs_summary.csv/json` | Total COGS by SKU/month |
