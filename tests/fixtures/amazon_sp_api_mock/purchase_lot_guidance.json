@@ -1,5 +1,5 @@
 [
-  {"sku": "CAMERA-KIT", "source_documents_needed": ["supplier invoice", "freight bill"], "minimum_units_to_match_current_stock": 53, "status": "ready_for_operator_upload"},
-  {"sku": "TRIPOD", "source_documents_needed": ["supplier invoice"], "minimum_units_to_match_current_stock": 18, "status": "ready_for_operator_upload"},
-  {"sku": "STRAP-BUNDLE", "source_documents_needed": ["supplier invoice", "freight allocation"], "minimum_units_to_match_current_stock": 7, "status": "ready_for_operator_upload"}
+  {"sku": "CAMERA-KIT", "source_documents_needed": ["supplier invoice", "freight bill"], "minimum_units_to_match_current_stock": 53, "draft_source_units_available": 47, "draft_unit_cost": 14.25, "freight_allocation_status": "partial", "oldest_supported_receipt_date": "2026-04-10", "status": "partial_source_support"},
+  {"sku": "TRIPOD", "source_documents_needed": ["supplier invoice", "cycle count sign-off"], "minimum_units_to_match_current_stock": 18, "draft_source_units_available": 18, "draft_unit_cost": 25.90, "freight_allocation_status": "not_required_for_mock", "oldest_supported_receipt_date": "2026-04-22", "status": "ready_for_operator_review"},
+  {"sku": "STRAP-BUNDLE", "source_documents_needed": ["supplier invoice", "freight allocation"], "minimum_units_to_match_current_stock": 7, "draft_source_units_available": 0, "draft_unit_cost": 20.80, "freight_allocation_status": "missing", "oldest_supported_receipt_date": null, "status": "missing_source_support"}
 ]

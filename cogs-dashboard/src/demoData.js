@@ -157,30 +157,58 @@ export const inventoryTrackingRows = [
   {
     sku: 'CAMERA-KIT',
     amazonAvailable: 42,
+    amazonReserved: 3,
     otherWarehouseAvailable: 11,
+    countStatus: 'Operator attested',
     totalAvailable: 53,
+    sourceBackedUnits: 47,
+    sourceGap: 6,
     inbound: 18,
-    valuation: 742.50,
-    statusAction: 'Match 53 units to source-backed lots'
+    valuation: 669.75,
+    statusAction: 'Blocked: upload freight bill + 6 more source-backed units'
   },
   {
     sku: 'TRIPOD',
     amazonAvailable: 16,
+    amazonReserved: 1,
     otherWarehouseAvailable: 2,
+    countStatus: 'Needs supervisor sign-off',
     totalAvailable: 18,
+    sourceBackedUnits: 18,
+    sourceGap: 0,
     inbound: 0,
     valuation: 466.20,
-    statusAction: 'Confirm QA hold count before day 0'
+    statusAction: 'Blocked: approve QA hold count before day 0'
   },
   {
     sku: 'STRAP-BUNDLE',
     amazonAvailable: 7,
+    amazonReserved: 0,
     otherWarehouseAvailable: 0,
+    countStatus: 'Operator attested',
     totalAvailable: 7,
+    sourceBackedUnits: 0,
+    sourceGap: 7,
     inbound: 24,
-    valuation: 145.60,
-    statusAction: 'Upload freight allocation for inbound lot'
+    valuation: 0,
+    statusAction: 'Blocked: upload invoice and freight allocation for inbound lot'
   }
+];
+
+export const dayZeroProposal = {
+  proposedStartDate: '2026-05-01',
+  confidence: 'Blocked · review required',
+  currentUnitsToReconcile: 92,
+  sourceBackedUnits: 65,
+  ruleDraft: 'Earliest close month start where current Amazon + outside-warehouse stock can be backed to purchase lots/freight, with every exception carried as a blocker.',
+  nextOperatorAction: 'Resolve blockers, upload/approve source-backed purchase lots and freight, then confirm or adjust FIFO day 0.'
+};
+
+export const dayZeroBlockers = [
+  { sku: 'CAMERA-KIT', issue: 'Need source-backed lots for 6 more units and complete partial freight allocation.', action: 'Attach supplier invoice + freight bill before accepting day 0.' },
+  { sku: 'TRIPOD', issue: 'Other-warehouse count is a QA hold pending supervisor sign-off.', action: 'Approve or exclude the 2 held units.' },
+  { sku: 'STRAP-BUNDLE', issue: 'No draft source units matched and freight allocation is missing.', action: 'Upload inbound supplier invoice and freight allocation.' },
+  { sku: 'LENS-CAP-ONLY', issue: 'Warehouse-only SKU is not mapped to Amazon catalog / FirstLot SKU map.', action: 'Map, archive, or exclude before day 0.' }
 ];
 
 export const planningRows = [

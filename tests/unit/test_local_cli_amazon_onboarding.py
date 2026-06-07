@@ -33,4 +33,5 @@ def test_local_cli_amazon_onboarding_mock_outputs_safety_payload():
     assert payload["live_api_calls_performed"] == []
     assert payload["mutations_performed"] == []
     assert payload["mock_amazon_connection"]["account_name"] == "FirstLot Mock Seller Central"
-    assert payload["proposed_fifo_day_0"]["confidence"] == "review_required"
+    assert payload["proposed_fifo_day_0"]["confidence"] == "blocked_review_required"
+    assert payload["proposed_fifo_day_0"]["unmatched_inventory"]

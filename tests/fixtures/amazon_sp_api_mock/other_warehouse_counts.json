@@ -1,5 +1,6 @@
 [
-  {"sku": "CAMERA-KIT", "location": "3PL-East", "available": 11, "counted_at": "2026-06-06"},
-  {"sku": "TRIPOD", "location": "Garage QA hold", "available": 2, "counted_at": "2026-06-06"},
-  {"sku": "STRAP-BUNDLE", "location": "3PL-East", "available": 0, "counted_at": "2026-06-06"}
+  {"sku": "CAMERA-KIT", "location": "3PL-East", "available": 11, "counted_at": "2026-06-06", "count_status": "operator_attested"},
+  {"sku": "TRIPOD", "location": "Garage QA hold", "available": 2, "counted_at": "2026-06-06", "count_status": "needs_supervisor_signoff"},
+  {"sku": "STRAP-BUNDLE", "location": "3PL-East", "available": 0, "counted_at": "2026-06-06", "count_status": "operator_attested"},
+  {"sku": "LENS-CAP-ONLY", "location": "3PL-West", "available": 14, "counted_at": "2026-06-06", "count_status": "unmatched_to_amazon_catalog"}
 ]

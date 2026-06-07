@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import {
   amazonOnboardingTimeline,
   clientTestFixtures,
+  dayZeroBlockers,
+  dayZeroProposal,
   demoRun,
   fixedDemoRun,
   inventoryTrackingRows,
@@ -273,7 +275,7 @@ function CommandCenterTables() {
           <div>
             <h2 style={{ margin: '0 0 0.35rem' }}>Mock Amazon onboarding timeline</h2>
             <p style={{ margin: 0, color: '#64748b', lineHeight: 1.5 }}>
-              This is the future Seller Central/SP-API onboarding shape using local fixtures only. No OAuth, no Seller Central calls, no SP-API calls, and no DB writes occur in this demo.
+              This is the future Seller Central/SP-API onboarding shape using local fixtures only. It shows the operator path from mock connection to SKU sync, warehouse counts, source-backed lots/freight, and a blocked FIFO day-0 proposal. No OAuth, no Seller Central calls, no SP-API calls, and no DB writes occur in this demo.
             </p>
           </div>
           <Pill tone="amber">Local/demo/fixture only · no Seller Central/SP-API calls · no DB writes</Pill>
@@ -291,7 +293,7 @@ function CommandCenterTables() {
           <table style={tableStyle}>
             <thead>
               <tr>
-                {['SKU', 'Amazon available', 'Other warehouse available', 'Total available', 'Inbound', 'Valuation', 'Status/action'].map((header) => (
+                {['SKU', 'Amazon available / reserved', 'Other warehouse available', 'Total available', 'Source-backed units', 'Gap', 'Inbound', 'Draft Valuation', 'Status/action'].map((header) => (
                   <th key={header} style={{ ...cellStyle, background: '#eef2ff', color: '#3730a3', fontWeight: 900 }}>{header}</th>
                 ))}
               </tr>
@@ -300,9 +302,11 @@ function CommandCenterTables() {
               {inventoryTrackingRows.map((row) => (
                 <tr key={row.sku}>
                   <td style={cellStyle}><strong>{row.sku}</strong></td>
-                  <td style={cellStyle}>{number(row.amazonAvailable)}</td>
-                  <td style={cellStyle}>{number(row.otherWarehouseAvailable)}</td>
+                  <td style={cellStyle}>{number(row.amazonAvailable)} / {number(row.amazonReserved)}</td>
+                  <td style={cellStyle}>{number(row.otherWarehouseAvailable)}<br /><span style={{ color: '#64748b' }}>{row.countStatus}</span></td>
                   <td style={cellStyle}>{number(row.totalAvailable)}</td>
+                  <td style={cellStyle}>{number(row.sourceBackedUnits)}</td>
+                  <td style={cellStyle}><Pill tone={row.sourceGap > 0 ? 'amber' : 'green'}>{number(row.sourceGap)}</Pill></td>
                   <td style={cellStyle}>{number(row.inbound)}</td>
                   <td style={cellStyle}>{money(row.valuation)}</td>
                   <td style={cellStyle}>{row.statusAction}</td>
@@ -311,6 +315,51 @@ function CommandCenterTables() {
             </tbody>
           </table>
         </div>
+      </section>
+
+      <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+          <div>
+            <h2 style={{ margin: '0 0 0.35rem' }}>FIFO day 0 proposal</h2>
+            <p style={{ margin: 0, color: '#64748b', lineHeight: 1.5 }}>{dayZeroProposal.ruleDraft}</p>
+          </div>
+          <Pill tone="amber">{dayZeroProposal.confidence}</Pill>
+        </div>
+        <div style={grid}>
+          <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
+            <h3 style={{ margin: '0 0 0.35rem' }}>Proposed start</h3>
+            <p style={{ margin: 0, fontSize: '1.35rem', fontWeight: 900 }}>{dayZeroProposal.proposedStartDate}</p>
+          </div>
+          <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
+            <h3 style={{ margin: '0 0 0.35rem' }}>Units to reconcile</h3>
+            <p style={{ margin: 0, fontSize: '1.35rem', fontWeight: 900 }}>{number(dayZeroProposal.currentUnitsToReconcile)}</p>
+          </div>
+          <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
+            <h3 style={{ margin: '0 0 0.35rem' }}>Source-backed units</h3>
+            <p style={{ margin: 0, fontSize: '1.35rem', fontWeight: 900 }}>{number(dayZeroProposal.sourceBackedUnits)}</p>
+          </div>
+        </div>
+        <div style={{ overflowX: 'auto', marginTop: '1rem' }}>
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                {['Blocker', 'Why it blocks day 0', 'Operator action'].map((header) => (
+                  <th key={header} style={{ ...cellStyle, background: '#fff7ed', color: '#9a3412', fontWeight: 900 }}>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {dayZeroBlockers.map((row) => (
+                <tr key={row.sku}>
+                  <td style={cellStyle}><strong>{row.sku}</strong></td>
+                  <td style={cellStyle}>{row.issue}</td>
+                  <td style={cellStyle}>{row.action}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p style={{ margin: '1rem 0 0', color: '#475569', fontWeight: 800 }}>{dayZeroProposal.nextOperatorAction}</p>
       </section>
 
       <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
