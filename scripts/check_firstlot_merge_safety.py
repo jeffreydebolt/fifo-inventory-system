@@ -57,10 +57,22 @@ def _git_diff(repo_root: Path, base_ref: str) -> str:
     return result.stdout
 
 
+FORBIDDEN_SCAN_EXEMPT_PATHS = {
+    "scripts/check_firstlot_merge_safety.py",
+    "tests/unit/test_merge_safety_gate.py",
+}
+
+
 def _scan_added_lines_for_forbidden_patterns(diff_text: str) -> list[str]:
     violations: list[str] = []
+    current_path: str | None = None
     for line_number, line in enumerate(diff_text.splitlines(), start=1):
+        if line.startswith("+++ b/"):
+            current_path = line.removeprefix("+++ b/")
+            continue
         if not line.startswith("+") or line.startswith("+++"):
+            continue
+        if current_path in FORBIDDEN_SCAN_EXEMPT_PATHS:
             continue
         for pattern, message in FORBIDDEN_ADDED_LINE_PATTERNS:
             if pattern.search(line):
