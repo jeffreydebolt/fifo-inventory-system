@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import {
+  amazonApprovalBoundary,
   amazonOnboardingTimeline,
   clientTestFixtures,
+  dayZeroBasis,
   dayZeroBlockers,
   dayZeroProposal,
   dayZeroReadiness,
@@ -11,7 +13,8 @@ import {
   monthHistory,
   planningRows,
   rollbackReconstructionRows,
-  runVersions
+  runVersions,
+  sourceDocumentQueue
 } from '../demoData';
 
 const page = {
@@ -287,6 +290,13 @@ function CommandCenterTables() {
             <StepCard key={step} number={String(index + 1)} title={step} body={index === 6 ? 'Proposed FIFO day 0 stays review-required until source-backed lots, freight, Amazon sales history, and non-Amazon counts are confirmed.' : 'Mock step shown as disabled product workflow; fixture data only.'} />
           ))}
         </div>
+        <div style={{ ...card, padding: '1rem', boxShadow: 'none', marginTop: '1rem', borderColor: '#fed7aa', background: '#fff7ed' }}>
+          <h3 style={{ margin: '0 0 0.55rem', color: '#9a3412' }}>Connector approval boundary</h3>
+          <p style={{ margin: '0 0 0.5rem', color: '#7c2d12', fontWeight: 800 }}>{amazonApprovalBoundary.status}</p>
+          <p style={{ margin: '0 0 0.45rem', color: '#7c2d12' }}><strong>Allowed now:</strong> {amazonApprovalBoundary.allowedNow.join(' · ')}</p>
+          <p style={{ margin: '0 0 0.45rem', color: '#7c2d12' }}><strong>Not allowed:</strong> {amazonApprovalBoundary.explicitlyNotAllowed.join(' · ')}</p>
+          <p style={{ margin: 0, color: '#7c2d12' }}><strong>Approval required for:</strong> {amazonApprovalBoundary.approvalRequiredFor}</p>
+        </div>
       </section>
 
       <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
@@ -349,6 +359,13 @@ function CommandCenterTables() {
             <p style={{ margin: '0.35rem 0 0', color: '#64748b' }}>Blocked score; not accounting-ready.</p>
           </div>
         </div>
+        <div style={{ ...card, padding: '1rem', boxShadow: 'none', marginTop: '1rem', borderColor: '#dbeafe', background: '#eff6ff' }}>
+          <h3 style={{ margin: '0 0 0.55rem', color: '#1d4ed8' }}>Day-0 rule basis</h3>
+          <ol style={{ margin: 0, paddingLeft: '1.25rem', color: '#1e3a8a', lineHeight: 1.6 }}>
+            {dayZeroBasis.map((basis) => <li key={basis}>{basis}</li>)}
+          </ol>
+          <p style={{ margin: '0.75rem 0 0', color: '#1e3a8a', fontWeight: 800 }}>{dayZeroProposal.approvalBoundary}</p>
+        </div>
         <div style={{ overflowX: 'auto', marginTop: '1rem' }}>
           <table style={tableStyle}>
             <thead>
@@ -407,6 +424,27 @@ function CommandCenterTables() {
                   <td style={cellStyle}><strong>{row.sku}</strong></td>
                   <td style={cellStyle}>{row.issue}</td>
                   <td style={cellStyle}>{row.action}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div style={{ overflowX: 'auto', marginTop: '1rem' }}>
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                {['Source queue', 'Present evidence', 'Missing / decision needed', 'Operator guidance'].map((header) => (
+                  <th key={header} style={{ ...cellStyle, background: '#f0fdf4', color: '#166534', fontWeight: 900 }}>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {sourceDocumentQueue.map((row) => (
+                <tr key={row.sku}>
+                  <td style={cellStyle}><strong>{row.sku}</strong><br /><Pill tone="amber">{row.status}</Pill></td>
+                  <td style={cellStyle}>{row.present}</td>
+                  <td style={cellStyle}>{row.missing}</td>
+                  <td style={cellStyle}>{row.guidance}</td>
                 </tr>
               ))}
             </tbody>

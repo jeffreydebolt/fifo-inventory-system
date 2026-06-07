@@ -1,0 +1,74 @@
+name: FirstLot pre-merge readiness
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'core/**'
+      - 'scripts/check_firstlot_demo.py'
+      - 'scripts/check_firstlot_merge_safety.py'
+      - 'scripts/generate_firstlot_merge_packet.py'
+      - 'scripts/regenerate_firstlot_demo_artifacts.py'
+      - 'tests/**'
+      - 'cogs-dashboard/src/**'
+      - 'cogs-dashboard/package*.json'
+      - 'docs/plans/**'
+      - 'Makefile'
+      - '.github/workflows/firstlot-premerge.yml'
+      - '.github/pull_request_template.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  readiness:
+    name: Pre-merge readiness packet + gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CI: 'true'
+      FIRSTLOT_DEMO_MODE: fixture-only
+
+    steps:
+      - name: Checkout full history for diff gate
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: cogs-dashboard/package-lock.json
+
+      - name: Install dashboard dependencies
+        working-directory: cogs-dashboard
+        run: npm ci --no-audit --no-fund
+
+      - name: Generate pre-merge readiness packet
+        run: |
+          mkdir -p /tmp/firstlot-merge-readiness
+          python3 scripts/generate_firstlot_merge_packet.py \
+            --base-ref origin/main \
+            --json-out /tmp/firstlot-merge-readiness/packet.json \
+            --md-out /tmp/firstlot-merge-readiness/packet.md
+          cat /tmp/firstlot-merge-readiness/packet.md
+
+      - name: Run FirstLot merge safety gate
+        run: make check-firstlot-merge-safety
+
+      - name: Upload readiness packet
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: firstlot-merge-readiness-packet
+          path: /tmp/firstlot-merge-readiness/
+          retention-days: 14
