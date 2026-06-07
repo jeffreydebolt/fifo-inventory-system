@@ -92,6 +92,32 @@ def test_local_cli_runs_fixture_to_output_dir(tmp_path):
     )
 
 
+def test_local_cli_validate_human_prints_operator_guidance():
+    bad_fixture_dir = REPO_ROOT / "tests" / "fixtures" / "firstlot_validation"
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "app.local_cli",
+            "validate",
+            "--lots",
+            str(bad_fixture_dir / "bad_purchase_lots.csv"),
+            "--movement",
+            str(bad_fixture_dir / "bad_movement.csv"),
+            "--human",
+        ],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 1
+    assert "CSV validation failed" in result.stdout
+    assert "Next action: fix blocking CSV issues" in result.stdout
+    assert "Suggested action:" in result.stdout
+
+
 def test_checked_in_dashboard_demo_json_matches_local_cli_output(tmp_path):
     result = subprocess.run(
         [

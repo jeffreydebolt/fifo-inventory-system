@@ -11,7 +11,7 @@ from pathlib import Path
 from core.client_smoke import run_client_smoke
 from core.close_packet import write_close_packet
 from core.csv_ingest import load_movement_csv, load_purchase_lots_csv
-from core.csv_validation import validate_firstlot_csvs
+from core.csv_validation import human_validation_report, validate_firstlot_csvs
 from core.failed_sku_workflow import assert_queue_clear, build_fix_plan, load_failed_sku_queue
 from core.lots_normalizer import (
     inspect_lot_csv,
@@ -113,6 +113,11 @@ def _parse_args() -> argparse.Namespace:
     )
     validate_parser.add_argument("--lots", required=True, help="Purchase lots CSV path")
     validate_parser.add_argument("--movement", required=True, help="Movement/sales CSV path")
+    validate_parser.add_argument(
+        "--human",
+        action="store_true",
+        help="Print operator-readable validation guidance instead of JSON",
+    )
 
     inspect_lots_parser = subparsers.add_parser(
         "inspect-lots",
@@ -231,6 +236,7 @@ def _parse_args() -> argparse.Namespace:
     compare_parser.add_argument("--before", required=True, help="Previous/local baseline artifact directory")
     compare_parser.add_argument("--after", required=True, help="Rerun/fixed artifact directory")
     compare_parser.add_argument("--period", help="Optional period filter (YYYY-MM)")
+
     return parser.parse_args()
 
 
@@ -334,7 +340,10 @@ def main() -> int:
 
     if args.command == "validate":
         result = validate_firstlot_csvs(args.lots, args.movement)
-        print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
+        if args.human:
+            print(human_validation_report(result))
+        else:
+            print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
         return 0 if result.valid else 1
 
     if args.command != "run":
