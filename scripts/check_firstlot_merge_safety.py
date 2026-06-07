@@ -18,6 +18,7 @@ from pathlib import Path
 class MergeSafetyConfig:
     repo_root: Path = dataclasses.field(default_factory=Path.cwd)
     fast: bool = False
+    dry_run: bool = False
     base_ref: str = "origin/main"
 
 
@@ -145,6 +146,8 @@ def run_gate(config: MergeSafetyConfig) -> int:
 
     for command in build_commands(config):
         print(f"\n==> {command.label}: {' '.join(command.argv)}")
+        if config.dry_run:
+            continue
         result = _run(list(command.argv), repo_root, cwd=command.cwd)
         if result.stdout:
             print(result.stdout.rstrip())
@@ -164,12 +167,13 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--repo-root", type=Path, default=Path.cwd())
     parser.add_argument("--base-ref", default="origin/main")
     parser.add_argument("--fast", action="store_true", help="Run fast local merge gate without dashboard build/full weekend suite.")
+    parser.add_argument("--dry-run", action="store_true", help="Print the checks that would run without executing them.")
     return parser.parse_args()
 
 
 def main() -> int:
     args = _parse_args()
-    return run_gate(MergeSafetyConfig(repo_root=args.repo_root, fast=args.fast, base_ref=args.base_ref))
+    return run_gate(MergeSafetyConfig(repo_root=args.repo_root, fast=args.fast, dry_run=args.dry_run, base_ref=args.base_ref))
 
 
 if __name__ == "__main__":

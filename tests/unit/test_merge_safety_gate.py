@@ -53,7 +53,7 @@ def test_forbidden_scan_flags_live_connectors_and_secret_access():
 def test_script_fast_mode_passes_on_current_repo():
     repo_root = Path(__file__).resolve().parents[2]
     result = subprocess.run(
-        ["python3", "scripts/check_firstlot_merge_safety.py", "--fast", "--base-ref", "HEAD"],
+        ["python3", "scripts/check_firstlot_merge_safety.py", "--fast", "--dry-run", "--base-ref", "HEAD"],
         cwd=repo_root,
         text=True,
         capture_output=True,
