@@ -161,6 +161,15 @@ Added a deeper day-zero readiness pass after the checkpoint:
 - deterministic tests cover day-zero readiness fields, unmatched inventory document guidance, supported lot IDs, and rollback estimates,
 - new doc: `docs/plans/firstlot-day-zero-readiness-draft-2026-06-07.md`.
 
+### Additional Sunday continuation: source queue + approval boundary
+
+Added a more product-like blocker and approval-boundary pass:
+
+- Amazon onboarding payload now emits `warehouse_reconciliation_summary`, `source_document_queue`, day-zero layer candidates, day-zero basis notes, and `live_connector_approval_boundary`,
+- `/demo` now shows a Connector approval boundary card, Day-0 rule basis card, and Source queue table,
+- deterministic tests cover source document queues, warehouse reconciliation summary, stockout risk/cover days, day-zero layer candidates, and explicit live connector forbidden actions,
+- new doc: `docs/plans/firstlot-day-zero-source-queue-boundary-2026-06-07.md`.
+
 This continuation remains fixture/local/mock-only.
 
 ## Remaining product questions for Jeff review
