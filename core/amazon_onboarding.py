@@ -30,6 +30,8 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
     unmatched_inventory = []
     rollback_reconstruction = []
     reconciliation_trace = []
+    source_document_queue = []
+    warehouse_reconciliation_summary = []
     day_zero_blockers = [
         "Verify Amazon sales history covers the rollback window.",
         "Approve the proposed FIFO day 0 before any accounting packet is relied on.",
@@ -38,6 +40,8 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
         sku = item["sku"]
         amazon_available = int(item.get("amazon_available", 0))
         reserved = int(item.get("reserved", 0))
+        velocity_units_per_day = float(item.get("velocity_units_per_day") or 0)
+        lead_time_days = int(item.get("lead_time_days") or 0)
         outside_available = other_by_sku.get(sku, 0)
         total_available = amazon_available + outside_available
         guidance = guidance_by_sku.get(sku, {})
@@ -72,6 +76,44 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
                 }
             )
             day_zero_blockers.extend([f"{sku}: {blocker}" for blocker in blockers])
+        cover_days = round(total_available / velocity_units_per_day, 1) if velocity_units_per_day else None
+        stockout_risk = "critical" if cover_days is not None and cover_days < 7 else "high" if cover_days is not None and cover_days < lead_time_days else "watch"
+        source_documents_present = guidance.get("source_documents_present", [])
+        freight_documents_present = guidance.get("freight_documents_present", [])
+        documents_present = source_documents_present + freight_documents_present
+        documents_needed = guidance.get("source_documents_needed", ["supplier invoice", "freight allocation"])
+        source_document_queue.append(
+            {
+                "sku": sku,
+                "needed": documents_needed,
+                "present": documents_present,
+                "missing": [
+                    document
+                    for document in documents_needed
+                    if not any(document.split()[0] in present for present in documents_present)
+                ],
+                "status": "complete_enough_for_review" if not blockers else "blocked_before_day_zero",
+                "operator_guidance": "Source evidence is sufficient for review." if not blockers else "Attach missing source/freight evidence before accepting day 0.",
+            }
+        )
+        warehouse_reconciliation_summary.append(
+            {
+                "sku": sku,
+                "amazon_units_available": amazon_available,
+                "amazon_reserved_units": reserved,
+                "outside_warehouse_units": outside_available,
+                "outside_warehouse_count_status": count_status,
+                "total_units_to_reconcile": total_available,
+                "cover_days": cover_days,
+                "lead_time_days": lead_time_days,
+                "stockout_risk": stockout_risk,
+                "planning_note": (
+                    "Reorder/inbound review is urgent while day-zero evidence is blocked."
+                    if stockout_risk in {"critical", "high"}
+                    else "Monitor after source evidence and count decisions are approved."
+                ),
+            }
+        )
         inventory_tracking.append(
             {
                 "sku": sku,
@@ -83,6 +125,10 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
                 "other_warehouse_count_status": count_status,
                 "total_available": total_available,
                 "inbound": int(item.get("inbound", 0)),
+                "velocity_units_per_day": velocity_units_per_day,
+                "lead_time_days": lead_time_days,
+                "cover_days": cover_days,
+                "stockout_risk": stockout_risk,
                 "recent_units_sold": sales_by_sku.get(sku, 0),
                 "draft_source_units_available": source_units,
                 "source_support_gap": support_gap,
@@ -93,6 +139,14 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
                 "draft_unit_cost": unit_cost,
                 "draft_freight_per_unit": freight_per_unit,
                 "draft_inventory_value": round(min(total_available, source_units) * (unit_cost + freight_per_unit), 2),
+                "day_zero_layer_candidate": {
+                    "units": min(total_available, source_units),
+                    "unit_cost": unit_cost,
+                    "freight_per_unit": freight_per_unit,
+                    "value": round(min(total_available, source_units) * (unit_cost + freight_per_unit), 2),
+                    "status": "operator_review_ready" if not blockers else "blocked",
+                    "evidence_summary": guidance.get("reconciliation_note", "No fixture evidence attached."),
+                },
                 "lot_match_status": "blocked" if blockers else "ready_for_day_zero_review",
                 "reconciliation_action": "Confirm day-0 layer" if not blockers else "Resolve blockers before day 0",
             }
@@ -130,6 +184,16 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
 
     warehouse_only_skus = [row for row in other_counts if row["sku"] not in amazon_skus]
     for row in warehouse_only_skus:
+        source_document_queue.append(
+            {
+                "sku": row["sku"],
+                "needed": ["warehouse count", "SKU map decision"],
+                "present": [f"warehouse count at {row.get('location')}"] if row.get("counted_at") else [],
+                "missing": ["SKU map decision"],
+                "status": "blocked_before_day_zero",
+                "operator_guidance": "Map, archive, or exclude this warehouse-only SKU before accepting day 0.",
+            }
+        )
         unmatched_inventory.append(
             {
                 "sku": row["sku"],
@@ -176,6 +240,12 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
             {"label": "Freight allocations attached or explicitly not required", "status": "blocked"},
             {"label": "FIFO day 0 approved by operator", "status": "not_started"},
         ],
+        "start_date_candidate_basis": [
+            "Use the requested close month start as the first draft day 0.",
+            "Roll current Amazon and outside-warehouse units backward by fixture sales and draft receipts.",
+            "Keep the proposal blocked until unsupported units, missing freight, count holds, and SKU-map exceptions are resolved.",
+        ],
+        "approval_boundary": "Mock proposal only: it cannot become accounting-ready until Jeff approves live connector work and an operator approves source-backed day-zero layers.",
         "next_operator_action": "Resolve blockers, upload/approve source-backed purchase lots and freight, then confirm or adjust FIFO day 0.",
     }
 
@@ -192,7 +262,15 @@ def build_amazon_onboarding_mock(*, fixture_dir: str | Path, period: str) -> dic
         },
         "source_backed_purchase_lots_freight_guidance": lot_guidance,
         "current_in_stock_vs_lot_matching": inventory_tracking,
+        "warehouse_reconciliation_summary": warehouse_reconciliation_summary,
+        "source_document_queue": source_document_queue,
         "proposed_fifo_day_0": proposed_day_zero,
+        "live_connector_approval_boundary": {
+            "status": "not_approved",
+            "allowed_now": ["local fixture reads", "mock connector payload generation", "deterministic tests", "static UI demo"],
+            "explicitly_not_allowed": ["Amazon OAuth", "Seller Central/SP-API HTTP calls", "credential loading", "Supabase/live DB writes", "client data mutation"],
+            "approval_required_for": "Any live Amazon connector, OAuth credential handling, production API call, or persistence/mutation path.",
+        },
         "workflow_timeline": [
             "Connect Amazon",
             "Pull SKUs and available inventory",

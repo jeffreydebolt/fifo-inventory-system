@@ -18,6 +18,8 @@ def test_amazon_onboarding_mock_builds_safe_operator_payload():
     assert len(payload["recent_sales_movements"]) == 3
     assert payload["other_warehouse_prompt"]["operator_can_upload_sku_counts_csv"] is True
     assert "source_backed_purchase_lots_freight_guidance" in payload
+    assert payload["live_connector_approval_boundary"]["status"] == "not_approved"
+    assert "Amazon OAuth" in payload["live_connector_approval_boundary"]["explicitly_not_allowed"]
     assert payload["current_in_stock_vs_lot_matching"][0]["total_available"] == 53
     assert payload["current_in_stock_vs_lot_matching"][0]["amazon_reserved"] == 3
     assert payload["proposed_fifo_day_0"]["proposed_start_date"] == "2026-05-01"
@@ -45,6 +47,12 @@ def test_day_zero_proposal_blocks_until_inventory_is_source_backed():
     assert proposal["source_support_ratio"] == 0.7065
     assert proposal["mock_readiness_score"] == 71
     assert proposal["operator_decisions_required"][-1] == "Approve or reject the proposed FIFO day 0; do not rely on COGS while blocked."
+    assert proposal["start_date_candidate_basis"] == [
+        "Use the requested close month start as the first draft day 0.",
+        "Roll current Amazon and outside-warehouse units backward by fixture sales and draft receipts.",
+        "Keep the proposal blocked until unsupported units, missing freight, count holds, and SKU-map exceptions are resolved.",
+    ]
+    assert proposal["approval_boundary"].startswith("Mock proposal only")
     assert proposal["readiness_checklist"][0] == {
         "label": "Amazon sales history covers rollback window",
         "status": "needs_operator_confirmation",
@@ -90,6 +98,16 @@ def test_source_backed_purchase_lot_and_freight_guidance_feeds_reconciliation_ro
     assert rows["CAMERA-KIT"]["draft_unit_cost"] == 14.25
     assert rows["CAMERA-KIT"]["draft_freight_per_unit"] == 1.85
     assert rows["CAMERA-KIT"]["draft_inventory_value"] == 756.7
+    assert rows["CAMERA-KIT"]["cover_days"] == 9.1
+    assert rows["CAMERA-KIT"]["stockout_risk"] == "high"
+    assert rows["CAMERA-KIT"]["day_zero_layer_candidate"] == {
+        "units": 47,
+        "unit_cost": 14.25,
+        "freight_per_unit": 1.85,
+        "value": 756.7,
+        "status": "blocked",
+        "evidence_summary": "Two supplier invoices cover 47 of 53 units; freight allocation exists but is not complete for the current layer.",
+    }
     assert rows["TRIPOD"]["evidence_quality"] == "source_backed_count_blocked"
     assert rows["TRIPOD"]["lot_match_status"] == "blocked"
     assert rows["STRAP-BUNDLE"]["reconciliation_action"] == "Resolve blockers before day 0"
@@ -135,3 +153,28 @@ def test_reconciliation_trace_shows_formula_evidence_and_operator_decisions():
     }
     assert trace["TRIPOD"]["evidence_quality"] == "source_backed_count_blocked"
     assert trace["STRAP-BUNDLE"]["operator_decision_required"] == "resolve_blockers_before_day_zero"
+
+
+def test_source_document_queue_and_warehouse_summary_are_day_zero_blocker_inputs():
+    payload = build_amazon_onboarding_mock(fixture_dir=FIXTURE_DIR, period="2026-05")
+    queue = {row["sku"]: row for row in payload["source_document_queue"]}
+    warehouses = {row["sku"]: row for row in payload["warehouse_reconciliation_summary"]}
+
+    assert queue["CAMERA-KIT"]["needed"] == ["supplier invoice", "freight bill"]
+    assert queue["CAMERA-KIT"]["missing"] == []
+    assert queue["CAMERA-KIT"]["status"] == "blocked_before_day_zero"
+    assert queue["STRAP-BUNDLE"]["missing"] == ["supplier invoice", "freight allocation"]
+    assert queue["LENS-CAP-ONLY"] == {
+        "sku": "LENS-CAP-ONLY",
+        "needed": ["warehouse count", "SKU map decision"],
+        "present": ["warehouse count at 3PL-West"],
+        "missing": ["SKU map decision"],
+        "status": "blocked_before_day_zero",
+        "operator_guidance": "Map, archive, or exclude this warehouse-only SKU before accepting day 0.",
+    }
+
+    assert warehouses["CAMERA-KIT"]["amazon_units_available"] == 42
+    assert warehouses["CAMERA-KIT"]["outside_warehouse_units"] == 11
+    assert warehouses["CAMERA-KIT"]["cover_days"] == 9.1
+    assert warehouses["CAMERA-KIT"]["stockout_risk"] == "high"
+    assert warehouses["STRAP-BUNDLE"]["stockout_risk"] == "critical"

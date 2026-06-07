@@ -213,8 +213,29 @@ export const dayZeroProposal = {
   sourceSupportRatio: '70.65%',
   readinessScore: 71,
   ruleDraft: 'Earliest close month start where current Amazon + outside-warehouse stock can be backed to purchase lots/freight, with every exception carried as a blocker.',
+  approvalBoundary: 'Mock proposal only: it cannot become accounting-ready until Jeff approves live connector work and an operator approves source-backed day-zero layers.',
   nextOperatorAction: 'Resolve blockers, upload/approve source-backed purchase lots and freight, then confirm or adjust FIFO day 0.'
 };
+
+export const amazonApprovalBoundary = {
+  status: 'Live connector not approved',
+  allowedNow: ['local fixture reads', 'mock connector payload generation', 'deterministic tests', 'static UI demo'],
+  explicitlyNotAllowed: ['Amazon OAuth', 'Seller Central/SP-API HTTP calls', 'credential loading', 'Supabase/live DB writes', 'client data mutation'],
+  approvalRequiredFor: 'Any live Amazon connector, OAuth credential handling, production API call, or persistence/mutation path.'
+};
+
+export const sourceDocumentQueue = [
+  { sku: 'CAMERA-KIT', present: 'Supplier invoices PO-1842 + PO-1904; partial freight FB-2201', missing: '6 source-backed units or explicit exception approval', status: 'Blocked before day 0', guidance: 'Complete freight/source support before accepting day-zero layer.' },
+  { sku: 'TRIPOD', present: 'Supplier invoice PO-1775', missing: 'Supervisor sign-off for QA hold count', status: 'Blocked before day 0', guidance: 'Approve or exclude 2 held units.' },
+  { sku: 'STRAP-BUNDLE', present: 'No invoice/freight attached', missing: 'Supplier invoice + freight allocation', status: 'Blocked before day 0', guidance: 'Attach inbound source docs before rollback can trust the layer.' },
+  { sku: 'LENS-CAP-ONLY', present: 'Warehouse count at 3PL-West', missing: 'SKU map decision', status: 'Blocked before day 0', guidance: 'Map, archive, or exclude warehouse-only SKU.' }
+];
+
+export const dayZeroBasis = [
+  'Use the requested close month start as the first draft day 0.',
+  'Roll current Amazon and outside-warehouse units backward by fixture sales and draft receipts.',
+  'Keep the proposal blocked until unsupported units, missing freight, count holds, and SKU-map exceptions are resolved.'
+];
 
 export const dayZeroReadiness = [
   { label: 'Amazon sales history covers rollback window', status: 'Needs operator confirmation' },
