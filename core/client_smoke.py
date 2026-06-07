@@ -107,7 +107,11 @@ def run_client_smoke(
         _write_operator_summary_md(out / "client_smoke_summary.md", result.to_dict())
         return result
 
-    validation = validate_firstlot_csvs(normalized_lots, normalized_movement).to_dict()
+    validation = validate_firstlot_csvs(
+        normalized_lots,
+        normalized_movement,
+        include_cross_file_checks=False,
+    ).to_dict()
     if not validation["valid"]:
         result = ClientSmokeResult(
             ok=False,
@@ -248,6 +252,21 @@ def _write_operator_summary_md(path: Path, payload: dict) -> None:
                 "- Do not rely on synthetic repair rows for real COGS; replace with source-backed lot data first.",
             ]
         )
+    validation_errors = validation.get("errors") or []
+    validation_warnings = validation.get("warnings") or []
+    if validation_errors or validation_warnings:
+        lines.extend(["", "## Top validation issues / next action", ""])
+        for issue in (validation_errors + validation_warnings)[:5]:
+            location = issue.get("file_role", "csv")
+            if issue.get("row_number") is not None:
+                location += f" row {issue.get('row_number')}"
+            if issue.get("field"):
+                location += f" field {issue.get('field')}"
+            lines.append(
+                "- "
+                f"{issue.get('title', issue.get('code'))} at {location}: "
+                f"{issue.get('suggested_action', 'Correct the source CSV and rerun validation.')}"
+            )
     if recommended_fixes:
         lines.extend(["", "## Recommended CSV fixes", ""])
         for fix in recommended_fixes:

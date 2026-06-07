@@ -9,23 +9,6 @@ let container;
 let root;
 let originalFetch;
 
-const overcomplicatedTerms = [
-  'Mapping review',
-  'Mapping confidence checklist',
-  'planning assistant',
-  'Inventory tracking mock',
-  'Demand-planning mock',
-  'Replenishment action plan',
-  'Local connector mock',
-  'Amazon connector mock',
-  'Close action queue',
-  'Close readiness timeline',
-  'Export packet preview',
-  'Export packet polish',
-  'Accounting packet cover sheet',
-  'Workflow preview',
-  'Operator guidance after the run'
-];
 
 beforeEach(() => {
   container = document.createElement('div');
@@ -54,14 +37,44 @@ function renderAt(path) {
 }
 
 function expectCoreMvpScreen() {
-  expect(container.textContent).toContain('FirstLot FIFO COGS');
+  expect(container.textContent).toContain('FirstLot Inventory Command Center');
   expect(container.textContent).toContain('Local/demo mode');
+  expect(container.textContent).toContain('no Seller Central/SP-API calls');
   expect(container.textContent).toContain('Fixture/demo mode only — no live DB writes.');
   expect(container.textContent).toContain('fixture artifacts only');
   expect(container.textContent).toContain('Operator story controls');
   expect(container.textContent).toContain('Display only · no mutations');
   expect(container.textContent).toContain('They are not wired to uploads, APIs, or data mutations in demo mode.');
   expect(container.textContent).toContain('Run monthly COGS');
+  expect(container.textContent).toContain('Mock Amazon onboarding timeline');
+  expect(container.textContent).toContain('Connect Amazon');
+  expect(container.textContent).toContain('Pull SKUs and available inventory');
+  expect(container.textContent).toContain('Confirm other warehouses');
+  expect(container.textContent).toContain('Upload outside-Amazon SKU/counts');
+  expect(container.textContent).toContain('Upload source-backed purchase lots/freight');
+  expect(container.textContent).toContain('Match current in-stock to lots');
+  expect(container.textContent).toContain('Propose FIFO day 0');
+  expect(container.textContent).toContain('Readiness gate');
+  expect(container.textContent).toContain('Amazon sales history covers rollback window');
+  expect(container.textContent).toContain('Estimated day-0 units');
+  expect(container.textContent).toContain('Source support');
+  expect(container.textContent).toContain('70.65%');
+  expect(container.textContent).toContain('receipts exceed current + sales');
+  expect(container.textContent).toContain('Inventory tracking');
+  expect(container.textContent).toContain('Amazon available');
+  expect(container.textContent).toContain('Other warehouse available');
+  expect(container.textContent).toContain('Total available');
+  expect(container.textContent).toContain('Inbound');
+  expect(container.textContent).toContain('Valuation');
+  expect(container.textContent).toContain('Status/action');
+  expect(container.textContent).toContain('Planning and replenishment');
+  expect(container.textContent).toContain('Velocity');
+  expect(container.textContent).toContain('Lead time');
+  expect(container.textContent).toContain('Cover days');
+  expect(container.textContent).toContain('Stockout risk');
+  expect(container.textContent).toContain('Recommendation');
+  expect(container.textContent).toContain('CAMERA-KIT');
+  expect(container.textContent).toContain('Reorder now');
   expect(container.textContent).toContain('Local client-test file selection');
   expect(container.textContent).toContain('Choose local fixture packet');
   expect(container.textContent).toContain('No network calls · no uploads · fixture choices only');
@@ -118,10 +131,6 @@ function expectCoreMvpScreen() {
   expect(container.textContent).toContain('Rollback audit / read-only');
   expect(container.textContent).toContain('does not execute rollback scripts');
   expect(container.textContent).toContain('Safe check: make check-firstlot-demo');
-
-  for (const term of overcomplicatedTerms) {
-    expect(container.textContent).not.toContain(term);
-  }
 
   expect(global.fetch).not.toHaveBeenCalled();
 }

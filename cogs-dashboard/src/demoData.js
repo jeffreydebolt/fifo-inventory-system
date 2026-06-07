@@ -142,3 +142,124 @@ export const clientTestFixtures = [
     closePacket: '/tmp/firstlot-second-synthetic-client-check/close_packet.json'
   }
 ];
+
+export const amazonOnboardingTimeline = [
+  'Connect Amazon',
+  'Pull SKUs and available inventory',
+  'Confirm other warehouses',
+  'Upload outside-Amazon SKU/counts',
+  'Upload source-backed purchase lots/freight',
+  'Match current in-stock to lots',
+  'Propose FIFO day 0'
+];
+
+export const inventoryTrackingRows = [
+  {
+    sku: 'CAMERA-KIT',
+    amazonAvailable: 42,
+    amazonReserved: 3,
+    otherWarehouseAvailable: 11,
+    countStatus: 'Operator attested',
+    totalAvailable: 53,
+    sourceBackedUnits: 47,
+    sourceGap: 6,
+    inbound: 18,
+    unitCost: 14.25,
+    freightPerUnit: 1.85,
+    valuation: 756.70,
+    evidence: '2 invoices + partial freight bill',
+    statusAction: 'Blocked: upload freight bill + 6 more source-backed units'
+  },
+  {
+    sku: 'TRIPOD',
+    amazonAvailable: 16,
+    amazonReserved: 1,
+    otherWarehouseAvailable: 2,
+    countStatus: 'Needs supervisor sign-off',
+    totalAvailable: 18,
+    sourceBackedUnits: 18,
+    sourceGap: 0,
+    inbound: 0,
+    unitCost: 25.90,
+    freightPerUnit: 0,
+    valuation: 466.20,
+    evidence: 'Invoice present; count sign-off pending',
+    statusAction: 'Blocked: approve QA hold count before day 0'
+  },
+  {
+    sku: 'STRAP-BUNDLE',
+    amazonAvailable: 7,
+    amazonReserved: 0,
+    otherWarehouseAvailable: 0,
+    countStatus: 'Operator attested',
+    totalAvailable: 7,
+    sourceBackedUnits: 0,
+    sourceGap: 7,
+    inbound: 24,
+    unitCost: 20.80,
+    freightPerUnit: 2.10,
+    valuation: 0,
+    evidence: 'No invoice/freight attached',
+    statusAction: 'Blocked: upload invoice and freight allocation for inbound lot'
+  }
+];
+
+export const dayZeroProposal = {
+  proposedStartDate: '2026-05-01',
+  confidence: 'Blocked · review required',
+  currentUnitsToReconcile: 92,
+  sourceBackedUnits: 65,
+  unmatchedUnits: 27,
+  sourceSupportRatio: '70.65%',
+  readinessScore: 71,
+  ruleDraft: 'Earliest close month start where current Amazon + outside-warehouse stock can be backed to purchase lots/freight, with every exception carried as a blocker.',
+  nextOperatorAction: 'Resolve blockers, upload/approve source-backed purchase lots and freight, then confirm or adjust FIFO day 0.'
+};
+
+export const dayZeroReadiness = [
+  { label: 'Amazon sales history covers rollback window', status: 'Needs operator confirmation' },
+  { label: 'Every current SKU mapped to Amazon or outside-warehouse decision', status: 'Blocked' },
+  { label: 'Purchase lots source-backed for all current units', status: 'Blocked' },
+  { label: 'Freight allocations attached or explicitly not required', status: 'Blocked' },
+  { label: 'FIFO day 0 approved by operator', status: 'Not started' }
+];
+
+export const rollbackReconstructionRows = [
+  { sku: 'CAMERA-KIT', currentUnits: 53, salesUnits: 5, receiptsInPeriod: 12, estimatedStartUnits: 46, sourceBackedStartUnits: 46, status: 'Blocked: partial freight + 6 current units unsupported' },
+  { sku: 'TRIPOD', currentUnits: 18, salesUnits: 3, receiptsInPeriod: 0, estimatedStartUnits: 21, sourceBackedStartUnits: 18, status: 'Blocked: supervisor sign-off required for QA count' },
+  { sku: 'STRAP-BUNDLE', currentUnits: 7, salesUnits: 8, receiptsInPeriod: 24, estimatedStartUnits: -9, sourceBackedStartUnits: 0, status: 'Blocked: receipts exceed current + sales; confirm inbound timing' }
+];
+
+export const dayZeroBlockers = [
+  { sku: 'CAMERA-KIT', issue: 'Need source-backed lots for 6 more units and complete partial freight allocation.', action: 'Attach supplier invoice + freight bill before accepting day 0.' },
+  { sku: 'TRIPOD', issue: 'Other-warehouse count is a QA hold pending supervisor sign-off.', action: 'Approve or exclude the 2 held units.' },
+  { sku: 'STRAP-BUNDLE', issue: 'No draft source units matched and freight allocation is missing.', action: 'Upload inbound supplier invoice and freight allocation.' },
+  { sku: 'LENS-CAP-ONLY', issue: 'Warehouse-only SKU is not mapped to Amazon catalog / FirstLot SKU map.', action: 'Map, archive, or exclude before day 0.' }
+];
+
+export const planningRows = [
+  {
+    sku: 'CAMERA-KIT',
+    velocity: '5.8 units/day',
+    leadTime: '21 days',
+    coverDays: 9,
+    stockoutRisk: 'High',
+    recommendation: 'Reorder now; inbound does not fully cover lead time.'
+  },
+  {
+    sku: 'TRIPOD',
+    velocity: '1.2 units/day',
+    leadTime: '14 days',
+    coverDays: 15,
+    stockoutRisk: 'Medium',
+    recommendation: 'Confirm non-Amazon count before purchasing.'
+  },
+  {
+    sku: 'STRAP-BUNDLE',
+    velocity: '2.7 units/day',
+    leadTime: '30 days',
+    coverDays: 3,
+    stockoutRisk: 'Critical',
+    recommendation: 'Prioritize inbound receipt and source docs.'
+  }
+];

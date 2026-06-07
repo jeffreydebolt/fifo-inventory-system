@@ -1,5 +1,18 @@
 import React, { useState } from 'react';
-import { clientTestFixtures, demoRun, fixedDemoRun, monthHistory, runVersions } from '../demoData';
+import {
+  amazonOnboardingTimeline,
+  clientTestFixtures,
+  dayZeroBlockers,
+  dayZeroProposal,
+  dayZeroReadiness,
+  demoRun,
+  fixedDemoRun,
+  inventoryTrackingRows,
+  monthHistory,
+  planningRows,
+  rollbackReconstructionRows,
+  runVersions
+} from '../demoData';
 
 const page = {
   minHeight: '100vh',
@@ -256,6 +269,182 @@ function LocalClientTestFlow() {
   );
 }
 
+function CommandCenterTables() {
+  return (
+    <>
+      <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+          <div>
+            <h2 style={{ margin: '0 0 0.35rem' }}>Mock Amazon onboarding timeline</h2>
+            <p style={{ margin: 0, color: '#64748b', lineHeight: 1.5 }}>
+              This is the future Seller Central/SP-API onboarding shape using local fixtures only. It shows the operator path from mock connection to SKU sync, warehouse counts, source-backed lots/freight, and a blocked FIFO day-0 proposal. No OAuth, no Seller Central calls, no SP-API calls, and no DB writes occur in this demo.
+            </p>
+          </div>
+          <Pill tone="amber">Local/demo/fixture only · no Seller Central/SP-API calls · no DB writes</Pill>
+        </div>
+        <div style={grid}>
+          {amazonOnboardingTimeline.map((step, index) => (
+            <StepCard key={step} number={String(index + 1)} title={step} body={index === 6 ? 'Proposed FIFO day 0 stays review-required until source-backed lots, freight, Amazon sales history, and non-Amazon counts are confirmed.' : 'Mock step shown as disabled product workflow; fixture data only.'} />
+          ))}
+        </div>
+      </section>
+
+      <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
+        <h2 style={{ margin: '0 0 0.75rem' }}>Inventory tracking</h2>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                {['SKU', 'Amazon available / reserved', 'Other warehouse available', 'Total available', 'Source-backed units', 'Gap', 'Inbound', 'Source evidence', 'Draft unit+freight', 'Draft Valuation', 'Status/action'].map((header) => (
+                  <th key={header} style={{ ...cellStyle, background: '#eef2ff', color: '#3730a3', fontWeight: 900 }}>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {inventoryTrackingRows.map((row) => (
+                <tr key={row.sku}>
+                  <td style={cellStyle}><strong>{row.sku}</strong></td>
+                  <td style={cellStyle}>{number(row.amazonAvailable)} / {number(row.amazonReserved)}</td>
+                  <td style={cellStyle}>{number(row.otherWarehouseAvailable)}<br /><span style={{ color: '#64748b' }}>{row.countStatus}</span></td>
+                  <td style={cellStyle}>{number(row.totalAvailable)}</td>
+                  <td style={cellStyle}>{number(row.sourceBackedUnits)}</td>
+                  <td style={cellStyle}><Pill tone={row.sourceGap > 0 ? 'amber' : 'green'}>{number(row.sourceGap)}</Pill></td>
+                  <td style={cellStyle}>{number(row.inbound)}</td>
+                  <td style={cellStyle}>{row.evidence}</td>
+                  <td style={cellStyle}>{money(row.unitCost)} + {money(row.freightPerUnit)}</td>
+                  <td style={cellStyle}>{money(row.valuation)}</td>
+                  <td style={cellStyle}>{row.statusAction}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+          <div>
+            <h2 style={{ margin: '0 0 0.35rem' }}>FIFO day 0 proposal</h2>
+            <p style={{ margin: 0, color: '#64748b', lineHeight: 1.5 }}>{dayZeroProposal.ruleDraft}</p>
+          </div>
+          <Pill tone="amber">{dayZeroProposal.confidence}</Pill>
+        </div>
+        <div style={grid}>
+          <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
+            <h3 style={{ margin: '0 0 0.35rem' }}>Proposed start</h3>
+            <p style={{ margin: 0, fontSize: '1.35rem', fontWeight: 900 }}>{dayZeroProposal.proposedStartDate}</p>
+          </div>
+          <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
+            <h3 style={{ margin: '0 0 0.35rem' }}>Units to reconcile</h3>
+            <p style={{ margin: 0, fontSize: '1.35rem', fontWeight: 900 }}>{number(dayZeroProposal.currentUnitsToReconcile)}</p>
+          </div>
+          <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
+            <h3 style={{ margin: '0 0 0.35rem' }}>Source support</h3>
+            <p style={{ margin: 0, fontSize: '1.35rem', fontWeight: 900 }}>{dayZeroProposal.sourceSupportRatio}</p>
+            <p style={{ margin: '0.35rem 0 0', color: '#64748b' }}>{number(dayZeroProposal.sourceBackedUnits)} source-backed units · {number(dayZeroProposal.unmatchedUnits)} unmatched</p>
+          </div>
+          <div style={{ ...card, padding: '1rem', boxShadow: 'none' }}>
+            <h3 style={{ margin: '0 0 0.35rem' }}>Mock readiness score</h3>
+            <p style={{ margin: 0, fontSize: '1.35rem', fontWeight: 900 }}>{number(dayZeroProposal.readinessScore)} / 100</p>
+            <p style={{ margin: '0.35rem 0 0', color: '#64748b' }}>Blocked score; not accounting-ready.</p>
+          </div>
+        </div>
+        <div style={{ overflowX: 'auto', marginTop: '1rem' }}>
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                {['Readiness gate', 'Status'].map((header) => (
+                  <th key={header} style={{ ...cellStyle, background: '#eff6ff', color: '#1d4ed8', fontWeight: 900 }}>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {dayZeroReadiness.map((row) => (
+                <tr key={row.label}>
+                  <td style={cellStyle}><strong>{row.label}</strong></td>
+                  <td style={cellStyle}><Pill tone={row.status === 'Blocked' ? 'amber' : 'slate'}>{row.status}</Pill></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div style={{ overflowX: 'auto', marginTop: '1rem' }}>
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                {['SKU', 'Current units', 'May sales', 'Draft receipts', 'Estimated day-0 units', 'Source-backed start', 'Rollback status'].map((header) => (
+                  <th key={header} style={{ ...cellStyle, background: '#f8fafc', color: '#334155', fontWeight: 900 }}>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rollbackReconstructionRows.map((row) => (
+                <tr key={row.sku}>
+                  <td style={cellStyle}><strong>{row.sku}</strong></td>
+                  <td style={cellStyle}>{number(row.currentUnits)}</td>
+                  <td style={cellStyle}>{number(row.salesUnits)}</td>
+                  <td style={cellStyle}>{number(row.receiptsInPeriod)}</td>
+                  <td style={cellStyle}>{number(row.estimatedStartUnits)}</td>
+                  <td style={cellStyle}>{number(row.sourceBackedStartUnits)}</td>
+                  <td style={cellStyle}>{row.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div style={{ overflowX: 'auto', marginTop: '1rem' }}>
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                {['Blocker', 'Why it blocks day 0', 'Operator action'].map((header) => (
+                  <th key={header} style={{ ...cellStyle, background: '#fff7ed', color: '#9a3412', fontWeight: 900 }}>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {dayZeroBlockers.map((row) => (
+                <tr key={row.sku}>
+                  <td style={cellStyle}><strong>{row.sku}</strong></td>
+                  <td style={cellStyle}>{row.issue}</td>
+                  <td style={cellStyle}>{row.action}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p style={{ margin: '1rem 0 0', color: '#475569', fontWeight: 800 }}>{dayZeroProposal.nextOperatorAction}</p>
+      </section>
+
+      <section style={{ ...card, padding: '1.25rem', marginBottom: '1rem' }}>
+        <h2 style={{ margin: '0 0 0.75rem' }}>Planning and replenishment</h2>
+        <div style={{ overflowX: 'auto' }}>
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                {['SKU', 'Velocity', 'Lead time', 'Cover days', 'Stockout risk', 'Recommendation'].map((header) => (
+                  <th key={header} style={{ ...cellStyle, background: '#f0fdf4', color: '#166534', fontWeight: 900 }}>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {planningRows.map((row) => (
+                <tr key={row.sku}>
+                  <td style={cellStyle}><strong>{row.sku}</strong></td>
+                  <td style={cellStyle}>{row.velocity}</td>
+                  <td style={cellStyle}>{row.leadTime}</td>
+                  <td style={cellStyle}>{number(row.coverDays)}</td>
+                  <td style={cellStyle}><Pill tone={row.stockoutRisk === 'Critical' ? 'amber' : 'slate'}>{row.stockoutRisk}</Pill></td>
+                  <td style={cellStyle}>{row.recommendation}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </>
+  );
+}
+
 function issueLabel(row) {
   if (row.reason === 'INSUFFICIENT_INVENTORY') {
     return 'Sales quantity exceeds available FIFO lots.';
@@ -423,20 +612,22 @@ export default function DemoPage() {
       <div style={shell}>
         <section style={{ ...card, padding: '1.5rem', marginBottom: '1rem' }}>
           <Pill>{demoRun.safetyMode}</Pill>
-          <h1 style={{ margin: '1rem 0 0.5rem', fontSize: 'clamp(2rem, 4vw, 3rem)' }}>FirstLot FIFO COGS</h1>
+          <h1 style={{ margin: '1rem 0 0.5rem', fontSize: 'clamp(2rem, 4vw, 3rem)' }}>FirstLot Inventory Command Center</h1>
           <p style={{ margin: 0, color: '#475569', fontSize: '1.08rem', lineHeight: 1.55 }}>
-            Core MVP demo: upload purchase lots CSV, upload sales data CSV, run monthly COGS, and review SKU-level unit, shipping, total, and average COGS. This screen uses checked-in fixture artifacts only.
+            Track inventory, preview replenishment planning, walk through mock Amazon onboarding, then close FIFO COGS with failed-SKU rerun controls. This screen uses checked-in fixture artifacts only.
           </p>
         </section>
 
         <section style={{ ...card, padding: '1rem 1.25rem', marginBottom: '1rem', borderColor: '#fed7aa', background: '#fff7ed' }}>
           <h2 style={{ margin: '0 0 0.35rem', color: '#9a3412' }}>Fixture/demo mode only — no live DB writes.</h2>
           <p style={{ margin: 0, color: '#7c2d12', lineHeight: 1.5 }}>
-            This page is a local operator story backed by fixture CSVs and checked-in generated artifacts. Upload, run, fix, and rerun controls are descriptive only; nothing writes to Supabase, Storage Standard data, production APIs, or live inventory.
+            This page is a local operator story backed by fixture CSVs and checked-in generated artifacts. Amazon onboarding, upload, run, fix, and rerun controls are descriptive only; nothing calls Seller Central/SP-API, writes to Supabase, Storage Standard data, production APIs, or live inventory.
           </p>
         </section>
 
         <OperatorActionRail />
+
+        <CommandCenterTables />
 
         <LocalClientTestFlow />
 
