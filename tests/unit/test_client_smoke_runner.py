@@ -58,6 +58,7 @@ def test_client_smoke_normalizes_runs_and_writes_operator_artifacts(tmp_path):
         "failed_sku_queue.json",
         "fix_plan.json",
         "client_smoke_summary.json",
+        "client_smoke_summary.md",
         "close_packet.md",
     ]
     for relative_path in expected_paths:
@@ -65,6 +66,10 @@ def test_client_smoke_normalizes_runs_and_writes_operator_artifacts(tmp_path):
 
     summary = json.loads((tmp_path / "client_smoke_summary.json").read_text())
     assert summary["safety"].startswith("local client CSV smoke only")
+    summary_md = (tmp_path / "client_smoke_summary.md").read_text()
+    assert "PASS — failed SKU queue clear" in summary_md
+    assert "no .env, no Supabase/API imports, no live DB writes" in summary_md
+    assert "python3 -m app.local_cli failed-skus" in summary_md
     fix_plan = json.loads((tmp_path / "fix_plan.json").read_text())
     assert fix_plan["read_only"] is True
     assert fix_plan["recommended_csv_fixes"] == []
@@ -141,6 +146,10 @@ def test_client_smoke_expect_clear_returns_nonzero_when_queue_remains(tmp_path):
     repair_text = repair_path.read_text()
     assert "SANDBOX ONLY" in repair_text
     assert "SYNTH-REPAIR-DEMO-SKU-005" in repair_text
+    summary_md = (tmp_path / "smoke" / "client_smoke_summary.md").read_text()
+    assert "NEEDS FIX — failed SKU queue remains" in summary_md
+    assert "missing_lot_request.csv" in summary_md
+    assert "DEMO-SKU-005 2025-09" in summary_md
 
 
 def test_client_smoke_json_out_writes_same_payload_and_prints_human_summary(tmp_path):
