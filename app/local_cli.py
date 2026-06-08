@@ -55,6 +55,68 @@ def _client_smoke_human_summary(payload: dict) -> str:
     return "\n".join(lines)
 
 
+def _csv_doctor_payload(lots_path: str, movement_path: str, sample_limit: int) -> dict:
+    """Inspect raw CSVs together and report readiness without writing artifacts."""
+
+    lots = inspect_lot_csv(lots_path, sample_limit=sample_limit)
+    movement = inspect_movement_csv(movement_path, sample_limit=sample_limit)
+    ready = lots.ready_to_normalize and movement.ready_to_normalize
+    blockers: list[str] = []
+    for field in lots.missing_required:
+        blockers.append(f"purchase_lots missing mappable column for {field}")
+    for field in movement.missing_required:
+        blockers.append(f"movement missing mappable column for {field}")
+    warnings = [
+        *(warning.to_dict() for warning in lots.warnings),
+        *(warning.to_dict() for warning in movement.warnings),
+    ]
+    return {
+        "ready_to_normalize": ready,
+        "blockers": blockers,
+        "warnings": warnings,
+        "lots": lots.to_dict(),
+        "movement": movement.to_dict(),
+        "next_commands": _csv_doctor_next_commands(ready, lots_path, movement_path),
+        "safety": "local CSV doctor only; read-only inspection; no .env, no Supabase/API imports, no live DB writes",
+    }
+
+
+def _csv_doctor_next_commands(ready: bool, lots_path: str, movement_path: str) -> list[str]:
+    if not ready:
+        return ["Fix the missing/mismapped CSV headers above, then rerun csv-doctor."]
+    return [
+        "python3 -m app.local_cli normalize-lots "
+        f"--lots {lots_path} --out /tmp/firstlot-doctor/normalized/purchase_lots.csv",
+        "python3 -m app.local_cli normalize-movement "
+        f"--movement {movement_path} --out /tmp/firstlot-doctor/normalized/movement.csv",
+        "python3 -m app.local_cli client-smoke "
+        f"--lots {lots_path} --movement {movement_path} "
+        "--out /tmp/firstlot-client-smoke --period YYYY-MM --json-out /tmp/firstlot-client-smoke-summary.json --clean-output",
+    ]
+
+
+def _csv_doctor_human_summary(payload: dict) -> str:
+    status = "READY" if payload["ready_to_normalize"] else "NEEDS FIX"
+    lines = [
+        "FirstLot CSV doctor — read-only local inspection; no artifacts written.",
+        f"Status: {status}",
+        f"Purchase lots rows: {payload['lots']['row_count']}",
+        f"Movement rows: {payload['movement']['row_count']}",
+        f"Purchase lots mapping: {json.dumps(payload['lots']['mapping'], sort_keys=True)}",
+        f"Movement mapping: {json.dumps(payload['movement']['mapping'], sort_keys=True)}",
+    ]
+    if payload["blockers"]:
+        lines.append("Blockers:")
+        lines.extend(f"- {blocker}" for blocker in payload["blockers"])
+    if payload["warnings"]:
+        lines.append("Warnings:")
+        lines.extend(f"- {warning['code']}: {warning['message']}" for warning in payload["warnings"])
+    lines.append("Next commands:")
+    lines.extend(f"- {command}" for command in payload["next_commands"])
+    lines.append(f"Safety: {payload['safety']}")
+    return "\n".join(lines)
+
+
 def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run a local FirstLot FIFO demo from CSV inputs.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -118,6 +180,24 @@ def _parse_args() -> argparse.Namespace:
         "--human",
         action="store_true",
         help="Print operator-readable validation guidance instead of JSON",
+    )
+
+    doctor_parser = subparsers.add_parser(
+        "csv-doctor",
+        help="Inspect raw/client-shaped lots and sales CSVs together without writing artifacts",
+    )
+    doctor_parser.add_argument("--lots", required=True, help="Raw/client-shaped purchase lots CSV path")
+    doctor_parser.add_argument("--movement", required=True, help="Raw/client-shaped movement/sales CSV path")
+    doctor_parser.add_argument(
+        "--sample-limit",
+        type=int,
+        default=3,
+        help="Number of projected sample rows to include in JSON output",
+    )
+    doctor_parser.add_argument(
+        "--human",
+        action="store_true",
+        help="Print operator-readable doctor guidance instead of JSON",
     )
 
     inspect_lots_parser = subparsers.add_parser(
@@ -289,6 +369,14 @@ def main() -> int:
         else:
             print(json.dumps(payload, indent=2, sort_keys=True))
         return 0 if result.ok else 1
+
+    if args.command == "csv-doctor":
+        payload = _csv_doctor_payload(args.lots, args.movement, args.sample_limit)
+        if args.human:
+            print(_csv_doctor_human_summary(payload))
+        else:
+            print(json.dumps(payload, indent=2, sort_keys=True))
+        return 0 if payload["ready_to_normalize"] else 1
 
     if args.command == "history":
         rows = [record.__dict__ for record in load_month_history(args.out)]
