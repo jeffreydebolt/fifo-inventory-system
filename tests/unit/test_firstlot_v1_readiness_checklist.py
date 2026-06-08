@@ -46,6 +46,8 @@ def test_firstlot_v1_ready_to_try_checklist_points_to_safe_try_commands():
     assert "--fixed-out /tmp/firstlot-demo-fixed" in content
     assert "http://localhost:3000/demo" in content
     assert "npm test -- --runTestsByPath src/App.test.js --watchAll=false" in content
+    assert "branch-only `make check-firstlot-merge-safety`" in content
+    assert "fails closed there to prevent direct-main work" in content
 
 
 def test_firstlot_demo_run_target_stays_available_for_reviewer_handoff():

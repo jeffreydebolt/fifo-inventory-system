@@ -4,7 +4,7 @@ _Last updated: 2026-06-08 by autonomous/local-demo builder loop._
 
 ## Current verdict
 
-**Status: v1-ready for a local/demo try after the latest branch gates are green and merged.** The deterministic FIFO engine, local CSV CLI, one-command synthetic demo packet, close packet, failed-SKU queue, dashboard `/demo`, readiness checklist coverage, and Printing Press-style pre-merge gate all exist. The v1 boundary remains local/demo only; real Amazon, live database, Storage Standard, and accounting-policy decisions stay out of scope.
+**Status: v1-ready for a local/demo try on current `main` after post-merge verification.** The deterministic FIFO engine, local CSV CLI, one-command synthetic demo packet, close packet, failed-SKU queue, dashboard `/demo`, readiness checklist coverage, and Printing Press-style pre-merge gate all exist. The v1 boundary remains local/demo only; real Amazon, live database, Storage Standard, and accounting-policy decisions stay out of scope.
 
 ## Exact local try path available now
 
@@ -69,9 +69,9 @@ FirstLot v1 trial mode is explicitly local/demo only:
 
 ## V1 verification required on the latest commit before telling Jeff “ready to try”
 
-1. Run and record `make firstlot-demo-run`, `make check-firstlot-weekend`, and `make check-firstlot-merge-safety` on the latest non-main branch.
+1. Run and record `make firstlot-demo-run`, `make check-firstlot-weekend`, and branch-only `make check-firstlot-merge-safety` on the latest non-main branch.
 2. Open/merge a bounded local-demo PR only after GitHub checks are green and no human review gate is triggered.
-3. After merge, verify current `main` with `make check-firstlot-weekend` and recent `gh run list --branch main --limit 5`.
+3. After merge, verify current `main` with `make firstlot-demo-run`, `make check-firstlot-weekend`, and recent `gh run list --branch main --limit 5`. Do not run the merge-safety gate directly on `main`; by design it fails closed there to prevent direct-main work.
 
 ## Next smallest safe bricks
 
