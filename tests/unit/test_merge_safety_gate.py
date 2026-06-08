@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import subprocess
+import sys
 from pathlib import Path
 
 from scripts.check_firstlot_merge_safety import (
@@ -17,6 +18,7 @@ def test_build_commands_include_full_safe_firstlot_and_dashboard_checks():
     assert "check-no-client-data-commit" in command_text
     assert "check-firstlot-demo" in command_text
     assert "check-firstlot-weekend" in command_text
+    assert sys.executable in command_text
     assert "tests/unit/test_amazon_onboarding.py" in command_text
     assert "tests/unit/test_local_cli_amazon_onboarding.py" in command_text
     assert "npm test" in command_text
@@ -53,7 +55,7 @@ def test_forbidden_scan_flags_live_connectors_and_secret_access():
 def test_script_fast_mode_passes_on_current_repo():
     repo_root = Path(__file__).resolve().parents[2]
     result = subprocess.run(
-        ["python3", "scripts/check_firstlot_merge_safety.py", "--fast", "--dry-run", "--allow-main", "--base-ref", "HEAD"],
+        [sys.executable, "scripts/check_firstlot_merge_safety.py", "--fast", "--dry-run", "--allow-main", "--base-ref", "HEAD"],
         cwd=repo_root,
         text=True,
         capture_output=True,

@@ -10,12 +10,12 @@ For Jeff/reviewer handoff, run the whole local demo packet generator from the re
 make firstlot-demo-run
 ```
 
-It writes the v1 failed-queue packet to `/tmp/firstlot-demo-v1`, the v2 fixed-rerun packet to `/tmp/firstlot-demo-fixed`, and prints the `/demo` dashboard URL to open after `npm start`. The target is local-file only and uses synthetic fixtures.
+It writes the v1 failed-queue packet to `/tmp/firstlot-demo-v1`, the v2 fixed-rerun packet to `/tmp/firstlot-demo-fixed`, and prints the `/demo` dashboard URL to open after `npm start`. The target is local-file only and uses synthetic fixtures. The Make target selects `python3.11` when available (falling back to `python3`) so macOS systems whose `/usr/bin/python3` is older can still run the Python 3.11 typed local engine.
 
 For the lower-level single-run CLI command:
 
 ```bash
-python3 -m app.local_cli run \
+python3.11 -m app.local_cli run \
   --lots tests/fixtures/firstlot_demo/purchase_lots.csv \
   --movement tests/fixtures/firstlot_demo/movement.csv \
   --out /tmp/firstlot-demo \
@@ -28,7 +28,7 @@ Client-test readiness starts with validation, not FIFO allocation. The CLI can
 check local purchase lots and movement CSVs without writing artifacts:
 
 ```bash
-python3 -m app.local_cli validate \
+python3.11 -m app.local_cli validate \
   --lots tests/fixtures/firstlot_demo/purchase_lots.csv \
   --movement tests/fixtures/firstlot_demo/movement.csv
 ```
@@ -57,7 +57,7 @@ assert that the failed-SKU queue is clear. It is still local-only and does not
 read `.env`, import Supabase/API code, mutate live data, or deploy anything.
 
 ```bash
-python3 scripts/run_firstlot_client_fixture.py \
+python3.11 scripts/run_firstlot_client_fixture.py \
   --fixture-dir tests/fixtures/firstlot_second_synthetic_client \
   --out /tmp/firstlot-second-synthetic-client \
   --period 2026-06 \
@@ -73,7 +73,7 @@ To try another local CSV export this weekend, copy/export files into a folder wi
 these exact filenames and run the same command with a temp output path:
 
 ```bash
-python3 scripts/run_firstlot_client_fixture.py \
+python3.11 scripts/run_firstlot_client_fixture.py \
   --fixture-dir /path/to/local-client-fixture \
   --out /tmp/firstlot-client-test \
   --period 2026-06 \
@@ -110,7 +110,7 @@ Reviewers can refresh the checked-in dashboard demo output from the same safe lo
 fixture path with one command from the repo root:
 
 ```bash
-python3 scripts/regenerate_firstlot_demo_artifacts.py
+python3.11 scripts/regenerate_firstlot_demo_artifacts.py
 ```
 
 Use this before a PR handoff when the FIFO engine, demo fixture, close-packet
@@ -128,7 +128,7 @@ To regenerate into temporary/reviewer directories instead of the checked-in demo
 folders:
 
 ```bash
-python3 scripts/regenerate_firstlot_demo_artifacts.py \
+python3.11 scripts/regenerate_firstlot_demo_artifacts.py \
   --out /tmp/firstlot-demo-v1 \
   --fixed-out /tmp/firstlot-demo-fixed
 ```
@@ -137,7 +137,7 @@ If only a custom fixed-rerun directory is needed, either provide `--fixed-out` o
 use `--include-fixed-rerun` with the default fixed output:
 
 ```bash
-python3 scripts/regenerate_firstlot_demo_artifacts.py \
+python3.11 scripts/regenerate_firstlot_demo_artifacts.py \
   --out /tmp/firstlot-demo-v1 \
   --fixed-out /tmp/firstlot-demo-fixed \
   --include-fixed-rerun
@@ -173,12 +173,12 @@ make check-firstlot-demo
 Equivalent direct command:
 
 ```bash
-python3 scripts/check_firstlot_demo.py
+python3.11 scripts/check_firstlot_demo.py
 ```
 
 The check is intentionally safe and reproducible:
 
-- regenerates the FirstLot CSV/JSON artifacts into a temporary directory with `python3 scripts/regenerate_firstlot_demo_artifacts.py --out <tmp>`,
+- regenerates the FirstLot CSV/JSON artifacts into a temporary directory with `python3.11 scripts/regenerate_firstlot_demo_artifacts.py --out <tmp>`,
 - verifies the expected artifact files exist and JSON parses,
 - runs the dashboard smoke test for `/demo` with `npm test -- --runTestsByPath src/App.test.js --watchAll=false`,
 - avoids `.env`, Supabase, API imports, production services, and live database writes.
@@ -205,7 +205,7 @@ runs. This stays local-file only and writes `month_history.csv` plus
 `month_history.json` in the chosen output directory:
 
 ```bash
-python3 -m app.local_cli run \
+python3.11 -m app.local_cli run \
   --lots tests/fixtures/firstlot_demo/purchase_lots.csv \
   --movement tests/fixtures/firstlot_demo/movement.csv \
   --out /tmp/firstlot-demo \
@@ -219,8 +219,8 @@ Safety behavior for month history:
 - a second run for the same `--period` is blocked by default,
 - use `--reopen --note "..."` for an intentional fix/rerun of that period,
 - use `--append-prior-month --note "..."` for an intentional append/reclose of a prior month,
-- `python3 -m app.local_cli history --out /tmp/firstlot-demo` prints the local history,
-- `python3 -m app.local_cli rollback-plan --out /tmp/firstlot-demo --period 2026-05` prints a read-only operator plan and performs no file deletes, restores, or live-data mutations.
+- `python3.11 -m app.local_cli history --out /tmp/firstlot-demo` prints the local history,
+- `python3.11 -m app.local_cli rollback-plan --out /tmp/firstlot-demo --period 2026-05` prints a read-only operator plan and performs no file deletes, restores, or live-data mutations.
 
 ## FIFO month-close management workflow summary
 
@@ -230,7 +230,7 @@ run, SKU-level COGS table, failed-SKU queue, fix/rerun mode, append/reopen modes
 and rollback-plan visibility.
 
 ```bash
-python3 -m app.local_cli workflow \
+python3.11 -m app.local_cli workflow \
   --out /tmp/firstlot-demo \
   --period 2026-05 \
   --include-rollback-plan
@@ -258,7 +258,7 @@ Start with the intentionally short v1 fixture run:
 
 ```bash
 rm -rf /tmp/firstlot-demo-rerun
-python3 -m app.local_cli run \
+python3.11 -m app.local_cli run \
   --lots tests/fixtures/firstlot_demo/purchase_lots.csv \
   --movement tests/fixtures/firstlot_demo/movement.csv \
   --out /tmp/firstlot-demo-rerun \
@@ -270,11 +270,11 @@ python3 -m app.local_cli run \
 Review the local queue and generate a read-only fix plan:
 
 ```bash
-python3 -m app.local_cli failed-skus \
+python3.11 -m app.local_cli failed-skus \
   --out /tmp/firstlot-demo-rerun \
   --period 2026-05
 
-python3 -m app.local_cli fix-plan \
+python3.11 -m app.local_cli fix-plan \
   --out /tmp/firstlot-demo-rerun \
   --period 2026-05 \
   --lots tests/fixtures/firstlot_demo/purchase_lots.csv \
@@ -291,7 +291,7 @@ does not edit CSVs, delete history, or touch live systems.
 Then rerun the same month with the corrected local fixture and `--reopen`:
 
 ```bash
-python3 -m app.local_cli run \
+python3.11 -m app.local_cli run \
   --lots tests/fixtures/firstlot_demo/purchase_lots_fixed.csv \
   --movement tests/fixtures/firstlot_demo/movement.csv \
   --out /tmp/firstlot-demo-rerun \
@@ -304,7 +304,7 @@ python3 -m app.local_cli run \
 Finally, assert the fixed queue is clear:
 
 ```bash
-python3 -m app.local_cli failed-skus \
+python3.11 -m app.local_cli failed-skus \
   --out /tmp/firstlot-demo-rerun \
   --period 2026-05 \
   --assert-clear
@@ -321,7 +321,7 @@ Before handing a local FirstLot demo branch to review, run the fixture-only chec
 from the repo root:
 
 ```bash
-python3 -m pytest tests/unit/test_local_csv_cli.py tests/unit/test_firstlot_demo_outputs.py tests/unit/test_failed_sku_workflow.py -q
+python3.11 -m pytest tests/unit/test_local_csv_cli.py tests/unit/test_firstlot_demo_outputs.py tests/unit/test_failed_sku_workflow.py -q
 make check-firstlot-demo
 ```
 

@@ -88,7 +88,7 @@ def build_commands(config: MergeSafetyConfig) -> list[GateCommand]:
         GateCommand(
             "Amazon mock/onboarding targeted tests",
             (
-                "python3",
+                sys.executable,
                 "-m",
                 "pytest",
                 "tests/unit/test_amazon_sp_api_mock_connector.py",
