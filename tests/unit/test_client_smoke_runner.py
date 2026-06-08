@@ -236,3 +236,67 @@ def test_client_smoke_clean_output_is_limited_to_tmp_paths(tmp_path):
     assert result.returncode == 0, result.stderr
     assert not (reusable_tmp_out / "stale.txt").exists()
     assert (reusable_tmp_out / "client_smoke_summary.json").exists()
+
+
+def test_csv_doctor_reports_combined_readiness_without_writing_artifacts(tmp_path):
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "app.local_cli",
+            "csv-doctor",
+            "--lots",
+            str(FIXTURE_DIR / "sample_lots_client_shape.csv"),
+            "--movement",
+            str(FIXTURE_DIR / "sample_sales_client_shape.csv"),
+        ],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0, result.stderr
+    payload = json.loads(result.stdout)
+    assert payload["ready_to_normalize"] is True
+    assert payload["blockers"] == []
+    assert payload["lots"]["row_count"] == 5
+    assert payload["movement"]["row_count"] == 5
+    assert payload["movement"]["generated_sale_ids"] is True
+    assert "client-smoke" in "\n".join(payload["next_commands"])
+    assert "read-only inspection" in payload["safety"]
+    assert list(tmp_path.iterdir()) == []
+
+
+def test_csv_doctor_human_summary_surfaces_blocking_header_fixes(tmp_path):
+    bad_lots = tmp_path / "bad_lots.csv"
+    bad_lots.write_text(
+        "sku,received_date,original_quantity,remaining_quantity,unit_price,freight_cost_per_unit\n"
+        "DEMO-SKU-001,2025-09-01,1,1,10.00,1.00\n",
+        encoding="utf-8",
+    )
+
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "app.local_cli",
+            "csv-doctor",
+            "--lots",
+            str(bad_lots),
+            "--movement",
+            str(FIXTURE_DIR / "sample_sales_client_shape.csv"),
+            "--human",
+        ],
+        cwd=REPO_ROOT,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 1
+    assert "FirstLot CSV doctor" in result.stdout
+    assert "Status: NEEDS FIX" in result.stdout
+    assert "purchase_lots missing mappable column for lot_id" in result.stdout
+    assert "Fix the missing/mismapped CSV headers" in result.stdout
+    assert "no artifacts written" in result.stdout

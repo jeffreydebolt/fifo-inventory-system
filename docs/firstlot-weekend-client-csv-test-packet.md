@@ -113,7 +113,16 @@ If git shows real client files as staged or tracked, stop and unstage/remove the
 
 Some real exports will be close to the FirstLot shape but not exact. For example, lot exports may use `po_number`, `original_unit_qty`, `remaining_unit_qty`, `$` currency values, comma quantities, M/D/YY dates, and trailing blank columns. Sales exports may use `SKU`, `Quantity_Sold`, `Sale_Month_Str`, and omit sale IDs.
 
-Inspect the inputs first:
+Run the read-only CSV doctor first. It inspects both files together, shows detected headers, likely FirstLot mappings, projected sample rows in JSON mode, blockers, warnings, and exact next commands. It writes no artifacts.
+
+```bash
+python3 -m app.local_cli csv-doctor \
+  --lots local-client-fixtures/weekend-client-a/lots_export.csv \
+  --movement local-client-fixtures/weekend-client-a/sales_export.csv \
+  --human
+```
+
+If you need per-file JSON details, inspect the inputs directly:
 
 ```bash
 python3 -m app.local_cli inspect-lots \
