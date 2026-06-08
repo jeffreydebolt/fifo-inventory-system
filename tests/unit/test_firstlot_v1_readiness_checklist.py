@@ -41,7 +41,7 @@ def test_firstlot_v1_ready_to_try_checklist_points_to_safe_try_commands():
     content = READY_DOC.read_text()
 
     assert "make firstlot-demo-run" in content
-    assert "python3 scripts/regenerate_firstlot_demo_artifacts.py" in content
+    assert "python3.11 scripts/regenerate_firstlot_demo_artifacts.py" in content
     assert "--out /tmp/firstlot-demo-v1" in content
     assert "--fixed-out /tmp/firstlot-demo-fixed" in content
     assert "http://localhost:3000/demo" in content
@@ -54,6 +54,7 @@ def test_firstlot_demo_run_target_stays_available_for_reviewer_handoff():
     makefile = MAKEFILE.read_text()
 
     assert "firstlot-demo-run:" in makefile
+    assert "PYTHON ?= $(shell command -v python3.11" in makefile
     assert "scripts/regenerate_firstlot_demo_artifacts.py --out /tmp/firstlot-demo-v1 --fixed-out /tmp/firstlot-demo-fixed" in makefile
     assert "FirstLot local demo packets are ready for review" in makefile
     assert "http://localhost:3000/demo" in makefile

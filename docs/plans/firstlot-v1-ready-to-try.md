@@ -14,10 +14,13 @@ From the repo root, with no credentials and no network required for the FIFO run
 make firstlot-demo-run
 ```
 
+The Make target selects `python3.11` when available (falling back to `python3`),
+because the local engine uses Python 3.11 typing syntax.
+
 Equivalent lower-level command:
 
 ```bash
-python3 scripts/regenerate_firstlot_demo_artifacts.py \
+python3.11 scripts/regenerate_firstlot_demo_artifacts.py \
   --out /tmp/firstlot-demo-v1 \
   --fixed-out /tmp/firstlot-demo-fixed
 ```
@@ -57,7 +60,7 @@ FirstLot v1 trial mode is explicitly local/demo only:
 
 | Requirement | State | Evidence | Remaining blocker |
 | --- | --- | --- | --- |
-| Local/demo FirstLot flow can run end-to-end from synthetic fixtures with no network/live data. | PASS | `python3 scripts/regenerate_firstlot_demo_artifacts.py --out /tmp/firstlot-demo-v1 --fixed-out /tmp/firstlot-demo-fixed`; `make check-firstlot-demo`. | None for CLI artifacts. |
+| Local/demo FirstLot flow can run end-to-end from synthetic fixtures with no network/live data. | PASS | `make firstlot-demo-run`; lower-level `python3.11 scripts/regenerate_firstlot_demo_artifacts.py --out /tmp/firstlot-demo-v1 --fixed-out /tmp/firstlot-demo-fixed`; `make check-firstlot-demo`. | None for CLI artifacts. |
 | CLI/docs tell Jeff exactly how to try it. | PASS | `make firstlot-demo-run`, `docs/local-demo-cli.md`, and the command above. | None for local/demo try. |
 | Outputs include month-end COGS summary, remaining layers, audit/detail, failed SKU/shortfall queue, close packet, and human-readable summaries. | PASS | `cogs_summary`, `remaining_layers`, `audit_trail`, `cogs_detail`, `shortfalls`, `failed_sku_queue`, `close_packet.md`, month-history/fixed-rerun artifacts. | None for synthetic demo. |
 | Dashboard `/demo` presents the command center clearly: Amazon mock boundary, source queue, day-zero basis/blockers, inventory planning/replenishment, run comparison/history, and close packet readiness. | PASS | `cogs-dashboard/src/pages/DemoPage.js`, `cogs-dashboard/src/demoData.js`, dashboard smoke test. | Keep copy aligned with this checklist as the demo evolves. |

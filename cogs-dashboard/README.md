@@ -12,8 +12,11 @@ Connector mocks are local documentation/UI state only; see
 From the repository root, regenerate those artifacts with:
 
 ```bash
-python3 scripts/regenerate_firstlot_demo_artifacts.py
+python3.11 scripts/regenerate_firstlot_demo_artifacts.py
 ```
+
+Alternatively run `make firstlot-demo-run` from the repository root; the Makefile
+selects `python3.11` when available and writes reviewer packets under `/tmp`.
 
 Then verify the dashboard locally with:
 
