@@ -30,6 +30,8 @@ class ClientSmokeResult:
     ok: bool
     out: str
     period: str
+    input_files: dict
+    output_files: dict
     normalized_lots: str
     normalized_movement: str
     total_cogs: str
@@ -49,13 +51,22 @@ class ClientSmokeResult:
             "ok": self.ok,
             "out": self.out,
             "period": self.period,
+            "input_files": self.input_files,
+            "output_files": self.output_files,
             "normalized_lots": self.normalized_lots,
             "normalized_movement": self.normalized_movement,
             "total_cogs": self.total_cogs,
             "failed_sku_count": self.failed_sku_count,
             "total_shortfall_quantity": self.total_shortfall_quantity,
+            "failure_counts": {
+                "failed_sku_count": self.failed_sku_count,
+                "failed_sku_queue_rows": (self.fix_plan or {}).get("queue_record_count", self.failed_sku_count),
+                "total_shortfall_quantity": self.total_shortfall_quantity,
+            },
             "artifact_count": self.artifact_count,
             "mutations_performed": self.mutations_performed,
+            "read_only_local_fixture_workflow": True,
+            "validation_status": _validation_status(self.validation),
             "validation": self.validation,
             "lots_normalization": self.lots_normalization,
             "movement_normalization": self.movement_normalization,
@@ -86,6 +97,10 @@ def run_client_smoke(
     normalized_dir.mkdir(parents=True, exist_ok=True)
     normalized_lots = normalized_dir / "purchase_lots.csv"
     normalized_movement = normalized_dir / "movement.csv"
+    input_files = {
+        "raw_lots": str(lots_path),
+        "raw_movement": str(movement_path),
+    }
 
     lots_result = normalize_lot_csv(lots_path, normalized_lots)
     movement_result = normalize_movement_csv(movement_path, normalized_movement)
@@ -94,6 +109,11 @@ def run_client_smoke(
             ok=False,
             out=str(out),
             period=period,
+            input_files=input_files,
+            output_files=_output_files_payload(
+                out,
+                planned=[out / "client_smoke_summary.json", out / "client_smoke_summary.md"],
+            ),
             normalized_lots=str(normalized_lots),
             normalized_movement=str(normalized_movement),
             total_cogs="0.00",
@@ -117,6 +137,11 @@ def run_client_smoke(
             ok=False,
             out=str(out),
             period=period,
+            input_files=input_files,
+            output_files=_output_files_payload(
+                out,
+                planned=[out / "client_smoke_summary.json", out / "client_smoke_summary.md"],
+            ),
             normalized_lots=str(normalized_lots),
             normalized_movement=str(normalized_movement),
             total_cogs="0.00",
@@ -173,11 +198,21 @@ def run_client_smoke(
         _write_missing_lot_request(missing_lot_request_path, queue_records)
         synthetic_repair_path = out / "synthetic_repair_lots_SANDBOX_ONLY.csv"
         _write_synthetic_repair_lots(synthetic_repair_path, queue_records, period)
+    output_files = _output_files_payload(
+        out,
+        planned=[
+            out / "client_smoke_summary.json",
+            out / "client_smoke_summary.md",
+            out / "fix_plan.json",
+        ],
+    )
 
     result = ClientSmokeResult(
         ok=(not queue_records) if expect_clear else True,
         out=str(out),
         period=period,
+        input_files=input_files,
+        output_files=output_files,
         normalized_lots=str(normalized_lots),
         normalized_movement=str(normalized_movement),
         total_cogs=str(sum(row.total_cogs for row in report.cogs_summary)),
@@ -194,6 +229,26 @@ def run_client_smoke(
     _write_json(out / "client_smoke_summary.json", result.to_dict())
     _write_operator_summary_md(out / "client_smoke_summary.md", result.to_dict())
     return result
+
+
+def _validation_status(validation: dict | None) -> str:
+    if validation is None:
+        return "not_run"
+    return "passed" if validation.get("valid") else "failed"
+
+
+def _output_files_payload(out: Path, planned: list[Path] | None = None) -> dict:
+    """Return stable local artifact paths grouped for machine consumers."""
+
+    paths = {path for path in out.rglob("*") if path.is_file()}
+    paths.update(planned or [])
+    relative_paths = sorted(str(path.relative_to(out)) for path in paths if path.exists() or path in (planned or []))
+    by_name = {Path(relative).stem: str(out / relative) for relative in relative_paths}
+    return {
+        "root": str(out),
+        "relative_paths": relative_paths,
+        "by_name": by_name,
+    }
 
 
 def _clean_temp_output(out: Path) -> None:

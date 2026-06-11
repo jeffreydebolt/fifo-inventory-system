@@ -3,6 +3,8 @@
 This module is intentionally strict and dependency-free. It does not import
 Supabase, dotenv, pandas, or any application runtime code.
 """
+from __future__ import annotations
+
 import csv
 from datetime import datetime
 from decimal import Decimal, InvalidOperation

@@ -3,6 +3,8 @@
 These helpers deliberately avoid Supabase, dotenv, API imports, and file system
 side effects unless a caller explicitly writes the returned rows elsewhere.
 """
+from __future__ import annotations
+
 from dataclasses import asdict, dataclass
 from datetime import datetime
 from decimal import Decimal

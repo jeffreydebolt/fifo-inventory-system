@@ -1,4 +1,6 @@
 """Local output file writer for deterministic FIFO report artifacts."""
+from __future__ import annotations
+
 import csv
 import json
 from pathlib import Path
