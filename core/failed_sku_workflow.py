@@ -144,6 +144,40 @@ def _build_recommended_next_action(records: list[FailedSKUQueueRecord], affected
     )
 
 
+def _source_document_needed() -> str:
+    return (
+        "Source-backed purchase lot with received date on/before first sale date, "
+        "available units, unit cost, and freight cost"
+    )
+
+
+def _fix_row(record: FailedSKUQueueRecord) -> dict:
+    issue_type = record.reasons or "UNKNOWN_SHORTFALL"
+    suggested_next_action = (
+        f"Add at least {_unit_phrase(record.shortfall_quantity)} of {record.sku} available before "
+        f"{record.first_sale_date}; include source-backed unit cost and freight cost, then rerun."
+    )
+    return {
+        "sku": record.sku,
+        "period": record.period,
+        "issue_type": issue_type,
+        "minimum_additional_available_units_needed": record.shortfall_quantity,
+        "needed_quantity": record.shortfall_quantity,
+        "needed_unit_cost": None,
+        "needed_freight_cost_per_unit": None,
+        "needed_total_cost": None,
+        "needed_total_freight": None,
+        "first_sale_date": record.first_sale_date,
+        "last_sale_date": record.last_sale_date,
+        "requested_quantity": record.requested_quantity,
+        "allocated_quantity": record.allocated_quantity,
+        "source_document_needed": _source_document_needed(),
+        "suggested_next_action": suggested_next_action,
+        "reason": record.reasons,
+        "status": record.status,
+    }
+
+
 def _build_completion_check_args(
     out_dir: str | Path,
     *,
@@ -217,18 +251,10 @@ def build_fix_plan(
         "queue_record_count": len(records),
         "affected_periods": affected_periods,
         "affected_skus": affected_skus,
+        "failed_skus": [_fix_row(record) for record in records],
         "total_shortfall_quantity": total_shortfall_quantity,
         "queue_records": [asdict(record) for record in records],
-        "recommended_csv_fixes": [
-            {
-                "sku": record.sku,
-                "period": record.period,
-                "minimum_additional_available_units_needed": record.shortfall_quantity,
-                "reason": record.reasons,
-                "status": record.status,
-            }
-            for record in records
-        ],
+        "recommended_csv_fixes": [_fix_row(record) for record in records],
         "rerun_command_args": rerun_args,
         "operator_steps": [
             "Open failed_sku_queue.csv/json and confirm each SKU-period shortfall is expected.",

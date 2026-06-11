@@ -172,6 +172,10 @@ The command performs the safe local sequence end-to-end:
 6. If failed SKU rows remain, write `missing_lot_request.csv` first: a source-backed repair request with SKU, period, minimum units needed, sale-date window, reason, and source document needed.
 7. Also write `synthetic_repair_lots_SANDBOX_ONLY.csv` as a clearly labeled shape/template. Do not use synthetic rows for real COGS.
 
+`client_smoke_summary.json` includes the close period, raw input file paths, normalized and generated output files, validation status, failure counts, total COGS, `mutations_performed: []`, and `read_only_local_fixture_workflow: true`.
+
+`fix_plan.json` includes failed SKUs, issue type, needed quantity, unit cost/freight placeholders when source costs are not known, source-document requirements, and suggested next actions. The sandbox repair template is emitted only when failed SKU rows exist.
+
 Add `--expect-clear` when the run should fail CI/local scripts if any failed SKU queue rows remain. With `--json-out`, a failed expectation prints a clear terminal status (`FAILED SKU queue remains`) plus the exact `fix-plan` command to run next, while preserving the full failed summary in the JSON file.
 
 ## 6. Validate only — no FIFO artifacts written

@@ -42,12 +42,23 @@ def test_client_smoke_normalizes_runs_and_writes_operator_artifacts(tmp_path):
 
     assert payload["ok"] is True
     assert payload["period"] == "2025-09"
+    assert payload["input_files"] == {
+        "raw_lots": str(FIXTURE_DIR / "sample_lots_client_shape.csv"),
+        "raw_movement": str(FIXTURE_DIR / "sample_sales_client_shape.csv"),
+    }
     assert payload["mutations_performed"] == []
+    assert payload["read_only_local_fixture_workflow"] is True
+    assert payload["validation_status"] == "passed"
     assert payload["validation"]["valid"] is True
     assert payload["lots_normalization"]["rows_written"] == 5
     assert payload["movement_normalization"]["rows_written"] == 5
     assert payload["failed_sku_count"] == 0
     assert payload["total_shortfall_quantity"] == 0
+    assert payload["failure_counts"] == {
+        "failed_sku_count": 0,
+        "failed_sku_queue_rows": 0,
+        "total_shortfall_quantity": 0,
+    }
     assert payload["missing_lot_request_path"] is None
     assert payload["synthetic_repair_lots_path"] is None
 
@@ -63,6 +74,7 @@ def test_client_smoke_normalizes_runs_and_writes_operator_artifacts(tmp_path):
     ]
     for relative_path in expected_paths:
         assert (tmp_path / relative_path).exists(), relative_path
+        assert relative_path in payload["output_files"]["relative_paths"]
 
     summary = json.loads((tmp_path / "client_smoke_summary.json").read_text())
     assert summary["safety"].startswith("local client CSV smoke only")
@@ -116,15 +128,16 @@ def test_client_smoke_expect_clear_returns_nonzero_when_queue_remains(tmp_path):
     assert payload["ok"] is False
     assert payload["failed_sku_count"] == 1
     assert payload["total_shortfall_quantity"] == 1
-    assert payload["fix_plan"]["recommended_csv_fixes"] == [
-        {
-            "sku": "DEMO-SKU-005",
-            "period": "2025-09",
-            "minimum_additional_available_units_needed": 1,
-            "reason": "NO_INVENTORY",
-            "status": "NEEDS_FIX_RERUN",
-        }
-    ]
+    fix_row = payload["fix_plan"]["recommended_csv_fixes"][0]
+    assert fix_row["sku"] == "DEMO-SKU-005"
+    assert fix_row["period"] == "2025-09"
+    assert fix_row["issue_type"] == "NO_INVENTORY"
+    assert fix_row["needed_quantity"] == 1
+    assert fix_row["minimum_additional_available_units_needed"] == 1
+    assert fix_row["needed_unit_cost"] is None
+    assert fix_row["needed_freight_cost_per_unit"] is None
+    assert "unit cost and freight cost" in fix_row["suggested_next_action"]
+    assert payload["fix_plan"]["failed_skus"] == payload["fix_plan"]["recommended_csv_fixes"]
     missing_lot_request_path = Path(payload["missing_lot_request_path"])
     assert missing_lot_request_path.exists()
     with missing_lot_request_path.open(newline="") as handle:
