@@ -50,6 +50,18 @@ SAFE_SYNTHETIC_PREFIXES = (
     "cogs-dashboard/src/demo-output/",
 )
 
+BLOCKED_PATH_PARTS = {
+    "Storage Standard",
+    "local-client-fixtures",
+}
+
+CLIENT_DATA_DIRS = {
+    "clients",
+    "client-data",
+    "client_data",
+    "storage-standard",
+}
+
 
 def _run_git(args: list[str], repo_root: Path) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
@@ -75,6 +87,25 @@ def _is_data_file(path: str) -> bool:
     return Path(path).suffix.lower() in DATA_SUFFIXES
 
 
+def path_safety_reasons(path: str) -> list[str]:
+    normalized = path.replace("\\", "/")
+    parts = [part for part in normalized.split("/") if part]
+    basename = Path(normalized).name
+    reasons: list[str] = []
+
+    if basename in BLOCKED_BASENAMES:
+        reasons.append(f"blocked filename {basename}")
+
+    matched_parts = sorted(part for part in BLOCKED_PATH_PARTS if part in normalized)
+    if matched_parts:
+        reasons.append("blocked client/live-data path marker(s): " + ", ".join(matched_parts))
+
+    if _is_data_file(normalized) and any(part.lower() in CLIENT_DATA_DIRS for part in parts):
+        reasons.append("data file under client/live-data directory")
+
+    return reasons
+
+
 def _read_staged_text(repo_root: Path, path: str) -> str:
     result = _run_git(["show", f":{path}"], repo_root)
     if result.returncode != 0:
@@ -98,8 +129,9 @@ def _looks_like_client_data(path: str, text: str) -> list[str]:
 def check_staged(repo_root: Path) -> tuple[bool, list[str]]:
     violations: list[str] = []
     for path in staged_paths(repo_root):
-        if Path(path).name in BLOCKED_BASENAMES:
-            violations.append(f"{path}: blocked filename {Path(path).name}")
+        path_reasons = path_safety_reasons(path)
+        if path_reasons:
+            violations.append(f"{path}: {'; '.join(path_reasons)}")
             continue
 
         if not _is_data_file(path):
