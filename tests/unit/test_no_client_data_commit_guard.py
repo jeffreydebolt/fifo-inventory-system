@@ -84,3 +84,19 @@ def test_no_client_data_guard_blocks_client_markers_even_under_fixture_paths(tmp
     assert result.returncode == 1
     assert "synthetic/demo paths must not contain client/live markers" in result.stderr
     assert "inv_" in result.stderr
+
+
+def test_no_client_data_guard_blocks_client_data_paths_without_reading_markers(tmp_path):
+    _init_repo(tmp_path)
+    client_dir = tmp_path / "clients"
+    client_dir.mkdir()
+    (client_dir / "month_close.csv").write_text(
+        "sku,quantity\n"
+        "SYNTH-SKU,1\n"
+    )
+    assert _run(["git", "add", "clients/month_close.csv"], tmp_path).returncode == 0
+
+    result = _run([sys.executable, str(GUARD_SCRIPT), "--repo-root", str(tmp_path)], tmp_path)
+
+    assert result.returncode == 1
+    assert "data file under client/live-data directory" in result.stderr
